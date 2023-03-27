@@ -1,0 +1,98 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;600;700;800;900&display=swap');
+
+
+/*  */
+.ar-footer-bg{
+    background-color: #161e2d;
+}
+.ar-white-bg{
+    background-color: #fff;
+}
+.ar-drk-pink-bg{
+    background-color: #f16a91 !important;
+}
+
+.ar-footer-line-bg{
+    background-color: #6c7778;
+}
+.ar-footer-before-bg{
+    background: url("../img/footer-before-background.png");
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+/* border styles */
+.ar-border-none{
+    border: none!important;
+}
+.ar-black-bottom-border{
+    border-bottom: #000 1px solid;
+}
+
+/* fonts */
+.ar-font{
+    font-family: 'Roboto Slab', serif;
+}
+.ar-font-700{
+    font-weight: 700 !important;
+}
+.ar-font-800{
+    font-weight: 800 !important;
+}
+.ar-font-500{
+    font-weight: 500 !important;
+}
+.ar-font-600{
+    font-weight: 600 !important;
+}
+.ar-font-900{
+    font-weight: 900 !important;
+}
+.ar-font-300{
+    font-weight: 300 !important;
+}
+.ar-font{
+    font-family: 'Roboto Slab', serif !important;
+}
+
+
+/* font sizes */
+
+.ar-btn-font-size{
+    font-size: 1.2rem !important;
+}
+.ar-footer-before-font-size{
+    font-size: 1.1rem !important;
+}
+.ar-font-size-3rem{
+    font-size: 3.2rem !important;
+}
+.ar-font-size-2rem{
+    font-size: 2rem !important;
+}
+.ar-sm-btn-font-size{
+    font-size: 0.7rem !important;
+}
+
+/* font color */
+.ar-grey-font{
+    color: #6c7778 !important;
+}
+.ar-white-font{
+    color: #fff !important;
+}
+.ar-black-font{
+    color: #000 !important;
+}
+.ar-footer-color-font{
+    color: #161e2d;
+}
+
+/* list style */
+.list-style-none{
+    list-style: none !important;
+}

@@ -1,0 +1,77 @@
+
+.userG
+{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff3b0;
+    padding: 1rem 0;
+}
+
+.userG__aside
+{
+    width: 20%;
+    background-color: #444444;
+}
+.userG__main
+{
+    width: 75%;
+    margin-left: auto;
+}
+
+.userG__asideNav
+{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.userG__link
+{
+    text-decoration: none;
+    color: white;
+
+    font-weight: 400;
+    font-size: 1.1rem;
+
+    padding: .5rem 0;
+
+    transition: all 200ms ease-out;
+}
+@media (max-width: 700px)
+{
+    .userG__link
+    {
+        font-size: .9rem;
+    }
+    .userG__asideNav
+    {
+        padding: .5rem;
+    }
+}
+
+.userG__link:hover
+{
+    color: orange;
+}
+
+.userG__heading
+{
+    font-size: 3rem;
+}
+
+.userG__sub
+{
+    margin-top: 4rem;
+}
+
+.userG__para
+{
+    letter-spacing: 1px;
+    word-spacing: 1px;
+
+    line-height: 2;
+    font-weight: 400;
+    font-size: .9rem;
+}

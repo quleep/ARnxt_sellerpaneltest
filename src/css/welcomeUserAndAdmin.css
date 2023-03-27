@@ -1,0 +1,23 @@
+.welcomeUserAndAdminCont
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.userAndAdminName,.userAndAdminWelcome
+{
+    font-weight: 300;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0;
+}
+
+.userAndAdminName{animation: comeInText 3000ms ease-out 200ms forwards;}
+.userAndAdminWelcome{animation: comeInText 3000ms ease-out 1000ms forwards;}
+
+@keyframes comeInText{ 0%{opacity: 0;} 100%{opacity: 1;}}

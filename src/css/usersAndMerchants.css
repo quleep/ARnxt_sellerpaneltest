@@ -1,0 +1,117 @@
+.usersCont,.merchantsCont
+{
+    padding: 1px;
+    background-color: #fff3b0;
+}
+
+.users__alert,.merchants__alert
+{
+    color: "#212529";
+    font-weight: "300"; 
+    font-size: "0.9rem"; 
+    padding: .3rem .8rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background: #EEEEEE;
+
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    display: block;
+    width: fit-content;
+    margin: 1rem auto;
+
+    animation: aFadeinout 500ms linear forwards;
+}
+@keyframes aFadeinout
+{
+    0%{opacity: 0%;}
+    100%{opacity: 100%;}
+}
+
+
+.users__heading,.merchants__heading
+{
+    width: fit-content;
+    margin: 3.5rem auto;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.users,.merchants
+{
+    width: 80%;
+    max-width: 650px;
+    margin: auto;
+}
+
+.user,.merchant
+{
+    background-color: white;
+    box-shadow: 0 0 15px 5px gainsboro;
+    border-radius: 3px;
+
+    margin-bottom: 2rem;
+
+    width: 100%;
+    padding: 1rem 2rem;
+
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+
+    transition: all 150ms ease-in-out;
+}
+.user:hover{transform: scale(1.1) translateY(-5px);}
+.merchant:hover{transform: scale(1.1) translateY(-5px);}
+
+.user__link,.merchant__link
+{
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: inherit;
+
+    padding: 0 1px;
+
+    text-decoration: none;
+    transition: all 150ms ease-in-out;
+}
+.user__link:hover,.merchant__link:hover
+{
+    color: orange;
+}
+
+.user__deleteBtn,.merchant__deleteBtn
+{
+    display: inline-block;
+    color: white;
+    border: none;
+    background-color: tomato;
+    padding: .4rem .8rem;
+
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 5px;
+
+    transition: all 150ms ease-in-out;
+}
+
+.user__deleteBtn:hover,.merchant__deleteBtn:hover
+{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0px 0px 5px 1px rgb(223, 223, 223);
+}
+
+.user__noUser,.merchant__noMerchant
+{
+    width: fit-content;
+    margin: 1rem auto;
+
+    font-weight: 400;
+    font-size: 1.4rem;
+
+    color: grey;
+}

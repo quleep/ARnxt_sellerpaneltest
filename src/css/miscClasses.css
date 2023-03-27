@@ -1,0 +1,62 @@
+/*----------Download Styles----------------*/
+
+.centerCont
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+
+/*-----------------Loader modal styles--------------------*/
+
+.loader__modal
+{
+    position: relative;
+    z-index: 1000;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader__heading
+{
+    text-align: center;
+    padding: 1rem 0;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+
+
+/*----------------------button-------------------------*/
+.btn
+{
+    padding: .6rem 1rem;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: .9rem;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2C2D30;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: all 150ms ease-in-out;
+}
+.btn:hover{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 4px 4px 7px gray;
+}

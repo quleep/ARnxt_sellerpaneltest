@@ -1,0 +1,267 @@
+.userProCont
+{
+    padding: 1px;
+    background-color: #fff3b0;
+}
+
+/*-------------------------User Project page styling-------------------------*/
+
+.userPro__alert
+{
+    color: "#212529";
+    font-weight: "300"; 
+    font-size: "0.9rem"; 
+    padding: .3rem .8rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background: #EEEEEE;
+
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    display: block;
+    width: fit-content;
+    margin: 1rem auto;
+
+    animation: userProFadeinout 500ms linear forwards;
+}
+@keyframes userProFadeinout
+{
+    0%{opacity: 0%;}
+    100%{opacity: 100%;}
+}
+
+
+.userPro__heading
+{
+    width: fit-content;
+    margin: 3.5rem auto;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.userPro__noProHeading
+{
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: grey;
+}
+
+
+/*------------------------ Projects styling-------------------------*/
+
+.userPro__project
+{
+    width: 70%;
+    max-width: 1000px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 0 15px 5px gainsboro;
+    border-radius: 3px;
+
+    margin-bottom: 2.6rem;
+}
+
+.userPro__project__upper
+{
+    width: 100%;
+    padding: 1rem 2rem;
+
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.userPro__link
+{
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: inherit;
+
+    padding: 0 1px;
+
+    text-decoration: none;
+    transition: all 150ms ease-in-out;
+}
+.userPro__link:hover{
+    color: orange;
+}
+
+.linksym
+{
+    font-size: .5em;
+    padding-left: .2rem;
+}
+
+.userPro__deleteBtn
+{
+    display: inline-block;
+    color: white;
+    border: none;
+    background-color: tomato;
+    padding: .4rem .8rem;
+
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 5px;
+
+    transition: all 150ms ease-in-out;
+}
+.userPro__deleteBtn:hover{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0px 0px 5px 1px rgb(223, 223, 223);
+}
+
+
+.addUserProject__checkbox
+{
+    display: none;
+}
+
+.addUserProject
+{
+    font-size: .8rem;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.addUserProject::before
+{
+    content: '';
+    display: inline-block;
+    height: .4rem;
+    width: .4rem;
+    /* background-color: #2C2D30; */
+    margin-right: .5rem;
+    margin-left: 5px;
+    outline: solid 1px #2C2D30 !important;
+    outline-offset: 2px;
+}
+
+.addUserProject__checkbox:checked ~ .addUserProject::before
+{
+    background-color: #2C2D30;
+}
+
+.userPro__uploadBtn
+{
+    padding: .4rem 1.5rem;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: .9rem;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2C2D30;
+
+    border: none;
+    border-radius: 5px;
+
+    transition: all 150ms ease-in-out;
+}
+.userPro__uploadBtn:hover{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 4px 4px 7px gray;
+}
+
+.userPro__thumbsCont
+{
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+@media (max-width: 700px)
+{
+    .userPro__project
+    {
+        width: 80%;
+    }
+
+}
+
+/*------------------------- Create project Form-------------------------*/
+
+
+.userPro__formmDiv
+{
+    margin: 2.6rem auto;
+    padding-bottom: 1rem;
+
+    width: 85%;
+    max-width: 380px;
+
+    background-color: white;
+
+    box-shadow: 0 0 15px 5px gainsboro;
+    border-radius: 3px;
+}
+
+.userPro__formmHeading
+{
+    margin: 0;
+    line-height: 3;
+    font-weight: 300;
+    font-size: 1.8rem;
+    width: 100%;
+    text-align: center;
+}
+
+.userPro__form
+{
+    display: flex;
+    width: 100%;
+    height: 140px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.userPro__inputDiv
+{
+    width: 80%;
+    overflow: hidden;
+    border: solid 1px gainsboro;
+}
+
+.userPro__input
+{
+    width: 100%;
+    padding: .5rem 1rem;
+    border: none;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.userPro__submitBtn
+{
+    padding: .4rem 1.5rem;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2C2D30;
+
+    border: none;
+    border-radius: 5px;
+
+    transition: all 150ms ease-in-out;
+}
+.userPro__submitBtn:hover{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 4px 4px 7px gray;
+}
+
+.userPro__error
+{
+    width: 80%;
+    font-size: .8rem;
+    color: red;
+}

@@ -1,0 +1,123 @@
+.plansCont
+{
+    background-color: #fff3b0;
+    padding: 1px 0;
+}
+
+.plans__alert
+{
+    width: fit-content;
+    padding: 0.8rem 2rem;
+    color: inherit;
+    background-color: gray;
+    margin: 1rem auto;
+}
+
+/*-------------------------- Plans section -------------------------*/
+
+.plans__section
+{
+    padding: 1px 0;
+    width: 100%;
+}
+
+.plans__heading
+{
+    width: fit-content;
+    margin: 3.5rem auto;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.noPlans
+{
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: grey;
+}
+
+.plansDiv
+{
+    width: 100%;
+}
+
+.plans
+{
+    display: flex;
+    margin: auto;
+    padding: 0;
+    justify-content: space-evenly;
+
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1400px;
+    
+}
+
+
+.plan
+{
+    width: 275px;
+    min-height: 300px;
+    align-self: center;
+
+    margin: 0 auto;
+    margin-bottom: 2rem;
+
+    list-style: none;
+    padding: 0;
+    padding-bottom: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: white;
+
+    box-shadow: 0 0 15px 5px gainsboro;
+    border-radius: 4px;
+    overflow: hidden;
+}
+   
+
+
+.plan__header
+{
+    background-color: #2C2D30;
+    color: white;
+    width: 100%;
+    text-align: center;
+
+    display: block;
+    padding: 1rem 0;
+
+    font-size: 1.1rem;
+}
+
+.plan__cbtn
+{
+    background-color: crimson;
+}
+
+.regSubmitBtn
+{
+    padding: .4rem 1.5rem;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2C2D30;
+
+    border: none;
+    border-radius: 5px;
+
+    transition: all 150ms ease-in-out;
+}
+.regSubmitBtn:hover{
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 4px 4px 7px gray;
+}

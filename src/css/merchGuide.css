@@ -1,0 +1,77 @@
+
+.merchG
+{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff3b0;
+    padding: 1rem 0;
+}
+
+.merchG__aside
+{
+    width: 20%;
+    background-color: #444444;
+}
+.merchG__main
+{
+    width: 75%;
+    margin-left: auto;
+}
+
+.merchG__asideNav
+{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.merchG__link
+{
+    text-decoration: none;
+    color: white;
+
+    font-weight: 400;
+    font-size: 1.1rem;
+
+    padding: .5rem 0;
+
+    transition: all 200ms ease-out;
+}
+@media (max-width: 700px)
+{
+    .merchG__link
+    {
+        font-size: .9rem;
+    }
+    .merchG__asideNav
+    {
+        padding: .5rem;
+    }
+}
+
+.merchG__link:hover
+{
+    color: orange;
+}
+
+.merchG__heading
+{
+    font-size: 3rem;
+}
+
+.merchG__sub
+{
+    margin-top: 4rem;
+}
+
+.merchG__para
+{
+    letter-spacing: 1px;
+    word-spacing: 1px;
+
+    line-height: 2;
+    font-weight: 400;
+    font-size: .9rem;
+}

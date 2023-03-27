@@ -1,0 +1,433 @@
+/*-----------------------Header on Main page-----------------------*/
+
+.header
+{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    background-color: #2C2D30;
+    /* background-color: #2C2D30; */
+    padding: 0 1.5rem;
+    
+    position: fixed;
+}
+
+.header__brand
+{
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    transition: all 200ms ease-out;
+}
+.header__brand:hover{letter-spacing: 2px;}
+
+
+.userbox
+{
+    margin: 0;
+    margin-left: auto;
+    padding: 0rem 2rem;
+    height: 100%;
+
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.userbox__label,.merchbox__label
+{
+    color: inherit;
+    font-weight: 400;
+    font-size: 1.1rem;
+    z-index: 100;
+    cursor: pointer;
+    letter-spacing: 1px;
+    
+    transition: transform 200ms ease-out;
+}
+
+/*--Hover animations---*/
+.userbox__label:hover,
+.merchbox__label:hover,
+.userbox__item1:hover,.userbox__item2:hover,
+.merchbox__item1:hover,.merchbox__item2:hover
+{
+    transform: translateY(-4px) scale(1.1);
+}
+
+.userbox__items,.merchbox__items
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    background: #2C2D30;
+    z-index: 50;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 400ms ease-out;
+}
+
+.userbox__item1,.userbox__item2,.merchbox__item1,.merchbox__item2
+{
+    color: inherit;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: block;
+
+    font-size: .9rem;
+
+    transition: transform 150ms ease-out;
+}
+
+.merchbox
+{
+    margin: 0;
+    padding: 0 1rem;
+    height: 100%;
+
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+/*--Drop down Animation for user and merch--*/
+
+.drawer-down
+{
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+/*------Burger Nav for Main page*/
+
+.burger
+{
+    background: white;
+    height: 2px;
+    width: 50px;
+    margin-left: auto;
+
+    position: relative;
+    cursor: pointer;
+    z-index: 0;
+
+    display: none;
+}
+.burger__area
+{
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1;
+    transform: translateY(-50%);
+    cursor: pointer;
+} 
+.burger::after,.burger::before
+{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 0;
+
+    background: white;
+    transition: all 100ms ease-in-out;
+}
+.burger::after{top: 14px}
+.burger::before{ top: -14px}
+.burger:hover::after{ top: 16px;}
+.burger:hover::before{ top: -16px;}
+
+
+.dropDownNav
+{
+    position: absolute;
+    top: -250%;
+    left: 0;
+    z-index: 200;
+
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    background: #2C2D30;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: all 250ms ease-out;
+}
+.dropDownNavToggleAni{top: 100%; opacity: 1;visibility: visible;}
+
+.dropDownNav__link
+{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.4;
+
+    transition: transform 150ms ease-out;
+}
+.dropDownNav__link:hover{transform: translateY(-4px) scale(1.1);}
+
+@media (max-width: 700px)
+{
+    /*---User Box---*/
+    .userbox{display: none;}
+
+    /*---merch Box---*/
+    .merchbox{display: none;}
+
+    /*---Burger Dropdown NAV---*/
+    .burger{display: block;}
+}
+
+
+
+/*--------------------------------Header on User Account page---------------------------------------*/
+
+.userPage__header
+{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    background-color: #2C2D30;  
+    /* background-color: #fff;   */
+    padding: 0 1.5rem;
+
+    position: fixed;
+}
+
+.userPage__brand
+{
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    transition: all 200ms ease-out;
+}
+.userPage__brand:hover{letter-spacing: 2px;}
+
+.userPage__links
+{
+    margin-left: auto;
+    width: 70%;
+    max-width: 750px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userPage__link
+{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+
+    transition: transform 150ms ease-out;
+}
+
+/*--Hover animations---*/
+.userPage__link:hover
+{
+    transform: translateY(-4px) scale(1.1);
+}
+
+.userPage__profileName
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0 .8rem;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    align-self: center;
+    text-align: center;
+    max-width: 180px;
+    word-wrap: break-word;
+}
+
+.userPage__dropDownNav{ height: 250px;}
+
+@media (max-width: 700px)
+{
+    .userPage__links{display: none;}
+}
+
+
+
+/*--------------------------------Header on merch Account page---------------------------------------*/
+
+.merchPage__header
+{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    background-color: #2C2D30;
+    padding: 0 1.5rem;
+    
+    position: fixed;
+}
+
+.merchPage__brand
+{
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    transition: all 200ms ease-out;
+}
+.merchPage__brand:hover{letter-spacing: 2px;}
+
+.merchPage__links
+{
+    margin-left: auto;
+    width: 80%;
+    max-width: 850px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.merchPage__link
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+    text-align: center;
+
+    transition: transform 150ms ease-out;
+}
+
+/*--Hover animations---*/
+.merchPage__link:hover
+{
+    transform: translateY(-4px) scale(1.1);
+}
+
+.merchPage__profileName
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: 0 .5rem;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    align-self: center;
+    text-align: center;
+    max-width: 160px;
+    word-wrap: break-word;
+}
+
+.merchPage__dropDownNav{ height: 300px;}
+
+@media (max-width: 700px)
+{
+    .merchPage__links{display: none;}
+}
+
+/*--------------------------------Header on admin Account page---------------------------------------*/
+
+.adminPage__header
+{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    background-color: #2C2D30;
+    padding: 0 1.5rem;
+
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2C2D30;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.adminPage__brand
+{
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    transition: all 200ms ease-out;
+}
+.adminPage__brand:hover{letter-spacing: 2px;}
+
+.adminPage__links
+{
+    display: flex;
+    align-items: center;
+}
+
+.adminPage__link
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+    text-align: center;
+
+    transition: transform 150ms ease-out;
+}
+/*--Hover animations---*/
+.adminPage__link:hover
+{
+    transform: translateY(-4px) scale(1.1);
+}
+
+
+.adminPage__dropDownNav{ height: 150px;}
+
+@media (max-width: 700px)
+{
+    .adminPage__links{display: none;}
+}

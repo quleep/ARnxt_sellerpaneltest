@@ -1,0 +1,26 @@
+.pointer{
+    cursor:pointer
+}
+
+.model__approve
+{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    width:30px;
+    height:30px;
+    padding: 0 1rem;
+    padding-bottom: .1rem;
+    background-color: #2C2D30;
+    cursor: pointer;
+    border-radius: 3px;
+    color: white;
+    font-size: 1.8rem;
+    transition: 150ms all ease-out;
+}
+.model__approve:checked
+{
+    background-color: green;
+    box-shadow: 0 0 15px rgb(38, 255, 0);
+}
