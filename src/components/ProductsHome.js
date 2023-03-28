@@ -182,10 +182,7 @@ const click3= ()=>{
                   <h2>Search Product</h2>
 
                 </div>
-                <div className='searchcatdivbody'>
-                   <h2>Categories</h2>
-
-                   </div>
+              
                    <div className='searchcatdivfoot' >
                    <div class="faq-drawer">
       <input class="faq-drawer__trigger" id="faq-drawer-7" type="checkbox" /><label class="faq-drawer__title" for="faq-drawer-7">

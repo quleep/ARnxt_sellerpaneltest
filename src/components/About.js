@@ -144,7 +144,8 @@ function About() {
 
         </div>
         <div className='joinus'>
-        <button className='btnaboutus' > View openings</button>
+        <button className='btnaboutus' >
+          <a href='/contactusnew' >View openings</a> </button>
 
 
         </div>

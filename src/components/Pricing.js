@@ -312,7 +312,7 @@ function Pricing() {
 
                 <tr>
                   <th scope="row" style={{fontFamily:'Manrope, san-serif', fontSize:'15px'}}>Number of 3D views/month</th>
-                  <td style={{fontWeight:'bold'}}>{check ? '10000':'50,000'}</td>
+                  <td style={{fontWeight:'bold'}}>{check ? '10,000':'50,000'}</td>
                   <td style={{fontWeight:'bold'}}>{check ? '50,000':'2,50,000'}</td>
                   <td style={{fontWeight:'bold'}}>Unlimited</td>
                   <td style={{fontWeight:'bold'}}>Unlimited</td>

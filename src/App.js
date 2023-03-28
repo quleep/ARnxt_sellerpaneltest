@@ -69,6 +69,8 @@ import Blognew from './components/Blognew';
 import ProductTest from './ProductTest';
 import ContactUsnew from './ContactUsnew';
 import Testpage from './Testpage';
+import BlogSecond from './components/BlogSecond';
+import BlogThird from './components/BlogThird';
 
   
 
@@ -164,6 +166,12 @@ class App extends Component {
         <Route path="/producttest" exact component={ProductTest}/>
         <Route path="/contactusnew" exact component={ContactUsnew}/>
         <Route path="/test" exact component={Testpage}/>
+        <Route path="/blogsecond" exact component={BlogSecond}/>
+        <Route path="/blogthird" exact component={BlogThird}/>
+
+
+
+
         
 
 

@@ -334,13 +334,14 @@ function Navbartest() {
               
 
                 
-            <div className="container" >
+            <div className="container-fluid"  >
 
            
 
               
             
-                 <Link className="navbar-brand logo-text" to="/"> <img className="img-fluid" style={{height:'60px'}} src="assets/images/logo.png" alt="alternative" /> </Link>
+                 <Link className="navbar-brand logo-text" to="/"> <img className="imgfluid"
+                  src="assets/images/arnxtreg.png" alt="alternative" /> </Link>
 
                  
                       
@@ -358,7 +359,7 @@ function Navbartest() {
 
                  
                 <div className="collapse navbar-collapse" id="navbar" >
-                    <div  style={{marginLeft:'180px'}}>
+                    <div  style={{}}>
                     <ul className=" navbar-nav"  >
                        <div  style={{marginRight:'50px'}}>
                        <li className="nav-item"  >

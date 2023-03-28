@@ -425,7 +425,7 @@ function incNbrc(){
                 <div class="sliderhome">
 	<div class="slide-track"  style={{marginTop:'-30px'}}>
 		<div class="slide">
-			<img src="assets/images/customer-logo-1.webp" style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/customer-logo-1.webp" style={{width:'100%', height:'100%' }} alt="" />
 		</div>
 		<div class="slide">
 			<img src="assets/images/customer-logo-2.png"  style={{width:'100%', height:'100%', }} alt="" />
@@ -437,39 +437,39 @@ function incNbrc(){
 			<img src="assets/images/customer-logo-4.png"  style={{width:'100%', height:'100%', }} alt="" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/hometownlogo.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/hometownnew.png"   style={{width:'100%', height:'100%', }} alt="" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/godrejlogo.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/godrejnew.png"   style={{width:'100%', height:'100%', }} alt="" />
 		</div>
 
   
     <div class="slide">
-			<img src="assets/images/ifblogo.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/ifbnew.png"   style={{width:'100%', height:'100%', }} alt="" />
 		</div>
  
    
    
 
     <div class="slide">
-			<img src="assets/images/LGlogo.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/lgnew.png"  style={{width:'100%', height:'100%'}}  alt="" />
 		</div>
 		
   
   
     <div class="slide">
-			<img src="assets/images/Nilkamallogo.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/nilkamanew.png"  style={{width:'100%', height:'100%'}}  alt="" />
 		</div>
    
     <div class="slide">
-			<img src="assets/images/ottomatelogo.png"  style={{width:'250px', height:'120px', marginTop:'10px'}}  alt="" />
+			<img src="assets/images/ottomatenew.png"  style={{width:'250px', height:'120px', marginTop:'10px'}}  alt="" />
 		</div>
     <div class="slide">
-			<img src="assets/images/samsunglogo.png"  style={{width:'250px', height:'100%'}}  alt="" />
+			<img src="assets/images/samsungnew.png"  style={{width:'250px', height:'100%'}}  alt="" />
 		</div>
   
     <div class="slide">
-			<img src="assets/images/simpolologo.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/simpolonew.png"  style={{width:'100%', height:'100%'}}  alt="" />
 		</div>
   
 		
@@ -873,9 +873,7 @@ function incNbrc(){
 
   </div>
 
-  <div style={{width:'100%', height:'200px', border:'', marginTop:'50px', marginLeft:'-100px'}}>
-    <img src="/assets/images/Web Banner.jpg"  style={{width:'1580px', height:'200px'}}/>
-  </div>
+ 
             </div>
             <div className="getstarted_div">
             <div className="card"  style={{height:'450px'}}>
@@ -1080,11 +1078,19 @@ function incNbrc(){
 
         {/* Slider starts here------------------------------------------------------------------------------------- */}
 
+
+
+        <div className="bannerdiv">
+    <img src="/assets/images/Web Banner.jpg"  className="bannerimage"/>
+  </div>
+  <div className="bannerdivmob">
+    <img src="/assets/images/bannermobile.jpg"  className="bannerimagemob"/>
+  </div>
         <div className="slider-1" >
           <div className="container" >
             <div className="">
               <div className="col-lg-12">
-              <div className="waviy" style={{marginTop:'150px'}}>
+              <div className="waviy" style={{marginTop:'30px'}}>
    <span  style={{"--i":'1'}}>W</span>
    <span style={{"--i":'2', marginRight:'10px'}}>e</span>
    <span style={{"--i":'3'}}>a</span>
@@ -1195,7 +1201,7 @@ function incNbrc(){
 
       
 
-      <div className="cards-2 bg-gray"  style={{backgroundColor:'white', marginTop:'-110px'}}>
+      <div className="cards-2 bg-gray"  style={{backgroundColor:'white', marginTop:'-200px'}}>
         
         <div className="container">
     

@@ -166,10 +166,7 @@ const ContactUsnew = () => {
                   />
                 </div>
                 <div className="form-group"  style={{}}>
-                  <div className='labelforquery'>
-                  <label  >Got to know us from</label>
-
-                  </div>
+                
                  
                <select className='dropdowncontact'
                style={{}}
@@ -177,12 +174,13 @@ const ContactUsnew = () => {
                 onChange={event=>setReference(event.target.value)}
                >
 
-             
-                       <option>Social media</option>
-                     <option>Friends</option>
-                      <option> Ads</option>
-                         <option> Startup community</option> 
-                         <option> Others</option> 
+                       <option value='' selected="selected" className='optiongot' >Got to know us from</option>
+                        
+                       <option value='socialmedia' >Social media</option>
+                     <option value='friends' >Friends</option>
+                      <option value='ads'> Ads</option>
+                         <option value='starupcommunity'> Startup community</option> 
+                         <option value='others'> Others</option> 
 
                </select>
 
