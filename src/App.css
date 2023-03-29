@@ -1930,15 +1930,18 @@ margin-left: 85px;
 .getstarted_div{
   display: flex;
 
-   width: 1600px;
-   height: 400px;
+   width: 120%;
+   height: auto;
    flex-direction: row;
    flex-wrap: wrap;
    margin: 10px;
+   margin-left: -80px;
    
   
-   margin-left: -130px;
+
 }
+
+
 .getstarted_div>*{
   flex: 1 1 auto;
   width: 180px;
@@ -3486,7 +3489,7 @@ form .page .btns button.next {
 }
 .form-control-input{
   font-family: Manrope,sans-serif;
-  font-weight: bold;
+  
   
 }
 .plussymdiv{
@@ -3657,6 +3660,7 @@ width: 500px;
 }
 .optiongot{
   display: none;
+  font-family: Manrope, sans-serif;
 }
 .viewindivbody{
   flex: 8;
@@ -5938,12 +5942,14 @@ input::-webkit-inner-spin-button {
       overflow-x: hidden;
     
       }
+   
       .getstarted_div{
-        margin-left: 50px;
+        margin-left: -100px;
       }
+    
 
       .homevideodiv{
-        margin-left: 350px;
+        margin-left: 250px;
       }
     
     .logodiv1{
@@ -5967,6 +5973,11 @@ input::-webkit-inner-spin-button {
     }
     #navbarExample{
       margin-left: -200px;
+    }
+    .navbar-nav{
+      
+      margin-left: -140px;
+      margin-right: 50px;
     }
 
     .logincard{
@@ -6001,12 +6012,7 @@ input::-webkit-inner-spin-button {
     .btnpartner{
       margin-left: -30px;
     }
-    .getstarted_div{
-     
-      width: 1300px;
-      
-    
-    }
+   
   .brands_div{
    
     margin-left: -120px;
@@ -6021,7 +6027,7 @@ input::-webkit-inner-spin-button {
     margin-top: -100px;
   }
   .footer_newsletter{
-    margin-left: 810px;
+    margin-left: 450px;
   }
   .footer_comdiv2{
     margin-left: -100px;
@@ -6079,10 +6085,10 @@ input::-webkit-inner-spin-button {
     margin-left: 200px;
    }
    .labellogin1{
-    margin-left: -80px;
+    margin-left: 70px;
    }
    .labellogin2{
-    margin-left: -70px;
+    margin-left: 80px;
    }
    .hiring_div{
     margin-left: -350px;

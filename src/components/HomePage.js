@@ -876,6 +876,7 @@ function incNbrc(){
  
             </div>
             <div className="getstarted_div">
+              
             <div className="card"  style={{height:'450px'}}>
             <div id='getstarted1' >
               <div className="getstartedcontent1" >
