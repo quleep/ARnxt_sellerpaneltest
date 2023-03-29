@@ -140,22 +140,35 @@ function Pricing() {
                   <h1  className="h2-heading" style={{color: 'black', textDecoration: 'underline', fontFamily:'Manrope, san-serif'}}>Plans</h1>
                   <br />
                  
-                  <div className="switchbutton" >
-                    <div  style={{marginLeft:'-250px', marginBottom:'-40px'}}><h4 style={{color:'rgb(32, 184, 163)', fontFamily:'Manrope, san-serif', fontWeight:'bold'}}>   Quarterly</h4></div>
-                    <label className="switch" style={{marginLeft:'-50px'}}>
-                  
-                      <input type="checkbox" className=""   style={{}} onClick={checkboxfun} />
-                      
+           
+                    <div className="pricecontainer" >
 
-                      <span className="slider round"  style={{}}></span>
-                 
-                    </label>
-                    <div className="annual_div" >
-                      <h4 style={{color:'blue', fontFamily: 'Manrope, san-serif', marginRight:'10px', fontWeight:'bold'}}>Annually</h4>
-                      <h4 style={ check ? {color:'blue', fontFamily: 'Manrope, san-serif'}: 
-                      {color:'red',fontWeight:'bold', fontFamily: 'Manrope, san-serif'}}></h4>
+                    <div className="pricechange" >
+                      <div  className="pricequarter">
+
+                        <h4 style={{color:'rgb(32, 184, 163)', fontFamily:'Manrope, san-serif', fontWeight:'bold'}} >Quarterly</h4>
                       </div>
-                  </div>
+                      <div className="priceswitch">
+
+                      <label className="switch" >
+                  
+                  <input type="checkbox" className=""   style={{}} onClick={checkboxfun} />
+                  
+
+                  <span className="slider round"  style={{}}></span>
+             
+                </label>
+                      </div>
+
+                      <div className="priceannual">
+                        <h4 style={{color:'blue', fontFamily: 'Manrope, san-serif', marginRight:'10px', fontWeight:'bold'}} >Annually</h4>
+                      </div>
+
+
+                       </div>
+
+                    </div>
+                   
                  
 
                   <br />

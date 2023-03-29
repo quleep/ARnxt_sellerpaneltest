@@ -1514,6 +1514,49 @@ margin-left: 85px;
  
  
 }
+.pricecontainer{
+  display: flex;
+  width: 100%;
+  height: auto;
+ 
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.pricechange{
+  display: flex;
+
+  width: 350px;
+  height: 60px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.pricequarter{
+flex: 2;
+width: 100px;
+height: 60px;
+
+ 
+ 
+}
+.priceswitch{
+  flex: 1;
+  width: 50px;
+height: 60px;
+   
+   
+  }
+  .priceannual{
+    flex: 2;
+    width: 100px;
+height: 60px;
+     
+      
+    }
 .joinus{
   display: flex;
   margin-left: -250px;
