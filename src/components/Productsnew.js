@@ -41,6 +41,24 @@ const Productsnew = ({history}) => {
     const [height, setHeight] = useState('');
     const [additional, setAdditional] = useState('');
     const [curr, setCurr] = useState('');
+    const [colorvalue, setColorValue]=useState();
+    const [mrp, setMrp] = useState();
+    const [collection, setCollection] = useState();
+    const [primarymaterial, setPrimaryMaterial] = useState();
+    const [roomtype, setRoomType] = useState();
+    const [weight, setWeight] = useState();
+    const [warranty, setWarranty] = useState();
+    const [sku, setSku] = useState();
+    const [discount, setDiscount] = useState();
+    const [tag, setTag] = useState();
+    const [Specification, setSpecification] = useState();
+    const [brandoverview, setBrandOverview] = useState();
+    const [sellerinfo, setSellerInfo] = useState();
+    const [care, setCare] = useState();
+    const [pcategory, setPcategory] = useState();
+    const [subcategory, setSubcategory] = useState();
+    const [firstsub, setFirstSub] = useState();
+
 
     const [length, setLength] = useState('');
 
@@ -71,6 +89,8 @@ const Productsnew = ({history}) => {
     let date = new Date();
 
     let lastId = 0;
+
+
 
 function getId(){
       let currentId = new Date().getTime();
@@ -170,6 +190,9 @@ let imagelength;
 let imagebreadth;
 let imageheight;
 
+
+
+
 function uploadImages(e) {
   e.preventDefault();
     
@@ -238,8 +261,24 @@ function uploadImages(e) {
                 height: height,
           
                 productname: productname,
-                productdescription: productdescription,
-                productprice: productprice,
+               
+                mrp : mrp,
+                collection : collection,
+                primarymaterial: primarymaterial,
+                roomtype: roomtype,
+                weight: weight,
+                warranty: warranty,
+                sku: sku,
+                discount: discount,
+                colorvalue: colorvalue,
+                tags: tag,
+                category: pcategory,
+                subcategory: subcategory,
+                Specification: Specification,
+                brandoverview: brandoverview,
+                sellerinfo: sellerinfo,
+                care: care,
+
                 currency: currency,
                 acquiredDate: date,
                 additional: additional,
@@ -447,7 +486,8 @@ const slidenextfirst= (e)=>{
         setTimeout(()=>{
           setMessage('')
         },3000)
-        return
+        
+      return
       }
       if(MerchantPhNo.match(phn)){
         setMerchantPhNo(MerchantPhNo)
@@ -456,7 +496,8 @@ const slidenextfirst= (e)=>{
         setTimeout(()=>{
             setMessage('')
           },3000)
-           return
+        
+          return 
       }
     
    
@@ -479,16 +520,30 @@ const slidenextsecond= (e)=>{
     if(
         productname === '' ||
         brand === '' ||
+        mrp === '' ||
+        
      
         length === '' ||
         breadth === '' ||
         height === '' ||
-      
-        productprice === ''
+        primarymaterial === '' ||
+        roomtype === '' ||
+        weight === '' ||
+        warranty === '' ||
+        sku === '' ||
+        colorvalue === '' ||
+        tag === '' ||
+        pcategory === '' ||
+        subcategory === '' ||
+        Specification === '' ||
+        brandoverview === '' ||
+        sellerinfo === '' ||
+        Purchaselink === '' ||
+        care === '' 
        
        
     ){
-        setMessage( ` All fields are Required`);
+        setMessage( `Please fill the required fields`);
         setTimeout(()=>{
           setMessage('')
         },3000)
@@ -660,24 +715,76 @@ const infomouseout=()=>{
 
 
 const lengthdisplay =()=>{
-  document.querySelector('.tooltiptext1').style.display= 'block';
-  document.querySelector('.tooltiptext2').style.display= 'none';
-  document.querySelector('.tooltiptext3').style.display = 'none';
+  document.querySelector('.breadthtextlength').style.display= 'block';
+  document.querySelector('.breadthtextbreadth').style.display= 'none';
+  document.querySelector('.breadthtextheight').style.display = 'none';
 }
 
 const breadthdisplay=()=>{
-  document.querySelector('.tooltiptext2').style.display = 'block';
-  document.querySelector('.tooltiptext1').style.display= 'none';
-  document.querySelector('.tooltiptext3').style.display = 'none';
+  document.querySelector('.breadthtextbreadth').style.display = 'block';
+  document.querySelector('.breadthtextlength').style.display= 'none';
+  document.querySelector('.breadthtextheight').style.display = 'none';
 
 
   
 }
 const heightdisplay= ()=>{
-  document.querySelector('.tooltiptext3').style.display = 'block';
-  document.querySelector('.tooltiptext1').style.display= 'none';
-  document.querySelector('.tooltiptext2').style.display = 'none';
+  document.querySelector('.breadthtextheight').style.display = 'block';
+  document.querySelector('.breadthtextlength').style.display= 'none';
+  document.querySelector('.breadthtextbreadth').style.display = 'none';
 }
+
+
+let citiesByState={
+  Furniture:["Bar stools", "Cabinets", "Wardrobe", "Side table", "Dining table","Coffee table",
+  "Bed", "Sideboard", "Chair", "Centre table", "Bedside table","stool", "Bean bag","Sofa","Bookshelf",
+  "Study table", "Bench","Table"
+],
+Bathroom: ["Commode", "Shower","Faucet","Bathtub", "Basin"],
+Furnishing: ["Rugs", "Blinds","Quilts","Bedsheets"],
+Electrical: ["Light", "Chandelier","Switch","Floor lamp","Fan", "Water filter"],
+Electronics: ["Ac", "Microwave","Washing Machine","Refrigerator", "Tv"],
+Decorative: ["Metal art", "Painting"],
+Walls: ["Animal wallpapers", "Abstract","Botanical", "Floral","Geometric", "Kids","Modern"],
+Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "Bedroom", "Commercial spaces"]
+}
+
+
+const dat=  new Date()
+console.log(Date.parse(dat))
+
+
+function makeSubmenu(value) {
+
+
+  setPcategory(value);
+ 
+  
+
+if(value.length  === 0) document.getElementById("citySelect").innerHTML = "<option></option>";
+else {
+let citiesOptions = "";
+for( let cityId in citiesByState[value]) {
+ 
+let firstvalue= citiesByState[value]
+setSubcategory(firstvalue[0])
+
+citiesOptions+="<option  >"+citiesByState[value][cityId]+"</option>";
+}
+document.getElementById("citySelect").innerHTML = citiesOptions;
+}
+
+}
+
+function resetSelection() {
+document.getElementById("countrySelect").selectedIndex = 0;
+document.getElementById("citySelect").selectedIndex = 0;
+}
+
+
+
+
+
 
   return (
     <div>
@@ -890,12 +997,318 @@ const heightdisplay= ()=>{
                     </div>
 
                     <div className="page">
+
+                   
                         <div className="products_paratitle">Product Details</div>
+
+                        <div className='productmaincontainer' >
+
+                        <div className='productinsidecontainer' >
+                          <div>
+                           <div className='productinputdiv' >
+                            <label>Product Name <span className="required-field"></span></label>
+                            <input type='text' onChange={(e)=>setProductName(e.target.value)} />
+                           </div>
+
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Brand <span className="required-field"></span></label>
+                            <input list="brand" name="brand" onChange={(e)=>setBrand(e.target.value)} />
+                       <datalist class="" id="brand">    
+                        <option value="Vimani"/>
+                          <option value="Sternhagen Germany"/>
+                         <option value="Nitco"/>
+                         <option value="LightBerry"/>
+                          <option value="ottomate"/>
+                         <option value="wall fashion"/>
+                         <option value="johnson"/>
+                          <option value="excel"/>
+                         <option value="nexion"/>
+                         <option value="lasvagas"/>
+                          <option value="jaquar"/>
+                         <option value="jaldhi"/>
+                         <option value="agl"/>
+                         <option value="hometown"/>
+                         <option value="intradings"/>
+                          <option value="nikamal"/>
+                         <option value="havells"/>
+                         <option value="schneider electric"/>
+                         <option value="simero"/>
+                         <option value="iifb"/>
+                         <option value="marshalls"/>
+                          <option value="century"/>
+                         <option value="bajaj"/>
+                         <option value="LG"/>
+                         <option value="Samsung"/>
+                         <option value="godrej"/>
+                          <option value="simpolo"/>
+                        
+                               </datalist>
+                           </div>
+
+
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >MRP<span className="required-field"></span></label>
+                            <input type='number'  onChange={(e)=>setMrp(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+
+                          <div className='productinputdiv' >
+                            <label>Offer price<span className="required-field"></span></label>
+                            <input  type='number' onChange={(e)=>setDiscount(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                            <div className='productinputdiv'>
+                            <label  >Currency <span className="required-field"></span></label>
+                            <select id="" 
+                             value={currency}
+                            onChange={event=>setCurrency(event.target.value)}
+                            className='productcurrency'
+                                   
+                                  >
+                               <option selected id='curvalue' value="₹ INR" >₹ INR</option>
+                         <option   value='usd'>$ USD</option>
+      
+                          <option value='euro' > EURO</option>
+     
+
+                            </select>
+
+                            </div>
+                      
+
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Length (Inch) <span className="required-field"></span></label>
+                            <input type='number' value={length} onChange={(e)=>setLength(e.target.value)} onFocus={lengthdisplay} />
+                           </div>
+                           <p className='breadthtextlength' >Length should be greater or equal to 0</p>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Breadth (Inch) <span className="required-field"></span></label>
+                            <input  value={breadth} type='number' onChange={(e)=>setBreadth(e.target.value)} onFocus={breadthdisplay}   />
+                           
+                           </div>
+                           <p className='breadthtextbreadth' >Breadth should be greater or equal to 0</p>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Height (Inch) <span className="required-field"></span></label>
+                            <input  value={height} type='number' onChange={(e)=>setHeight(e.target.value)} onFocus={heightdisplay}  />
+                           </div>
+                           <p className='breadthtextheight' >height should be greater or equal to 0</p>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Collection</label>
+                            <input list="collection" name="collection" onChange={(e)=>setCollection(e.target.value)} />
+                       <datalist class="" id="collection">    
+                        <option value="Crystal"/>
+                          <option value="lyra"/>
+                         <option value="inspire"/>
+                         <option value="biba"/>
+                          <option value="jenica"/>
+                         <option value="evolution3"/>
+                         <option value="gravity"/>
+                          <option value="funtime"/>
+                         <option value="pinaka"/>
+                               </datalist>
+                           </div>
+                          
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Primary Material <span className="required-field"></span></label>
+                            <input list="material" name="material"  onChange={(e)=>setPrimaryMaterial(e.target.value)} />
+                       <datalist class="" id="material">    
+                        <option value="Fabric"/>
+                          <option value="Leatherette"/>
+                         <option value="Solid Wood"/>
+                         <option value="Leather"/>
+                          <option value="Cann"/>
+                         <option value="Engineered wood"/>
+                         <option value="Metal"/>
+                          <option value="Plastic"/>
+                         <option value="Glass"/>
+                         <option value="stone"/>
+                          <option value="marble"/>
+                         <option value="Solid Wood"/>
+                               </datalist>
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Room type <span className="required-field"></span></label>
+                            <input list="room" name="room" onChange={(e)=>setRoomType(e.target.value)} />
+                       <datalist class="" id="room">    
+                        <option value="Living Room"/>
+                          <option value="kitchen"/>
+                         <option value="Bed Room"/>
+                         <option value="Bathroom"/>
+
+                               </datalist>
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Weight (kg) <span className="required-field"></span></label>
+                            <input type='number' onChange={(e)=>setWeight(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Warranty(years) <span className="required-field"></span></label>
+                            <input type='number' onChange={(e)=>setWarranty(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >SKU <span className="required-field"></span></label>
+                            <input type='text' onChange={(e)=>setSku(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                        
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Color <span className="required-field"></span></label>
+                            <input type='color' id='colordiv' onChange={(e)=>setColorValue(e.target.value)} style={{width:'40px', marginLeft:'-170px'}} />
+                            <span className='colorvalue' >{colorvalue}</span>
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Tags <span className="required-field"></span></label>
+                            <input list="tags" name="tags" onChange={(e)=>setTag(e.target.value)} />
+                       <datalist class="" id="tags">    
+                        <option value="Newest"/>
+                          <option value="Best Deals"/>
+                         <option value="Top Picks"/>
+                         <option value="Featured"/>
+                         <option value="Soft Firmness"/>
+                         <option value="Hard Firmness"/>
+                         <option value="Enterance"/>
+                       
+
+
+                               </datalist>
+                           </div>
+                         
+                       
+                          </div>
+                          <div>
+
+                            <div className='productinputdiv' >
+                            <label  >Category <span className="required-field"></span></label>
+                            <select  className='productcurrency' id="countrySelect" size="1" onChange={(e)=>makeSubmenu(e.target.value)} >
+                            <option value='' selected="selected" className='optiongot' >Choose</option>
+                            <option value="Furniture" id='catoption' >Furniture</option>
+                          <option value="Bathroom">Bathroom</option>
+                         <option value="Furnishing">Furnishing</option>
+                         <option value="Electrical">Electrical</option>
+                          <option value="Electronics">Electronics</option>
+                         <option value="Decorative">Decorative</option>
+                         <option value="Walls">Walls</option>
+                         <option value="Floors">Floors</option>
+                          <option value="Upholstery">Upholstery</option>
+                         <option value="wall paint">wall paint</option>
+
+
+                              </select>
+                             
+                    
+                           
+                            </div>
+                   
+
+                          </div>
+                          <div>
+
+                            <div className='productinputdiv'>
+                            <label  >Sub Category <span className="required-field"></span></label>
+                            <select 
+                             onChange={(e)=>setSubcategory(e.target.value)}
+                              className='productcurrency' id="citySelect" size="1" >
+                              
+                
+                               <option value={subcategory} id='subcatvalue'  ></option>
+                    
+                        </select>
+                           
+
+
+                            </div>
+                          </div>
+                         
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Specification <span className="required-field"></span></label>
+                            <textarea type='text'  onChange={(e)=>setSpecification(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Brand Overview <span className="required-field"></span></label>
+                            <textarea type='text' onChange={(e)=>setBrandOverview(e.target.value)} />
+                           </div>
+                          </div>
+                        
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Seller Info <span className="required-field"></span></label>
+                            <textarea type='text' onChange={(e)=>setSellerInfo(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Additional Info</label>
+                            <textarea type='text' onChange={(e)=>setAdditional(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Website </label>
+                            <input type='text' onChange={(e)=>setPurchaseLink(e.target.value)} />
+                           </div>
+                          </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Care & Maintenance <span className="required-field"></span></label>
+                            <textarea type='text' onChange={(e)=>setCare(e.target.value)} />
+                           </div>
+                          </div>
+                          <div></div>
+                          <div></div>
+                         
+                          
+
+                        
+                          
+
+            
+
+                         </div>
+
+
+                        </div>
+                     
+
+
+                        {/*
                         <div className="field">
                             <div className="label"><p  className='products_para'>Product name</p></div>
                             <input type="text"
                             onChange={event=> setProductName(event.target.value) }   style={{border:'1px solid black'}}  />
                         </div>
+                        
                         <div className="field">
                             <div className="label"><p  className='products_para'>Brand</p></div>
                             <input type="text" 
@@ -965,9 +1378,10 @@ const heightdisplay= ()=>{
                              onChange={event=> setProductDescription(event.target.value)}
                             style={{border:'1px solid black'}} />
                         </div>
+*/}
                         
                       
-                        <div className="field btns"  >
+                        <div className="field btns" style={{marginLeft:'40px'}} >
                             <button className="" style={{marginRight:'10px'}} onClick={slidepreviousfirst} >Back</button>
                             <button className="" onClick={slidenextsecond}>Next</button>
                         </div>

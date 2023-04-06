@@ -71,6 +71,10 @@ import ContactUsnew from './ContactUsnew';
 import Testpage from './Testpage';
 import BlogSecond from './components/BlogSecond';
 import BlogThird from './components/BlogThird';
+import Career from './components/Career';
+import Joinus from './components/Joinus';
+import Opening from './components/Opening';
+import JobDesc from './components/JobDesc';
 
   
 
@@ -168,6 +172,14 @@ class App extends Component {
         <Route path="/test" exact component={Testpage}/>
         <Route path="/blogsecond" exact component={BlogSecond}/>
         <Route path="/blogthird" exact component={BlogThird}/>
+        <Route path="/career"  component={Career}  exact/>
+       
+        <Route path="/:id" component={JobDesc} />
+
+      
+
+
+        
 
 
 
