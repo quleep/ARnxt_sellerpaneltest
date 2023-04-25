@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { setUserSession } from './service/AuthService';
 import { Metadata } from './layout/MetaData';
+import Navbartest from './components/Navbartest';
 
 
 const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/production/login'
@@ -65,6 +66,7 @@ export const Login = ({history}) => {
 
   return (
     <div className="container" style={{}}>
+      <Navbartest/>
       <Metadata title={'Login'}/>
 
     <div className="row"  style={{}}>

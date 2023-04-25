@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { setUserSession } from '../service/AuthService';
 import { Metadata } from '../layout/MetaData';
+import Navbartest from './Navbartest';
 
 
 
@@ -68,6 +69,8 @@ const LoginNew = ({history}) => {
   
 
 <section className="h-100 " style={{backgroundColor:'#eee'}}>
+  <Navbartest/>
+  
   <div className="container py-5 h-100"   >
   <Metadata title={'Login'}/>
     <div className="loginmaindiv">

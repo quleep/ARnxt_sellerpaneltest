@@ -15,6 +15,7 @@ import swal from 'sweetalert';
 
 import { Link } from 'react-router-dom';
 import logo from '../src/img/logo.png'
+import Navbartest from './components/Navbartest';
 
 
 
@@ -343,6 +344,7 @@ const logoutHandler=()=>{
 
   return (
     <div  className='productmain_div' >
+      <Navbartest/>
       <Metadata title={'Submit Details'}/>
        
 

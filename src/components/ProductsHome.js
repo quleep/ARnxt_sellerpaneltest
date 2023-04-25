@@ -4,6 +4,7 @@ import {FaUserCircle, FaShareAltSquare, FaPlus, FaPlusSquare} from 'react-icons/
 import ReactPlayer from 'react-player'
 import { PopupButton } from "react-calendly";
 import { Metadata } from '../layout/MetaData';
+import Navbartest from './Navbartest';
 
 const ProductsHome = () => {
     
@@ -44,6 +45,7 @@ const click3= ()=>{
     
      return (
    <div   className='productspage'  >
+    <Navbartest/>
       <Metadata title={'Products'}/>
   
     <div className='productsheader' >

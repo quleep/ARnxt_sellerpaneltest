@@ -29,7 +29,8 @@
     "reactstrap": "^8.5.1",
     "regex": "^0.1.1",
     "sweetalert": "^2.1.2",
-    "swiper": "^7.2.0"
+    "swiper": "^7.2.0",
+    "validator": "^13.9.0"
   },
   "scripts": {
     "start": "set PORT=8121 && react-scripts start",

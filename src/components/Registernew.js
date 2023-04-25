@@ -6,6 +6,7 @@ import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert';
 import { Metadata } from '../layout/MetaData';
+import Navbartest from './Navbartest';
 
 
 
@@ -439,6 +440,8 @@ else{
   
   return (
     <div >
+
+      <Navbartest/>
         
 <section className=" " style={{backgroundColor:'#eee', marginTop:''}}>
   <div className="container  " style={{marginTop:'80px'}} >

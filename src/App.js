@@ -75,6 +75,7 @@ import Career from './components/Career';
 import Joinus from './components/Joinus';
 import Opening from './components/Opening';
 import JobDesc from './components/JobDesc';
+import Dashboard from './components/Dashboard';
 
   
 
@@ -145,7 +146,7 @@ class App extends Component {
        
        
        
-      <Navbartest/>
+    
        
       
        
@@ -173,6 +174,9 @@ class App extends Component {
         <Route path="/blogsecond" exact component={BlogSecond}/>
         <Route path="/blogthird" exact component={BlogThird}/>
         <Route path="/career"  component={Career}  exact/>
+        <Route path="/dashboard" exact component={Dashboard}/>
+
+        
        
         <Route path="/:id" component={JobDesc} />
 

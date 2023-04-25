@@ -4,6 +4,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { FaExclamationCircle } from 'react-icons/fa';
 import { Metadata } from './layout/MetaData';
+import Navbartest from './components/Navbartest';
 
 const queryurl= 'https://adtzd6cy7j.execute-api.ap-south-1.amazonaws.com/production/query';
 
@@ -76,6 +77,7 @@ const ContactUsnew = () => {
 
   return (
     <div>
+      <Navbartest/>
       <Metadata title={'Contact'}/>
 
 <div id="contact" className="contact">

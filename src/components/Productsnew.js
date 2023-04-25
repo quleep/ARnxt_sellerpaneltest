@@ -17,6 +17,7 @@ import {
 // importing images
 import logo from "../img/logo.png"
 import { Metadata } from '../layout/MetaData';
+import Navbartest from './Navbartest';
 
 const Productsnew = ({history}) => {
 
@@ -58,6 +59,29 @@ const Productsnew = ({history}) => {
     const [pcategory, setPcategory] = useState();
     const [subcategory, setSubcategory] = useState();
     const [firstsub, setFirstSub] = useState();
+    const [tagarray, setTagArray] = useState('');
+
+    const [offerprice, setOfferPrice] = useState();
+
+    const [tagvalue, setTagValue] = useState([])
+    const [error, setError] = useState();
+    const [suggest, setSuggest] = useState([]);
+    const [verifytag, setVerifyTag] = useState([])
+    const [repeatvalue, setRepeatValue] = useState();
+    const [colortextvalue, setColortextvalue] = useState();
+    const [finalcolor, setFinalColor] = useState();
+
+    const [imagesarray, setImagesArray] = useState([]);
+    
+
+    const [testtext, setTestText] = useState();
+
+    const [filevalid, setFileValid] =  useState(false);
+
+    const [newarray, setNewArray] = useState([]);
+
+    const [modelsearch, setModelSearch] = useState();
+  
 
 
     const [length, setLength] = useState('');
@@ -71,19 +95,24 @@ const Productsnew = ({history}) => {
     const imagesendurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl';
 
     const savedimurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/sendimageurl'
+    const searchmodels= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getmodelsbyname'
  
   
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
   
     const [imageArray, setImageArray]= useState([]);
-    const [imageupload, setImageUpload] =useState(false)
+    const [imageupload, setImageUpload] = useState(false)
+
+    const [searchedmodels, setSearchedModels] = useState();
     const userEmail= sessionStorage.getItem('user')
     
     const emailID= JSON.parse(userEmail)
     let p_id= emailID.userid
     const u_id =emailID.name
+    
     let uidnew= u_id.split(' ')
+   
      let uname= uidnew[0]
 
     let date = new Date();
@@ -121,6 +150,8 @@ function getId(){
     }
 
 
+
+
     
   const onChange = e => {
     
@@ -141,6 +172,8 @@ function getId(){
       if (result) {
         setFile(result)
         setFileName(file)
+
+
       
       
        
@@ -161,6 +194,8 @@ function getId(){
             setImages(oldArray => [...oldArray, file])
 
            
+
+           
             }
        
        
@@ -171,6 +206,10 @@ function getId(){
     reader.readAsDataURL(file)
     
 })
+
+
+setFileValid(true)
+
 
 
     }
@@ -190,25 +229,16 @@ let imagelength;
 let imagebreadth;
 let imageheight;
 
-
-
-
-function uploadImages(e) {
-  e.preventDefault();
-    
-  getId()
-     setProid(lastId)
-
+let discountnew;
+discountnew = (mrp - offerprice)/mrp*100
 
   
-  if(images.length < 2){
-    setMessage('please select at least 2 images')
-    setTimeout(()=>{
-      setMessage('')
-    },3000)
-  }
-    
-    for(let i=0; i<images.length;i++){
+
+
+ {/*  
+  for(let i=0; i<images.length;i++){
+
+   
       
     const url= 'https://g98tqv1tn6.execute-api.ap-south-1.amazonaws.com/default/ImagesUploaderArnxt';
     fetch(url,{
@@ -216,13 +246,13 @@ function uploadImages(e) {
       body: images[i].name
     
   
-
+  
     }).then((res)=>res.json())
        .then((res)=>{
         
       
       
-
+  
         
       
       
@@ -240,111 +270,32 @@ function uploadImages(e) {
     
         })
            .then((res)=>{
+          
            
             
       
             if(res.status === 200){
-
-              const requestBody= {
-
-                merchantName: merchantName,
-                Shopsno: Shopsno,
-                MerchantPhNo: MerchantPhNo,
-                Merchantaddress:  Merchantaddress,
-              
-                Merchantemail: Merchantemail,
-                Merchanttype: Merchanttype,
-                Purchaselink: Purchaselink,
-                brand: brand,
-                lengthprod: length,
-                breadthprod: breadth,
-                height: height,
-          
-                productname: productname,
+  
+  
+            
+  
+                let resnew= res.url.split('?')
+                let imgurl= resnew[0]
+  
                
-                mrp : mrp,
-                collection : collection,
-                primarymaterial: primarymaterial,
-                roomtype: roomtype,
-                weight: weight,
-                warranty: warranty,
-                sku: sku,
-                discount: discount,
-                colorvalue: colorvalue,
-                tags: tag,
-                category: pcategory,
-                subcategory: subcategory,
-                Specification: Specification,
-                brandoverview: brandoverview,
-                sellerinfo: sellerinfo,
-                care: care,
-
-                currency: currency,
-                acquiredDate: date,
-                additional: additional,
-                merchant_Id: p_id,
-                product_Id: lastId
-
-              }
-
-
-              axios.post (registerUrl, requestBody).then(res=>{
-                console.log(res)
-              }).catch(error=>{
-                console.log(error)
-              })
-              
-              let resnew= res.url.split('?')
-              let imgurl= resnew[0]
-          
-              const requesturl={
-                userid: p_id,
-                imgurl: imgurl,
-                imageno: `${imgurl}_${i}`,
-                productid: lastId,
-                imagelength: length,
-                imagebreadth: breadth,
-                imageheight: height
-
-             
-              }
-
-              axios.post(imagesendurl, requesturl).then(response=>{
-                console.log(response)
-              }).catch(error=>{
-                console.log(error)
-              })
-
-           
-
-              setImageUpload(true);
-
-              
-              swal({
-                title: " Submitted Successfully!",
-              
-                icon:"success",
-               
+  
+                setImagesArray(oldArray => [...oldArray, imgurl])
         
-            })
-            setTimeout(()=>{
-              window.location.reload()
-            
-            },2000)
-         
+              
+  
+           
+  
+  
+              
+           
+              
+              }
           
-            
-              
-              
-              setTimeout(()=>{
-                setMessage('')
-              },3000)
-            
-            
-            }
-            else{
-                setImageUpload(false);
-            }
            })
            .catch((err)=>console.log(err))
          
@@ -352,13 +303,361 @@ function uploadImages(e) {
        .catch((err)=>console.log(err))
       
       
+  
+  
+
+  
+
+
+}
+
+*/}
+
+useEffect(()=>{
+
+  for(let i=0; i<images.length;i++){
+
+   
+      
+    const url= 'https://g98tqv1tn6.execute-api.ap-south-1.amazonaws.com/default/ImagesUploaderArnxt';
+    fetch(url,{
+      method: "POST",
+      body: images[i].name
+    
+  
+  
+    }).then((res)=>res.json())
+       .then((res)=>{
+        
+      
+      
+  
+        
+      
+      
+      
+        fetch(res.uploadURL, {
+          
+          method: "PUT",
+          headers: {
+            "ContentType": "image/jpeg",
+          
+          },
+    
+        body: images[i]
+        
+    
+        })
+           .then((res)=>{
+          
+           
+            
+      
+            if(res.status === 200){
+  
+  
+            
+  
+                let resnew= res.url.split('?')
+                let imgurl= resnew[0]
+
+           
+
+              setImagesArray((oldArray)=>[...oldArray, imgurl])
+
+          
+                
+           
+      
+              }
+          
+           })
+           .catch((err)=>console.log(err))
+         
+       })
+       .catch((err)=>console.log(err))
+      
+      
+  
+  
+
+  
+
+
+}
+  
+
+
+},[images])
+
+
+
+
+   
+imagesarray &&
+ imagesarray.map(item=>{
+     if(!newarray.includes(item))
+     setNewArray([...newarray, item])
+  
+ })
+
+
+
+ function uploadImages(e) {
+  e.preventDefault();
+
+ 
+    
+  getId()
+     setProid(lastId)
+
+
+  
+  if(images.length < 6){
+    setMessage('please select at least 6 images')
+    setTimeout(()=>{
+      setMessage('')
+    },4000)
+    return
   }
 
+  const productdetails= {
+    product_Id: lastId,
+    merchant_Id: p_id,
+  
+    model_Id: '',
+   
+   
+    merchantName: merchantName,
+    Shopsno: Shopsno,
+    MerchantPhNo: MerchantPhNo,
+    Merchantaddress:  Merchantaddress,
+  
+    Merchantemail: Merchantemail,
+    Merchanttype: Merchanttype,
+    Purchaselink: Purchaselink,
+    brand: brand,
+    lengthprod: length,
+    breadthprod: breadth,
+    height: height,
+
+    productname: productname.toLowerCase(),
+   
+    mrp : mrp,
+    offerprice: offerprice,
+    collection : collection,
+    primarymaterial: primarymaterial,
+    roomtype: roomtype,
+    weight: weight,
+    warranty: warranty,
+    sku: sku,
+    discount: discountnew,
+    colorvalue: finalcolor,
+    tags: verifytag,
+    category: pcategory,
+    subcategory: subcategory,
+    Specification: Specification,
+    brandoverview: brandoverview,
+    sellerinfo: sellerinfo,
+    care: care,
+    imageurl: newarray,
+
+    currency: currency,
+    registration_Time: new Date().toString(),
+    additional: additional,
+
+
+
+  }
+
+
+  const merchantbody={
+    merchant_Id: Number(p_id),
+    merchantname: u_id,
+    product_Id: lastId,
+    registration_Time: new Date().toString(),
+  }
+   
+  axios.post(registerUrl, productdetails).then(res=>{
+
+    axios.post(imagesendurl,merchantbody ).then(res=>{
+      console.log(res)
+    }).catch(error=>{
+      console.log(error)
+    })
+    console.log(res)
+    swal({
+      title: " Submitted Successfully!",
+    
+      icon:"success",
+     
+
+  })
+  setTimeout(()=>{
+    window.location.reload()
+  
+  },2000)
+
+
+  
+    
+    
+    setTimeout(()=>{
+      setMessage('')
+    },3000)
+  
+    console.log(res)
+  }).catch(error=>{
+    console.log(error)
+  })
+   
+
+
+
+ 
+
+  
       
     }  
 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+    
+ 
+
+
+    
+
+
+
   
+ 
+
+    
+
+
+  
+  
+      {/*
+    
      
+    */}
+      
+    
+
+  
+
+ 
+
+  
+
+{/*
+
+  const productdetails= {
+    product_Id: lastId,
+    merchant_Id: p_id,
+  
+    model_Id: '',
+   
+    imageurl: imagesarray,
+    merchantName: merchantName,
+    Shopsno: Shopsno,
+    MerchantPhNo: MerchantPhNo,
+    Merchantaddress:  Merchantaddress,
+  
+    Merchantemail: Merchantemail,
+    Merchanttype: Merchanttype,
+    Purchaselink: Purchaselink,
+    brand: brand,
+    lengthprod: length,
+    breadthprod: breadth,
+    height: height,
+
+    productname: productname,
+   
+    mrp : mrp,
+    offerprice: offerprice,
+    collection : collection,
+    primarymaterial: primarymaterial,
+    roomtype: roomtype,
+    weight: weight,
+    warranty: warranty,
+    sku: sku,
+    discount: discountnew,
+    colorvalue: finalcolor,
+    tags: verifytag,
+    category: pcategory,
+    subcategory: subcategory,
+    Specification: Specification,
+    brandoverview: brandoverview,
+    sellerinfo: sellerinfo,
+    care: care,
+
+    currency: currency,
+    registration_Time: new Date().toString(),
+    additional: additional,
+
+
+
+  }
+
+  axios.post(registerUrl, productdetails).then(res=>{
+    console.log(res)
+    swal({
+      title: " Submitted Successfully!",
+    
+      icon:"success",
+     
+
+  })
+  setTimeout(()=>{
+    window.location.reload()
+  
+  },2000)
+
+
+  
+    
+    
+    setTimeout(()=>{
+      setMessage('')
+    },3000)
+  
+    console.log(res)
+  }).catch(error=>{
+    console.log(error)
+  })
+
+
+*/}
+
+  
+
+
+  
+
+ 
+
+ 
+   
+
+
+
+    
+
+ 
    
   let output;
  
@@ -401,7 +700,7 @@ function uploadImages(e) {
             productdescription: productdescription,
             productprice: productprice,
             currency: currency,
-            acquiredDate: date,
+            acquiredDate: Date.toString(),
             additional: additional,
             merchant_Id: p_id,
             product_Id: proid
@@ -486,8 +785,8 @@ const slidenextfirst= (e)=>{
         setTimeout(()=>{
           setMessage('')
         },3000)
-        
-      return
+      
+     
       }
       if(MerchantPhNo.match(phn)){
         setMerchantPhNo(MerchantPhNo)
@@ -496,8 +795,8 @@ const slidenextfirst= (e)=>{
         setTimeout(()=>{
             setMessage('')
           },3000)
-        
-          return 
+       
+   
       }
     
    
@@ -510,17 +809,34 @@ const slidenextfirst= (e)=>{
 
 }
 
-console.log(currency)
+
+
+
+
+useEffect(()=>{
+  if(!colorvalue  && colortextvalue){
+    setFinalColor(colortextvalue)
+  }
+  if(!colortextvalue  && colorvalue  ){
+    setFinalColor(colorvalue)
+  }
+  if(!colorvalue  && !colortextvalue){
+    setFinalColor('')
+  }
+},[colorvalue, colortextvalue])
+
+
+
 const slidenextsecond= (e)=>{
     e.preventDefault();
 
-  
 
-   
+
     if(
         productname === '' ||
         brand === '' ||
         mrp === '' ||
+        offerprice === '' ||
         
      
         length === '' ||
@@ -531,14 +847,18 @@ const slidenextsecond= (e)=>{
         weight === '' ||
         warranty === '' ||
         sku === '' ||
-        colorvalue === '' ||
-        tag === '' ||
+        verifytag.length === 0 ||
+        finalcolor === '' ||
+
+
+     
+       
         pcategory === '' ||
         subcategory === '' ||
         Specification === '' ||
         brandoverview === '' ||
         sellerinfo === '' ||
-        Purchaselink === '' ||
+     
         care === '' 
        
        
@@ -547,7 +867,8 @@ const slidenextsecond= (e)=>{
         setTimeout(()=>{
           setMessage('')
         },3000)
-        return
+      
+    
       }
 
       if(currency === ''){
@@ -569,7 +890,7 @@ const slidenextthird= (e)=>{
         setTimeout(()=>{
           setMessage('')
         },3000)
-        return
+      
       }
    
     
@@ -781,13 +1102,144 @@ document.getElementById("countrySelect").selectedIndex = 0;
 document.getElementById("citySelect").selectedIndex = 0;
 }
 
+let newval;
+let newtestarr;
+let testarr=[]
+let arrfinal;
+let tagsarr;
+
+let newarrfinal=[];
+let selectElement
+
+
+  
+ 
+
+useEffect(()=>{
+  selectElement = document.getElementById('tags');
+  if(selectElement){
+    let optionNames = [...selectElement.options].map(o => o.value);
+       setTagValue(optionNames)
+
+  }
+
+},[])
 
 
 
 
+
+
+
+
+
+const onChangetag=(value)=>{
+  setTag(value)
+
+ 
+if(value === '')
+setSuggest([])
+else{
+  
+    let suggesttag= tagvalue.filter(item=>
+    item.includes(value)
+    
+)
+setSuggest(suggesttag)
+
+  
+
+
+
+}
+}
+
+const clickTagsnew=(val)=>{
+  setSuggest([])
+  setTag('')
+   
+  settag(val)
+  
+
+}
+
+const settag =(val)=>{
+let newtag= verifytag.includes(val)
+  
+  if(!newtag)
+  {
+      setVerifyTag ([...verifytag, val])
+  }
+
+   
+   
+
+
+}
+  
+
+
+
+
+
+
+let tagsoptions= ["newest",'best deals','top picks','featured','soft firmness', 'hard firmness', 'enterance']
+
+let tagarr;
+let newtagarr;
+
+const tagsChange=(e)=>{
+  console.log(e)
+  
+
+  newtagarr = tagsoptions.includes(e)
+ if(newtagarr){
+
+  let newval= verifytag.includes(e)
+  {
+    if(!newval){
+      setVerifyTag([...verifytag, e])
+        document.querySelector('.tags').value= ''
+
+    }
+    else{
+      document.querySelector('.tags').value =''
+    }
+  }
+  
+
+ }
+
+}
+
+
+const removeSuggest=(val)=>{
+
+  setVerifyTag((oldArray)=>oldArray.filter((item)=>
+  item != val
+    ))
+
+}
+
+
+
+const modelsearchHandler=(e)=>{
+  e.preventDefault()
+
+
+      const body={
+        productname: modelsearch.toLowerCase()
+      }
+      axios.post(searchmodels, body).then(res=>{
+       setSearchedModels(res.data)
+      }).catch(error=>{
+        console.log(error)
+      })
+}
 
   return (
     <div>
+      <Navbartest/>
        <Metadata title={'Products add'}/>
            <div className='' style={{backgroundColor:''}}>
             <nav id="navbarExample" className="navbar navbar-expand-lg fixed-top navbar-dark py-3" aria-label="Main navigation" 
@@ -1059,7 +1511,7 @@ document.getElementById("citySelect").selectedIndex = 0;
 
                           <div className='productinputdiv' >
                             <label>Offer price<span className="required-field"></span></label>
-                            <input  type='number' onChange={(e)=>setDiscount(e.target.value)} />
+                            <input  type='number' onChange={(e)=>setOfferPrice(e.target.value)} />
                            </div>
                           </div>
                           <div>
@@ -1174,28 +1626,80 @@ document.getElementById("citySelect").selectedIndex = 0;
                             <input type='text' onChange={(e)=>setSku(e.target.value)} />
                            </div>
                           </div>
-                          <div>
                         
-                          </div>
                           <div>
                           <div className='productinputdiv' >
                             <label  >Color <span className="required-field"></span></label>
-                            <input type='color' id='colordiv' onChange={(e)=>setColorValue(e.target.value)} style={{width:'40px', marginLeft:'-170px'}} />
-                            <span className='colorvalue' >{colorvalue}</span>
+                            <div  className='colorcontainer'>
+                            <input type='color' id='colordiv' onChange={(e)=>setColorValue(e.target.value)} style={{width:'30px', }} />
+                            <p  style={{padding:'10px'}}>Or</p>
+                            <input type='text' id='' placeholder='color' onChange={(e)=>setColortextvalue(e.target.value)} style={{width:'120px'}} />
+
+                            </div>
+                         
+
+                           
                            </div>
                           </div>
+
+                          {
+                            /*
+                          
+
                           <div>
-                          <div className='productinputdiv' >
+                            <div className='productinputdiv'  style={{display:'none'}}>
+                               <label  >Tags <span className="required-field"></span></label>
+                                <input style={{width:'150px'}}  value={tag} onChange={(e)=>onChangetag(e.target.value)} />
+                                  <div style={{width:'200px', height:'auto', border:'1px solid red'}} >
+                                 {
+                               suggest && suggest.map((item,i)=>(
+                                <li style={{listStyleType:'none'}}
+                                onClick={()=>clickTagsnew(item)}
+                                
+                                
+                                >{item}</li>
+                               ))
+                              }
+
+
+                              </div>
+                              {
+                                verifytag && verifytag.map(item=>(
+                                  <p>{item}</p>
+                                ))
+                              }
+
+
+                            </div>
+                          </div>
+                            */}
+                          <div>
+                          <div className='suggestdiv' >
+                            {
+                                verifytag.map(item=>(
+                                  <p>{item}<span onClick= {()=>removeSuggest(item)} ><FaTimes/></span></p>
+                                ))
+                              }
+
+
+                            </div>
+                          <div className='productinputdiv'   >
                             <label  >Tags <span className="required-field"></span></label>
-                            <input list="tags" name="tags" onChange={(e)=>setTag(e.target.value)} />
-                       <datalist class="" id="tags">    
-                        <option value="Newest"/>
-                          <option value="Best Deals"/>
-                         <option value="Top Picks"/>
-                         <option value="Featured"/>
-                         <option value="Soft Firmness"/>
-                         <option value="Hard Firmness"/>
-                         <option value="Enterance"/>
+
+                         
+                         
+                            <input list="tags" className="tags" onChange={(e)=>tagsChange(e.target.value)}   />
+                       <datalist class="" id="tags"  > 
+
+                       {
+                        tagsoptions.map(item=>(
+                            <option value={item}  />
+
+                        ))
+                       }   
+                      
+                        
+                         
                        
 
 
@@ -1204,6 +1708,7 @@ document.getElementById("citySelect").selectedIndex = 0;
                          
                        
                           </div>
+                       
                           <div>
 
                             <div className='productinputdiv' >
@@ -1247,6 +1752,12 @@ document.getElementById("citySelect").selectedIndex = 0;
 
                             </div>
                           </div>
+                          <div>
+                          <div className='productinputdiv' >
+                            <label  >Website </label>
+                            <input type='text' onChange={(e)=>setPurchaseLink(e.target.value)} />
+                           </div>
+                          </div>
                          
                           <div>
                           <div className='productinputdiv' >
@@ -1273,20 +1784,15 @@ document.getElementById("citySelect").selectedIndex = 0;
                             <textarea type='text' onChange={(e)=>setAdditional(e.target.value)} />
                            </div>
                           </div>
-                          <div>
-                          <div className='productinputdiv' >
-                            <label  >Website </label>
-                            <input type='text' onChange={(e)=>setPurchaseLink(e.target.value)} />
-                           </div>
-                          </div>
+                       
                           <div>
                           <div className='productinputdiv' >
                             <label  >Care & Maintenance <span className="required-field"></span></label>
                             <textarea type='text' onChange={(e)=>setCare(e.target.value)} />
                            </div>
                           </div>
-                          <div></div>
-                          <div></div>
+                          
+                         
                          
                           
 
@@ -1402,6 +1908,22 @@ document.getElementById("citySelect").selectedIndex = 0;
                           min 2 images/product are required, for better results upload atleast 6 images(top, bottom and side view)
                           </p>
                          
+                          </div>
+                          <div   style={{display:'none'}}>
+                            <input type= 'text' onChange={(e) => setModelSearch(e.target.value)} />
+                            <button onClick={modelsearchHandler} >Search</button>
+                            
+                                <select>
+                                  {
+                              searchedmodels && searchedmodels.map(item=>(
+
+                                  <option>{item.model_Id}</option>
+                                     ))
+                            }
+                                </select>
+                           
+
+                            
                           </div>
 
 

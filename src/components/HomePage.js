@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player'
 
 import { FaPhone, FaArrowRight, FaVoicemail, FaEnvelope } from 'react-icons/fa';
 import { Metadata } from "../layout/MetaData";
+import Navbartest from "./Navbartest";
 
 
 const HomePage = () => {
@@ -339,7 +340,10 @@ function incNbrc(){
 
     
   return (
+
+   
     <div  id='homemain'  style={{overflowX:'hidden'}}>
+       <Navbartest/>
        <Metadata title={'Home'}/>
 
     

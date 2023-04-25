@@ -6,6 +6,7 @@ import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert';
 import { Metadata } from './layout/MetaData';
+import Navbartest from './components/Navbartest';
 
 
 
@@ -234,6 +235,7 @@ const checkpassword=(e)=>{
 
   return (
      <div className=''>
+      <Navbartest/>
     <div className="container">
       <Metadata title={'Register'}/>
    
