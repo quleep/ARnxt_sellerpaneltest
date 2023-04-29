@@ -7286,7 +7286,7 @@ body.active-modal {
 #navbarnew{
 
  
-  background-color: #001E6C;
+  background-color: #01091E;
   z-index: 1;
  
  
@@ -7332,11 +7332,32 @@ body.active-modal {
   color: white;
 }
 .progbar{
-  width: 150px;
-  height: 10px;
+  width: 130px;
+  height: auto;
   background-color: yellow;
   border-radius: 10px;
-  margin-left: 250px;
+ 
+}
+
+.progbarcontainer{
+  display: flex;
+ 
+  flex-wrap: wrap;
+  width: 220px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid white;
+  margin-left: 200px;
+
+}
+
+.profilepercent{
+  height: 8px;
+
+ 
+  font-family: Manrope, sans-serif;
+  font-weight: bold;
+  color: #001E6C;
 }
 
 
@@ -7557,9 +7578,18 @@ body.active-modal {
   background: #e4e9f7;
   height: auto;
   padding-bottom: 120px;
-  left: 260px;
+  margin-left: 250px;
   width: 100%;
   transition: all 0.5s ease;
+}
+
+.homemaincontainer{
+  width: 100%;
+  height: 100%;
+  margin-left: 250px;
+  margin-top: 80px;
+  
+  margin-bottom: 60px;
 }
 .sidebar.close ~ .home-section {
   left: 78px;
@@ -7645,12 +7675,54 @@ body.active-modal {
 
 }
 
+.sidebarmain{
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 900px;
+  height: auto;
+  margin-top: 100px;
+  margin-left: 140px;
+ border-bottom: 4px solid green;
+
+ 
+}
+
+.sidebarmain>*{
+  flex: 1 1 auto;
+  width: auto;
+
+  height: auto;
+ 
+  margin-right: 20px;
+ 
+}
+
+
+.searchproductstab{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  cursor: pointer;
+}
+.searchproductstab p{
+  font-size: 25px;
+  font-weight: bold;
+  color: blue;
+  font-family: Manrope, sans-serif;
+}
+.searchproductstab p:hover{
+  color: green;
+}
+
 .profilediv{
   display: none;
  
-  margin-top: 100px;
+  margin-top: 150px;
   width: 100%;
   height: 100%;
+  margin-left: 60px;
  
 }
 
@@ -7679,18 +7751,19 @@ body.active-modal {
   height: 100%;
 }
 .searchmodeldiv{
-  display: flex;
+  display: none;
   flex-direction: column;
   flex-wrap: wrap;
 
   width: 100%;
   height: 100%;
  
-  margin-left: 120px;
+  margin-left: 40px;
   margin-top: 300px;
   padding-bottom: 600px;
   margin: 20px;
- 
+  padding-right: 350px;
+
  
 }
 .searchmodelcontainer{
@@ -7703,6 +7776,8 @@ body.active-modal {
 
 }
 
+
+
 .modeldetailscontainer{
   flex: 2;
   width: auto;
@@ -7711,6 +7786,7 @@ body.active-modal {
 }
 .searchmodelcontainer input{
   width: 250px;
+  height: 40px;
  
   border: 1px solid gray;
   box-shadow: 5px 5px 5px gray;
@@ -7770,6 +7846,7 @@ body.active-modal {
   width: 100%;
   height: 100%;
  
+ 
 }
 .productalldetails label{
   font-family: Manrope, sans-serif;
@@ -7778,8 +7855,8 @@ body.active-modal {
 }
 .productalldetails input{
   width: 100%;
-  border: 1px solid gray;
-  box-shadow: 5px 5px 5px gray;
+  border: 1px solid rgb(219, 219, 110);
+  box-shadow: 5px 5px 5px  rgb(200, 202, 73);
   border-radius: 10px;
   height: 40px;
  
@@ -7787,8 +7864,8 @@ body.active-modal {
 }
 .productalldetails textarea{
   width: 100%;
-  border: 1px solid gray;
-  box-shadow: 5px 5px 5px gray;
+  border: 1px solid rgb(219, 219, 110);
+  box-shadow: 5px 5px 5px  rgb(200, 202, 73);
   border-radius: 10px;
   height: 80px;
   resize: none;
@@ -7804,7 +7881,8 @@ body.active-modal {
   border: 0px;
   outline: 0px;
 
-  box-shadow: 5px 5px 5px gray;
+  border: 1px solid rgb(219, 219, 110);
+  box-shadow: 5px 5px 5px  rgb(200, 202, 73);
   border-radius: 10px;
 }
 
@@ -7833,11 +7911,13 @@ body.active-modal {
 .uploadbuttoncontainer{
   border: 2px solid gray;
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
+  width:  900px;
+  margin-left: 150px;
   flex-wrap: wrap;
+ 
   height: 150px;
-  overflow: scroll;
+
   border-radius: 5px;
 }
 .uploadbuttoncontainer>*{
@@ -7848,6 +7928,7 @@ body.active-modal {
   margin: 10px;
 
   padding-top: 40px;
+ 
 
 }
 
@@ -7978,7 +8059,7 @@ body.active-modal {
   font-size: 8px;
   font-family: Manrope,sans-serif;
   padding-right: 30px;
-  font-weight: bold;
+  font-weight: bold;  
   color: black;
 }
 
@@ -8001,6 +8082,9 @@ body.active-modal {
   margin-left: 150px;
 
 }
+
+
+
 
 
 
@@ -8083,6 +8167,7 @@ body.active-modal {
   position: relative;
   overflow: hidden;
   display: inline-block;
+  
   
 }
 

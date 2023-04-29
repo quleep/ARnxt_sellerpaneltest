@@ -17,6 +17,8 @@ const selfuploadurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/pr
 const saveformdataurl='https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/saveformdata'
 const fetchsaveddataurl='https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getsavedform'
 const deletesavedataurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/deletesavedata'
+const merchantprofileurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getmerchantprofile'
+const updatemerchantprofileurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/updatemerchantprofile'
 
 
 
@@ -45,6 +47,13 @@ const Dashboard = () => {
   const [glburl, setGlbUrl] = useState('');
   const [gltfurl, setGltfUrl] = useState('');
   const [imageurl, setImageUrl] = useState('');
+
+  const [merchantprofile, setMerchantProfile] = useState();
+
+  const [partnerstate, setPartnerState] = useState('');
+  const [partnercity, setPartnerCity] = useState('');
+  const [partnerpin, setPartnerPin] = useState('')
+  const [partnershopname, setPartnerShopName] = useState('');
 
 
 
@@ -137,6 +146,13 @@ const Dashboard = () => {
   const [partnersellerinfo, setPartnerSellerInfo] = useState('');
   const [partnercare, setPartnerCare] = useState('');
   const [partneradditional, setPartnerAdditional]= useState('');
+
+ const [gstno, setGstNo] = useState('')
+ const [bankname, setBankName] = useState('')
+ const [accountno, setAccountNo] = useState('')
+ const [ifsc, setIfsc] = useState('')
+ const [partnernoofshops, setPartnerNoOfShops] = useState('');
+
   
  
 
@@ -334,15 +350,30 @@ const profileHandler=(e)=>{
 
   
   document.querySelector('.profilediv').style.display= 'block'
-  document.querySelector('.merchantdiv').style.display= 'none'
-  document.querySelector('.selfcontainer').style.display= 'none'
-  document.querySelector('.searchmodeldiv').style.display= 'none'
+  document.querySelector('.sidebarmain').style.display= 'none'
+
+
+
+  const body={
+    merchantid: p_id
+  }
+
+  axios.post(merchantprofileurl, body).then(res=>{
+   setMerchantProfile(res.data)
+  }).catch(error=>{
+    console.log(error)
+  })
 
 
 }
 
 const merchantHandler=(e)=>{
   e.preventDefault()
+  document.querySelector('#tabbar2').style='border-bottom: 4px solid green'
+  document.querySelector('#tabbar1').style='border-bottom: none'
+  document.querySelector('#tabbar3').style='border-bottom: none'
+
+
 
   
   document.querySelector('.merchantdiv').style.display= 'block'
@@ -365,6 +396,11 @@ const merchantHandler=(e)=>{
 
 const selfselectHandler=(e)=>{
   e.preventDefault();
+  document.querySelector('#tabbar1').style='border-bottom: 4px solid green'
+  document.querySelector('#tabbar2').style='border-bottom: none'
+  document.querySelector('#tabbar3').style='border-bottom: none'
+
+  
 
   document.querySelector('.profilediv').style.display= 'none'
   document.querySelector('.merchantdiv').style.display= 'none'
@@ -378,6 +414,11 @@ const selfselectHandler=(e)=>{
 
 const selfuploadHandler=(e)=>{
   e.preventDefault()
+  document.querySelector('#tabbar3').style='border-bottom: 4px solid green'
+  document.querySelector('#tabbar1').style='border-bottom: none'
+  document.querySelector('#tabbar2').style='border-bottom: none'
+
+
 
   document.querySelector('.selfcontainer').style.display= 'block'
   
@@ -697,108 +738,13 @@ const saveform=(e)=>{
   e.preventDefault();
 
 
-  if(partnername === ''){
-    window.scroll(0,0);
-     
-     document.querySelector('.merchantname').style = 'border: 2px solid red'
-     document.querySelector('#requiredmerchantname').innerHTML='required'
-     return
-   }
-   else{
-     document.querySelector('.merchantname').style = ''
-     document.querySelector('#requiredmerchantname').innerHTML=''
- 
-   }
-   if(partnershopsno === ''){
-    window.scroll(0,0);
- 
-     document.querySelector('.partnershopno').style = 'border: 2px solid red'
-     document.querySelector('#requiredmerchantshopno').innerHTML='required'
-     return
- 
-   }
-   else{
-     document.querySelector('.partnershopno').style = ''
-     document.querySelector('#requiredmerchantshopno').innerHTML=''
- 
-   }
-   if(partneremail === '' ){
-    window.scroll(0,0);
- 
-        document.querySelector('.merchantemail').style = 'border: 2px solid red'
-     document.querySelector('#requiredpartneremail').innerHTML= 'required'
-     return
- 
-   }
-   else{
-     document.querySelector('.merchantemail').style = ''
-     document.querySelector('#requiredpartneremail').innerHTML= ''
- 
-   }
- 
-   if(!validator.isEmail(partneremail)){
-    window.scroll(0,0);
- 
-     document.querySelector('.merchantemail').style = 'border: 2px solid red'
-     document.querySelector('#requiredpartneremail').innerHTML= 'Not valid'
-     return
-     
-   }
-   else{
-     document.querySelector('.merchantemail').style = ''
-     document.querySelector('#requiredpartneremail').innerHTML= ''
- 
-   }
+
+
  
  
- if(partneraddress === ''){
-   window.scroll(0,0);
- 
-   document.querySelector('.merchantaddress').style = 'border: 2px solid red'
-   document.querySelector('#requiredpartneraddress').innerHTML= 'required'
-   return
-   
- } 
- else{
-   document.querySelector('.merchantaddress').style = ''
-   document.querySelector('#requiredpartneraddress').innerHTML= ''
- 
- }
- if(partnertype === ''){
-   document.querySelector('.merchanttype').style = 'border: 2px solid red'
-   document.querySelector('#requiredpartnertype').innerHTML= 'required'
-   return
-   
- } 
- else{
-   document.querySelector('.merchanttype').style = ''
-   document.querySelector('#requiredpartnertype').innerHTML= ''
- 
- }
- if(partnerno === ''){
-  
-   document.querySelector('.merchantno').style = 'border: 2px solid red'
-   document.querySelector('#requiredpartnerno').innerHTML= 'required'
-   return
-   
- } 
- else{
-   document.querySelector('.merchantno').style = ''
-   document.querySelector('#requiredpartnerno').innerHTML= ''
- 
- }
- if(!partnerno.match(validphone)){
- 
- 
-   document.querySelector('.merchantno').style = 'border: 2px solid red'
-   document.querySelector('#requiredpartnerno').innerHTML= 'need 10 digit'
-   return
- 
- } else{
-   document.querySelector('.merchantno').style = ''
-   document.querySelector('#requiredpartnerno').innerHTML= ''
- 
- }
+
+
+
  
  if(partnerproduct === ''){
    document.querySelector('.partnerproductname').style = 'border: 2px solid red'
@@ -1067,14 +1013,9 @@ const saveform=(e)=>{
   modelno: partnermodelid,
  
  
-  merchantName: partnername,
-  Shopsno: partnershopsno,
-  MerchantPhNo: partnerno,
-  Merchantaddress:  partneraddress,
 
-  Merchantemail: partneremail,
-  Merchanttype: partnertype,
-  Purchaselink: partnerwebsite,
+
+ 
   brand: partnerbrand,
   lengthprod: partnerlength,
   breadthprod: partnerbreadth,
@@ -1135,110 +1076,20 @@ const submitdata=(e)=>{
 e.preventDefault();
 
 
-  if(partnername === ''){
-   window.scroll(0,0);
-    
-    document.querySelector('.merchantname').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantname').innerHTML='required'
-    return
-  }
-  else{
-    document.querySelector('.merchantname').style = ''
-    document.querySelector('#requiredmerchantname').innerHTML=''
-
-  }
-  if(partnershopsno === ''){
-   window.scroll(0,0);
-
-    document.querySelector('.partnershopno').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantshopno').innerHTML='required'
-    return
-
-  }
-  else{
-    document.querySelector('.partnershopno').style = ''
-    document.querySelector('#requiredmerchantshopno').innerHTML=''
-
-  }
-  if(partneremail === '' ){
-   window.scroll(0,0);
-
-       document.querySelector('.merchantemail').style = 'border: 2px solid red'
-    document.querySelector('#requiredpartneremail').innerHTML= 'required'
-    return
-
-  }
-  else{
-    document.querySelector('.merchantemail').style = ''
-    document.querySelector('#requiredpartneremail').innerHTML= ''
-
-  }
-
-  if(!validator.isEmail(partneremail)){
-   window.scroll(0,0);
-
-    document.querySelector('.merchantemail').style = 'border: 2px solid red'
-    document.querySelector('#requiredpartneremail').innerHTML= 'Not valid'
-    return
-    
-  }
-  else{
-    document.querySelector('.merchantemail').style = ''
-    document.querySelector('#requiredpartneremail').innerHTML= ''
-
-  }
 
 
-if(partneraddress === ''){
-  window.scroll(0,0);
-
-  document.querySelector('.merchantaddress').style = 'border: 2px solid red'
-  document.querySelector('#requiredpartneraddress').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.merchantaddress').style = ''
-  document.querySelector('#requiredpartneraddress').innerHTML= ''
-
-}
-if(partnertype === ''){
-  document.querySelector('.merchanttype').style = 'border: 2px solid red'
-  document.querySelector('#requiredpartnertype').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.merchanttype').style = ''
-  document.querySelector('#requiredpartnertype').innerHTML= ''
-
-}
-if(partnerno === ''){
- 
-  document.querySelector('.merchantno').style = 'border: 2px solid red'
-  document.querySelector('#requiredpartnerno').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.merchantno').style = ''
-  document.querySelector('#requiredpartnerno').innerHTML= ''
-
-}
-if(!partnerno.match(validphone)){
 
 
-  document.querySelector('.merchantno').style = 'border: 2px solid red'
-  document.querySelector('#requiredpartnerno').innerHTML= 'need 10 digit'
-  return
 
-} else{
-  document.querySelector('.merchantno').style = ''
-  document.querySelector('#requiredpartnerno').innerHTML= ''
 
-}
+
+
+
+
+
 
 if(partnerproduct === ''){
+  window.scroll(0,0)
   document.querySelector('.partnerproductname').style = 'border: 2px solid red'
   document.querySelector('#requiredpartnerproductname').innerHTML= 'required'
   return
@@ -1250,6 +1101,8 @@ if(partnerproduct === ''){
 }
 
 if(partnerbrand === ''){
+  window.scroll(0,0)
+
   document.querySelector('.partnerbrandname').style = 'border: 2px solid red'
   document.querySelector('#requiredpartnerbrandname').innerHTML= 'required'
   return
@@ -1261,6 +1114,8 @@ else{
 
 }
 if(partnermodelid === ''){
+  window.scroll(0,0)
+
   document.querySelector('.partnermodelid').style = 'border: 2px solid red'
   document.querySelector('#requiredpartnermodelid').innerHTML= 'required'
   return
@@ -1275,6 +1130,8 @@ else{
 
 
 if(partnermrp === ''){
+  window.scroll(0,0)
+
  
   document.querySelector('.partnermrpprice').style = 'border: 2px solid red'
   document.querySelector('#requiredpartnermrp').innerHTML= 'required'
@@ -1287,6 +1144,8 @@ else{
 
 }
 if(partnerofferprice === ''){
+  window.scroll(0,0)
+
   document.querySelector('.partnerofferprice').style = 'border: 2px solid red'
   document.querySelector('#requiredpartnerofferprice').innerHTML= 'required'
   return
@@ -1301,6 +1160,8 @@ else{
 
 
 if(partnerlength === ''){
+  window.scroll(0,0)
+
   document.querySelector('.partnerlength').style = 'border: 2px solid red'
  
 
@@ -1316,6 +1177,8 @@ else{
 
 }
 if(partnerbreadth === ''){
+  window.scroll(0,0)
+
   document.querySelector('.partnerbreadth').style = 'border: 2px solid red'
   document.querySelector('.partnerbreadthtext').classList.add('partnerbreadthtextnew')
   document.querySelector('.partnerbreadthtext').innerHTML= 'required'
@@ -1520,14 +1383,14 @@ const productdetails= {
   modelno: partnermodelid,
  
  
-  merchantName: partnername,
-  Shopsno: partnershopsno,
-  MerchantPhNo: partnerno,
-  Merchantaddress:  partneraddress,
+ 
+  
+  
+ 
 
-  Merchantemail: partneremail,
-  Merchanttype: partnertype,
-  Purchaselink: partnerwebsite,
+ 
+
+ 
   brand: partnerbrand,
   lengthprod: partnerlength,
   breadthprod: partnerbreadth,
@@ -2010,98 +1873,18 @@ const glbchangehandler=(e)=>{
  const saveformupload=(e)=>{
   e.preventDefault();
 
-  if(merchantName === ''){
-    
-    document.querySelector('.partnername').style = 'border: 2px solid red'
-    document.querySelector('#requiredname').innerHTML='required'
-    return
-  }
-  else{
-    document.querySelector('.partnername').style = ''
-    document.querySelector('#requiredname').innerHTML=''
-
-  }
-  if(Shopsno === ''){
-    document.querySelector('.shopno').style = 'border: 2px solid red'
-    document.querySelector('#requiredshopno').innerHTML='required'
-    return
-
-  }
-  else{
-    document.querySelector('.shopno').style = ''
-    document.querySelector('#requiredshopno').innerHTML=''
-
-  }
-  if(Merchantemail === '' ){
-       document.querySelector('.partneremail').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantemail').innerHTML= 'required'
-    return
-
-  }
-  else{
-    document.querySelector('.partneremail').style = ''
-    document.querySelector('#requiredmerchantemail').innerHTML= ''
-
-  }
-
-  if(!validator.isEmail(Merchantemail)){
-    document.querySelector('.partneremail').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantemail').innerHTML= 'Not valid'
-    return
-    
-  }
-  else{
-    document.querySelector('.partneremail').style = ''
-    document.querySelector('#requiredmerchantemail').innerHTML= ''
-
-  }
 
 
-if(Merchantaddress === ''){
-  document.querySelector('.partneraddress').style = 'border: 2px solid red'
-  document.querySelector('#requiredmerchantaddress').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.partneraddress').style = ''
-  document.querySelector('#requiredmerchantaddress').innerHTML= ''
 
-}
-if(Merchanttype === ''){
-  document.querySelector('.partnertype').style = 'border: 2px solid red'
-  document.querySelector('#requiredmerchanttype').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.partnertype').style = ''
-  document.querySelector('#requiredmerchanttype').innerHTML= ''
 
-}
-if(MerchantPhNo === ''){
-  document.querySelector('.partnerno').style = 'border: 2px solid red'
-  document.querySelector('#requiredmerchantno').innerHTML= 'required'
-  return
-  
-} 
-else{
-  document.querySelector('.partnerno').style = ''
-  document.querySelector('#requiredmerchantno').innerHTML= ''
 
-}
-if(!MerchantPhNo.match(phn)){
-  document.querySelector('.partnerno').style = 'border: 2px solid red'
-  document.querySelector('#requiredmerchantno').innerHTML= 'need 10 digit'
-  return
 
-} else{
-  document.querySelector('.partnerno').style = ''
-  document.querySelector('#requiredmerchantno').innerHTML= ''
 
-}
+
+
 
 if(productname === ''){
+  window.scroll(0,0)
   document.querySelector('.productname').style = 'border: 2px solid red'
   document.querySelector('#requiredproductname').innerHTML= 'required'
   return
@@ -2113,6 +1896,8 @@ if(productname === ''){
 }
 
 if(brand === ''){
+  window.scroll(0,0)
+
   document.querySelector('.brandname').style = 'border: 2px solid red'
   document.querySelector('#requiredbrandname').innerHTML= 'required'
   return
@@ -2124,6 +1909,9 @@ else{
 
 }
 if(modelid === ''){
+  window.scroll(0,0)
+
+
   document.querySelector('.modelid').style = 'border: 2px solid red'
   document.querySelector('#requiredmodelid').innerHTML= 'required'
   return
@@ -2138,6 +1926,8 @@ else{
 
 
 if(mrp === ''){
+  window.scroll(0,0)
+
  
   document.querySelector('.mrpprice').style = 'border: 2px solid red'
   document.querySelector('#requiredmrp').innerHTML= 'required'
@@ -2150,6 +1940,8 @@ else{
 
 }
 if(offerprice === ''){
+  window.scroll(0,0)
+
   document.querySelector('.offerprice').style = 'border: 2px solid red'
   document.querySelector('#requiredofferprice').innerHTML= 'required'
   return
@@ -2164,6 +1956,8 @@ else{
 
 
 if(length === ''){
+  window.scroll(0,0)
+
   document.querySelector('.prodlength').style = 'border: 2px solid red'
  
 
@@ -2179,6 +1973,8 @@ else{
 
 }
 if(breadth === ''){
+  window.scroll(0,0)
+
   document.querySelector('.prodbreadth').style = 'border: 2px solid red'
   document.querySelector('.breadthtext').classList.add('breadthtextnew')
   document.querySelector('.breadthtext').innerHTML= 'required'
@@ -2192,6 +1988,8 @@ else{
 
 }
 if(height === ''){
+  window.scroll(0,0)
+
   document.querySelector('.prodheight').style = 'border: 2px solid red'
   document.querySelector('.heighttext').classList.add('heighttextnew')
 
@@ -2206,6 +2004,8 @@ else{
 }
 
 if(primarymaterial === ''){
+  window.scroll(0,0)
+
   document.querySelector('.primarymaterial').style = 'border: 2px solid red'
   document.querySelector('#requiredprimarymaterial').innerHTML= 'required'
   return
@@ -2217,6 +2017,8 @@ else{
 
 }
 if(roomtype === ''){
+  window.scroll(0,0)
+
   document.querySelector('.roomtype').style = 'border: 2px solid red'
   document.querySelector('#requiredroomtype').innerHTML= 'required'
   return
@@ -2229,6 +2031,8 @@ else{
 }
 
 if(weight === ''){
+  window.scroll(0,0)
+
   document.querySelector('.prodweight').style = 'border: 2px solid red'
   document.querySelector('#requiredweight').innerHTML= 'required'
   return
@@ -2241,6 +2045,8 @@ else{
 }
 
 if(warranty === ''){
+  window.scroll(0,0)
+
   document.querySelector('.prodwarranty').style = 'border: 2px solid red'
   document.querySelector('#requiredwarranty').innerHTML= 'required'
   return
@@ -2368,13 +2174,10 @@ const formdatabody={
   modelno: modelid,
  
  
-  merchantName: merchantName,
-  Shopsno: Shopsno,
-  MerchantPhNo: MerchantPhNo,
-  Merchantaddress:  Merchantaddress,
+ 
 
-  Merchantemail: Merchantemail,
-  Merchanttype: Merchanttype,
+
+
   Purchaselink: Purchaselink,
   brand: brand,
   lengthprod: length,
@@ -2435,98 +2238,18 @@ const submitselfHandler=(e)=>{
 
   setselfmerchant()
    async function setselfmerchant(){
-    if(merchantName === ''){
-    
-      document.querySelector('.partnername').style = 'border: 2px solid red'
-      document.querySelector('#requiredname').innerHTML='required'
-      return
-    }
-    else{
-      document.querySelector('.partnername').style = ''
-      document.querySelector('#requiredname').innerHTML=''
-  
-    }
-    if(Shopsno === ''){
-      document.querySelector('.shopno').style = 'border: 2px solid red'
-      document.querySelector('#requiredshopno').innerHTML='required'
-      return
-  
-    }
-    else{
-      document.querySelector('.shopno').style = ''
-      document.querySelector('#requiredshopno').innerHTML=''
-  
-    }
-    if(Merchantemail === '' ){
-         document.querySelector('.partneremail').style = 'border: 2px solid red'
-      document.querySelector('#requiredmerchantemail').innerHTML= 'required'
-      return
-  
-    }
-    else{
-      document.querySelector('.partneremail').style = ''
-      document.querySelector('#requiredmerchantemail').innerHTML= ''
-  
-    }
-  
-    if(!validator.isEmail(Merchantemail)){
-      document.querySelector('.partneremail').style = 'border: 2px solid red'
-      document.querySelector('#requiredmerchantemail').innerHTML= 'Not valid'
-      return
-      
-    }
-    else{
-      document.querySelector('.partneremail').style = ''
-      document.querySelector('#requiredmerchantemail').innerHTML= ''
-  
-    }
+
+
+
+
   
   
-  if(Merchantaddress === ''){
-    document.querySelector('.partneraddress').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantaddress').innerHTML= 'required'
-    return
-    
-  } 
-  else{
-    document.querySelector('.partneraddress').style = ''
-    document.querySelector('#requiredmerchantaddress').innerHTML= ''
-  
-  }
-  if(Merchanttype === ''){
-    document.querySelector('.partnertype').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchanttype').innerHTML= 'required'
-    return
-    
-  } 
-  else{
-    document.querySelector('.partnertype').style = ''
-    document.querySelector('#requiredmerchanttype').innerHTML= ''
-  
-  }
-  if(MerchantPhNo === ''){
-    document.querySelector('.partnerno').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantno').innerHTML= 'required'
-    return
-    
-  } 
-  else{
-    document.querySelector('.partnerno').style = ''
-    document.querySelector('#requiredmerchantno').innerHTML= ''
-  
-  }
-  if(!MerchantPhNo.match(phn)){
-    document.querySelector('.partnerno').style = 'border: 2px solid red'
-    document.querySelector('#requiredmerchantno').innerHTML= 'need 10 digit'
-    return
-  
-  } else{
-    document.querySelector('.partnerno').style = ''
-    document.querySelector('#requiredmerchantno').innerHTML= ''
-  
-  }
+
+
+
   
   if(productname === ''){
+    window.scroll(0,0)
     document.querySelector('.productname').style = 'border: 2px solid red'
     document.querySelector('#requiredproductname').innerHTML= 'required'
     return
@@ -2858,13 +2581,8 @@ const submitselfHandler=(e)=>{
     modelno: modelid,
    
    
-    merchantName: merchantName,
-    Shopsno: Shopsno,
-    MerchantPhNo: MerchantPhNo,
-    Merchantaddress:  Merchantaddress,
   
-    Merchantemail: Merchantemail,
-    Merchanttype: Merchanttype,
+
     Purchaselink: Purchaselink,
     brand: brand,
     lengthprod: length,
@@ -3065,12 +2783,7 @@ useEffect(()=>{
 useEffect(()=>{
 
   saveddata && saveddata.map(item=>{
-    setPartnerName(item.merchantName)
-    setPartnerShopNO(item.Shopsno)
-    setPartnerEmail(item.Merchantemail)
-    setPartnerAddress(item.Merchantaddress)
-    setPartnerType(item.Merchanttype)
-    setPartnerNo(item.MerchantPhNo)
+ 
     setPartnerProduct(item.productname)
     setPartnerBrand(item.brand)
     setPartnerModelid(item.modelno)
@@ -3092,7 +2805,7 @@ useEffect(()=>{
     setPartnerCare(item.care)
     setPartnerCollection(item.collection)
     setPartnerPrimaryMaterial(item.primarymaterial)
-    setPartnerWebsite(item.Purchaselink)
+   
     setPartnerWeight(item.weight)
     setPartnerRoomType(item.roomtype)
     setPartnerSellerInfo(item.sellerinfo)
@@ -3111,12 +2824,7 @@ useEffect(()=>{
 
 useEffect(()=>{
   partnersavedata && partnersavedata.map(item=>{
-    setMerchantName(item.merchantName)
-    setShopsNo(item.Shopsno)
-    setMerchantEmail(item.Merchantemail)
-    setMerchantAddress(item.Merchantaddress)
-    setMerchantType(item.Merchanttype)
-    setMerchantPhNo(item.MerchantPhNo)
+
     setProductName(item.productname)
     setBrand(item.brand)
     setModelId(item.modelno)
@@ -3147,6 +2855,43 @@ useEffect(()=>{
 },[partnersavedata])
 
 
+useEffect(()=>{
+  merchantprofile && merchantprofile.map(item=>{
+    setPartnerName(item.merchantname)
+    setPartnerEmail(item.merchantemail)
+    setPartnerNo(item.merchantphoneNo)
+    setPartnerPin(item.merchantpin)
+    setPartnerState(item.merchantstate)
+    setPartnerCity(item.merchantcity)
+    setPartnerAddress(item.merchantaddress)
+    setPartnerNoOfShops(item.shopno)
+    setPartnerShopName(item.shopname)
+    setPurchaseLink(item.website)
+    setIfsc(item.ifsccode)
+    setGstNo(item.gstno)
+    setBankName(item.bankname)
+    setAccountNo(item.accountno)
+    setPartnerType(item.merchanttype)
+
+
+    if(item.merchantaddress === ''){
+      document.querySelector('.progbar').style= 'width: 130px'
+      document.querySelector('.profilepercent').innerHTML = '50 %'
+    }
+    if(item.merchantaddress){
+
+      document.querySelector('.progbar').style= 'width: 220px'
+      document.querySelector('.profilepercent').innerHTML = '100 %'
+
+    }
+
+  })
+
+  
+
+},[merchantprofile])
+
+
 
 const searchmodelHandler=(e)=>{
   e.preventDefault();
@@ -3159,6 +2904,216 @@ const searchmodelHandler=(e)=>{
   console.log(error)
  })
 
+
+}
+
+
+const profileUpdateHandler=(e)=>{
+  e.preventDefault()
+
+  
+  if( partnername === ''){
+    
+    document.querySelector('.partnername').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnername').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnername').style= ''
+    document.querySelector('.reqpartnername').innerHTML = ''
+
+
+
+  }
+  if( partneremail === ''){
+    document.querySelector('.partneremail').style = 'border: 2px solid red'
+    document.querySelector('.reqpartneremail').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partneremail').style = ''
+    document.querySelector('.reqpartneremail').innerHTML = ''
+
+
+
+  }
+  if( partnertype === ''){
+    document.querySelector('.partnertype').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnertype').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnertype').style = 'border: none'
+
+    
+    document.querySelector('.reqpartnertype').innerHTML = ''
+
+
+
+  }
+  if( partneraddress === ''){
+    document.querySelector('.partneraddress').style = 'border: 2px solid red'
+    document.querySelector('.reqpartneraddress').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partneraddress').style= ''
+    document.querySelector('.reqpartneraddress').innerHTML= ''
+
+
+
+  }
+
+  if( partnerno === ''){
+    document.querySelector('.partnermobile').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnermobile').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnermobile').style= ''
+    document.querySelector('.reqpartnermobile').innerHTML = ''
+
+
+
+  }
+  if( partnerstate === ''){
+    document.querySelector('.partnerstate').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnerstate').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnerstate').style= ''
+    document.querySelector('.reqpartnerstate').innerHTML = ''
+
+
+
+  }
+  if( partnercity === ''){
+    document.querySelector('.partnercity').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnercity').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnercity').style= ''
+    document.querySelector('.reqpartnercity').innerHTML = ''
+
+
+
+  }
+  if( partnerpin === ''){
+    document.querySelector('.partnerpin').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnerpin').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnerpin').style= ''
+    document.querySelector('.reqpartnerpin').innerHTML = ''
+
+
+
+  }
+  if( partnernoofshops === ''){
+    document.querySelector('.partnernoofshops').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnernoofshops').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnernoofshops').style= ''
+    document.querySelector('.reqpartnernoofshops').innerHTML = ''
+
+
+
+  }
+  if( partnershopname === ''){
+    document.querySelector('.partnershopname').style = 'border: 2px solid red'
+    document.querySelector('.reqpartnershopname').innerHTML= 'required'
+    return
+
+
+  }
+  else{
+    document.querySelector('.partnershopname').style= ''
+    document.querySelector('.reqpartnershopname').innerHTML = ''
+
+
+
+  }
+
+
+  const profilebody={
+    userid: p_id,
+    username: partnername,
+    useremail: partneremail,
+    useraddress: partneraddress,
+    userphoneno: partnerno,
+    userstate: partnerstate,
+    usercity: partnercity,
+    usertype: partnertype,
+    userpin: partnerpin,
+    usernoofshops: partnernoofshops,
+    usershopsname: partnershopname,
+    userwebsite: Purchaselink,
+    userbankname: bankname,
+    userifsccode: ifsc,
+    useraccountno: accountno,
+    usergstno: gstno
+
+
+  }
+
+  axios.post(updatemerchantprofileurl, profilebody ).then(res=>{
+    if(res.status === 200){
+      swal({
+        title: " Updated Successfully!",
+      
+        icon:"success",
+       
+    
+    })
+    setTimeout(()=>{
+      window.location.reload()
+    
+    },2000)
+    
+    }
+  }).catch(error=>{
+    console.log(error)
+  })
+
+
+
+
+
+
+
+
+
+
+
+}
+
+const modelManagementHandler=(e)=>{
+  e.preventDefault();
+  document.querySelector('.sidebarmain').style.display = 'flex'
+  document.querySelector('.profilediv').style.display = 'none'
 
 }
 
@@ -3186,7 +3141,16 @@ const searchmodelHandler=(e)=>{
           <div className='dashboardstatus' >
             <div className='profilecomplete'> 
             <h5>Your profile compeletion </h5>
-             <div className='progbar'></div>
+
+            <div className='progbarcontainer' >
+             <div className='progbar'>
+              <p className='profilepercent' >50 %</p>
+             </div>
+             
+
+
+            </div>
+            
 
             </div>
 
@@ -3294,12 +3258,15 @@ const searchmodelHandler=(e)=>{
         </ul>
       </li>
       <li>
-        <a onMouseOver={merchantclick}  onMouseOut={merchantclickleave} style={{cursor:'pointer'}} >
+        <a onClick={modelManagementHandler} >
           <i className='bx bx-compass'></i>
           <span className="link_name">Model Management</span>
           <p className='bx bxs-chevron-down ' style={{color:'white', paddingTop:'20px', paddingLeft:'10px'}}></p>
         </a>
-        <ul className="merchantsub" onMouseOver={merchantclick}  onMouseOut={merchantclickleave} >
+        {
+          /*
+
+            <ul className="merchantsub"  >
           
         
           <li><a href='' onClick={selfuploadHandler} >Self upload</a></li>
@@ -3307,6 +3274,9 @@ const searchmodelHandler=(e)=>{
           <li><a href="" onClick={selfselectHandler} >Select existing</a></li>
 
         </ul>
+        */
+        }
+      
       
         
       </li>
@@ -3360,59 +3330,44 @@ const searchmodelHandler=(e)=>{
       </li>
     </ul>
   </div>
-  <section className="home-section">
+  <div className='homemaincontainer' >
 
+    <div className='sidebarmain'>
+      <div id='tabbar1' >
+        <div className='searchproductstab' >
+          <p onClick={selfselectHandler} >Search Products</p>
+
+        </div>
+       
+     
+      </div>
+    
+      <div id='tabbar2' >
+      <div className='searchproductstab' >
+          <p onClick={merchantHandler} >Upload Images</p>
+
+        </div>
+      </div>
+      <div id='tabbar3'>
+      <div className='searchproductstab' >
+          <p onClick={selfuploadHandler} >Upload Models</p>
+
+        </div>
+      </div>
+
+
+    </div>
+  
     
 
       <div className='selfcontainer'>
       <div className='merchantdivcontainer'>
-        <div>
-          <div  className='productalldetails'>
-            <label>Partner(Shop) name <span className="required-field"></span><span id='requiredname'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type='text' className='partnername'  value={merchantName} onChange={(e)=>setMerchantName(e.target.value)} />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>No of shops <span className="required-field"></span><span id='requiredshopno'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="number" className='shopno'  value={Shopsno} onChange={event=> setShopsNo(event.target.value) } />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner email <span className="required-field"></span><span id='requiredmerchantemail'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="email"  className='partneremail' value={Merchantemail} onChange={event=> setMerchantEmail(event.target.value) }/>
-          </div>
-
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner address <span className="required-field"></span><span id='requiredmerchantaddress'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="text" className='partneraddress' value={Merchantaddress} onChange={event=> setMerchantAddress(event.target.value) } />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner type <span className="required-field"></span><span id='requiredmerchanttype'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <select  
-              className='partnertype'
-              value={Merchanttype} onChange={event=>setMerchantType(event.target.value)}
-            >
-            <option value='' selected="selected" className='optiongot' >Choose..</option>
-            <option>Manufacturer</option>
-             <option>Distributer</option>
-             <option>Retailer</option>
-             <option>Exporter</option>
-             <option>Importer</option>
-            </select>
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Contact No <span className="required-field"></span><span id='requiredmerchantno'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type= 'number' maxLength= '10' className='partnerno'  value= {MerchantPhNo} onChange={event=> setMerchantPhNo(event.target.value)}   />
-          </div>
-        </div>
+     
+      
+     
+    
+     
+    
         <div>
         <div  className='productalldetails'>
             <label>Product name <span className="required-field"></span><span id='requiredproductname'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
@@ -3646,14 +3601,7 @@ const searchmodelHandler=(e)=>{
             <input type='text' value={sku} className='sku' onChange={(e)=>setSku(e.target.value)} />
           </div>
         </div>
-        <div>
-          <div className='productalldetails'>
-          <label> website </label>
-          <input type='text' value={Purchaselink} onChange={(e)=>setPurchaseLink(e.target.value)} />
-
-
-          </div>
-        </div>
+      
 
      
        
@@ -3811,52 +3759,10 @@ coloroptions.map(item=>(
                             <textarea type='text' value={additional} onChange={(e)=>setAdditional(e.target.value)}   />
                            </div>
         </div>
-        <div>
-
-        </div>
-        <div>
-          <div className='productalldetails'>
-            <div className='uploadbuttoncontainer'> 
-            <div>
-
-            <div class="upload-btn-wrapper">
-  <button className="btnnew">Upload fbx<i class='bx bx-export' style={{padding:'10px'}}></i></button>
-  <input type="file" name="myfile" id='fbxfile'  onChange={fbxchangehandler} />
+        <div></div>
+      
+      
   
-</div>
-<p id='fbxmessage' style={{color:'red'}}></p>
-            </div>
-            <div>
-            <div class="upload-btn-wrapper">
-  <button className="btnnew">Upload glb<i class='bx bx-export' style={{padding:'10px'}}></i></button>
-  <input type="file" name="myfile" id='glbfile' onChange={glbchangehandler} />
-</div>
-<p id='glbmessage' style={{color:'red'}}></p>
-
-            </div>
-            <div>
-            <div class="upload-btn-wrapper">
-  <button className="btnnew">Upload gltf<i class='bx bx-export' style={{padding:'10px'}}></i></button>
-  <input type="file" name="myfile" id='gltffile' onChange={gltfchangehandler} />
-</div>
-<p id='gltfmessage' style={{color:'red'}}></p>
-
-            </div>
-            <div>
-            <div class="upload-btn-wrapper">
-  <button className="btnneww">Upload image<i class='bx bx-export' style={{padding:'10px'}}></i></button>
-  <input type="file" name="myfile" id='imagefile' onChange={imagechangehandler} />
-</div>
-<p id='imagemessage' style={{color:'red'}}></p>
-
-            </div>
-
-
-            </div>
-
-          </div>
-        </div>
-        
 
         
 
@@ -3866,6 +3772,75 @@ coloroptions.map(item=>(
 
 
       </div>
+
+      <div>
+        
+        <div className='uploadbuttoncontainer'> 
+      
+        <div>
+        <div class="upload-btn-wrapper">
+<button className="btnnew">Upload fbx<i class='bx bx-export' style={{padding:'10px'}}></i></button>
+<input type="file" name="myfile" id='fbxfile'  onChange={fbxchangehandler} />
+<p id='fbxmessage' style={{color:'red'}}></p>
+
+
+</div>
+
+
+        </div>
+
+        
+      
+
+      <div>
+      <div class="upload-btn-wrapper">
+<button className="btnnew">Upload glb<i class='bx bx-export' style={{padding:'10px'}}></i></button>
+<input type="file" name="myfile" id='glbfile' onChange={glbchangehandler} />
+<p id='glbmessage' style={{color:'red'}}></p>
+
+</div>
+
+
+      </div>
+
+
+        
+        
+        <div>
+        <div class="upload-btn-wrapper">
+<button className="btnnew">Upload gltf<i class='bx bx-export' style={{padding:'10px'}}></i></button>
+<input type="file" name="myfile" id='gltffile' onChange={gltfchangehandler} />
+<p id='gltfmessage' style={{color:'red'}}></p>
+
+</div>
+
+
+        </div>
+
+
+      
+      <div>
+      <div class="upload-btn-wrapper">
+<button className="btnneww">Upload image<i class='bx bx-export' style={{padding:'10px'}}></i></button>
+<input type="file" name="myfile" id='imagefile' onChange={imagechangehandler} />
+<p id='imagemessage' style={{color:'red'}}></p>
+
+</div>
+
+
+      </div>
+
+
+      
+
+     
+
+
+
+        </div>
+
+      
+    </div>
       <div>
         <div className='divbutton' >
         <div className='updatebtn' >
@@ -3893,52 +3868,12 @@ coloroptions.map(item=>(
   
     <div className='merchantdiv'>
       <div className='merchantdivcontainer'>
-        <div>
-          <div  className='productalldetails'>
-            <label>Partner(Shop) name <span className="required-field"></span><span id='requiredmerchantname'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type='text' className='merchantname' id='inputpartnerproductname' value={ partnername} onChange={(e)=>setPartnerName(e.target.value)} />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>No of shops <span className="required-field"></span><span id='requiredmerchantshopno'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="number" className='partnershopno'  value={ partnershopsno} onChange={event=> setPartnerShopNO(event.target.value) } />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner email <span className="required-field"></span><span id='requiredpartneremail'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="email"  className='merchantemail' value={ partneremail} onChange={event=> setPartnerEmail(event.target.value) }/>
-          </div>
-
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner address <span className="required-field"></span><span id='requiredpartneraddress'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type="text" className='merchantaddress' value={ partneraddress} onChange={event=> setPartnerAddress(event.target.value) } />
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Partner type <span className="required-field"></span><span id='requiredpartnertype'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <select  
-              className='merchanttype'  value={ partnertype} onChange={event=>setPartnerType(event.target.value)}
-            >
-            <option value='' selected="selected" className='optiongot' >Choose..</option>
-            <option>Manufacturer</option>
-             <option>Distributer</option>
-             <option>Retailer</option>
-             <option>Exporter</option>
-             <option>Importer</option>
-            </select>
-          </div>
-        </div>
-        <div>
-        <div  className='productalldetails'>
-            <label>Contact No <span className="required-field"></span><span id='requiredpartnerno'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type= 'number' maxLength= '10' className='merchantno'  value= { partnerno} onChange={event=> setPartnerNo(event.target.value)}   />
-          </div>
-        </div>
+    
+     
+     
+       
+      
+      
         <div>
         <div  className='productalldetails'>
             <label>Product name <span className="required-field"></span><span id='requiredpartnerproductname'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
@@ -4168,14 +4103,7 @@ coloroptions.map(item=>(
             <input type='text' className='partnersku' value={ partnersku} onChange={(e)=>setPartnerSku(e.target.value)} />
           </div>
         </div>
-        <div>
-          <div className='productalldetails'>
-          <label> website </label>
-          <input type='text' value={ partnerwebsite} onChange={(e)=>setPartnerWebsite(e.target.value)} />
-
-
-          </div>
-        </div>
+     
 
      
        
@@ -4347,6 +4275,7 @@ coloroptions.map(item=>(
 
           </div>
         </div>
+        <div></div>
 
         <div>
           <div className='imagedivcontainer'> 
@@ -4397,7 +4326,7 @@ coloroptions.map(item=>(
 
 
  
-      <div className='searchmodeldiv' >
+      <div className= 'searchmodeldiv' >
         <div className='searchmodelcontainer'>
           <input type='text' onChange={(e)=>setModelSearch(e.target.value)} />
           <button type='submit' onClick={searchmodelHandler} >search</button>
@@ -4426,112 +4355,172 @@ coloroptions.map(item=>(
    
 
 
-
-
     <div className='profilediv' >
       <div className='profileinput'>
         <div>
           <div className='profiledetails'>
-            <label>Name</label>
-            <input type='text' />
+            <div className='productalldetails' >
+            <label>Name<span className="required-field"  ></span><span className='reqpartnername'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text'  className='partnername'  value={partnername} onChange={(e)=>setPartnerName(e.target.value)} />
+
+            </div>
+          
 
           </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Email</label>
-            <input type='text' />
+        <div className='productalldetails' >
+            <label>Email<span className="required-field"></span><span className='reqpartneremail'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='email' value={partneremail} className='partneremail' onChange={(e)=>setPartnerEmail(e.target.value)} />
+
+            </div>
 
              </div>
 
         </div>
         <div>
+          <div className='profiledetails'>
+          <div  className='productalldetails'>
+            <label>Partner type <span className="required-field"></span><span className='reqpartnertype'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <select  
+              className='partnertype'  value={ partnertype} onChange={event=>setPartnerType(event.target.value)}
+            >
+            <option value='' selected="selected" className='optiongot' >Choose..</option>
+            <option>Manufacturer</option>
+             <option>Distributer</option>
+             <option>Retailer</option>
+             <option>Exporter</option>
+             <option>Importer</option>
+            </select>
+          </div>
+
+          </div>
+        </div>
+        <div>
         <div className='profiledetails'>
-        <label>Mobile No</label>
-            <input type='number'/>
+        <div className='productalldetails' >
+            <label>Address<span className="required-field"></span><span className='reqpartneraddress'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text' value={partneraddress} className='partneraddress' onChange={(e)=>setPartnerAddress(e.target.value)} />
+
+            </div>
 
             </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>State</label>
-            <input type='text'/>
+        <div className='productalldetails' >
+            <label>Mobile No<span className="required-field"></span><span className='reqpartnermobile'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text'  value={partnerno} className='partnermobile' onChange={(e)=>setPartnerNo(e.target.value)} />
+
+            </div>
 
             </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>City</label>
-            <input  type='text'/>
+        <div className='productalldetails' >
+            <label>State<span className="required-field"></span><span  className='reqpartnerstate'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text' value={partnerstate} className='partnerstate' onChange={(e)=>setPartnerState(e.target.value)} />
+
+            </div>
+
+            </div>
+        </div>
+        <div>
+        <div className='profiledetails'>
+        <div className='productalldetails' >
+            <label>City<span className="required-field"></span><span className='reqpartnercity'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text' value={partnercity} className='partnercity' onChange={(e)=>setPartnerCity(e.target.value)} />
+
+            </div>
 
              </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Pin code</label>
-            <input type='number' />
+        <div className='productalldetails' >
+            <label>Pin<span className="required-field"></span><span className='reqpartnerpin'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text' value={partnerpin} className='partnerpin'  onChange={(e)=>setPartnerPin(e.target.value)} />
+
+            </div>
 
              </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>No of Shops</label>
-            <input  type='number'/>
+        <div className='productalldetails' >
+            <label>No of shops<span className="required-field"></span><span className='reqpartnernoofshops'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='number'  value={partnernoofshops} className='partnernoofshops'  onChange={(e)=>setPartnerNoOfShops(e.target.value)} />
+
+            </div>
 
            </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Shop name</label>
-            <input type='text'/>
+        <div className='productalldetails' >
+            <label>Shop name<span className="required-field"></span><span className='reqpartnershopname'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='text' className='partnershopname' value={partnershopname}  onChange={(e)=>setPartnerShopName(e.target.value)}  />
+
+            </div>
+
+           </div>
+        </div>
+     
+        <div>
+        <div className='profiledetails'>
+        <div className='productalldetails' >
+            <label>Website</label>
+            <input type='text' value={Purchaselink}  onChange={(e)=>setPurchaseLink(e.target.value)} />
+
+            </div>
 
            </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Type</label>
-            <input type='text' />
+        <div className='productalldetails' >
+            <label>GST</label>
+            <input type='text'  value={gstno} onChange={(e)=>setGstNo(e.target.value)} />
+
+            </div>
 
            </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Website</label>
-            <input type='text' />
+        <div className='productalldetails' >
+            <label>Bank name</label>
+            <input type='text' value={bankname} onChange={(e)=>setBankName(e.target.value)} />
+
+            </div>
 
            </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>GST</label>
-            <input type='text'/>
+        <div className='productalldetails' >
+            <label>IFSC code</label>
+            <input type='text'  value={ifsc} onChange={(e)=>setIfsc(e.target.value)} />
+
+            </div>
 
            </div>
         </div>
         <div>
         <div className='profiledetails'>
-        <label>Bank name</label>
-            <input type='text'/>
+        <div className='productalldetails' >
+            <label>Bank account no</label>
+            <input type='number'  value={accountno} onChange={(e)=>setAccountNo(e.target.value)} />
 
-           </div>
-        </div>
-        <div>
-        <div className='profiledetails'>
-        <label>IFSC code</label>
-            <input type='text'/>
-
-           </div>
-        </div>
-        <div>
-        <div className='profiledetails'>
-        <label>Bank account no</label>
-            <input type='number' />
+            </div>
 
            </div>
         </div>
         <div>
           <div className='updatebtn' >
-            <button>Update</button>
+            <button type='submit' onClick={profileUpdateHandler} >Update</button>
           </div>
         </div>
 
@@ -4576,7 +4565,7 @@ coloroptions.map(item=>(
 
    
    
-  </section>
+  </div>
       </div>
         
       

@@ -379,7 +379,6 @@ class App extends Component {
 
            </div>
       
-           <Footertest/>
         </Router>
           
       
