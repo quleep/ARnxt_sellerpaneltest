@@ -3801,7 +3801,7 @@ const handleFocus=()=>{
                                           </div>
                                         
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
+                                            <input  type='text' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
                                             <label className='placeholder'
                                             >MRP <span className='required-field'></span> </label>
 
@@ -3809,7 +3809,7 @@ const handleFocus=()=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
+                                            <input  type='text' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
                                             <label className='placeholder'
                                             >Offer price <span className='required-field'></span> </label>
 
@@ -3852,25 +3852,25 @@ const handleFocus=()=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
+                                            <input  type='text' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
                                             <label className='placeholder'
-                                            >Length (Inch)<span className='required-field'></span> </label>
+                                            >Length <span className='required-field'></span> </label>
 
 
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
+                                            <input  type='text' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
                                             <label className='placeholder'
-                                            >Breadth  (Inch)<span className='required-field'></span> </label>
+                                            >Breadth <span className='required-field'></span> </label>
 
 
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
+                                            <input  type='text' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
                                             <label className='placeholder'
-                                            >Height  (Inch)<span className='required-field'></span> </label>
+                                            >Height <span className='required-field'></span> </label>
 
 
 
