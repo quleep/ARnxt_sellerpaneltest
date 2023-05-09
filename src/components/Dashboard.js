@@ -195,6 +195,10 @@ const Dashboard = () => {
  const [colorreRender, setColorReRender] = useState(false)
 
  const [showPopup, setShowPopup] = useState(false)
+
+ const [roomtypetag, setRoomTypeTag] = useState([])
+ const [roomtypetext, setRoomTypeText] = useState('')
+ const [roomtypereRender, setRoomTypeReRender] = useState(false)
  
 
  const colorforceRender = () => {
@@ -239,6 +243,29 @@ const handleColorDeleteTag = (index) => {
      forceRender()
      tags.splice(index, 1)
  }
+
+
+  const roomTypeRender = () => {
+     setRoomTypeReRender(!roomtypereRender)
+ }
+
+ const handleRoomTypeTag = (e) => {
+    roomTypeRender()
+     if (e.key === 'Enter') {
+         setRoomTypeText('')
+         if (roomtypetext !== '') {
+             setRoomTypeTag([...roomtypetag, roomtypetext])
+         }
+         else {
+             console.log('empty')
+         }
+     }
+ }
+ const handleDeleteRoomTag = (index) => {
+     roomTypeRender()
+     roomtypetag.splice(index, 1)
+ }
+
 
 
  let names = ['Furniture', 'Bathroom', 'Furnishing', 'Electrical', 'Electronics', 'Decorative', 'Walls','Floors','Upholstery','Wall paint']
@@ -1646,7 +1673,7 @@ const productdetails= {
   offerprice: partnerofferprice,
   collection : partnercollection,
   primarymaterial: partnerprimarymaterial,
-  roomtype: partnerroomtype,
+  roomtype: roomtypetag,
   weight: partnerweight,
   warranty: partnerwarranty,
   sku: partnersku,
@@ -4049,17 +4076,42 @@ const handleFocus=()=>{
                                           </div>
 
                                           <div  className='input-group'>
-                                            <input  type='text' list='room' value={partnerroomtype} onChange={(e)=>setPartnerRoomType(e.target.value)} className='input' placeholder='Room type'  />
-                                            <label className='placeholder'
+                                           
+                                           
+
+                                              
+
+                    <div className='AddTagContainer'>
+            <div className="addTagBox">
+              
+                <div className="addTagInput">
+                    {
+                        roomtypetag.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleDeleteRoomTag(index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+
+                    <input className='input' type="text" autoFocus
+                     placeholder='Add rooms'
+                        value={roomtypetext}
+                        onKeyUpCapture={(e) => { handleRoomTypeTag(e) }}
+                        onChange={(e) => setRoomTypeText(e.target.value)}
+                    />
+                    <label className='placeholder'
                                             >Room type <span className='required-field'></span> </label>
-
-                         <datalist class="" id="room">    
-                        <option value="Living Room"/>
-                          <option value="kitchen"/>
-                         <option value="Bed Room"/>
-                         <option value="Bathroom"/>
-
-                               </datalist>
+                </div>
+            </div>
+        </div>
 
 
 
