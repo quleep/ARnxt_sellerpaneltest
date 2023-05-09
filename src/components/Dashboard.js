@@ -1,8 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck } from 'react-icons/fa';
 import validator from 'validator';
 import swal from 'sweetalert';
 import axios from 'axios';
+import JSZip from 'jszip';
+import fs from 'fs';
+
+import DataTable, { createTheme } from "react-data-table-component";
+import { IoIosArrowDown } from 'react-icons/io';
+import { BiCheck } from 'react-icons/bi';
+
+import { tableCustomStyles } from './tableStyle';
+
+import { RiAddLine } from 'react-icons/ri';
+import { RxCross2 } from 'react-icons/rx';
+import { MdClose } from 'react-icons/md';
+
+
 
 
 const imagesendurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl';
@@ -20,9 +34,15 @@ const deletesavedataurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.co
 const merchantprofileurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getmerchantprofile'
 const updatemerchantprofileurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/updatemerchantprofile'
 
+const getoneproducturl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getoneproduct'
+
+const zipextracturl= ' https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/extractzip '
+
 
 
 const Dashboard = () => {
+
+  const modelRef =  useRef();
 
   const [saveddata, setSavedData] = useState();
 
@@ -153,9 +173,230 @@ const Dashboard = () => {
  const [ifsc, setIfsc] = useState('')
  const [partnernoofshops, setPartnerNoOfShops] = useState('');
 
-  
+ const [searchproductdata, setSearchProductData] = useState();
+
+ const [dropDown, showDropDown] = useState(false)
+ const [subdropdown, showSubDropDown] = useState(false)
+
+ const [currencydrop, showCurrencyDrop] = useState(false)
+ const [desgindrop, showDesignDrop] = useState(false)
+ const [select, setSelect] = useState('Category')
+
+ const [subcatselect, setSubCatSelect] = useState('Sub-category')
+
+ const [currencyselect, setCurrencySelect] = useState('INR')
+ const [designselect, setDesignSelect] = useState('Design styles')
+
+ const [tagText, setTagText] = useState('');
+ const [tags, setTags] = useState([]);
+ const [reRender, setReRender] = useState(false)
+ const [tagcolor, setTagColor] = useState('')
+ const [colortags, setColorTags] = useState([])
+ const [colorreRender, setColorReRender] = useState(false)
+
+ const [showPopup, setShowPopup] = useState(false)
  
 
+ const colorforceRender = () => {
+  setColorReRender(!colorreRender)
+}
+
+const handleAddColorTag = (e) => {
+ colorforceRender()
+  if (e.key === 'Enter') {
+      setTagColor('')
+      if (tagcolor !== '') {
+          setColorTags([...colortags, tagcolor])
+      }
+      else {
+          console.log('empty')
+      }
+  }
+}
+const handleColorDeleteTag = (index) => {
+  colorforceRender()
+  colortags.splice(index, 1)
+}
+
+
+ const forceRender = () => {
+     setReRender(!reRender)
+ }
+
+ const handleAddTag = (e) => {
+     forceRender()
+     if (e.key === 'Enter') {
+         setTagText('')
+         if (tagText !== '') {
+             setTags([...tags, tagText])
+         }
+         else {
+             console.log('empty')
+         }
+     }
+ }
+ const handleDeleteTag = (index) => {
+     forceRender()
+     tags.splice(index, 1)
+ }
+
+
+ let names = ['Furniture', 'Bathroom', 'Furnishing', 'Electrical', 'Electronics', 'Decorative', 'Walls','Floors','Upholstery','Wall paint']
+
+ let currencyarray= ['INR','EURO','USD']
+ let designstylearray= ['3D Geometric', 'Animal','Botanical', 'Geometric']
+
+ const namescategory=[
+  {
+    categoryitem: "Furniture",
+    subcategory: [
+      "Bar stools", "Cabinets", "Wardrobe", "Side table", "Dining table","Coffee table",
+  "Bed", "Sideboard", "Chair", "Centre table", "Bedside table","stool", "Bean bag","Sofa","Bookshelf",
+  "Study table", "Bench","Table"
+    ]
+
+  },
+  {
+    categoryitem: "Bathroom",
+    subcategory: [
+      "Commode", "Shower","Faucet","Bathtub", "Basin"
+
+    ]
+
+  },
+  {
+    categoryitem: "Furnishing",
+    subcategory: [
+      "Rugs", "Blinds","Quilts","Bedsheets","Curtains"
+
+    ]
+
+  },
+  {
+    categoryitem: "Electrical",
+    subcategory: [
+      "Light", "Chandelier","Switch","Floor lamp","Fan", "Water filter","Chimney"
+
+    ]
+
+  },
+  {
+    categoryitem: "Electronics",
+    subcategory: [
+      "Ac", "Microwave","Washing Machine","Refrigerator", "Tv"
+
+    ]
+
+  },
+  {
+    categoryitem: "Decorative",
+    subcategory: [
+      "Metal art", "Painting"
+
+    ]
+
+  },
+  {
+    categoryitem: "Walls",
+    subcategory: [
+      "Wallpapers","WallMurals"
+
+    ]
+
+  },
+  {
+    categoryitem: "Floors",
+    subcategory: [
+      "Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "Bedroom", "Commercial spaces"
+
+    ]
+
+  },
+  {
+    categoryitem: "Upholstery",
+    subcategory: [
+      "Commode", "Shower","Faucet","Bathtub", "Basin"
+
+    ]
+
+  },
+  {
+    categoryitem: "Wall paints",
+    subcategory: [
+     
+
+    ]
+
+  },
+  
+  
+      
+
+
+ ]
+
+
+
+ 
+ 
+
+ const [opentab, setOpenTab] = useState(false)
+
+
+ const [isActive, setIsActive] = useState(1)
+ const handleActive = (btn) => setIsActive(btn)
+
+ const [accActive, setAccActive] = useState()
+
+
+ let citiesByState={
+  Furniture:["Bar stools", "Cabinets", "Wardrobe", "Side table", "Dining table","Coffee table",
+  "Bed", "Sideboard", "Chair", "Centre table", "Bedside table","stool", "Bean bag","Sofa","Bookshelf",
+  "Study table", "Bench","Table"
+],
+Bathroom: ["Commode", "Shower","Faucet","Bathtub", "Basin"],
+Furnishing: ["Rugs", "Blinds","Quilts","Bedsheets"],
+Electrical: ["Light", "Chandelier","Switch","Floor lamp","Fan", "Water filter"],
+Electronics: ["Ac", "Microwave","Washing Machine","Refrigerator", "Tv"],
+Decorative: ["Metal art", "Painting"],
+Walls: ["Animal wallpapers", "Abstract","Botanical", "Floral","Geometric", "Kids","Modern"],
+Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "Bedroom", "Commercial spaces"]
+}
+
+
+ let accordionData = [{
+
+  title: "Product details",
+  accordionContent: 'productdetails'
+
+
+    
+ },
+ {
+     title: "Material details",
+     accordionContent: "materialdetails"
+ },
+ {
+     title: "Upload Images",
+     accordionContent: "imagedetails"
+ },
+ ]
+ const handleActiveAccord = (index) => {
+
+ 
+     if (accActive === index) {
+         setAccActive()
+     }
+     else {
+         setAccActive(index)
+         setOpenTab(true)
+     }
+ }
+
+
+  
+ 
+ const zip = new JSZip();
  
   const userEmail= sessionStorage.getItem('user')
 
@@ -278,20 +519,11 @@ imagesarray &&
  })
 
 
-  let citiesByState={
-    Furniture:["Bar stools", "Cabinets", "Wardrobe", "Side table", "Dining table","Coffee table",
-    "Bed", "Sideboard", "Chair", "Centre table", "Bedside table","stool", "Bean bag","Sofa","Bookshelf",
-    "Study table", "Bench","Table"
-  ],
-  Bathroom: ["Commode", "Shower","Faucet","Bathtub", "Basin"],
-  Furnishing: ["Rugs", "Blinds","Quilts","Bedsheets"],
-  Electrical: ["Light", "Chandelier","Switch","Floor lamp","Fan", "Water filter"],
-  Electronics: ["Ac", "Microwave","Washing Machine","Refrigerator", "Tv"],
-  Decorative: ["Metal art", "Painting"],
-  Walls: ["Animal wallpapers", "Abstract","Botanical", "Floral","Geometric", "Kids","Modern"],
-  Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "Bedroom", "Commercial spaces"]
-  }
-  
+
+
+ 
+
+
 
 
   function makeSubmenu(value) {
@@ -351,6 +583,12 @@ const profileHandler=(e)=>{
   
   document.querySelector('.profilediv').style.display= 'block'
   document.querySelector('.sidebarmain').style.display= 'none'
+  document.querySelector('.merchantdiv').style.display= 'none'
+  document.querySelector('.selfcontainer').style.display= 'none'
+  document.querySelector('.searchmodeldiv').style.display= 'none'
+
+
+
 
 
 
@@ -731,7 +969,7 @@ if(currency === ''){
 }
 
 if(partnerCurrency === ''){
-  setPartnerCurrency('₹ INR')
+  setPartnerCurrency('INR')
 }
 
 const saveform=(e)=>{
@@ -1086,6 +1324,8 @@ e.preventDefault();
 
 
 
+{
+  /*
 
 
 if(partnerproduct === ''){
@@ -1372,6 +1612,10 @@ else{
 
 }
 
+*/}
+
+
+
 getId()
 setProid(lastId)
 
@@ -1407,20 +1651,21 @@ const productdetails= {
   warranty: partnerwarranty,
   sku: partnersku,
   discount: discountpartner,
-  colorvalue: partnercolors,
-  tags: partnertags,
-  category: partnercategory,
-  subcategory: partnersubcategory,
+  colorvalue: colortags,
+  tags: tags,
+  category: select,
+  subcategory: subcatselect,
   Specification: partnerspecification,
   brandoverview: partnerbrandoverview,
   sellerinfo: partnersellerinfo,
   care: partnercare,
   imageurl: newarray,
 
-  currency: partnerCurrency,
+  currency: currencyselect,
   registration_Time: new Date().toString(),
   additional: partneradditional,
-  subcatdetail: partnersubcatdetails
+  subcatdetail: partnersubcatdetails,
+  designstyle: designselect
 
 
 
@@ -1435,45 +1680,34 @@ const merchantbody={
 const deletebody={
   merchant_Id: Number(p_id)
 }
-axios.post(registerUrl, productdetails).then(res=>{
+axios.post(registerUrl, productdetails).then((res)=>{
 
-  axios.post(imagesendurl,merchantbody ).then(res=>{
+}).then(()=>{
+  axios.post(imagesendurl, merchantbody).then(res=>{
+    if(res){
+      setShowPopup(true)
+      
 
-    axios.post(deletesavedataurl,deletebody).then(res=>{
-      console.log(res)
-    }).catch(error=>{
-      console.log(error)
-    })
-    
-  }).catch(error=>{
-    console.log(error)
+    }
   })
- 
-  swal({
-    title: " Submitted Successfully!",
-  
-    icon:"success",
-   
-
-})
-setTimeout(()=>{
-  window.location.reload()
-
-},2000)
-
-
-
-  
-  
-  setTimeout(()=>{
-    setMessage('')
-  },3000)
-
-  console.log(res)
 }).catch(error=>{
   console.log(error)
 })
+
+  
+
+
+
  
+
+
+  
+  
+
+
+
+
+
 
 
 
@@ -2893,12 +3127,47 @@ useEffect(()=>{
 
 
 
+
+
 const searchmodelHandler=(e)=>{
   e.preventDefault();
   const body={
     modelno: modelsearch
   }
+
+
  axios.post(searchmodels, body).then(res=>{
+
+  
+    const zipfilebody= {
+      zipfilenew: res.data[0].modelglb
+    }
+
+    axios.post(zipextracturl, zipfilebody).then(res=>{
+      console.log(res)
+    }).catch(error=>{
+      console.log(error)
+    })
+
+ 
+  
+  const modelbody={
+    productid: Number(res.data[0].productid)
+  }
+
+  if(res){
+    axios.post(getoneproducturl, modelbody).then(resnew=>{
+        setSearchProductData(resnew.data)
+        if(resnew){
+          document.querySelector('.tablediv').style.display = 'block'
+        }
+    }).catch(error=>{
+      console.log(error)
+    })
+
+  }
+
+  
   setSearchModelData(res.data)
  }).catch(error=>{
   console.log(error)
@@ -2906,6 +3175,9 @@ const searchmodelHandler=(e)=>{
 
 
 }
+
+
+
 
 
 const profileUpdateHandler=(e)=>{
@@ -3112,9 +3384,91 @@ const profileUpdateHandler=(e)=>{
 
 const modelManagementHandler=(e)=>{
   e.preventDefault();
-  document.querySelector('.sidebarmain').style.display = 'flex'
+  document.querySelector('.sidebarmain').style.display = 'none'
   document.querySelector('.profilediv').style.display = 'none'
 
+}
+
+
+
+
+
+
+createTheme("solarized", {
+  text: {
+    primary: "#268bd2",
+    secondary: "#2aa198"
+  },
+  background: {
+    default: "#002b36"
+  },
+  context: {
+    background: "#cb4b16",
+    text: "#FFFFFF"
+  },
+  divider: {
+    default: "#073642"
+  },
+  action: {
+    button: "rgba(0,0,0,.54)",
+    hover: "rgba(0,0,0,.08)",
+    disabled: "rgba(0,0,0,.12)"
+  }
+});
+
+
+const columns= [
+
+  {
+    name: "Product name",
+    selector: row=> row.productname,
+   
+    sortable: true
+  },
+  {
+    name: "Brand",
+    selector: row=> row.brand,
+    sortable: true
+  },
+  {
+    name: "Category",
+    selector: row=> row.category,
+    sortable: true
+  },
+
+  {
+    name: "Sub-category",
+    selector: row=> row.subcategory,
+    sortable: true
+  },
+  {
+    name: "Product length",
+    selector: row=> row.lengthprod,
+    sortable: true
+  },
+  {
+    name: "Product Breadth",
+    selector: row=> row.breadthprod,
+    sortable: true
+  },
+  {
+    name: "Product height",
+    selector: row=> row.height,
+    sortable: true
+  }
+ 
+ 
+ 
+  
+
+
+]
+
+
+
+
+const handleFocus=()=>{
+  document.querySelector('.placeholder').style.display= 'block'
 }
 
 
@@ -3133,7 +3487,7 @@ const modelManagementHandler=(e)=>{
           </div>
           <div className='dashboardnamediv'>
             <div className='merchantnamecontainer' >
-              <h3>Welcome Merchant Name</h3>
+              <h3>Welcome {uidnew && uidnew}</h3>
 
             </div>
 
@@ -3155,6 +3509,16 @@ const modelManagementHandler=(e)=>{
             </div>
 
           </div>
+
+          <div className='dashboardlogout' >
+
+            <div className='logoutbuttoncontainer'>
+            <button>Logout</button>
+
+            </div>
+
+           
+            </div>
 
 
         </div>
@@ -3258,10 +3622,10 @@ const modelManagementHandler=(e)=>{
         </ul>
       </li>
       <li>
-        <a onClick={modelManagementHandler} >
+        <a onClick={modelManagementHandler} style={{cursor:'pointer'}} >
           <i className='bx bx-compass'></i>
           <span className="link_name">Model Management</span>
-          <p className='bx bxs-chevron-down ' style={{color:'white', paddingTop:'20px', paddingLeft:'10px'}}></p>
+        
         </a>
         {
           /*
@@ -3330,6 +3694,681 @@ const modelManagementHandler=(e)=>{
       </li>
     </ul>
   </div>
+
+  <div className='tabsContainer' >
+            <div className="btnContainer">
+                <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`} 
+                onClick={() => handleActive(1)}>Search Models</button>
+                <button className={`tabs ${isActive === 2 ? 'activeTab' : ''}`} 
+                onClick={() => handleActive(2)}>Upload Images</button>
+                <button className={`tabs ${isActive === 3 ? 'activeTab' : ''}`} 
+                onClick={() => handleActive(3)}>Upload Models</button>
+            </div>
+            {isActive === 1 && <div className="tabData">
+                <div className="tabContent">
+                    <h5>"Perhaps Some Guys": Pat Cummins' 
+                        Brutal Take After Loss Against India In 2nd Test
+                    </h5>
+                    <p>Updated: February 19, 2023</p>
+                </div>
+            </div>}
+            {isActive === 2 && <div className="tabData">
+                <div className="tabContent">
+                <div className='accordionContainer'>
+
+                
+            {
+                accordionData.map((acc, index) => {
+                    return (
+                        <div className="accordion"
+                          >
+                            <div className='accordionHeading'    onClick={() => handleActiveAccord(index)} >
+
+                                <span className="addIcon"
+                                    style={{
+                                        transform: `${accActive === index ? 'rotate(45deg)' :
+                                            'rotate(0deg)'}`
+                                    }}>
+                                  <RiAddLine size={25} />
+                                </span>
+                                <h3>{acc.title}</h3>
+                            </div>
+                            {
+                                accActive === index ? <div className="accordionContent">
+                                    {
+                                      acc.accordionContent === 'productdetails' ? 
+                                      <div>
+
+                                         <div className='productdetailsdiv' >
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partnerproduct}  onChange={(e)=>setPartnerProduct(e.target.value)} className='input' placeholder='product name'  />
+                                            <label className='placeholder'
+                                            >Product name <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                         
+                                   
+
+                                          <div  className='input-group'>
+                                            <input  type='text' list='brand' value={partnerbrand} onChange={(e)=>setPartnerBrand(e.target.value)} className='input' placeholder='brand'  />
+                                            <label className='placeholder'
+                                            >Brand <span className='required-field'></span> </label>
+                                               <datalist class="" id="brand">    
+                        <option value="Vimani"/>
+                          <option value="Sternhagen Germany"/>
+                         <option value="Nitco"/>
+                         <option value="LightBerry"/>
+                          <option value="ottomate"/>
+                         <option value="wall fashion"/>
+                         <option value="johnson"/>
+                          <option value="excel"/>
+                         <option value="nexion"/>
+                         <option value="lasvagas"/>
+                          <option value="jaquar"/>
+                         <option value="jaldhi"/>
+                         <option value="agl"/>
+                         <option value="hometown"/>
+                         <option value="intradings"/>
+                          <option value="nikamal"/>
+                         <option value="havells"/>
+                         <option value="schneider electric"/>
+                         <option value="simero"/>
+                         <option value="iifb"/>
+                         <option value="marshalls"/>
+                          <option value="century"/>
+                         <option value="bajaj"/>
+                         <option value="LG"/>
+                         <option value="Samsung"/>
+                         <option value="godrej"/>
+                          <option value="simpolo"/>
+                        
+                               </datalist>
+
+
+
+                                          </div>
+                                          
+                                        
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partnermodelid} onChange={(e)=>setPartnerModelid(e.target.value)}  className='input' placeholder='model id'  />
+                                            <label className='placeholder'
+                                            >Model id <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                        
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
+                                            <label className='placeholder'
+                                            >MRP <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
+                                            <label className='placeholder'
+                                            >Offer price <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => showCurrencyDrop(false)}
+                                    onFocus={() => showCurrencyDrop(!currencydrop)}>{currencyselect}<IoIosArrowDown
+                    style={{
+                        transform: currencydrop ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !currencydrop ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !currencydrop ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    currencyarray.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setCurrencySelect(name); showCurrencyDrop(false) }}
+                            style={{ fontWeight: select === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {select === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
+                                            <label className='placeholder'
+                                            >Length (Inch)<span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
+                                            <label className='placeholder'
+                                            >Breadth  (Inch)<span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
+                                            <label className='placeholder'
+                                            >Height  (Inch)<span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerweight} onChange={(e)=>setPartnerWeight(e.target.value)}  className='input' placeholder='weight'  />
+                                            <label className='placeholder'
+                                            >Weight (Kg)<span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={partnerwarranty} onChange={(e)=>setPartnerWarranty(e.target.value)} className='input' placeholder='warranty'  />
+                                            <label className='placeholder'
+                                            >Warranty (Years)<span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+
+                                          
+                                         
+
+
+<div className='listBoxContainer'>
+            <button className='listButton'
+                onBlur={() => showDropDown(false)}
+                onFocus={() => showDropDown(!dropDown)}>{select}<IoIosArrowDown
+                    style={{
+                        transform: dropDown ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !dropDown ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !dropDown ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    namescategory.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setSelect(name.categoryitem); showDropDown(false) }}
+                            style={{ fontWeight: select === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {select === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name.categoryitem}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+
+                                          <div className='listBoxContainer'>
+                              <button className='listButton'
+                               onBlur={() => showSubDropDown(false)}
+                                onFocus={() => showSubDropDown(!subdropdown)}>{subcatselect}<IoIosArrowDown
+                              style={{
+                                  transform: subdropdown ? 'rotate(180deg)' : 'rotate(0deg)',
+                                  transition: '0.3s ease-in-out'
+                                   }} /></button>
+                         <ul className='listItems' style={{
+                             opacity: !subdropdown ? "0" : "1",
+                              transition: "0.3s ease",
+                           visibility: !subdropdown ? "hidden" : "visible",
+                             transformOrigin: "top center"
+                                   }}>
+                            
+                 
+                 {
+
+
+                  namescategory.map((name, index) => {
+
+                    if(name.categoryitem === select){
+
+                  
+
+                      
+                      return (
+                      name.subcategory.map((item,ind)=>(
+
+
+                        <li className='list' key={ind}
+                        onClick={() => { setSubCatSelect(item); showDropDown(false) }}
+                        style={{ fontWeight: select === item ? '500' : '400' }}>
+                        <span className='checkIcon'>
+                            {select === item ? <BiCheck size={25} /> : null}
+                        </span>
+                       
+                        {
+                         
+                         item
+                        }
+                    </li>
+
+                      ))
+                      
+                   ) 
+
+
+
+                    }
+
+                   
+                  })
+              }
+                    
+                
+            </ul>
+        </div>
+
+                                           
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={partnersubcatdetails} onChange={(e)=>setPartnerSubCatDetails(e.target.value)} className='input' placeholder='Subcatdetails'  />
+                                            <label className='placeholder'
+                                            >Sub-category details <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div>
+
+
+                                            </div>
+
+
+
+
+                                          </div>
+                                        </div> :<div></div>
+
+                                       }
+
+
+                                       {
+                                      acc.accordionContent === 'materialdetails' ? 
+                                      <div>
+                                        <div className='productdetailsdiv'>
+
+                                        <div  className='input-group'>
+                                            <input  type='text' list='material' value={partnerprimarymaterial} onChange={(e)=>setPartnerPrimaryMaterial(e.target.value)} className='input' placeholder='Primary material'  />
+                                            <label className='placeholder'
+                                            >Primary material <span className='required-field'></span> </label>
+                                            <datalist class="" id="material">    
+                        <option value="Fabric"/>
+                          <option value="Leatherette"/>
+                         <option value="Solid Wood"/>
+                         <option value="Leather"/>
+                          <option value="Cann"/>
+                         <option value="Engineered wood"/>
+                         <option value="Metal"/>
+                          <option value="Plastic"/>
+                         <option value="Glass"/>
+                         <option value="stone"/>
+                          <option value="marble"/>
+                     
+                               </datalist>
+
+                                           
+
+
+
+                                          </div>
+
+                                          <div  className='input-group'>
+                                            <input  type='text' list='room' value={partnerroomtype} onChange={(e)=>setPartnerRoomType(e.target.value)} className='input' placeholder='Room type'  />
+                                            <label className='placeholder'
+                                            >Room type <span className='required-field'></span> </label>
+
+                         <datalist class="" id="room">    
+                        <option value="Living Room"/>
+                          <option value="kitchen"/>
+                         <option value="Bed Room"/>
+                         <option value="Bathroom"/>
+
+                               </datalist>
+
+
+
+                                          </div>
+
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partnersku} onChange={(e)=>setPartnerSku(e.target.value)} className='input' placeholder='SKU'  />
+                                            <label className='placeholder'
+                                            >SKU <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={partnercollection} onChange={(e)=>setPartnerCollection(e.target.value)} list='collection'  className='input' placeholder='Collection'  />
+                                            <label className='placeholder'
+                                            >Collection  </label>
+                                               <datalist class="" id="collection">    
+                        <option value="Crystal"/>
+                          <option value="lyra"/>
+                         <option value="inspire"/>
+                         <option value="biba"/>
+                          <option value="jenica"/>
+                         <option value="evolution3"/>
+                         <option value="gravity"/>
+                          <option value="funtime"/>
+                         <option value="pinaka"/>
+                               </datalist>
+
+
+
+                                          </div>
+
+                                          <div  className='input-group'>
+
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => showDesignDrop(false)}
+                                    onFocus={() => showDesignDrop(!desgindrop)}>{designselect}<IoIosArrowDown
+                    style={{
+                        transform: desgindrop ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !desgindrop ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !desgindrop ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    designstylearray.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setDesignSelect(name); showDesignDrop(false) }}
+                            style={{ fontWeight: select === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {select === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+                                           
+
+
+                                          </div>
+
+
+
+                                        
+                                          
+
+                                          <div  className='input-group'>
+                                            <input  type='textarea' value={partnerspecification} onChange={(e)=>setPartnerSpecification(e.target.value)}  className='input' placeholder='Specification'  />
+                                            <label className='placeholder'
+                                            >Specification <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partnerbrandoverview} onChange={(e)=>setPartnerBrandOverview(e.target.value)} className='input' placeholder='Brand Overview '  />
+                                            <label className='placeholder'
+                                            >Brand Overview <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={partnersellerinfo} onChange={(e)=>setPartnerSellerInfo(e.target.value)} className='input' placeholder='Seller Info'  />
+                                            <label className='placeholder'
+                                            >Seller Info <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partnercare} onChange={(e)=>setPartnerCare(e.target.value)} className='input' placeholder='Care & Maintenance'  />
+                                            <label className='placeholder'
+                                            >Care & Maintenance <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={partneradditional} onChange={(e)=>setPartnerAdditional(e.target.value)} className='input' placeholder='Additional Info'  />
+                                            <label className='placeholder'
+                                            >Additional Info </label>
+
+
+
+                                          </div>
+
+                                          
+                                          <div  className='input-group'>
+                                          <div className='AddTagContainer'>
+            <div className="addTagBox">
+              
+                <div className="addTagInput">
+                    {
+                        tags.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleDeleteTag(index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+
+                    <input className='input' type="text" autoFocus
+                     placeholder='Add tags'
+                        value={tagText}
+                        onKeyUpCapture={(e) => { handleAddTag(e) }}
+                        onChange={(e) => setTagText(e.target.value)}
+                    />
+                     <label className='placeholder'
+                                            >Add tags <span className='required-field'></span> </label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+                                          </div>
+
+                                          <div  className='input-group'>
+                                          <div className='AddTagContainer'>
+            <div className="addTagBox">
+              
+                <div className="addTagInput">
+                    {
+                        colortags.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleColorDeleteTag(index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+
+                    <input className='input' type="text" autoFocus
+                     placeholder='Add Colors'
+                        value={tagcolor}
+                        onKeyUpCapture={(e) => { handleAddColorTag(e) }}
+                        onChange={(e) => setTagColor(e.target.value)}
+                    />
+                     <label className='placeholder'
+                                            >Add Colors <span className='required-field'></span> </label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+                                          </div>
+
+                                       
+
+                                  
+                                     
+
+
+
+                                          </div>
+
+                                      
+
+
+
+
+                                        </div> :<div></div>
+                                         }
+                                           {
+                                      acc.accordionContent === 'imagedetails' ? 
+                                      <div>
+
+<div>
+          <div className=''>
+            <label>Images <span className="required-field"></span><span id='requiredimages'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+            <input type='file'  id='b1' onChange={imagefilechange}  accept= "image/*" multiple/>
+            <p  style={{color:'red'}}>{message && message}</p>
+
+          </div>
+        </div>
+        <div></div>
+
+        <div>
+          <div className='imagedivcontainer'> 
+          {images && images.map(img=>
+       
+       <div >
+
+ <img src= {URL.createObjectURL(img)} key={img} alt='image preview'  style={{width:'100%', height:' 100%',marginRight:'',
+    borderRadius:'10px'}}  />
+<span  > <h5 onClick={()=>removeImage(img)} className=''><FaTimes  style={{color:'red', cursor:'pointer', border:'1px solid blue', borderRadius:'5px'}}/></h5>  </span>
+     </div>
+
+
+       )
+        }
+
+           <div></div>
+          </div>
+        </div>
+
+        <div className='updatebtn' >
+            <button type='submit' onClick={submitdata} >Submit</button>
+          </div>
+
+       
+         
+         <div className='modalPopup'
+             style={{
+                 visibility: showPopup ? 'visible' : 'hidden',
+                 opacity: showPopup ? '1' : '0',
+                 transition: '0.3s ease-in-out'
+             }}>
+             <div className="modalBorder"></div>
+             <div className="modalForm" >
+                 <MdClose size={25} className="closeIcon"
+                     onClick={() => setShowPopup(false)} />
+                 <div className='modalContent'>
+                     <h2>Data Uploaded Successfully</h2>
+                     <p>Sign up to ensure that you don't miss
+                         the next promotion and other important
+                         events in personal Account?
+                     </p>
+                     <div className="btns">
+                         <button className='btn btn-primary'>Sign up</button>
+                         <button className='btn btn-secondary'
+                             onClick={() => setShowPopup(false)}>
+                             Next time
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+   
+
+     
+
+                                       
+                                        </div> :<div></div>
+
+                                         }
+                                </div> : null
+                            }
+                        </div>
+                    )
+                })
+            }
+        </div>
+
+        
+                </div>
+            </div>}
+            {isActive === 3 && <div className="tabData">
+                <div className="tabContent">
+                    <h5>Watch: R Ashwin Rattles Steve Smith At Non-Striker's End, 
+                        Virat Kohli's Reaction Can't Be Missed
+                    </h5>
+                    <p>Updated: February 19, 2023</p>
+                </div>
+            </div>}
+        </div>
+
+
+
+
+
+
+
   <div className='homemaincontainer' >
 
     <div className='sidebarmain'>
@@ -3602,7 +4641,7 @@ const modelManagementHandler=(e)=>{
           </div>
         </div>
       
-
+               
      
        
         <div>
@@ -4335,18 +5374,42 @@ coloroptions.map(item=>(
                   
         </div>
         <div>
-            {
-              searchmodeldata && searchmodeldata.map(item=>(
-                <div className='modeldetailsdiv' >
-                    <p>{item.model_Id}</p>
-                <p>{item.productname}</p>
+        <div  className='tablediv' style={{marginTop:'60px'}}>
+           <DataTable
 
+       
+        title="Product data"
+        columns={columns}
+        data={searchproductdata && searchproductdata}
+      
+        highlightOnHover
+        selectableRows
+        fixedHeader
+        customStyles={tableCustomStyles}
+      
+       
+      />
+      </div>
+          </div>
+          <div style={{display:'none'}} >
+            <model-viewer
+            
 
-                  </div>
-              
+                    src= 'https://arnxt-models-webar.s3.ap-south-1.amazonaws.com/Euro_Bed.glb'
+                    ar
+                    modes="scene-viewer quick-look webxr"
+                   
+                  
+                    auto-rotate
+                    camera-controls
+                    style={{ width: "100vw", height: "90vh" , marginTop:'-80px', marginLeft:'-90px'}}
+            
+           
+             ref={modelRef.current}
+            
+            >
 
-              ))
-            }
+            </model-viewer>
           </div>
        
 

@@ -18,8 +18,8 @@ export const Login = ({history}) => {
 
     useEffect(()=>{
         if(res === 200){
-            history.push('/products')
-            window.location.reload(true)
+            history.push('/dashboard')
+           
           
         }
     },[history,res])

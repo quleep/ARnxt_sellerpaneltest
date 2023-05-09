@@ -19,7 +19,7 @@ const LoginNew = ({history}) => {
 
   useEffect(()=>{
       if(res === 200){
-          history.push('/productsnew')
+          history.push('/dashboard')
         
         
       }
