@@ -1669,15 +1669,15 @@ const productdetails= {
 
   productname: partnerproduct.toLowerCase(),
  
-  mrp : partnermrp,
-  offerprice: partnerofferprice,
+  mrp : Number(partnermrp),
+  offerprice: Number(partnerofferprice),
   collection : partnercollection,
   primarymaterial: partnerprimarymaterial,
   roomtype: roomtypetag,
   weight: partnerweight,
   warranty: partnerwarranty,
   sku: partnersku,
-  discount: discountpartner,
+  discount: Number(discountpartner),
   colorvalue: colortags,
   tags: tags,
   category: select,
@@ -3828,7 +3828,7 @@ const handleFocus=()=>{
                                           </div>
                                         
                                           <div  className='input-group'>
-                                            <input  type='text' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
+                                            <input  type='number' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
                                             <label className='placeholder'
                                             >MRP <span className='required-field'></span> </label>
 
@@ -3836,7 +3836,7 @@ const handleFocus=()=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
+                                            <input  type='number' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
                                             <label className='placeholder'
                                             >Offer price <span className='required-field'></span> </label>
 
