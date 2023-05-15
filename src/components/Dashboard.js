@@ -1935,7 +1935,9 @@ axios.post(registerUrl, productdetails).then((res)=>{
 
 }).then(()=>{
   axios.post(imagesendurl, merchantbody).then(res=>{
-    console.log(res)
+    if(res){
+      setShowPopup(true)
+    }
   })
 })
 
