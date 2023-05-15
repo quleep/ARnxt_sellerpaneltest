@@ -40,15 +40,20 @@ const zipextracturl= ' https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/p
 
 
 
+
 const Dashboard = () => {
 
   const modelRef =  useRef();
 
   const [saveddata, setSavedData] = useState();
+  const [finalarraydata, setFinalArrayData] = useState([])
+
+  const [newimagearray, setNewImageArray] = useState([])
 
   const [searchmodeldata, setSearchModelData] = useState();
 
   const [modelsearch, setModelSearch] = useState();
+  const [imgarray, setImgArray] = useState();
 
   const [partnersavedata, setPartnerSaveData] = useState();
 
@@ -199,6 +204,8 @@ const Dashboard = () => {
  const [roomtypetag, setRoomTypeTag] = useState([])
  const [roomtypetext, setRoomTypeText] = useState('')
  const [roomtypereRender, setRoomTypeReRender] = useState(false)
+
+ const [reloaddata, setReloadData] = useState()
  
 
  const colorforceRender = () => {
@@ -459,76 +466,6 @@ let discountpartner;
 discountpartner = (partnermrp - partnerofferprice)/partnermrp*100
 useEffect(()=>{
 
-  for(let i=0; i<images.length;i++){
-
-   
-      
-    const url= 'https://g98tqv1tn6.execute-api.ap-south-1.amazonaws.com/default/ImagesUploaderArnxt';
-    fetch(url,{
-      method: "POST",
-      body: images[i].name
-    
-  
-  
-    }).then((res)=>res.json())
-       .then((res)=>{
-        
-      
-      
-  
-        
-      
-      
-      
-        fetch(res.uploadURL, {
-          
-          method: "PUT",
-          headers: {
-            "ContentType": "image/jpeg",
-          
-          },
-    
-        body: images[i]
-        
-    
-        })
-           .then((res)=>{
-          
-           
-            
-      
-            if(res.status === 200){
-  
-  
-            
-  
-                let resnew= res.url.split('?')
-                let imgurl= resnew[0]
-
-           
-
-              setImagesArray((oldArray)=>[...oldArray, imgurl])
-
-          
-                
-           
-      
-              }
-          
-           })
-           .catch((err)=>console.log(err))
-         
-       })
-       .catch((err)=>console.log(err))
-      
-      
-  
-  
-
-  
-
-
-}
   
 
 
@@ -846,6 +783,7 @@ const fileToBase64 = (file, cb) => {
 }
 
 const imagefilechange=(e)=>{
+ 
   let val= document.getElementById('b1').value;
   let indx = val.lastIndexOf(".") + 1;
   let filetype = val.substr(indx, val.length).toLowerCase();
@@ -860,6 +798,8 @@ const imagefilechange=(e)=>{
  let files = Array.from(e.target.files) 
  files.forEach(file => {
   fileToBase64(file, (err, result) => {
+    console.log(file)
+    console.log(result)
     if (result) {
       setFile(result)
       setFileName(file)
@@ -903,6 +843,10 @@ const imagefilechange=(e)=>{
 
 
 
+
+
+
+
   }
 
   else{
@@ -915,6 +859,16 @@ const imagefilechange=(e)=>{
 
 
 }
+
+{
+  /*
+
+ 
+  */
+}
+
+
+
 
 
 const removeImage=(val)=>{
@@ -1333,7 +1287,7 @@ const saveform=(e)=>{
 
 }
 
-
+let imageupload;
 
 
 const submitdata=(e)=>{
@@ -1643,8 +1597,100 @@ else{
 
 
 
-getId()
-setProid(lastId)
+
+{
+/*
+
+const merchantbody={
+  merchant_Id: Number(p_id),
+  merchantname: u_id,
+  product_Id: lastId,
+  registration_Time: new Date().toString(),
+}
+const deletebody={
+  merchant_Id: Number(p_id)
+}
+axios.post(registerUrl, productdetails).then((res)=>{
+
+}).then(()=>{
+  axios.post(imagesendurl, merchantbody).then(res=>{
+    if(res){
+      setShowPopup(true)
+      
+
+    }
+  })
+}).catch(error=>{
+  console.log(error)
+})
+
+
+for(let i=0; i<images.length;i++){
+
+   
+      
+  const url= 'https://g98tqv1tn6.execute-api.ap-south-1.amazonaws.com/default/ImagesUploaderArnxt';
+  fetch(url,{
+    method: "POST",
+    body: images[i].name
+  
+
+
+  }).then((res)=>res.json())
+     .then((res)=>{
+      
+    
+    
+
+      
+    
+    
+    
+      fetch(res.uploadURL, {
+        
+        method: "PUT",
+        headers: {
+          "ContentType": "image/jpeg",
+        
+        },
+  
+      body: images[i]
+      
+  
+      })
+         .then((res)=>{
+        
+         
+          
+    
+          if(res.status === 200){
+
+
+          
+
+              let resnew= res.url.split('?')
+              let imgurl= resnew[0]
+
+            setNewImageArray((oldArray)=>[...oldArray, imgurl])
+
+
+             
+             
+          }
+        
+         })
+         .catch((err)=>console.log(err))
+       
+     })
+     .catch((err)=>console.log(err))
+
+
+  
+    
+}
+
+
+
 
 const productdetails= {
   product_Id: lastId,
@@ -1686,7 +1732,7 @@ const productdetails= {
   brandoverview: partnerbrandoverview,
   sellerinfo: partnersellerinfo,
   care: partnercare,
-  imageurl: newarray,
+  imageurl: newimagearray,
 
   currency: currencyselect,
   registration_Time: new Date().toString(),
@@ -1694,9 +1740,8 @@ const productdetails= {
   subcatdetail: partnersubcatdetails,
   designstyle: designselect
 
-
-
 }
+
 
 const merchantbody={
   merchant_Id: Number(p_id),
@@ -1704,46 +1749,209 @@ const merchantbody={
   product_Id: lastId,
   registration_Time: new Date().toString(),
 }
-const deletebody={
-  merchant_Id: Number(p_id)
-}
+
 axios.post(registerUrl, productdetails).then((res)=>{
 
 }).then(()=>{
   axios.post(imagesendurl, merchantbody).then(res=>{
-    if(res){
-      setShowPopup(true)
-      
-
-    }
+    console.log(res)
   })
-}).catch(error=>{
-  console.log(error)
 })
 
+
+
+
+
+
+
+
+*/
+
+}
+
+}
+
+
+
+const uploadimage= async ()=>{
+
+ setNewImageArray([])
+
+for(let i=0; i<images.length;i++){
+
+   
+      
+  const url= 'https://g98tqv1tn6.execute-api.ap-south-1.amazonaws.com/default/ImagesUploaderArnxt';
+   await fetch(url,{
+    method: "POST",
+    body: images[i].name
   
 
 
+  }).then((res)=>res.json())
+     .then((res)=>{
+      
+    
+    
 
- 
-
-
+      
+    
+    
+    
+    fetch(res.uploadURL, {
+        
+        method: "PUT",
+        headers: {
+          "ContentType": "image/jpeg",
+        
+        },
   
+      body: images[i]
+      
   
+      })
+         .then((res)=>{
+        
+         
+          
+    
+      
+
+            if(res.status === 200){
+
+              let resnew= res.url.split('?')
+              let imgurl= resnew[0]
+
+              sendimagedata(imgurl)
+              
+           
+
+            }
+
+            
+        
+
+             
+        
+         })
+         .catch((err)=>console.log(err))
+       
+     })
+     .catch((err)=>console.log(err))
 
 
-
-
-
-
-
-
-
+     
+    
+}
 
 
 
 
 }
+
+
+
+
+
+
+  const  handleFormSubmit = async () =>{
+  await uploadimage()
+  
+  
+
+    
+
+
+ }
+ let newarrylatest= []
+
+ const sendimagedata =(imgurl)=>{
+  newarrylatest =[...newarrylatest]
+   newarrylatest.push(imgurl)  
+   if(images.length === newarrylatest.length){
+    getId()
+setProid(lastId)
+
+
+const productdetails= {
+  product_Id: lastId,
+  merchant_Id: p_id,
+
+  model_Id: '',
+  modelno: partnermodelid,
+ 
+ 
+ 
+  
+  
+ 
+
+ 
+
+ 
+  brand: partnerbrand,
+  lengthprod: partnerlength,
+  breadthprod: partnerbreadth,
+  height: partnerheight,
+
+  productname: partnerproduct.toLowerCase(),
+ 
+  mrp : Number(partnermrp),
+  offerprice: Number(partnerofferprice),
+  collection : partnercollection,
+  primarymaterial: partnerprimarymaterial,
+  roomtype: roomtypetag,
+  weight: partnerweight,
+  warranty: partnerwarranty,
+  sku: partnersku,
+  discount: Number(discountpartner),
+  colorvalue: colortags,
+  tags: tags,
+  category: select,
+  subcategory: subcatselect,
+  Specification: partnerspecification,
+  brandoverview: partnerbrandoverview,
+  sellerinfo: partnersellerinfo,
+  care: partnercare,
+  imageurl: newarrylatest,
+
+  currency: currencyselect,
+  registration_Time: new Date().toString(),
+  additional: partneradditional,
+  subcatdetail: partnersubcatdetails,
+  designstyle: designselect
+
+}
+
+
+const merchantbody={
+  merchant_Id: Number(p_id),
+  merchantname: u_id,
+  product_Id: lastId,
+  registration_Time: new Date().toString(),
+}
+
+axios.post(registerUrl, productdetails).then((res)=>{
+
+}).then(()=>{
+  axios.post(imagesendurl, merchantbody).then(res=>{
+    console.log(res)
+  })
+})
+
+
+
+
+
+   }
+
+ }
+
+
+
+
+
+
 
 let arrow = document.querySelectorAll(".arrow");
 for (var i = 0; i < arrow.length; i++) {
@@ -2053,6 +2261,7 @@ const glbchangehandler=(e)=>{
   let files = Array.from(e.target.files) 
   files.forEach(file => {
    fileToBase64(file, (err, result) => {
+  
  
      let newval= file.name
   
@@ -4355,7 +4564,7 @@ const handleFocus=()=>{
         </div>
 
         <div className='updatebtn' >
-            <button type='submit' onClick={submitdata} >Submit</button>
+            <button type='submit' onClick={handleFormSubmit} >Submit</button>
           </div>
 
        
