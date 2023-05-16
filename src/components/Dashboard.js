@@ -341,7 +341,7 @@ const handleColorDeleteTag = (index) => {
   {
     categoryitem: "Floors",
     subcategory: [
-      "Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "Bedroom", "Commercial spaces"
+      "Tiles", "Marbles" ,"Wooden Floors"
 
     ]
 
