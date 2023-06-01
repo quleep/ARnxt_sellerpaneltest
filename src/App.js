@@ -76,6 +76,8 @@ import Joinus from './components/Joinus';
 import Opening from './components/Opening';
 import JobDesc from './components/JobDesc';
 import Dashboard from './components/Dashboard';
+import Test from './components/Test';
+import TestNew from './components/TestNew';
 
   
 
@@ -175,6 +177,10 @@ class App extends Component {
         <Route path="/blogthird" exact component={BlogThird}/>
         <Route path="/career"  component={Career}  exact/>
         <Route path="/dashboard" exact component={Dashboard}/>
+        <Route path="/test" exact component={Test}/>
+        <Route path="/testnew" exact component={TestNew}/>
+
+
 
         
        

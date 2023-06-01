@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck } from 'react-icons/fa';
+import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner } from 'react-icons/fa';
 import validator from 'validator';
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -47,6 +47,8 @@ const Dashboard = () => {
 
   const [saveddata, setSavedData] = useState();
   const [finalarraydata, setFinalArrayData] = useState([])
+
+  const [weightproduct, setWeightProduct] = useState('')
 
   const [newimagearray, setNewImageArray] = useState([])
 
@@ -185,12 +187,19 @@ const Dashboard = () => {
 
  const [currencydrop, showCurrencyDrop] = useState(false)
  const [desgindrop, showDesignDrop] = useState(false)
+ const [designroom, showDesignRoom] = useState(false)
+
  const [select, setSelect] = useState('Category')
 
  const [subcatselect, setSubCatSelect] = useState('Sub-category')
 
  const [currencyselect, setCurrencySelect] = useState('INR')
  const [designselect, setDesignSelect] = useState('Design styles')
+ const [roomsdrop, setRoomsDrop] = useState('Room Type')
+
+ const [buttonclick, setButtonClick] = useState(false)
+
+
 
  const [tagText, setTagText] = useState('');
  const [tags, setTags] = useState([]);
@@ -206,6 +215,12 @@ const Dashboard = () => {
  const [roomtypereRender, setRoomTypeReRender] = useState(false)
 
  const [reloaddata, setReloadData] = useState()
+
+ const [unit, setUnit] = useState('')
+ const [weightunit, setWeightUnit] = useState('')
+ const [activelist, setActiveList] = useState(false)
+ const [selectedrooms, setSelectedRooms] = useState([])
+ 
  
 
  const colorforceRender = () => {
@@ -217,7 +232,7 @@ const handleAddColorTag = (e) => {
   if (e.key === 'Enter') {
       setTagColor('')
       if (tagcolor !== '') {
-          setColorTags([...colortags, tagcolor])
+          setColorTags([...colortags, tagcolor.toLowerCase()])
       }
       else {
           console.log('empty')
@@ -239,7 +254,7 @@ const handleColorDeleteTag = (index) => {
      if (e.key === 'Enter') {
          setTagText('')
          if (tagText !== '') {
-             setTags([...tags, tagText])
+             setTags([...tags, tagText.toLowerCase()])
          }
          else {
              console.log('empty')
@@ -279,6 +294,9 @@ const handleColorDeleteTag = (index) => {
 
  let currencyarray= ['INR','EURO','USD']
  let designstylearray= ['3D Geometric', 'Animal','Botanical', 'Geometric']
+ let roomTypeArray= ['Living Room', 'Bed Room','Kids Room', 'Dining Room','Office','Kitchen', 'Bathroom', 'Entrance']
+
+
 
  const namescategory=[
   {
@@ -1772,7 +1790,6 @@ axios.post(registerUrl, productdetails).then((res)=>{
 }
 
 
-
 const uploadimage= async ()=>{
 
  setNewImageArray([])
@@ -1855,6 +1872,184 @@ for(let i=0; i<images.length;i++){
 
 
   const  handleFormSubmit = async () =>{
+
+    setButtonClick(true)
+document.querySelector('#spinner').style.display = 'inline-flex'
+
+
+    if(partnerproduct === '' || 
+        partnerbrand === '' ||
+        partnermodelid === '' ||
+        partnermrp === '' ||
+        partnerofferprice === '' ||
+        partnerlength === '' ||
+        partnerbreadth === '' ||
+        partnerheight === '' ||
+        unit === '' ||
+        weightunit === '' ||
+        weightproduct === '' ||
+        partnerwarranty ===  '' ||
+        select === '' ||
+        subcatselect === '' ||
+        partnersubcatdetails === ''
+    
+    )
+    
+    
+  {
+       setAccActive(0)
+     document.querySelector('.alertpopup').style.display = 'flex '
+     document.querySelector('.alerttext').innerHTML = 'All fields are required'
+
+     setTimeout(() => {
+     document.querySelector('.alertpopup').style.display = 'none'
+      
+     }, [3000]);
+       
+      return
+    }
+
+    if(partnersku === ''){
+      setAccActive(1)
+      document.querySelector('.alertpopup').style.display = 'block'
+      document.querySelector('.alerttext').innerHTML = 'Sku is required'
+ 
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+        
+       return
+     
+
+      
+    }
+    if(partnerprimarymaterial === ''){
+      setAccActive(1)
+      document.querySelector('.alertpopup').style.display = 'block'
+      document.querySelector('.alerttext').innerHTML = 'Primary material is required'
+ 
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+        
+       return
+      }
+
+      if(tags.length === 0){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'please select atleast one tag'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(colortags.length === 0){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'please select atleast one color'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(selectedrooms.length === 0){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Room type is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+
+      if(designselect === ''){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Design style is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(partnerspecification === ''){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Specification is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(partnerbrandoverview === ''){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Brand overview is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(partnersellerinfo === ''){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'SellerInfo is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      if(partnercare === ''){
+        setAccActive(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Care & Maintenance is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
   await uploadimage()
   
   
@@ -1888,7 +2083,8 @@ const productdetails= {
 
  
 
- 
+  unit: unit,
+  weightunit: weightunit,
   brand: partnerbrand,
   lengthprod: partnerlength,
   breadthprod: partnerbreadth,
@@ -1900,8 +2096,8 @@ const productdetails= {
   offerprice: Number(partnerofferprice),
   collection : partnercollection,
   primarymaterial: partnerprimarymaterial,
-  roomtype: roomtypetag,
-  weight: partnerweight,
+  roomtype: selectedrooms,
+  weight: weightproduct,
   warranty: partnerwarranty,
   sku: partnersku,
   discount: Number(discountpartner),
@@ -1924,19 +2120,27 @@ const productdetails= {
 }
 
 
+
 const merchantbody={
   merchant_Id: Number(p_id),
   merchantname: u_id,
   product_Id: lastId,
   registration_Time: new Date().toString(),
 }
-
+  
 axios.post(registerUrl, productdetails).then((res)=>{
 
 }).then(()=>{
   axios.post(imagesendurl, merchantbody).then(res=>{
     if(res){
-      setShowPopup(true)
+document.querySelector('#spinner').style.display = 'none'
+
+      document.querySelector('.modaldiv').style.display = 'block'
+      setTimeout(() => {
+      document.querySelector('.modaldiv').style.display = 'none'
+        
+      }, [5000]);
+      
     }
   })
 })
@@ -3709,6 +3913,52 @@ const handleFocus=()=>{
   document.querySelector('.placeholder').style.display= 'block'
 }
 
+const handleActiveList=(val, len)=>{
+    
+  let checked = false
+  if(document.querySelector(`#checkboxroom_${len}:checked`)){
+    checked = true
+  }
+  else{
+    checked = false
+  }
+
+  if(checked){
+    document.querySelector(`#listselect_${len}`).classList.add('selectcheck')
+    setSelectedRooms((oldArray)=> [...oldArray, val])
+  }
+  if(!checked){
+    document.querySelector(`#listselect_${len}`).classList.remove('selectcheck')
+     setSelectedRooms(
+      (oldArray)=>oldArray.filter((item)=>
+      item != val
+        )
+    
+     )
+
+  }
+}
+
+const handleRemoveRoom=(val,len)=>{
+  setSelectedRooms(
+    (oldArray)=>oldArray.filter((item)=>
+    item != val
+      )
+  
+   )
+
+   document.querySelector(`#listselect_${len}`).classList.remove('selectcheck')
+
+}
+
+
+const handleClickRoom=()=>{
+  showDesignRoom(!designroom)
+
+  console.log(designroom)
+}
+
+
 
 
   return (
@@ -3933,6 +4183,10 @@ const handleFocus=()=>{
     </ul>
   </div>
 
+    <div className='alertpopup'>
+     <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
+    </div>
+
   <div className='tabsContainer' >
             <div className="btnContainer">
                 <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`} 
@@ -3982,7 +4236,7 @@ const handleFocus=()=>{
                                             <input  type='text' value={partnerproduct}  onChange={(e)=>setPartnerProduct(e.target.value)} className='input' placeholder='product name'  />
                                             <label className='placeholder'
                                             >Product name <span className='required-field'></span> </label>
-
+                                              <p className='errorproduct'></p>
 
 
                                           </div>
@@ -4090,33 +4344,66 @@ const handleFocus=()=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
+                                            <input  type='number' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
                                             <label className='placeholder'
-                                            >Length <span className='required-field'></span> </label>
+                                            >Length <span className='required-field'></span> <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 in case of 2D Products</p>
+                                              </div>
+                                            </label>
 
 
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
+                                            <input  type='number' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
                                             <label className='placeholder'
-                                            >Breadth <span className='required-field'></span> </label>
+                                            >Breadth <span className='required-field'></span>
+                                            <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 in case of 2D Products</p>
+                                              </div>
+                                             </label>
 
 
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
+                                            <input  type='number' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
                                             <label className='placeholder'
-                                            >Height <span className='required-field'></span> </label>
+                                            >Height <span className='required-field'></span>
+                                            <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 in case of 2D Products</p>
+                                              </div>
+                                             </label>
 
 
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='number' value={partnerweight} onChange={(e)=>setPartnerWeight(e.target.value)}  className='input' placeholder='weight'  />
+                                            <input  type='text' value={unit} onChange={(e)=>setUnit(e.target.value)} className='input' placeholder='Dimension unit'  />
                                             <label className='placeholder'
-                                            >Weight (Kg)<span className='required-field'></span> </label>
+                                            >Dimension Unit <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={weightproduct} onChange={(e)=>setWeightProduct(e.target.value)}  className='input' placeholder='weight'  />
+                                            <label className='placeholder'
+                                            >Weight <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={weightunit} onChange={(e)=>setWeightUnit(e.target.value)}  className='input' placeholder='Weight unit'  />
+                                            <label className='placeholder'
+                                            >Weight Unit<span className='required-field'></span> </label>
 
 
 
@@ -4261,74 +4548,8 @@ const handleFocus=()=>{
                                       <div>
                                         <div className='productdetailsdiv'>
 
+                                          
                                         <div  className='input-group'>
-                                            <input  type='text' list='material' value={partnerprimarymaterial} onChange={(e)=>setPartnerPrimaryMaterial(e.target.value)} className='input' placeholder='Primary material'  />
-                                            <label className='placeholder'
-                                            >Primary material <span className='required-field'></span> </label>
-                                            <datalist class="" id="material">    
-                        <option value="Fabric"/>
-                          <option value="Leatherette"/>
-                         <option value="Solid Wood"/>
-                         <option value="Leather"/>
-                          <option value="Cann"/>
-                         <option value="Engineered wood"/>
-                         <option value="Metal"/>
-                          <option value="Plastic"/>
-                         <option value="Glass"/>
-                         <option value="stone"/>
-                          <option value="marble"/>
-                     
-                               </datalist>
-
-                                           
-
-
-
-                                          </div>
-
-                                          <div  className='input-group'>
-                                           
-                                           
-
-                                              
-
-                    <div className='AddTagContainer'>
-            <div className="addTagBox">
-              
-                <div className="addTagInput">
-                    {
-                        roomtypetag.map((tag, index) => {
-                            return (
-                                <div className="tags" key={index}>
-                                    <span>{tag}</span>
-                                    <div className="crossIcon"
-                                        onClick={() => handleDeleteRoomTag(index)}>
-                                        <RxCross2 />
-                                    </div>
-
-                                </div>
-                            )
-                        })
-                    }
-
-
-                    <input className='input' type="text" autoFocus
-                     placeholder='Add rooms'
-                        value={roomtypetext}
-                        onKeyUpCapture={(e) => { handleRoomTypeTag(e) }}
-                        onChange={(e) => setRoomTypeText(e.target.value)}
-                    />
-                    <label className='placeholder'
-                                            >Room type <span className='required-field'></span> </label>
-                </div>
-            </div>
-        </div>
-
-
-
-                                          </div>
-
-                                          <div  className='input-group'>
                                             <input  type='text' value={partnersku} onChange={(e)=>setPartnerSku(e.target.value)} className='input' placeholder='SKU'  />
                                             <label className='placeholder'
                                             >SKU <span className='required-field'></span> </label>
@@ -4357,17 +4578,122 @@ const handleFocus=()=>{
 
                                           </div>
 
+
+                                        <div  className='input-group'>
+                                            <input  type='text' list='material' value={partnerprimarymaterial} onChange={(e)=>setPartnerPrimaryMaterial(e.target.value)} className='input' placeholder='Primary material'  />
+                                            <label className='placeholder'
+                                            >Primary material <span className='required-field'></span> </label>
+                                            <datalist class="" id="material">    
+                        <option value="Fabric"/>
+                          <option value="Leatherette"/>
+                         <option value="Solid Wood"/>
+                         <option value="Leather"/>
+                          <option value="Cann"/>
+                         <option value="Engineered wood"/>
+                         <option value="Metal"/>
+                          <option value="Plastic"/>
+                         <option value="Glass"/>
+                         <option value="stone"/>
+                          <option value="marble"/>
+                     
+                               </datalist>
+
+                                           
+
+
+
+                                          </div>
+                                          
+
                                           <div  className='input-group'>
+                                           
+                                           
+
+                                           
+
+                    <div className='AddTagContainer'>
+            <div className="addTagBox">
+           
+              
+                <div className="addTagInput">
+
+                  <div className='tagscontainer'>
+                  {
+                       selectedrooms && selectedrooms.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleRemoveRoom(tag,index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                      }
+
+
+                    </div>
+               
+
+                    <div className='listBoxContainer'>
+                                     <button className='listButtonMaterial'
+                                     onClick={handleClickRoom}
+                                  
+                                    >{roomsdrop}<IoIosArrowDown
+                                    
+                    style={{
+                        transform: designroom ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+
+                    }} /></button>
+            <ul className='listItemsMaterial' style={{
+                opacity: !designroom ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !designroom ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    roomTypeArray.map((name, index) => {
+                        return (
+                            <li key={index} className='listrooms' id={`listselect_${index}`} 
+                              >
+                           
+                           
+                            
+                            
+                              <label>
+                                <div  className='listitems' id={`roomselect_${index}`}  >
+                                  <input type='checkbox' id= {`checkboxroom_${index}`} value={name} onClick={()=> handleActiveList(name, index)} />
+                                  <p>{name}</p>
+                                </div>
+                              </label>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+                   
+                </div>
+            </div>
+        </div>
+
+                   
+
+                                          </div>
+                                                                       <div  className='input-group'>
 
                                           <div className='listBoxContainer'>
-                                     <button className='listButton'
+                                     <button className='listButtonMaterial'
                                    onBlur={() => showDesignDrop(false)}
                                     onFocus={() => showDesignDrop(!desgindrop)}>{designselect}<IoIosArrowDown
                     style={{
                         transform: desgindrop ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: '0.3s ease-in-out'
                     }} /></button>
-            <ul className='listItems' style={{
+            <ul className='listItemsMaterial' style={{
                 opacity: !desgindrop ? "0" : "1",
                 transition: "0.3s ease",
                 visibility: !desgindrop ? "hidden" : "visible",
@@ -4391,64 +4717,27 @@ const handleFocus=()=>{
                                            
 
 
-                                          </div>
+                                          </div> 
 
 
-
+                                                                   
+                                          <div  className='input-group'>
                                         
-                                          
-
-                                          <div  className='input-group'>
-                                            <input  type='textarea' value={partnerspecification} onChange={(e)=>setPartnerSpecification(e.target.value)}  className='input' placeholder='Specification'  />
-                                            <label className='placeholder'
-                                            >Specification <span className='required-field'></span> </label>
-
-
-
-                                          </div>
-                                          <div  className='input-group'>
-                                            <input  type='text' value={partnerbrandoverview} onChange={(e)=>setPartnerBrandOverview(e.target.value)} className='input' placeholder='Brand Overview '  />
-                                            <label className='placeholder'
-                                            >Brand Overview <span className='required-field'></span> </label>
-
-
-
-                                          </div>
-                                          <div  className='input-group'>
-                                            <input  type='text'  value={partnersellerinfo} onChange={(e)=>setPartnerSellerInfo(e.target.value)} className='input' placeholder='Seller Info'  />
-                                            <label className='placeholder'
-                                            >Seller Info <span className='required-field'></span> </label>
-
-
-
-                                          </div>
-                                          <div  className='input-group'>
-                                            <input  type='text' value={partnercare} onChange={(e)=>setPartnerCare(e.target.value)} className='input' placeholder='Care & Maintenance'  />
-                                            <label className='placeholder'
-                                            >Care & Maintenance <span className='required-field'></span> </label>
-
-
-
-                                          </div>
-                                          <div  className='input-group'>
-                                            <input  type='text' value={partneradditional} onChange={(e)=>setPartnerAdditional(e.target.value)} className='input' placeholder='Additional Info'  />
-                                            <label className='placeholder'
-                                            >Additional Info </label>
-
-
-
-                                          </div>
-
-                                          
-                                          <div  className='input-group'>
+                                       
                                           <div className='AddTagContainer'>
             <div className="addTagBox">
+          
               
                 <div className="addTagInput">
+                <div  className='tagscontainer'>
                     {
+
+                     
                         tags.map((tag, index) => {
-                            return (
-                                <div className="tags" key={index}>
+                            return (  
+
+                               
+                                          <div className="tags" key={index}>
                                     <span>{tag}</span>
                                     <div className="crossIcon"
                                         onClick={() => handleDeleteTag(index)}>
@@ -4456,12 +4745,16 @@ const handleFocus=()=>{
                                     </div>
 
                                 </div>
+                                
+                          
                             )
                         })
-                    }
+                        
+                      }
+                     
+                      </div>
 
-
-                    <input className='input' type="text" autoFocus
+                    <input className='inputtag' type="text" autoFocus
                      placeholder='Add tags'
                         value={tagText}
                         onKeyUpCapture={(e) => { handleAddTag(e) }}
@@ -4478,12 +4771,17 @@ const handleFocus=()=>{
 
                                           </div>
 
+                                          
+                                  
+ 
+
                                           <div  className='input-group'>
                                           <div className='AddTagContainer'>
             <div className="addTagBox">
               
                 <div className="addTagInput">
-                    {
+                  <div className='tagscontainer'>
+                  {
                         colortags.map((tag, index) => {
                             return (
                                 <div className="tags" key={index}>
@@ -4496,10 +4794,13 @@ const handleFocus=()=>{
                                 </div>
                             )
                         })
-                    }
+                      }
+
+                    </div>
+                 
 
 
-                    <input className='input' type="text" autoFocus
+                    <input className='inputtag' type="text" autoFocus
                      placeholder='Add Colors'
                         value={tagcolor}
                         onKeyUpCapture={(e) => { handleAddColorTag(e) }}
@@ -4516,7 +4817,73 @@ const handleFocus=()=>{
 
                                           </div>
 
-                                       
+                                                                       
+
+                                        
+                                          
+
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={partnerspecification} onChange={(e)=>setPartnerSpecification(e.target.value)}  className='input' placeholder='Specification'/>
+                                            <label className='placeholder'
+                                            >Specification <span className='required-field'></span> </label>
+
+                                              </div>
+                                        
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={partnerbrandoverview} onChange={(e)=>setPartnerBrandOverview(e.target.value)} className='input' placeholder='Brand Overview '  />
+                                            <label className='placeholder'
+                                            >Brand Overview <span className='required-field'></span> </label>
+                                              </div>
+                                          
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea'  value={partnersellerinfo} onChange={(e)=>setPartnerSellerInfo(e.target.value)} className='input' placeholder='Seller Info'  />
+                                            <label className='placeholder'
+                                            >Seller Info <span className='required-field'></span> </label>
+
+                                              </div>
+                                        
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={partnercare} onChange={(e)=>setPartnerCare(e.target.value)} className='input' placeholder='Care & Maintenance'  />
+                                            <label className='placeholder'
+                                            >Care & Maintenance <span className='required-field'></span>  </label>
+
+                                              </div>
+                                         
+                                        
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='text' value={partneradditional} onChange={(e)=>setPartnerAdditional(e.target.value)} className='input' placeholder='Additional Info'  />
+                                            <label className='placeholder'
+                                            >Additional Info </label>
+                                              </div>
+                                          
+
+
+
+                                          </div>
+                                      
+             
+                                     
+
 
                                   
                                      
@@ -4535,14 +4902,22 @@ const handleFocus=()=>{
                                            {
                                       acc.accordionContent === 'imagedetails' ? 
                                       <div>
+                                         <div className='toolTipimages' >
+             <p>If you are uploading images for model creation, ensure that you have uploaded atleast 6 images including(top view, front view, bottom view and side view).</p>
+             </div>
 
 <div>
-          <div className=''>
-            <label>Images <span className="required-field"></span><span id='requiredimages'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
+          <div className='' style={{marginTop:'20px'}}>
+            <label>Images <span className="required-field"></span><span id='requiredimages'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span>
+           
+           
+            </label>
+           
             <input type='file'  id='b1' onChange={imagefilechange}  accept= "image/*" multiple/>
             <p  style={{color:'red'}}>{message && message}</p>
 
           </div>
+        
         </div>
         <div></div>
 
@@ -4565,38 +4940,31 @@ const handleFocus=()=>{
           </div>
         </div>
 
-        <div className='updatebtn' >
-            <button type='submit' onClick={handleFormSubmit} >Submit</button>
-          </div>
+      
 
        
          
-         <div className='modalPopup'
-             style={{
-                 visibility: showPopup ? 'visible' : 'hidden',
-                 opacity: showPopup ? '1' : '0',
-                 transition: '0.3s ease-in-out'
-             }}>
-             <div className="modalBorder"></div>
-             <div className="modalForm" >
-                 <MdClose size={25} className="closeIcon"
-                     onClick={() => setShowPopup(false)} />
-                 <div className='modalContent'>
-                     <h2>Data Uploaded Successfully</h2>
-                     <p>Sign up to ensure that you don't miss
-                         the next promotion and other important
-                         events in personal Account?
-                     </p>
-                     <div className="btns">
-                         <button className='btn btn-primary'>Sign up</button>
-                         <button className='btn btn-secondary'
-                             onClick={() => setShowPopup(false)}>
-                             Next time
-                         </button>
-                     </div>
-                 </div>
-             </div>
-         </div>
+                       <div  className='modaldiv'>
+
+                       <div class="modal">		
+	      	<div class="modal-wrap">
+                <span className='closemodal'  >
+                    
+                    </span>	
+			   <span>
+               <div>
+               <div class="circle-loader">
+    <div class="checkmark draw"></div>
+</div>
+     
+</div>
+<p class="success">Congratulations!</p>
+                </span>	
+	      		<p className='dataupload'> Data Uploaded Successfully.</p>	          		
+	      	</div>			          		
+      	</div>	
+                        </div>
+
    
 
      
@@ -4613,6 +4981,15 @@ const handleFocus=()=>{
             }
         </div>
 
+        <div className='updatebtn' >
+            <button type='submit'  disabled = {buttonclick ? true : false} onClick={handleFormSubmit} >Submit    
+              
+            <div class="spinner-border" id='spinner'  role="status"  >
+  <span class="visually-hidden"></span>
+</div>
+             </button>
+          </div>
+
         
                 </div>
             </div>}
@@ -4626,7 +5003,7 @@ const handleFocus=()=>{
             </div>}
         </div>
 
-
+        
 
 
 

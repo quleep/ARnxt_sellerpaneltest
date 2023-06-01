@@ -4854,7 +4854,19 @@ input::-webkit-inner-spin-button {
   height: 60px;
   margin-left: 200px;
 }
-
+.textareainput{
+  width:  300px;
+  height: 80px;
+  border: 2px solid gray;
+  border-radius: 20px;
+  background-color: transparent;
+  margin: 10px;
+  padding-left: 10px;
+  padding-top: 0px;
+}
+.textareainput:focus{
+  outline: none;
+}
 
 @media screen and (max-width: 500px) {
   .imgfluid{
@@ -7956,6 +7968,13 @@ body.active-modal {
   width: 80px;
   margin: 10px;
 }
+#spinner{
+  display: none;
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
 
 .uploadbuttoncontainer{
   border: 2px solid gray;
@@ -8132,9 +8151,42 @@ body.active-modal {
 
 }
 
+.warning{
+  border: 1px solid red;
+}
 
+.alertpopup{
+  position: absolute;
+  left: 500px;
+  top: 400px;
+  width: 300px;
+  height: 80px;
+  z-index: 999;
+  box-shadow: 2px 2px 2px 2px rgb(187, 181, 181);
+  background-color: rgb(228, 197, 197);
+  border-radius: 10px;
+    display: none;
+    padding-left: 20px;
+   
+  
+    
+  }
+  .alertsymbol{
+    margin-top: 20px;
+    padding: 10px;
+  }
+ 
+.alertpopup p{
+  font-size: 15px;
+  font-family: 'Courier New';
+  color: red;
+  margin-top: 30px;
+}
 
-
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
 
 
 
@@ -8148,6 +8200,7 @@ body.active-modal {
   width: 130px;
   height: 50px;
   font-family: Manrope, san-serif;
+  margin-left: 300px;
 }
 .updatebtn button:hover{
   border-radius: 30px;
@@ -8396,35 +8449,168 @@ body.active-modal {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+ 
+  width:  auto;
+  gap: 20px;
+ 
   
  
  
 }
 
 .productdetailsdiv>*{
-  flex: 1 1 auto;
+  flex: 1 1  150px;
  
-  height: 40px;
-  width: 200px;
-  margin: 10px;
-  
 
-}
+  margin: 10px;
+ 
+ 
+ 
+ 
+ 
+  }
+  .tagdisplay{
+    position: relative;
+    width: 100%;
+    height: 30px;
+   
+  }
 
 .input-group{
   position: relative;
+
+ 
 }
 
-.input{
+
+.textareadiv{
+  width: 350px;
+  height: 120px;
+ 
+
+}
+.textareadiv textarea{
+  width: 100%;
+  height: 100%;
+  
+  resize: none;
+  border: 1px solid rgb(54, 54, 54);
+  background-color: transparent;
+  padding: 5px;
+  
+}
+.textareadiv textarea:focus{
+  outline: none;
+}
+
+  .input{
   padding: 10px;
  
-  border-radius: 2px;
+  
+ 
+  border: 1px solid rgb(54, 54, 54);
+  width:  100%;
+ 
+ 
+  
+  background-color: transparent;
+ 
+}
+.input:focus{
+  outline: none;
+}
+.inputtag{
+ 
+ 
+  
   outline: none;
  
- 
+  width:  100%;
   background-color: transparent;
-  border-bottom: 2px solid rgb(136, 134, 134);
+  height: 50px;
+  border: 1px solid rgb(54, 54, 54);
+border-radius: 10px;
+  padding-left: 5px;
+    
+ 
 }
+
+.toolTip{
+  display: flex;
+  position: absolute;
+  
+  text-align: left;
+  background-color: rgb(206, 200, 200);
+  width:  200px;
+  height:  30px;
+ 
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9rem;
+  top: -30px;
+ 
+}
+.toolTip::before{
+ 
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  background-color: rgb(206, 200, 200);
+  position: absolute;
+  left: 60px;
+  top: 20px;
+  transform: rotate(45deg);
+}
+.toolTip p{
+  color: black;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.toolTipimages{
+  display: flex;
+  position: absolute;
+  
+  text-align: left;
+  background-color: rgb(206, 200, 200);
+  width:  500px;
+  height:  60px;
+ 
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: -70px;
+  margin-left: 200px;
+  padding: 10px;
+ 
+}
+.toolTipimages::before{
+ 
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  background-color: rgb(206, 200, 200);
+  position: absolute;
+  left: 60px;
+  top: 50px;
+  transform: rotate(45deg);
+}
+.toolTipimages p{
+  color: black;
+  margin-top: 10px;
+  font-size: 12px;
+
+  
+  
+}
+
+
 
 .inputtextarea{
 
@@ -8435,7 +8621,7 @@ body.active-modal {
  
  
   background-color: transparent;
-  border-bottom: 2px solid rgb(136, 134, 134);
+  border-bottom: 1px solid rgb(54, 54, 54);
   height: 80px;
 
 }
@@ -8468,11 +8654,30 @@ body.active-modal {
  
   
 }
+.inputtag:focus + .placeholder,
+.inputtag:not(:placeholder-shown)
++.placeholder{
+  top: -10px;
+
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #FFF6EE ;
+  opacity: 1;
+
+ 
+  
+}
+
 
 .input:focus::placeholder{
   color: transparent;
 
 }
+.inputtag:focus::placeholder{
+  color: transparent;
+
+}
+
 
 
 .listBoxContainer{
@@ -8483,15 +8688,15 @@ body.active-modal {
 }
 
 .listButton{
-  width:  230px;
-  height: 2.5rem;
+  width:  210px;
+  height: 50px;
   padding: 0 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font: inherit;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgb(54, 54, 54);
+  
   cursor: pointer;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   background-color: #FFF6EE;
@@ -8507,6 +8712,34 @@ body.active-modal {
   overflow: scroll;
   z-index: 9999;
 }
+.listButtonMaterial{
+  width:  250px;
+  height:  50px;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: inherit;
+  border: 1px solid rgb(54, 54, 54);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: #FAFAFF;
+}
+.listItemsMaterial{
+  position: absolute;
+  height: 250px;
+  width: 100%;
+  background-color: #FAFAFF;
+  padding: 0;
+  border-radius: 8px;
+  margin-top: 5px;
+  overflow: scroll;
+  z-index: 9999;
+}
+
+
+
 
 
 
@@ -8538,28 +8771,36 @@ body.active-modal {
   height: 1.5rem;
   color: hsla(340, 87%, 59%, 1);
 }
+.AddTagContainer{
+  
+}
 
-
+.selectcheck{
+  background-color: rgb(216, 179, 185);
+}
 
 
 .addTagBox{
-  width: 250px;
-  height: 50px;
+  width:   350px;
+  height: auto;
  
-  border-radius: 15px;
+ 
 
  
   box-sizing: border-box;
-  padding: 1rem;
-  font-family: 'Work Sans', sans-serif;
+  padding: 10px;
+  font-family: Manrope, sans-serif;
   font-weight: 500;
   
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
+  border: 1px solid  rgb(54, 54, 54);;
+ 
+  
  
  
 }
+
 .addTagBox > h5{
   margin: 0;
   color: #282828;
@@ -8571,7 +8812,14 @@ body.active-modal {
  
   flex-wrap: wrap;
  
+  width: 100%;
+  height: auto;
+ 
+  
+  
+ 
 }
+
 .inputTag{
   border: none;
   font: inherit;
@@ -8589,6 +8837,22 @@ body.active-modal {
   display: flex;
   grid-gap: 5px;
   align-items: center;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  height: 20px;
+
+
+ 
+}
+.tagscontainer{
+  display: flex;
+  width: 300px;
+  height: 60px;
+  
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  
 }
 .crossIcon{
   background-color: white;
@@ -8647,6 +8911,32 @@ body.active-modal {
   text-align: center;
 }
 
+.listitems{
+  display: flex;
+
+  width: 300px;
+  margin: 5px ;
+  margin-bottom: 10px;
+}
+.listitems input{
+  display: none;
+}
+.listitems p{
+ 
+  font-family: Manrope, san-serif;
+ 
+}
+.listrooms{
+  list-style: none;
+  margin: 5px;
+   border-radius: 5px;
+   
+   height: 40px;
+   
+}
+.listrooms:hover{
+  background-color: rgb(216, 179, 185);
+}
 
 
 
@@ -8688,6 +8978,136 @@ body.active-modal {
 }
 
 
+
+.modal{
+  position: fixed;
+  display: block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:  100%;
+  z-index: 100;
+  overflow-x: hidden;
+  background-color: rgba(31,32,41,.75);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 250ms 700ms ease;
+}
+.closemodal{
+  position: absolute;
+  float: right;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+  border: 1px solid red;
+ 
+}
+
+.modal-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  padding-top: 80px;
+  
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  background-color: #fff;
+    -ms-flex-item-align: center;
+    align-self: center;
+    box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
+  opacity: 1;
+  transform: scale(0.6);
+  transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+}
+
+
+.circle-loader {
+  margin-bottom: 3.5em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-color: #5cb85c;
+ 
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: 7em;
+  height: 7em;
+}
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: #5cb85c;
+  transition: border 500ms ease-out;
+}
+.checkmark.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.checkmark:after {
+  opacity: 1;
+  height: 3.5em;
+  width: 1.75em;
+  transform-origin: left top;
+  border-right: 3px solid #5cb85c;
+  border-top: 3px solid #5cb85c;
+  content: "";
+  left: 1.75em;
+  top: 3.5em;
+  position: absolute;
+}
+.success{
+  font-size: 40px;
+  color: green;
+  font-family: Manrope, sans-serif;
+  font-weight: bold;
+}
+.dataupload{
+  font-size: 30px ;
+  font-family: Manrope, sans-serif;
+
+}
+
+.modaldiv{
+  display: none;
+}
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 1.75em;
+    opacity: 1;
+  }
+  40% {
+    height: 3.5em;
+    width: 1.75em;
+    opacity: 1;
+  }
+  100% {
+    height: 3.5em;
+    width: 1.75em;
+    opacity: 1;
+  }
+}
 
 
 
