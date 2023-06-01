@@ -1980,20 +1980,6 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
       }
 
-      if(designselect === ''){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'Design style is required'
-   
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
       if(partnerspecification === ''){
         setAccActive(1)
         document.querySelector('.alertpopup').style.display = 'block'
@@ -3955,9 +3941,8 @@ const handleRemoveRoom=(val,len)=>{
 const handleClickRoom=()=>{
   showDesignRoom(!designroom)
 
-  console.log(designroom)
+  
 }
-
 
 
 
@@ -4640,7 +4625,7 @@ const handleClickRoom=()=>{
                     <div className='listBoxContainer'>
                                      <button className='listButtonMaterial'
                                      onClick={handleClickRoom}
-                                  
+                                    
                                     >{roomsdrop}<IoIosArrowDown
                                     
                     style={{

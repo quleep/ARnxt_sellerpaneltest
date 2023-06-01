@@ -8497,6 +8497,7 @@ body.active-modal {
   border: 1px solid rgb(54, 54, 54);
   background-color: transparent;
   padding: 5px;
+  padding-top: 10px;
   
 }
 .textareadiv textarea:focus{
