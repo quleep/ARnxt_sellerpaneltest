@@ -1887,22 +1887,15 @@ if(tags.length === 0){
   const  handleFormSubmit = async () =>{
 
 
+document.querySelector('#spinner').style.display = 'inline-flex'
+      
 
+  if(partnerproduct === ''){
+    document.querySelector('#spinner').style.display = 'none'
 
-    if(partnerproduct === '' || 
-        partnerbrand === '' ||
-        partnermodelid === '' ||
-         select === '' ||
-        subcatselect === '' 
-       
-    
-    )
-    
-    
-  {
        setAccActive(0)
      document.querySelector('.alertpopup').style.display = 'flex '
-     document.querySelector('.alerttext').innerHTML = 'Please check the required fields'
+     document.querySelector('.alerttext').innerHTML = 'Product name is required'
 
      setTimeout(() => {
      document.querySelector('.alertpopup').style.display = 'none'
@@ -1910,12 +1903,80 @@ if(tags.length === 0){
      }, [3000]);
        
       return
-    }
 
+  }
+  if(partnerbrand === ''){
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Brand name is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(partnermodelid === ''){
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'ModelId is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(select === 'Category'){
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Category is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(subcatselect === 'Sub-category'){
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Subcategory is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+
+ 
     
 
  
       if(selectedrooms.length === 0){
+document.querySelector('#spinner').style.display = 'none'
+
         setAccActive(1)
         document.querySelector('.alertpopup').style.display = 'block'
         document.querySelector('.alerttext').innerHTML = 'Room type is required'
@@ -1932,6 +1993,8 @@ if(tags.length === 0){
 
       if(partnerspecification === ''){
         setAccActive(1)
+document.querySelector('#spinner').style.display = 'none'
+
         document.querySelector('.alertpopup').style.display = 'block'
         document.querySelector('.alerttext').innerHTML = 'Specification is required'
    
@@ -2028,7 +2091,6 @@ const merchantbody={
 }
   
 
-document.querySelector('#spinner').style.display = 'inline-flex'
 setButtonClick(true)
 
 axios.post(registerUrl, productdetails).then((res)=>{
@@ -2045,6 +2107,7 @@ document.querySelector('#spinner').style.display = 'none'
       }, [5000]);
       
     }
+    setButtonClick(false)
   })
 })
 
@@ -4353,7 +4416,7 @@ const handleClickRoom=()=>{
                                           <div className='listBoxContainer'>
                               <button className='listButton'
                                onBlur={() => showSubDropDown(false)}
-                                onFocus={() => showSubDropDown(!subdropdown)}>{subcatselect}<IoIosArrowDown
+                                onFocus={() => showSubDropDown(!subdropdown)}>{subcatselect} <IoIosArrowDown
                               style={{
                                   transform: subdropdown ? 'rotate(180deg)' : 'rotate(0deg)',
                                   transition: '0.3s ease-in-out'
@@ -4444,8 +4507,8 @@ const handleClickRoom=()=>{
                                           
                                         <div  className='input-group'>
                                             <input  type='text' value={partnersku} onChange={(e)=>setPartnerSku(e.target.value)} className='input' placeholder='SKU'  />
-                                            <label className='placeholder'
-                                            >SKU </label>
+                                            <label className='placeholder' 
+                                            >SKU   </label>
 
 
 
