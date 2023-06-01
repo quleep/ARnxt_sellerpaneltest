@@ -1869,30 +1869,32 @@ for(let i=0; i<images.length;i++){
 }
 
 
+if(tags.length === 0){
+  setTags([...tags, 'default'])
+
+
+  }
+  if(colortags.length === 0){
+   setColorTags([...colortags ,'default'])
+
+
+  }
+
 
 
 
 
   const  handleFormSubmit = async () =>{
 
-   
+
 
 
     if(partnerproduct === '' || 
         partnerbrand === '' ||
         partnermodelid === '' ||
-        partnermrp === '' ||
-        partnerofferprice === '' ||
-        partnerlength === '' ||
-        partnerbreadth === '' ||
-        partnerheight === '' ||
-        unit === '' ||
-        weightunit === '' ||
-        weightproduct === '' ||
-        partnerwarranty ===  '' ||
-        select === '' ||
-        subcatselect === '' ||
-        partnersubcatdetails === ''
+         select === '' ||
+        subcatselect === '' 
+       
     
     )
     
@@ -1900,7 +1902,7 @@ for(let i=0; i<images.length;i++){
   {
        setAccActive(0)
      document.querySelector('.alertpopup').style.display = 'flex '
-     document.querySelector('.alerttext').innerHTML = 'All fields are required'
+     document.querySelector('.alerttext').innerHTML = 'Please check the required fields'
 
      setTimeout(() => {
      document.querySelector('.alertpopup').style.display = 'none'
@@ -1910,62 +1912,9 @@ for(let i=0; i<images.length;i++){
       return
     }
 
-    if(partnersku === ''){
-      setAccActive(1)
-      document.querySelector('.alertpopup').style.display = 'block'
-      document.querySelector('.alerttext').innerHTML = 'Sku is required'
+    
+
  
-      setTimeout(() => {
-      document.querySelector('.alertpopup').style.display = 'none'
-       
-      }, [3000]);
-        
-       return
-     
-
-      
-    }
-    if(partnerprimarymaterial === ''){
-      setAccActive(1)
-      document.querySelector('.alertpopup').style.display = 'block'
-      document.querySelector('.alerttext').innerHTML = 'Primary material is required'
- 
-      setTimeout(() => {
-      document.querySelector('.alertpopup').style.display = 'none'
-       
-      }, [3000]);
-        
-       return
-      }
-
-      if(tags.length === 0){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'please select atleast one tag'
-   
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
-      if(colortags.length === 0){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'please select atleast one color'
-   
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
       if(selectedrooms.length === 0){
         setAccActive(1)
         document.querySelector('.alertpopup').style.display = 'block'
@@ -1995,48 +1944,9 @@ for(let i=0; i<images.length;i++){
 
 
       }
-      if(partnerbrandoverview === ''){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'Brand overview is required'
    
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
-      if(partnersellerinfo === ''){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'SellerInfo is required'
+ 
    
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
-      if(partnercare === ''){
-        setAccActive(1)
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'Care & Maintenance is required'
-   
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
   await uploadimage()
   
   
@@ -2045,6 +1955,8 @@ for(let i=0; i<images.length;i++){
 
 
  }
+
+
  let newarrylatest= []
 
  const sendimagedata =(imgurl)=>{
@@ -4276,7 +4188,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnermrp} onChange={(e)=>setPartnerMrp(e.target.value)} className='input' placeholder='MRP'  />
                                             <label className='placeholder'
-                                            >MRP <span className='required-field'></span> </label>
+                                            >MRP  </label>
 
 
 
@@ -4284,7 +4196,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnerofferprice} onChange={(e)=>setPartnerOfferPrice(e.target.value)} className='input' placeholder='Offer price'  />
                                             <label className='placeholder'
-                                            >Offer price <span className='required-field'></span> </label>
+                                            >Offer price  </label>
 
 
 
@@ -4327,7 +4239,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnerlength} onChange={(e)=>setPartnerLength(e.target.value)} className='input' placeholder='Length'  />
                                             <label className='placeholder'
-                                            >Length <span className='required-field'></span> <span className='infoblock'  
+                                            >Length  <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
                                                <p>Enter 0 in case of 2D Products</p>
@@ -4340,7 +4252,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnerbreadth} onChange={(e)=>setPartnerBreadth(e.target.value)} className='input' placeholder='Breadth'  />
                                             <label className='placeholder'
-                                            >Breadth <span className='required-field'></span>
+                                            >Breadth 
                                             <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
@@ -4354,7 +4266,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnerheight} onChange={(e)=>setPartnerHeight(e.target.value)} className='input' placeholder='Height'  />
                                             <label className='placeholder'
-                                            >Height <span className='required-field'></span>
+                                            >Height 
                                             <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
@@ -4368,7 +4280,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='text' value={unit} onChange={(e)=>setUnit(e.target.value)} className='input' placeholder='Dimension unit'  />
                                             <label className='placeholder'
-                                            >Dimension Unit <span className='required-field'></span> </label>
+                                            >Dimension Unit  </label>
 
 
 
@@ -4376,7 +4288,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={weightproduct} onChange={(e)=>setWeightProduct(e.target.value)}  className='input' placeholder='weight'  />
                                             <label className='placeholder'
-                                            >Weight <span className='required-field'></span> </label>
+                                            >Weight  </label>
 
 
 
@@ -4384,7 +4296,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='text' value={weightunit} onChange={(e)=>setWeightUnit(e.target.value)}  className='input' placeholder='Weight unit'  />
                                             <label className='placeholder'
-                                            >Weight Unit<span className='required-field'></span> </label>
+                                            >Weight Unit </label>
 
 
 
@@ -4392,7 +4304,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='number' value={partnerwarranty} onChange={(e)=>setPartnerWarranty(e.target.value)} className='input' placeholder='warranty'  />
                                             <label className='placeholder'
-                                            >Warranty (Years)<span className='required-field'></span> </label>
+                                            >Warranty (Years) </label>
 
 
 
@@ -4505,7 +4417,7 @@ const handleClickRoom=()=>{
                                           <div  className='input-group'>
                                             <input  type='text'  value={partnersubcatdetails} onChange={(e)=>setPartnerSubCatDetails(e.target.value)} className='input' placeholder='Subcatdetails'  />
                                             <label className='placeholder'
-                                            >Sub-category details <span className='required-field'></span> </label>
+                                            >Sub-category details  </label>
 
 
 
@@ -4533,7 +4445,7 @@ const handleClickRoom=()=>{
                                         <div  className='input-group'>
                                             <input  type='text' value={partnersku} onChange={(e)=>setPartnerSku(e.target.value)} className='input' placeholder='SKU'  />
                                             <label className='placeholder'
-                                            >SKU <span className='required-field'></span> </label>
+                                            >SKU </label>
 
 
 
@@ -4563,7 +4475,7 @@ const handleClickRoom=()=>{
                                         <div  className='input-group'>
                                             <input  type='text' list='material' value={partnerprimarymaterial} onChange={(e)=>setPartnerPrimaryMaterial(e.target.value)} className='input' placeholder='Primary material'  />
                                             <label className='placeholder'
-                                            >Primary material <span className='required-field'></span> </label>
+                                            >Primary material </label>
                                             <datalist class="" id="material">    
                         <option value="Fabric"/>
                           <option value="Leatherette"/>
@@ -4715,9 +4627,11 @@ const handleClickRoom=()=>{
 
                      
                         tags.map((tag, index) => {
+                                  
                             return (  
 
-                               
+                                        tag === 'default' ? 
+                                        <p></p>  :
                                           <div className="tags" key={index}>
                                     <span>{tag}</span>
                                     <div className="crossIcon"
@@ -4742,7 +4656,7 @@ const handleClickRoom=()=>{
                         onChange={(e) => setTagText(e.target.value)}
                     />
                      <label className='placeholder'
-                                            >Add tags <span className='required-field'></span> </label>
+                                            >Add tags  </label>
                 </div>
             </div>
         </div>
@@ -4765,6 +4679,8 @@ const handleClickRoom=()=>{
                   {
                         colortags.map((tag, index) => {
                             return (
+                               tag === 'default' ?  
+                               <p></p> :
                                 <div className="tags" key={index}>
                                     <span>{tag}</span>
                                     <div className="crossIcon"
@@ -4788,7 +4704,7 @@ const handleClickRoom=()=>{
                         onChange={(e) => setTagColor(e.target.value)}
                     />
                      <label className='placeholder'
-                                            >Add Colors <span className='required-field'></span> </label>
+                                            >Add Colors  </label>
                 </div>
             </div>
         </div>
@@ -4820,7 +4736,7 @@ const handleClickRoom=()=>{
                                             <div className='textareadiv'>
                                             <textarea  type='textarea' value={partnerbrandoverview} onChange={(e)=>setPartnerBrandOverview(e.target.value)} className='input' placeholder='Brand Overview '  />
                                             <label className='placeholder'
-                                            >Brand Overview <span className='required-field'></span> </label>
+                                            >Brand Overview  </label>
                                               </div>
                                           
 
@@ -4831,7 +4747,7 @@ const handleClickRoom=()=>{
                                             <div className='textareadiv'>
                                             <textarea  type='textarea'  value={partnersellerinfo} onChange={(e)=>setPartnerSellerInfo(e.target.value)} className='input' placeholder='Seller Info'  />
                                             <label className='placeholder'
-                                            >Seller Info <span className='required-field'></span> </label>
+                                            >Seller Info  </label>
 
                                               </div>
                                         
@@ -4843,7 +4759,7 @@ const handleClickRoom=()=>{
                                             <div className='textareadiv'>
                                             <textarea  type='textarea' value={partnercare} onChange={(e)=>setPartnerCare(e.target.value)} className='input' placeholder='Care & Maintenance'  />
                                             <label className='placeholder'
-                                            >Care & Maintenance <span className='required-field'></span>  </label>
+                                            >Care & Maintenance   </label>
 
                                               </div>
                                          

@@ -8454,17 +8454,15 @@ body.active-modal {
  
   width:  auto;
   gap: 20px;
- 
-  
- 
- 
-}
+ }
 
 .productdetailsdiv>*{
   flex: 1 1  150px;
  
 
   margin: 10px;
+ 
+ 
  
  
  
@@ -8513,6 +8511,7 @@ body.active-modal {
  
   border: 1px solid rgb(54, 54, 54);
   width:  100%;
+  
  
  
   
