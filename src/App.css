@@ -8330,6 +8330,7 @@ body.active-modal {
   width: 800px;
   margin-left: 400px;
   margin-top: 200px;
+  display: none;
 }
 
 
@@ -8417,6 +8418,7 @@ body.active-modal {
   font-size: 1rem;
 }
 .addIcon{
+  margin-top: -10px;
   transform-origin: center;
   transition: 0.2s ease-in-out;
 }

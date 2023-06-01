@@ -564,6 +564,8 @@ const profileHandler=(e)=>{
 
   
   document.querySelector('.profilediv').style.display= 'block'
+  document.querySelector('.tabsContainer').style.display = 'none'
+
   document.querySelector('.sidebarmain').style.display= 'none'
   document.querySelector('.merchantdiv').style.display= 'none'
   document.querySelector('.selfcontainer').style.display= 'none'
@@ -1873,8 +1875,7 @@ for(let i=0; i<images.length;i++){
 
   const  handleFormSubmit = async () =>{
 
-    setButtonClick(true)
-document.querySelector('#spinner').style.display = 'inline-flex'
+   
 
 
     if(partnerproduct === '' || 
@@ -2114,6 +2115,10 @@ const merchantbody={
   registration_Time: new Date().toString(),
 }
   
+
+document.querySelector('#spinner').style.display = 'inline-flex'
+setButtonClick(true)
+
 axios.post(registerUrl, productdetails).then((res)=>{
 
 }).then(()=>{
@@ -3813,6 +3818,8 @@ const profileUpdateHandler=(e)=>{
 const modelManagementHandler=(e)=>{
   e.preventDefault();
   document.querySelector('.sidebarmain').style.display = 'none'
+  document.querySelector('.tabsContainer').style.display = 'block'
+
   document.querySelector('.profilediv').style.display = 'none'
 
 }
@@ -4153,18 +4160,7 @@ const handleClickRoom=()=>{
           <li><a className="link_name" href="#">Merchant guide</a></li>
         </ul>
       </li>
-      <li>
-        <div className="profile-details">
-          <div className="profile-content">
-            <img src="https://github.com/Sacsam005/dropdown-menu/blob/master/image/profile.png?raw=true" alt="profileImg"/>
-          </div>
-          <div className="name-job">
-            <div className="profile_name">User Name</div>
-            <div className="job">User Email</div>
-          </div>
-          <i className='bx bx-log-out'></i>
-        </div>
-      </li>
+    
     </ul>
   </div>
 
