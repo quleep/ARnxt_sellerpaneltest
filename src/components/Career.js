@@ -1,23 +1,12 @@
-import React from 'react'
-import Joinus from './Joinus'
-import Opening from './Opening'
+import React from "react";
+import Opening from "./Opening";
 
 const Career = () => {
   return (
-  
-<div>
+    <div>
+      <Opening />
+    </div>
+  );
+};
 
-
-<Joinus/>
-        <Opening/>
-
-
-</div>
-         
-      
-      
-    
-  )
-}
-
-export default Career
+export default Career;
