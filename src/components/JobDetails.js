@@ -43,7 +43,7 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
     document.body.classList.remove("active-modal");
   }
   const nextPage = () => {
-    history.push("/");
+    history.push("/career");
   };
   const shareOnFacebook = () => {
     window.open(
@@ -343,7 +343,10 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
                   <div className="location-text">
                     <div className="location-blur">Date posted</div>
                     <div className="location-text">
-                      {filteredApplicants?.job_post_date}
+                      {filteredApplicants?.job_post_date &&
+                        new Date(
+                          filteredApplicants.job_post_date * 1000
+                        ).toLocaleDateString("en-GB")}
                     </div>
                   </div>
                 </div>

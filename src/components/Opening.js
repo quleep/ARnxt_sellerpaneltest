@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Next from "../careerimages/next.svg";
 
 const Openings = () => {
-  const [activeTab, setActiveTab] = useState("Sales");
+  const [activeTab, setActiveTab] = useState("Technology & IT");
   const [applicants, setApplicants] = useState([]);
   const [filteredApplicants, setFilteredApplicants] = useState([]);
   const [filteredApplicants1, setFilteredApplicants1] = useState([]);

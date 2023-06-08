@@ -6051,7 +6051,7 @@ body {
   padding-top: 8em;
   padding-bottom: 4em;
 
-  background: #01091e;
+  background: #030e29;
 }
 .openings-container {
   display: flex;
@@ -6142,6 +6142,7 @@ body {
   display: flex;
   justify-content: center;
   height: 2000px;
+  text-align: left;
 }
 .jobdetail-main {
   display: flex;
@@ -6294,7 +6295,7 @@ body {
 @media only screen and (max-width: 620px) {
   .select-dropdown {
     display: flex;
-    justify-content: center;
+
     gap: 1rem;
   }
   .select-dropdown div {
