@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import { Metadata } from '../layout/MetaData';
+import { Helmet } from 'react-helmet';
+import Navbartest from './Navbartest';
 
 function Privacypolicy() {
   // scrolled to top when redirected from a page
@@ -11,7 +13,23 @@ function Privacypolicy() {
 
   return (
     <div>
-      <Metadata title={'Privacy'}/>
+      <Navbartest/>
+          <Helmet>
+       <title>Arnxt - Privacy Policy | Augmented Reality | Metaverse </title>
+       <meta 
+          name='description'
+          content='This describes how we collect and process your personal information through our website, devices, products, services, online marketplace and apps. '
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+          
+          
+          
+          ' />
+       
+     </Helmet>
+     
       <div
         id="privacy"
         className="section section-padding offwhite-bg mt-5 p-5"

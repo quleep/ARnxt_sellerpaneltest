@@ -146,8 +146,8 @@ body{
    background-color: white;
   
    height: 60px;
-   margin-right: 3px;
-   margin-left: 140px;
+  
+ 
   
    
   
@@ -1142,11 +1142,12 @@ body{
   margin-left: 30px;
 }
 .social-container{
-  margin-top: 120px;
+ 
  
   width: 400px;
   display: flex;
-  margin-left: 500px;
+ 
+ 
 
  
 
@@ -2078,8 +2079,6 @@ height: 60px;
 
 
 
-
-
 .productslogo_div{
   display: flex;
   width: 150px;
@@ -2214,26 +2213,138 @@ height: 60px;
   }
 
 }
+#privacyone{
+  display: none;
+}
+#privacythird{
+  display: none;
+}
+.blogfour{
+  margin-top: 90px;
+  height: 100%;
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.blogcontainer{
+  display: flex;
+  width: 95%;
+  height:auto;
+
+  margin-top: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  
+ 
+}
+.textbold{
+  font-weight: bold;
+}
+.bloginsideparadiv{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+}
+.bloginsidepara{
+  flex: 1;
+}
+.bloginsidepara p{
+
+}
+.blogcontainer h1{
+
+}
+.bloginside{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  width:  1200px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.bloginsideheading{
+  flex: 1;
+ 
+  padding: 10px;
+}
+.bloginsideheading h1{
+  font-family: Manrope, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+.bloginsideheading p{
+  font-size: 15px;
+  font-weight: 600 ;
+  font-family: Manrope, sans-serif;
+  text-align: justify;
+
+}
+.blogimagecontainer{
+  flex: 1;
+  width: 600px;
+  height: 600px;
+ 
+}
+.blogimagecontainer img{
+  width: 100%;
+  height: 100%;
+}
+
+#privacy{
+  display: none;
+}
+.blogbody{
+  display: flex;
+  height: 100%;
+  width: auto;
+  margin-top: 90px;
+ 
+ 
+  flex-wrap: wrap;
+ align-items: center;
+ justify-content: center;
+
+
+}
 
 .blogdiv{
   display: flex;
-   align-items: column;
+   flex-wrap: wrap;
+   flex-direction: row;
    
-    width: 80%;
+    width: 90%;
   
-     height: 500px;
-     margin-bottom: 40px;
-     margin-top: 150px;
-      margin-left: 200px;
-  
+     height: 100%;
     
-}
+     margin-bottom: 200px;
+     margin-top: 30px;
+   
+   
+   
+     }
 .blogdiv>*{
-  flex: 1 1 auto;
+  flex: 1 1 300px;
+  flex-wrap: wrap;
+   margin: 20px;
+  
  
-  width: 300px;
-  height: 95%;
-  margin: 10px;
+
+}
+.carddetails{
+  padding: 10px;
+  width: auto;
+  height:   420px;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 
@@ -3810,6 +3921,7 @@ width: 500px;
   
 }
 
+
 .searchcategorydiv{
 
   display: flex;
@@ -4309,6 +4421,36 @@ width: 500px;
 
  
 }
+.card-body1{
+ 
+  height: auto;
+  padding: 10px;
+ 
+
+
+}
+.cardtitle{
+  flex: 1;
+ 
+  padding: 10px;
+}
+.cardtext{
+  flex: 1;
+ 
+  padding: 10px;
+
+
+}
+.cardbutton{
+ 
+ 
+  padding: 10px;
+
+
+}
+.card-title{
+  font-size: 18px;
+}
 .card-body2{
   height: 250px;
   padding-top: 40px;
@@ -4340,10 +4482,16 @@ width: 500px;
 
 }
 .cardblog{
-  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
   height: 95%;
-  border: 1px solid rgb(235, 228, 228);
+  border: 1px solid red;
   border-radius: 5px;
+  padding: 20px;
+}
+.cardblog img{
+  margin-bottom: 20px;
 }
 .freetrialdiv{
   display: flex;
@@ -4869,6 +5017,8 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (max-width: 500px) {
+
+ 
   .imgfluid{
     margin-left: 10px;
   }
@@ -4882,6 +5032,8 @@ input::-webkit-inner-spin-button {
     overflow-y: scroll;
    
   }
+
+ 
   .productinputdiv{
     width: 280px;
     
@@ -6394,13 +6546,20 @@ input::-webkit-inner-spin-button {
 
 
 @media (max-width: 600px) {
+  .bloginsideheading h1{
+    font-size: 20px;
+  }
 
-
+  .blogimagecontainer{
+    width: 300px;
+    height: 300px;
+  }
+  
   .copyright_div{
     margin-top: 250px;
   }
   .footer_newsletteremail{
-    margin-left: 15px;
+   
     width: 300px;
     height: 60px;
   }
@@ -9110,7 +9269,346 @@ border-radius: 10px;
     opacity: 1;
   }
 }
+.footermainbody{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+ 
+  background-color: #001E6C;
 
+}
+
+
+.footerbody{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+ 
+  
+  
+}
+.footerbody>*{
+  flex: 1 1 300px;
+ 
+  margin: 10px;
+}
+.companucontainer{
+  display: flex;
+  height: 90%;
+  width: 95%;
+ 
+  flex-wrap: wrap;
+  flex-direction: row;
+ 
+}
+.companyimagecontainer{
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width: 95%;
+height: 100px;
+
+padding: 0px;
+
+
+}
+.companyimage{
+  display: flex;
+ 
+  flex-wrap: wrap;
+  width: 120px;
+  height: 100px;
+ 
+
+}
+ .companyimage img{
+  width: 100%;
+  height: 100%;
+ }
+.companyname{
+  flex: 2;
+ padding-top: 40px;
+}
+.companyname h3{
+  font-family: Manrope, sans-serif;
+  color: white;
+  font-size: 20px;
+
+}
+
+.companycontentcontainer{
+  flex: 1;
+  
+ 
+  padding: 10px;
+}
+.companycontentcontainer p{
+  font-size: 15px;
+  font-family: Manrope, sans-serif;
+  color: white;
+  text-align: justify;
+}
+.companycontentcontainer h1{
+  
+  font-family: Manrope,sans-serif;
+  color: white;
+  
+}
+.contactuscontainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 95%;
+  height: 100%;
+  padding: 10px;
+
+}
+.contactusname{
+  flex:  1;
+  padding-top: 30px;
+ 
+ 
+ 
+  
+}
+ .contactusname h3{
+  font-size: 20px;
+  color: white;
+
+ }
+.contactuscontentone{
+  flex:  1;
+  padding-top: 20px;
+
+  
+}
+.contactuscontenttwo{
+  flex:  1;
+ 
+
+}
+
+.contactuscontentthree{
+  flex:  1;
+ 
+
+}
+.contactuscontentfour{
+  flex:  1;
+ 
+
+}
+.contactuscontentfour p{
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  color: white;
+  text-align: justify;
+}
+.contactuscontentone p{
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  color: white;
+  text-align: justify;
+}
+.contactuscontenttwo p{
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  color: white;
+  text-align: justify;
+
+
+
+}
+.contactuscontentthree p{
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  color: white;
+  text-align: justify;
+
+
+
+}
+.logocontainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  
+  margin: 10px;
+ 
+  padding: 20px;
+ 
+ 
+  
+ 
+}
+.logocontainerone{
+  flex: 1;
+ 
+  padding: 10px;
+ 
+  
+  
+  
+}
+.logocontainertwo{
+  flex: 1;
+
+  padding: 10px;
+
+
+ 
+ 
+
+
+
+}
+.logocontainerthree{
+  flex: 2;
+ 
+  padding: 10px;
+
+
+ 
+ 
+  
+
+  
+}
+
+.logoimageone{
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 30%;
+}
+.logoimageone img{
+  width: 100%;
+  height: 100%;
+}
+.logoimagetwo{
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 30%;
+}
+.logoimagetwo img{
+  width: 100%;
+  height: 100%;
+}
+.socialiconcontainer{
+  display: flex;
+  width: 95%;
+  height: 95%;
+ 
+  align-items: center;
+  justify-content: center;
+ padding-bottom: 30px;
+}
+.iconscontainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+ 
+  height: auto;
+  width:  auto;
+}
+.iconimages{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: auto;
+
+}
+.iconimages>*{
+  flex: 1 1 40px;
+ 
+  
+}
+.iconimageinside{
+  display: flex;
+  flex-wrap: wrap;
+  width:  50px;
+  height:  50px;
+ 
+  padding: 5px;
+  margin-left: 5px;
+}
+.iconimageinside img{
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+.footer {
+  padding-block: 5rem;
+  background-color: #151823;
+  color: #666873;
+
+}
+.footer__container {
+  max-width: 116rem;
+  margin: auto;
+  padding: 0 1.5rem;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 
+  repeat(auto-fit, minmax(20rem, 1fr));
+  row-gap: 2rem;
+}
+.footer__title {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.footer__list-item {
+  list-style: none;
+}
+.footer__list-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color .25s;
+}
+.footer__list-link:hover {
+  color: #fff;
+}
+
+.company__info {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-right: 5rem;
+}
+.company__logo {
+  color: #fff;
+}
+.company__info ul {
+  flex-direction: row;
+}
+.copyright {
+  margin-top: auto;
+}
+@media screen and (min-width: 40em) {
+  .company__info {
+      grid-column: span 2;
+  }
+}
 
 
 

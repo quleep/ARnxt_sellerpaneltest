@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Metadata } from "../layout/MetaData";
+import { Helmet } from "react-helmet";
+import Navbartest from "./Navbartest";
 
 function TermsAndConditions() {
   // scrolled to top when redirected from a page
@@ -9,7 +11,23 @@ function TermsAndConditions() {
 
   return (
     <div className="mt-5 p-5">
-      <Metadata title={'Terms&conditions'}/>
+      <Navbartest/>
+             <Helmet>
+       <title>Arnxt - Terms and Conditions | Augmented Reality | Metaverse </title>
+       <meta 
+          name='description'
+          content='Please read our terms and conditions carefully before using this website. '
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+          
+          
+          
+          ' />
+       
+     </Helmet>
+      
       <div className="container text-start">
         {/* heading start */}
         <div className="">

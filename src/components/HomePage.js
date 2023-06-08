@@ -9,6 +9,9 @@ import ReactPlayer from 'react-player'
 import { FaPhone, FaArrowRight, FaVoicemail, FaEnvelope } from 'react-icons/fa';
 import { Metadata } from "../layout/MetaData";
 import Navbartest from "./Navbartest";
+import { Helmet } from "react-helmet";
+import Footer from "./Footer";
+import Footertest from "./Footertest";
 
 
 const HomePage = () => {
@@ -344,7 +347,20 @@ function incNbrc(){
    
     <div  id='homemain'  style={{overflowX:'hidden'}}>
        <Navbartest/>
-       <Metadata title={'Home'}/>
+     
+       <Helmet>
+          <title> Augmented Reality MarketPlace for Businesses | ARnxt </title>
+          <meta 
+          name='description'
+          content='India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.'
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+           ' />
+          
+        </Helmet>
+      
 
     
 
@@ -429,51 +445,51 @@ function incNbrc(){
                 <div class="sliderhome">
 	<div class="slide-track"  style={{marginTop:'-30px'}}>
 		<div class="slide">
-			<img src="assets/images/customer-logo-1.webp" style={{width:'100%', height:'100%' }} alt="" />
+			<img src="assets/images/customer-logo-1.webp" style={{width:'100%', height:'100%' }} alt="logo" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/customer-logo-2.png"  style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/customer-logo-2.png"  style={{width:'100%', height:'100%', }} alt="logo" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/customer-logo-3.png" style={{width:'100%', height:'100%', }}alt="" />
+			<img src="assets/images/customer-logo-3.png" style={{width:'100%', height:'100%', }}alt="logo" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/customer-logo-4.png"  style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/customer-logo-4.png"  style={{width:'100%', height:'100%', }} alt="logo" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/hometownnew.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/hometownnew.png"   style={{width:'100%', height:'100%', }} alt="logo" />
 		</div>
 		<div class="slide">
-			<img src="assets/images/godrejnew.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/godrejnew.png"   style={{width:'100%', height:'100%', }} alt="logo" />
 		</div>
 
   
     <div class="slide">
-			<img src="assets/images/ifbnew.png"   style={{width:'100%', height:'100%', }} alt="" />
+			<img src="assets/images/ifbnew.png"   style={{width:'100%', height:'100%', }} alt="logo" />
 		</div>
  
    
    
 
     <div class="slide">
-			<img src="assets/images/lgnew.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/lgnew.png"  style={{width:'100%', height:'100%'}}  alt="logo" />
 		</div>
 		
   
   
     <div class="slide">
-			<img src="assets/images/nilkamanew.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/nilkamanew.png"  style={{width:'100%', height:'100%'}}  alt="logo" />
 		</div>
    
     <div class="slide">
-			<img src="assets/images/ottomatenew.png"  style={{width:'250px', height:'120px', marginTop:'10px'}}  alt="" />
+			<img src="assets/images/ottomatenew.png"  style={{width:'250px', height:'120px', marginTop:'10px'}}  alt="logo" />
 		</div>
     <div class="slide">
-			<img src="assets/images/samsungnew.png"  style={{width:'250px', height:'100%'}}  alt="" />
+			<img src="assets/images/samsungnew.png"  style={{width:'250px', height:'100%'}}  alt="logo" />
 		</div>
   
     <div class="slide">
-			<img src="assets/images/simpolonew.png"  style={{width:'100%', height:'100%'}}  alt="" />
+			<img src="assets/images/simpolonew.png"  style={{width:'100%', height:'100%'}}  alt="logo" />
 		</div>
   
 		
@@ -562,7 +578,7 @@ function incNbrc(){
 
                 
                 <div className="armobdivbody">
-                <img src='/assets/images/arimage1.png'  style={{height:'150px', width:'150px'}}/>
+                <img src='/assets/images/arimage1.png'  alt="logo" style={{height:'150px', width:'150px'}}/>
 
 
                   
@@ -589,7 +605,7 @@ function incNbrc(){
                <div>
                 <div className="armobdiv2">
                   <div className="armobdiv2body">
-                  <img   src="/assets/images/arimage2.jpeg"   style={{height:'200px', width:'200px', marginTop:'5px'}}/>
+                  <img   src="/assets/images/arimage2.jpeg" alt="logo"  style={{height:'200px', width:'200px', marginTop:'5px'}}/>
                     
 
                   </div>
@@ -617,7 +633,7 @@ function incNbrc(){
                 <div className="armobdiv3">
 
                   <div className='armobdiv2body' >
-                  <img   src="/assets/images/arimage3.png"   style={{height:'150px', width:'150px', marginTop:'5px'}}/>
+                  <img   src="/assets/images/arimage3.png" alt="logo"  style={{height:'150px', width:'150px', marginTop:'5px'}}/>
 
 
                   </div>
@@ -650,7 +666,7 @@ function incNbrc(){
 
              
               <div className="image_divcontent1">
-                <img src='/assets/images/arimage1.png'  style={{height:'200px', width:'200px'}}/>
+                <img src='/assets/images/arimage1.png' alt="logo"  style={{height:'200px', width:'200px'}}/>
 
               </div>
               <div className="image_divcontent2">
@@ -686,7 +702,7 @@ function incNbrc(){
 
                     </div>
                     <div className="arimagedivcontent1" >
-                    <img   src="/assets/images/arimage2.jpeg"   style={{height:'200px', width:'200px', marginTop:'5px'}}/>
+                    <img   src="/assets/images/arimage2.jpeg" alt="logo"   style={{height:'200px', width:'200px', marginTop:'5px'}}/>
                     </div>
 
                       <div  className="arimagedivcontent2">
@@ -719,7 +735,7 @@ function incNbrc(){
 
                       </div>
                     <div className="arimagedivcontent1" >
-                    <img   src="/assets/images/arimage3.png"   style={{height:'150px', width:'150px', marginTop:'5px'}}/>
+                    <img   src="/assets/images/arimage3.png" alt="logo"  style={{height:'150px', width:'150px', marginTop:'5px'}}/>
                     </div>
 
                   
@@ -887,7 +903,7 @@ function incNbrc(){
                 <div  className="getstartedcontentheader" >
                   <div style={{display:'flex'}}>
                     <h3 className="text"  style={{fontSize:'180px', fontWeight:'bold'}}>1</h3>
-                    <img src="/assets/images/Registerlogo.PNG" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
+                    <img src="/assets/images/Registerlogo.PNG" alt="logo" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
 
                   </div>
 
@@ -918,7 +934,7 @@ function incNbrc(){
                 <div  className="getstartedcontentheader" >
                   <div style={{display:'flex'}}>
                     <h3 className="text"  style={{fontSize:'180px', fontWeight:'bold'}}>2</h3>
-                    <img src="/assets/images/Loginlogo.PNG" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
+                    <img src="/assets/images/Loginlogo.PNG" alt="logo" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
 
                   </div>
 
@@ -951,7 +967,7 @@ function incNbrc(){
                 <div  className="getstartedcontentheader2"  style={{marginBottom:'30px'}}>
                   <div style={{display:'flex'}}>
                     <h3 className="text"  style={{fontSize:'180px', fontWeight:'bold'}}>3</h3>
-                    <img src="/assets/images/Triallogo.PNG" style={{height:'60px', width:'60px', marginLeft:'60px', marginTop:'80px'}}/>
+                    <img src="/assets/images/Triallogo.PNG" alt="logo" style={{height:'60px', width:'60px', marginLeft:'60px', marginTop:'80px'}}/>
 
                   </div>
 
@@ -997,7 +1013,7 @@ function incNbrc(){
                 <div  className="getstartedcontentheader2"  style={{marginBottom:'30px'}}>
                   <div style={{display:'flex'}}>
                     <h3 className="text"  style={{fontSize:'180px', fontWeight:'bold'}}>4</h3>
-                    <img src="/assets/images/Upgradelogo.PNG" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px' }}/>
+                    <img src="/assets/images/Upgradelogo.PNG" alt="logo" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px' }}/>
 
                   </div>
 
@@ -1037,7 +1053,7 @@ function incNbrc(){
                 <div  className="getstartedcontentheader2" >
                   <div style={{display:'flex'}}>
                     <h3 className="text"  style={{fontSize:'180px', fontWeight:'bold'}}>5</h3>
-                    <img src="/assets/images/paylogo.PNG" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
+                    <img src="/assets/images/paylogo.PNG" alt="logo" style={{height:'40px', width:'40px', marginLeft:'60px', marginTop:'80px'}}/>
 
                   </div>
 
@@ -1086,10 +1102,10 @@ function incNbrc(){
 
 
         <div className="bannerdiv">
-    <img src="/assets/images/Web Banner.jpg"  className="bannerimage"/>
+    <img src="/assets/images/Web Banner.jpg" alt="logo"  className="bannerimage"/>
   </div>
   <div className="bannerdivmob">
-    <img src="/assets/images/bannermobile.jpg"  className="bannerimagemob"/>
+    <img src="/assets/images/bannermobile.jpg" alt="logo" className="bannerimagemob"/>
   </div>
         <div className="slider-1" >
           <div className="container" >
@@ -1319,7 +1335,7 @@ function incNbrc(){
       {/* Testimonials ends here ----------------------------------------------------------------------------------------------------------------- */}
   
 
-       
+      <Footertest/> 
     </div>
       
     

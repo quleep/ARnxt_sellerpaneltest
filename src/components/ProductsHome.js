@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player'
 import { PopupButton } from "react-calendly";
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
+import { Helmet } from 'react-helmet';
 
 const ProductsHome = () => {
     
@@ -46,7 +47,20 @@ const click3= ()=>{
      return (
    <div   className='productspage'  >
     <Navbartest/>
-      <Metadata title={'Products'}/>
+
+     <Helmet>
+       <title> Arnxt - Products | Augmented Reality Products for Business </title>
+       <meta 
+          name='description'
+          content='We use cutting edge technologies to develop B2B2C Augmented reality products for businesses across the globe. '
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+          ' />
+       
+     </Helmet>
+     
   
     <div className='productsheader' >
     <div class="waviy">
@@ -83,7 +97,7 @@ const click3= ()=>{
        
 <div >
   <div className='productscontent_div' >
-  <img  src='/assets/images/consumerapplogo.png'  onMouseOver={click1} style={{height:'50px', width:'50px'}}  />
+  <img  src='/assets/images/consumerapplogo.png' alt='logo'  onMouseOver={click1} style={{height:'50px', width:'50px'}}  />
   </div>
 </div>
 
@@ -103,7 +117,7 @@ const click3= ()=>{
 
 <div>
   <div className='productscontent_div'>
-  <img src='/assets/images/businessapplogo.png' onMouseOver={click2} style={{height:'50px', width:'50px'}}/>
+  <img src='/assets/images/businessapplogo.png' alt='logo' onMouseOver={click2} style={{height:'50px', width:'50px'}}/>
 
 
   </div>
@@ -124,7 +138,7 @@ const click3= ()=>{
 
 <div>
 <div className='productscontent_div'>
-<img    src='/assets/images/dashboardlogo.png' onMouseOver={click3} style={{height:'50px', width:'50px'}}/>
+<img    src='/assets/images/dashboardlogo.png' alt='logo' onMouseOver={click3} style={{height:'50px', width:'50px'}}/>
 
 
 </div  >
@@ -151,7 +165,7 @@ const click3= ()=>{
        <div className='consumer_div' >
       
        <div className='consumerdiv1' >  
-       <img  className='gifimagediv' src='/assets/images/feature-dashboard.gif' />
+       <img  className='gifimagediv' src='/assets/images/feature-dashboard.gif' alt='logo' />
        
        </div>
        <div  className='consumerdiv2'>
@@ -630,7 +644,7 @@ const click3= ()=>{
          
        </div>
        <div className='bussiness_container'>
-       <img  src='/assets/images/arnxtBapp.png' className='bussiness_image'  />
+       <img  src='/assets/images/arnxtBapp.png' className='bussiness_image'  alt='logo' />
      <div  className='bussiness_subcontainer'>
         <div className='bussinesslogodiv'>
           <h5  className='textfeatures'>
@@ -676,7 +690,7 @@ const click3= ()=>{
        </div>
     <div className='imagediv3'>
     
-    <img  src='/assets/images/dashboard.png' className='dashboard_image'   />
+    <img  src='/assets/images/dashboard.png' className='dashboard_image' alt='logo' />
 
               <div style={{width:'100%', height:'100%', border:''}} >
 

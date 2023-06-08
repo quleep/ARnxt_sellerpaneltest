@@ -4,6 +4,7 @@ import { VscTools } from "react-icons/vsc";
 import { IoLayersOutline } from "react-icons/io5";
 import { BsSpeedometer } from "react-icons/bs";
 import { Metadata } from '../layout/MetaData';
+import Navbartest from './Navbartest';
 
 function About() {
   // scrolled to top when redirected from a page
@@ -13,6 +14,7 @@ function About() {
 
   return (
     <div>
+      <Navbartest/>
       <Metadata title={'About'}/>
    
       <div  className='aboutdivmain' >
@@ -56,7 +58,7 @@ function About() {
                 <div className="card">
                   <div className="card-icon mx-auto">
                    
-                   <img  src='assets/images/analysis.png' style={{width:'60px', height:'60px',}}/>
+                   <img  src='assets/images/analysis.png' alt='alt image' style={{width:'60px', height:'60px',}}/>
                       
                       
                   
@@ -76,7 +78,7 @@ function About() {
               <Fade distance="50px" duration="1500" up>
                 <div className="card">
                   <div className=" mx-auto "  style={{marginBottom:'35px'}}>
-                  <img  src='assets/images/missionnew.png' style={{width:'60px', height:'60px'}}/>
+                  <img  src='assets/images/missionnew.png' alt='image' style={{width:'60px', height:'60px'}}/>
                    
                   </div>
                   <div className="card-bodyabout">
@@ -91,7 +93,7 @@ function About() {
               <Fade distance="50px" duration="1500" up>
                 <div className="card">
                   <div className="card-icon mx-auto green">
-                  <img  src='assets/images/values.png' style={{width:'60px', height:'60px'}}/>
+                  <img  src='assets/images/values.png' alt='image' style={{width:'60px', height:'60px'}}/>
                   
                   </div>
                   <div className="card-bodyabout">

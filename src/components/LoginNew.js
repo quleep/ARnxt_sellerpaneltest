@@ -82,6 +82,7 @@ const LoginNew = ({history}) => {
 
                 <div className="text-center"  style={{marginBottom:'20px'}}>
                   <img src="/assets/images/logo.png"
+                
                     style={{width:'185px'}} alt="logo"/>
                   
                 </div>

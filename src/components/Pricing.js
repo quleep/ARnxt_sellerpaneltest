@@ -5,6 +5,8 @@ import url from "../Url";
 import { FaArrowRight, FaTimes } from "react-icons/fa";
 import { PopupButton } from "react-calendly";
 import { Metadata } from "../layout/MetaData";
+import { Helmet } from "react-helmet";
+import Navbartest from "./Navbartest";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -130,7 +132,22 @@ function Pricing() {
 
   return (
     <div className="pricetable_div"  >
-      <Metadata title={'Price'}/>
+    <Navbartest/>
+
+       
+     <Helmet>
+       <title> Arnxt - Pricing | Augmented Reality Products for Business </title>
+       <meta 
+          name='description'
+          content='Know about the pricing of our augmented reality products which will enable you to take your business to a new level of success. '
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+           ' />
+       
+     </Helmet>
+     
       <section id="pricing" className="py-5" style={{backgroundColor:'white'}}>
         <div className=""  >
           <div className="" style={{}} >
@@ -187,7 +204,7 @@ function Pricing() {
 
                   <th scope="col" style={{width:'600px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a href="/registernew">Start 14 day trial</a> 
+                  <a href="/register">Start 14 day trial</a> 
                     </button>
                     <h4 className="plan-text">Basic</h4>
                     <div style={{display:'flex', border:'', marginLeft:'10px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
@@ -219,7 +236,7 @@ function Pricing() {
                   </th>
                   <th scope="col" style={{width:'800px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a href="/registernew">Start 14 day trial</a> 
+                  <a href="/register">Start 14 day trial</a> 
                     </button>
                     <h4 className="plan-text">Premium</h4>
                     <div style={{display:'flex', border:'', marginLeft:'-5px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
@@ -251,7 +268,7 @@ function Pricing() {
 
                   <th scope="col" style={{width:'1000px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}} >
-                  <a href="/registernew">Start 14 day trial</a> 
+                  <a href="/register">Start 14 day trial</a> 
                     </button>
                     <h4 className="plan-text">Business Pro</h4>
                     <div style={ check ? {display:'flex', border:'', marginLeft:'40px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}:
@@ -282,7 +299,7 @@ function Pricing() {
 
                   <th scope="col"  style={{width:'600px'}}>
                   <button className="btnall" style={{width:'180px', marginBottom:'10px'}}>
-                     <a href="/registernew">Start 14 day trial</a> 
+                     <a href="/register">Start 14 day trial</a> 
                     </button>
                     <h4 className="plan-text">Enterprise</h4>
                     <div style={ check ? {display:'flex', border:'', marginLeft:'50px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}: 

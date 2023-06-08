@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { FaExclamationCircle } from 'react-icons/fa';
 import { Metadata } from './layout/MetaData';
 import Navbartest from './components/Navbartest';
+import { Helmet } from 'react-helmet';
 
 const queryurl= 'https://adtzd6cy7j.execute-api.ap-south-1.amazonaws.com/production/query';
 
@@ -78,7 +79,22 @@ const ContactUsnew = () => {
   return (
     <div>
       <Navbartest/>
-      <Metadata title={'Contact'}/>
+      <Helmet>
+       <title>Contact Arnxt | Augmented Reality MarketPlace </title>
+       <meta 
+          name='description'
+          content='Get in touch with us to create experiential solutions for accelerating your business with customer delight.'
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+          
+          
+          
+          ' />
+       
+     </Helmet>
+   
 
 <div id="contact" className="contact">
         <div className="container">

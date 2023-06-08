@@ -15,6 +15,7 @@ import { tableCustomStyles } from './tableStyle';
 import { RiAddLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { MdClose } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -3925,8 +3926,11 @@ const handleClickRoom=()=>{
 
   
 }
+const history = useHistory()
 
-
+const handleimageClick=()=>{
+  history.push('/')
+}
 
   return (
     <div>
@@ -3936,7 +3940,7 @@ const handleClickRoom=()=>{
 
           <div className='dashboardlogodiv'>
             <div className='logocontainer' >
-              <img  src='assets/images/arnxtreg.png' className='imgfluid'/>
+              <img  src='assets/images/arnxtreg.png' style={{cursor:'pointer'}} onClick= { handleimageClick} alt='altimage' className='imgfluid'/>
             </div>
 
           </div>
@@ -4231,6 +4235,8 @@ const handleClickRoom=()=>{
                          <option value="Samsung"/>
                          <option value="godrej"/>
                           <option value="simpolo"/>
+                          <option value="Rak"/>
+
                         
                                </datalist>
 

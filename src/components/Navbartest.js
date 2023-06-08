@@ -352,18 +352,13 @@ function Navbartest() {
                   <span  id='navbaropen' onClick={handleClickopen} className="navbar-toggler-icon"  style={ navi ? {display:'none'}: {display:'block'}}></span>
                     </button>
   
-
-
-   
-                  
-
                  
                 <div className="collapse navbar-collapse" id="navbar" >
                     <div  style={{}}>
                     <ul className=" navbar-nav"  >
                        <div  style={{marginRight:'50px'}}>
                        <li className="nav-item"  >
-                            <Link className="nav-link" to="/productshome" style={{color:'white',fontFamily:'Manrope, san-serif',fontSize:'15px'}}>PRODUCTS</Link>
+                            <Link className="nav-link" to="/product" style={{color:'white',fontFamily:'Manrope, san-serif',fontSize:'15px'}}>PRODUCTS</Link>
                         </li>
 
 
@@ -386,8 +381,8 @@ function Navbartest() {
   </a>
   <div className="dropdown-content">
   <a href="/career">Career</a>
-    <a href="/blognew">Blogs</a>
-    <a href="/contactusnew">Contact Us</a>
+    <a href="/blog">Blogs</a>
+    <a href="/contact">Contact Us</a>
    
 
     <a href="/privacypolicy">Privacy Policy</a>
@@ -413,14 +408,14 @@ function Navbartest() {
                             <div  className='navbar_login2'>
                             <li className=""  style={{marginLeft:'-50px'}}>
                             
-                            <Link className="nav-link" to="/loginnew"  >LOGIN</Link>
+                            <Link className="nav-link" to="/login"  >LOGIN</Link>
                         </li>
                         
        
                   
             
                         <li className="nav-item" style={{marginLeft:'-50px'}} >
-                            <Link className="nav-link" to="/registernew"   >REGISTER</Link>
+                            <Link className="nav-link" to="/register"   >REGISTER</Link>
                         </li>
                        
                   
@@ -436,14 +431,14 @@ function Navbartest() {
                 <div className="dropdownlogin">
                     
             <button  className='btnall'>
-            <Link className="" to="/loginnew"  style={{color:'black', fontWeight:'bold'}}>Login</Link>
+            <Link className="" to="/login"  style={{color:'black', fontWeight:'bold'}}>Login</Link>
             </button>
            
   
 </div>
 <div className="dropdownregister">
 <button  className='btnall'>
-<Link className="" to="/registernew" style={{color:'black', fontWeight:'bold'}} >Register</Link>
+<Link className="" to="/register" style={{color:'black', fontWeight:'bold'}} >Register</Link>
 </button>
   
  

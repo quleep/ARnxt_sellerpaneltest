@@ -78,6 +78,7 @@ import JobDesc from './components/JobDesc';
 import Dashboard from './components/Dashboard';
 import Test from './components/Test';
 import TestNew from './components/TestNew';
+import { Helmet } from 'react-helmet';
 
   
 
@@ -138,40 +139,46 @@ class App extends Component {
 
     return (
 
-      <div className="App">
+     
 
+      <div className="App">
+        
        
         <Router>
         
         
-    
-       
-       
-       
-    
-       
-      
-       
-       
-       
-       
-      
+        <Helmet>
+          <title>
+           Augmented Reality MarketPlace for Businesses | ARnxt</title>
+          <meta 
+          name='description'
+          content='India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.'
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+           ' />
+           
+          
           
         
-        <Route path="/register" exact component={Register} />
+        </Helmet>
+       
+       
+       
         <Route path="/price" exact component={Pricing} />
-        <Route path="/blog" exact component={Blog} />
+       
         <Route path="/about" exact component={About} />
-        <Route path="/contact" exact component={ContactUs} />
+       
         <Route path="/privacypolicy" exact component={Privacypolicy} />
         <Route path="/terms&conditions" exact component={TermsAndConditions} />
-        <Route path="/loginnew" exact component={LoginNew} />
-        <Route path="/registernew" exact component={Registernew} />
-        <Route path="/productsnew" exact component={Productsnew} />
-        <Route path="/productshome" exact component={ProductsHome} />
-        <Route path="/blognew" exact component={Blognew} />
+        <Route path="/login" exact component={LoginNew} />
+        <Route path="/register" exact component={Registernew} />
+        <Route path="/productsnew" exact component={Productsnew}/>
+        <Route path="/product" exact component={ProductsHome} />
+        <Route path="/blog" exact component={Blognew} />
         <Route path="/producttest" exact component={ProductTest}/>
-        <Route path="/contactusnew" exact component={ContactUsnew}/>
+        <Route path="/contact" exact component={ContactUsnew}/>
         <Route path="/test" exact component={Testpage}/>
         <Route path="/blogsecond" exact component={BlogSecond}/>
         <Route path="/blogthird" exact component={BlogThird}/>
