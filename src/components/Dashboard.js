@@ -2045,7 +2045,7 @@ const productdetails= {
  
 
  
-
+  modelrequired: 'false',
   unit: unit,
   weightunit: weightunit,
   brand: partnerbrand,
