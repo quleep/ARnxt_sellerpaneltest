@@ -8075,7 +8075,7 @@ body.active-modal {
 .btn-secondary:hover {
   background: rgb(241, 240, 240);
 }
-/* 
+
 .modal {
   position: fixed;
   display: block;
@@ -8104,7 +8104,8 @@ body.active-modal {
   right: 0;
   margin: 10px;
   cursor: pointer;
-  border: 1px solid red;
+  
+  
 }
 
 .modal-wrap {
@@ -8128,7 +8129,7 @@ body.active-modal {
   opacity: 1;
   transform: scale(0.6);
   transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
-} */
+}
 
 .circle-loader {
   margin-bottom: 3.5em;
