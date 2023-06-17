@@ -6,6 +6,7 @@ import { FaExclamationCircle } from 'react-icons/fa';
 import { Metadata } from './layout/MetaData';
 import Navbartest from './components/Navbartest';
 import { Helmet } from 'react-helmet';
+import Footertest from './components/Footertest';
 
 const queryurl= 'https://adtzd6cy7j.execute-api.ap-south-1.amazonaws.com/production/query';
 
@@ -217,7 +218,7 @@ const ContactUsnew = () => {
           </div>
         </div>
       </div>
-      
+    <Footertest/>  
     </div>
   )
 }

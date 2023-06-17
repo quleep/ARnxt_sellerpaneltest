@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Metadata } from "../layout/MetaData";
 import { Helmet } from "react-helmet";
 import Navbartest from "./Navbartest";
+import Footertest from "./Footertest";
 
 function TermsAndConditions() {
   // scrolled to top when redirected from a page
@@ -99,6 +100,7 @@ We may update and amend these ToS from time to time. We will inform you of any m
           </ol>
         </div>
       </div>
+      <Footertest/>
     </div>
   );
 }

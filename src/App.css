@@ -5950,7 +5950,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: auto;
   gap: 1em;
 }
 .job-container:hover {
@@ -6605,15 +6605,30 @@ body.active-modal {
   }
 }
 #navbarnew {
-  background-color: #01091e;
+  background-color: #041f63;
   z-index: 1;
 }
 .navcontainer {
   width: 100%;
-  height: 100%;
+  height: 80px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 350px;
+ 
+   
+  
+}
+.navcontainer>*{
+  flex: 1 1 80px;
+ 
+  align-items: center;
+  justify-content: center;
+}
+.usernamecontainer{
+  display: flex;
+  width: 250px;
+  height: 30px;
 }
 .dashboardlogodiv {
   flex: 2;
@@ -6709,7 +6724,8 @@ body.active-modal {
   left: 0;
   height: 100%;
   width: 300px;
-  background: #01091e;
+  background: #041f63;
+  
 
   z-index: 100;
   transition: all 0.5s ease;
@@ -6718,11 +6734,20 @@ body.active-modal {
   width: 78px;
 }
 .sidebar .logo-details {
-  height: 60px;
+  height: 90px;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+ 
+ 
+}
+.sidebar .logo-details img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .sidebar .logo-details i {
   font-size: 30px;
@@ -7205,22 +7230,52 @@ body.active-modal {
 .productalldetails input:focus {
   outline: none;
 }
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+  cursor: pointer;
+  
+ 
+  
+  
+  
+}
+
+.btnimage {
+
+  width: 140px;
+  height: 40px;
+  border: 1px solid rgb(163, 153, 153);
+  color: black;
+  background-color: transparent ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+ 
+
+
+
+}
 
 .imagedivcontainer {
   border: 2px solid gray;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: auto;
   flex-wrap: wrap;
   height: 150px;
   overflow: scroll;
   border-radius: 5px;
 }
 .imagedivcontainer > * {
-  flex: 1 1 auto;
+  flex: 1 1 60px;
+
 
   height: 80px;
-  width: 80px;
+  width: 100px;
   margin: 10px;
 }
 #spinner {
@@ -7536,17 +7591,36 @@ body.active-modal {
 }
 
 .tabsContainer {
-  width: 800px;
-  margin-left: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+ 
+ 
+ 
+  
+ 
+
+}
+.mainhomecontainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  height: 100%;
   margin-top: 200px;
-  display: none;
+  margin-left: 200px;
+ 
+  align-items: center;
+  justify-content: center;
 }
 
 .btnContainer {
   display: flex;
   background-color: rgba(44, 2, 117, 0.2);
   border-radius: 8px;
-  padding-left: 120px;
+ 
+ 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .btnContainer button {
@@ -7575,8 +7649,9 @@ body.active-modal {
   margin-top: 10px;
   background-color: white;
   border-radius: 8px;
-  max-width: 30rem;
+   width: fit-content;
   padding-bottom: 10px;
+  
 }
 .tabContent > h5 {
   font-weight: 500;
@@ -7593,18 +7668,29 @@ body.active-modal {
 }
 
 .accordionContainer {
-  width: 800px;
+  width: auto;
   background-color: white;
   display: flex;
-  flex-direction: column;
+ flex-direction: row;
+  flex-wrap: wrap;
   grid-gap: 15px;
   color: rgb(9, 11, 79);
   transition: 0.6s ease-in-out;
+ 
+ 
+  
+ 
+
+  
+  
 }
 .accordion {
   border-radius: 6px;
   width: 100%;
   height: auto;
+ 
+ 
+  
 }
 .accordionHeading {
   padding: 1rem;
@@ -7612,6 +7698,7 @@ body.active-modal {
   grid-gap: 10px;
   align-items: center;
   cursor: pointer;
+
 }
 .accordionHeading > h3 {
   font-weight: 600;
@@ -7624,6 +7711,7 @@ body.active-modal {
 }
 
 .accordion:nth-child(1) {
+  
   background-color: #fff6ee;
   border-left: 4px solid #ffc48b;
 }
@@ -7639,21 +7727,27 @@ body.active-modal {
   padding: 10px;
   padding-left: 3rem;
   margin-bottom: 1rem;
+
+ 
+  
 }
 
 .productdetailsdiv {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
-  width: auto;
+   
+  width:  100%;
   gap: 20px;
+  
+  
 }
 
-.productdetailsdiv > * {
+.productdetailsdiv>* {
   flex: 1 1 150px;
-
+ 
   margin: 10px;
+  
 }
 .tagdisplay {
   position: relative;
@@ -7763,7 +7857,7 @@ body.active-modal {
   height: 1rem;
   background-color: rgb(206, 200, 200);
   position: absolute;
-  left: 60px;
+  left: 240px;
   top: 50px;
   transform: rotate(45deg);
 }
@@ -7829,7 +7923,7 @@ body.active-modal {
 }
 
 .listButton {
-  width: 210px;
+  width: 190px;
   height: 50px;
   padding: 0 8px;
   display: flex;
@@ -7953,6 +8047,7 @@ body.active-modal {
   height: 20px;
 }
 .tagscontainer {
+ 
   display: flex;
   width: 300px;
   height: 60px;

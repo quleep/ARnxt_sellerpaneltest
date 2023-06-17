@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { Metadata } from '../layout/MetaData';
 import { Helmet } from 'react-helmet';
 import Navbartest from './Navbartest';
+import Footertest from './Footertest';
 
 function Privacypolicy() {
   // scrolled to top when redirected from a page
@@ -31,7 +32,7 @@ function Privacypolicy() {
      </Helmet>
      
       <div
-        id="privacy"
+        id="privacylatest"
         className="section section-padding offwhite-bg mt-5 p-5"
       >
         <div className="container text-start">
@@ -926,6 +927,7 @@ function Privacypolicy() {
           {/* main section end */}
         </div>
       </div>
+      <Footertest/>
     </div>
   );
 }

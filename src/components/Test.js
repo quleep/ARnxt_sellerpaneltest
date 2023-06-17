@@ -279,7 +279,34 @@ const Test = () => {
 </div>
        </div>
        
-
+         <option value="Vimani"/>
+                          <option value="Sternhagen Germany"/>
+                         <option value="Nitco"/>
+                         <option value="LightBerry"/>
+                          <option value="ottomate"/>
+                         <option value="wall fashion"/>
+                         <option value="johnson"/>
+                          <option value="excel"/>
+                         <option value="nexion"/>
+                         <option value="lasvagas"/>
+                          <option value="jaquar"/>
+                         <option value="jaldhi"/>
+                         <option value="agl"/>
+                         <option value="hometown"/>
+                         <option value="intradings"/>
+                          <option value="nikamal"/>
+                         <option value="havells"/>
+                         <option value="schneider electric"/>
+                         <option value="simero"/>
+                         <option value="iifb"/>
+                         <option value="marshalls"/>
+                          <option value="century"/>
+                         <option value="bajaj"/>
+                         <option value="LG"/>
+                         <option value="Samsung"/>
+                         <option value="godrej"/>
+                          <option value="simpolo"/>
+                          <option value="Rak"/>
 
     
 

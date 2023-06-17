@@ -7,6 +7,7 @@ import { PopupButton } from "react-calendly";
 import { Metadata } from "../layout/MetaData";
 import { Helmet } from "react-helmet";
 import Navbartest from "./Navbartest";
+import Footertest from "./Footertest";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -586,6 +587,7 @@ function Pricing() {
           </div>
         </div>
       </section>
+      <Footertest/>
    
     </div>
     

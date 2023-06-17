@@ -6,6 +6,7 @@ import { PopupButton } from "react-calendly";
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import { Helmet } from 'react-helmet';
+import Footertest from './Footertest';
 
 const ProductsHome = () => {
     
@@ -809,7 +810,7 @@ const click3= ()=>{
 
 
 
-
+<Footertest/>
       
     </div>
      )

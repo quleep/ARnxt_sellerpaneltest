@@ -5,6 +5,7 @@ import { IoLayersOutline } from "react-icons/io5";
 import { BsSpeedometer } from "react-icons/bs";
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
+import Footertest from './Footertest';
 
 function About() {
   // scrolled to top when redirected from a page
@@ -206,7 +207,7 @@ function About() {
       */}
 
 
-
+  <Footertest/>
 
     </div>
   );

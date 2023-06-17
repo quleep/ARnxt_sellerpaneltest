@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { setUserSession } from '../service/AuthService';
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
+import Footertest from './Footertest';
 
 
 
@@ -153,7 +154,9 @@ const LoginNew = ({history}) => {
         </div>
       </div>
     </div>
+ 
   </div>
+ <Footertest/> 
 </section>
 
       

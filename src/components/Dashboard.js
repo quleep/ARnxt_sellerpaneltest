@@ -38,6 +38,16 @@ const updatemerchantprofileurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazo
 const getoneproducturl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getoneproduct'
 
 const zipextracturl= ' https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/extractzip '
+const addbrandbyuserurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addbrandbyuser'
+const addtagsbyuserurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addtagsbyuser'
+const addcolorbyuserurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addcolorbyuser'
+const adddesignbyuserurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/adddesignbyuser'
+const addcollectionbyuserurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addcollectionbyuser'
+const getbrandofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandofmerchant'
+const gettagsofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagsofmerchant'
+const getcolorofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcolorofmerchant'
+const getdesignofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdesignofmerchant'
+const getcollectionofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcollectionofmerchant'
 
 
 
@@ -195,7 +205,7 @@ const Dashboard = () => {
  const [subcatselect, setSubCatSelect] = useState('Sub-category')
 
  const [currencyselect, setCurrencySelect] = useState('INR')
- const [designselect, setDesignSelect] = useState('Design styles')
+ const [designselect, setDesignSelect] = useState('')
  const [roomsdrop, setRoomsDrop] = useState('Room Type')
 
  const [buttonclick, setButtonClick] = useState(false)
@@ -221,6 +231,11 @@ const Dashboard = () => {
  const [weightunit, setWeightUnit] = useState('')
  const [activelist, setActiveList] = useState(false)
  const [selectedrooms, setSelectedRooms] = useState([])
+ const [brandofmerchant, setBrandOfMerchant] = useState([])
+ const [collectionofmerchant, setCollectionOfMerchant] = useState([])
+ const [colorsofmerchant, setColorsOfMerchant] = useState([])
+ const [tagsofmerchant, setTagsOfMerchant] = useState([])
+ const [designstyleofmerchant, setDesignStyleOfMerchant] = useState([])
  
  
 
@@ -233,7 +248,10 @@ const handleAddColorTag = (e) => {
   if (e.key === 'Enter') {
       setTagColor('')
       if (tagcolor !== '') {
-          setColorTags([...colortags, tagcolor.toLowerCase()])
+         let newcolortag= colortags.filter(item=>(
+          item !== 'default'
+         ))
+          setColorTags([...newcolortag, tagcolor.toLowerCase()])
       }
       else {
           console.log('empty')
@@ -255,7 +273,10 @@ const handleColorDeleteTag = (index) => {
      if (e.key === 'Enter') {
          setTagText('')
          if (tagText !== '') {
-             setTags([...tags, tagText.toLowerCase()])
+           let newtag= tags.filter(item=>(
+              item !== 'default'
+           ))
+             setTags([...newtag, tagText.toLowerCase()])
          }
          else {
              console.log('empty')
@@ -803,8 +824,11 @@ const fileToBase64 = (file, cb) => {
   }
 }
 
+
+
 const imagefilechange=(e)=>{
  
+   
   let val= document.getElementById('b1').value;
   let indx = val.lastIndexOf(".") + 1;
   let filetype = val.substr(indx, val.length).toLowerCase();
@@ -893,6 +917,7 @@ const imagefilechange=(e)=>{
 
 
 const removeImage=(val)=>{
+
   setImages((oldArray)=>oldArray.filter((item)=> item !== val))
 
 }
@@ -1793,6 +1818,14 @@ axios.post(registerUrl, productdetails).then((res)=>{
 }
 
 
+if(tags.length === 0){
+  tags.push('default')
+}
+if(colortags.length === 0){
+  colortags.push('default')
+}
+
+
 const uploadimage= async ()=>{
 
  setNewImageArray([])
@@ -1870,16 +1903,7 @@ for(let i=0; i<images.length;i++){
 }
 
 
-if(tags.length === 0){
-  setTags([...tags, 'default'])
 
-
-  }
-  if(colortags.length === 0){
-   setColorTags([...colortags ,'default'])
-
-
-  }
 
 
 
@@ -2031,24 +2055,19 @@ document.querySelector('#spinner').style.display = 'none'
 setProid(lastId)
 
 
+
 const productdetails= {
+
+  
   product_Id: lastId,
   merchant_Id: p_id,
 
   model_Id: '',
   modelno: partnermodelid,
- 
- 
- 
-  
-  
- 
-
- 
   modelrequired: 'false',
   unit: unit,
   weightunit: weightunit,
-  brand: partnerbrand,
+  brand: partnerbrand.toLowerCase(),
   lengthprod: partnerlength,
   breadthprod: partnerbreadth,
   height: partnerheight,
@@ -2057,7 +2076,7 @@ const productdetails= {
  
   mrp : Number(partnermrp),
   offerprice: Number(partnerofferprice),
-  collection : partnercollection,
+  collection : partnercollection.toLowerCase(),
   primarymaterial: partnerprimarymaterial,
   roomtype: selectedrooms,
   weight: weightproduct,
@@ -2078,7 +2097,7 @@ const productdetails= {
   registration_Time: new Date().toString(),
   additional: partneradditional,
   subcatdetail: partnersubcatdetails,
-  designstyle: designselect
+  designstyle: designselect.toLowerCase()
 
 }
 
@@ -2094,7 +2113,86 @@ const merchantbody={
 
 setButtonClick(true)
 
-axios.post(registerUrl, productdetails).then((res)=>{
+
+  const brandbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    brand: partnerbrand.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(addbrandbyuserurl, brandbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+
+
+
+
+
+ const tagsbody={
+  Id: lastId,
+  merchantId: Number(p_id),
+  tags: tags,
+  regtime: lastId
+}
+  axios.post(addtagsbyuserurl, tagsbody).then(res=>{
+   console.log(res)
+ }).catch(error=>{
+  console.log(error)
+ })
+
+  const colorbody={
+  Id: lastId,
+  merchantId: Number(p_id),
+  color: colortags,
+  regtime: lastId
+}
+  axios.post(addcolorbyuserurl, colorbody).then(res=>{
+   console.log(res)
+ }).catch(error=>{
+  console.log(error)
+ })
+
+
+  const designbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    designstyle: designselect.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(adddesignbyuserurl, designbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+  
+
+ 
+
+
+
+  const collectionbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    collections: partnercollection.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+   
+
+ 
+
+
+ 
+ 
+
+
+  axios.post(registerUrl, productdetails).then((res)=>{
 
 }).then(()=>{
   axios.post(imagesendurl, merchantbody).then(res=>{
@@ -3517,16 +3615,7 @@ useEffect(()=>{
     setPartnerType(item.merchanttype)
 
 
-    if(item.merchantaddress === ''){
-      document.querySelector('.progbar').style= 'width: 130px'
-      document.querySelector('.profilepercent').innerHTML = '50 %'
-    }
-    if(item.merchantaddress){
 
-      document.querySelector('.progbar').style= 'width: 220px'
-      document.querySelector('.profilepercent').innerHTML = '100 %'
-
-    }
 
   })
 
@@ -3932,52 +4021,124 @@ const handleimageClick=()=>{
   history.push('/')
 }
 
+useEffect(()=>{
+   const body={
+      merchantid: Number(p_id)
+    }
+    axios.post(getbrandofmerchanturl, body).then(res=>{
+        res.data.map(item=>(
+          brandofmerchant.includes(item.brand)?
+
+         setBrandOfMerchant([]) :
+         setBrandOfMerchant([...brandofmerchant, item.brand])
+          
+        ))
+    }).catch(error=>{
+      console.log(error)
+    })
+
+},[])
+
+useEffect(()=>{
+  const body={
+     merchantid: Number(p_id)
+   }
+   axios.post(getdesignofmerchanturl, body).then(res=>{
+      res.data.map(item=>{
+          if(!designstyleofmerchant.includes(item.designstyle)){
+            setDesignStyleOfMerchant((oldArray)=> [...oldArray, item.designstyle])
+          }
+      })
+   }).catch(error=>{
+     console.log(error)
+   })
+
+},[])
+
+useEffect(()=>{
+  const body={
+     merchantid: Number(p_id)
+   }
+   axios.post(getcollectionofmerchanturl, body).then(res=>{
+      res.data.map(item=>{
+          if(!designstyleofmerchant.includes(item.collections)){
+            setCollectionOfMerchant((oldArray)=> [...oldArray, item.collections])
+          }
+      })
+   }).catch(error=>{
+     console.log(error)
+   })
+
+},[])
+
+
+useEffect(()=>{
+  const body={
+     merchantid: Number(p_id)
+   }
+   axios.post(gettagsofmerchanturl, body).then(res=>{
+     res.data.map(item=>{
+          item.tags.forEach(itemnew=>{
+             if(!tagsofmerchant.includes(itemnew)){
+              setTagsOfMerchant((oldArray)=> [...oldArray, itemnew])
+             }
+          })
+     })
+       
+   }).catch(error=>{
+     console.log(error)
+   })
+
+},[])
+
+useEffect(()=>{
+  const body={
+     merchantid: Number(p_id)
+   }
+   axios.post(getcolorofmerchanturl, body).then(res=>{
+     res.data.map(item=>{
+          item.color.forEach(itemnew=>{
+             if(!colorsofmerchant.includes(itemnew)){
+              setColorsOfMerchant((oldArray)=> [...oldArray, itemnew])
+             }
+          })
+     })
+       
+   }).catch(error=>{
+     console.log(error)
+   })
+
+},[])
+
+
+  let newtagsdata= tagsofmerchant.filter((item,index)=>{
+      return tagsofmerchant.indexOf(item) === index
+})
+
+let newcolordata= colorsofmerchant.filter((item,index)=>{
+  return colorsofmerchant.indexOf(item) === index
+})
+
+
+
+
   return (
     <div>
       <div id='navbarnew' className='navbar navbar-expand-lg  navbar-toggleable-md fixed-top  py-3'>
 
-        <div className='navcontainer'>
+        <div className='navcontainer' >
+         
+       <div>
+        <div className='usernamecontainer'>
 
-          <div className='dashboardlogodiv'>
-            <div className='logocontainer' >
-              <img  src='assets/images/arnxtreg.png' style={{cursor:'pointer'}} onClick= { handleimageClick} alt='altimage' className='imgfluid'/>
-            </div>
+        </div>
+       </div>
+       <div></div>
+       <div></div>
 
-          </div>
-          <div className='dashboardnamediv'>
-            <div className='merchantnamecontainer' >
-              <h3>Welcome {uidnew && uidnew}</h3>
+     
+      
 
-            </div>
-
-          </div>
-          <div className='dashboardstatus' >
-            <div className='profilecomplete'> 
-            <h5>Your profile compeletion </h5>
-
-            <div className='progbarcontainer' >
-             <div className='progbar'>
-              <p className='profilepercent' >50 %</p>
-             </div>
-             
-
-
-            </div>
-            
-
-            </div>
-
-          </div>
-
-          <div className='dashboardlogout' >
-
-            <div className='logoutbuttoncontainer'>
-            <button>Logout</button>
-
-            </div>
-
-           
-            </div>
 
 
         </div>
@@ -3989,9 +4150,9 @@ const handleimageClick=()=>{
 
 
 <div className="sidebar ">
-    <div className="logo-details">
+    <div className="logo-details" >
      
-      <span className="logo_name"></span>
+     <img src= '/assets/images/arnxtreg.png' />
     </div>
     <ul className="nav-links">
     
@@ -4146,7 +4307,7 @@ const handleimageClick=()=>{
     <div className='alertpopup'>
      <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
     </div>
-
+<div className='mainhomecontainer'>
   <div className='tabsContainer' >
             <div className="btnContainer">
                 <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`} 
@@ -4208,34 +4369,11 @@ const handleimageClick=()=>{
                                             <label className='placeholder'
                                             >Brand <span className='required-field'></span> </label>
                                                <datalist class="" id="brand">    
-                        <option value="Vimani"/>
-                          <option value="Sternhagen Germany"/>
-                         <option value="Nitco"/>
-                         <option value="LightBerry"/>
-                          <option value="ottomate"/>
-                         <option value="wall fashion"/>
-                         <option value="johnson"/>
-                          <option value="excel"/>
-                         <option value="nexion"/>
-                         <option value="lasvagas"/>
-                          <option value="jaquar"/>
-                         <option value="jaldhi"/>
-                         <option value="agl"/>
-                         <option value="hometown"/>
-                         <option value="intradings"/>
-                          <option value="nikamal"/>
-                         <option value="havells"/>
-                         <option value="schneider electric"/>
-                         <option value="simero"/>
-                         <option value="iifb"/>
-                         <option value="marshalls"/>
-                          <option value="century"/>
-                         <option value="bajaj"/>
-                         <option value="LG"/>
-                         <option value="Samsung"/>
-                         <option value="godrej"/>
-                          <option value="simpolo"/>
-                          <option value="Rak"/>
+                                          {
+                                            brandofmerchant && brandofmerchant.map(item=>(
+                                              <option>{item}</option>
+                                            ))
+                                          }
 
                         
                                </datalist>
@@ -4491,10 +4629,7 @@ const handleimageClick=()=>{
 
 
                                           </div>
-                                          <div>
-
-
-                                            </div>
+                                        
 
 
 
@@ -4525,20 +4660,33 @@ const handleimageClick=()=>{
                                             <label className='placeholder'
                                             >Collection  </label>
                                                <datalist class="" id="collection">    
-                        <option value="Crystal"/>
-                          <option value="lyra"/>
-                         <option value="inspire"/>
-                         <option value="biba"/>
-                          <option value="jenica"/>
-                         <option value="evolution3"/>
-                         <option value="gravity"/>
-                          <option value="funtime"/>
-                         <option value="pinaka"/>
+                                         {
+                                          collectionofmerchant && collectionofmerchant.map(item=>(
+                                            <option>{item}</option>
+                                          ))
+                                         }
                                </datalist>
 
 
 
                                           </div>
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={designselect} onChange={(e)=>setDesignSelect(e.target.value)} list='design'  className='input' placeholder='Design style'  />
+                                            <label className='placeholder'
+                                            >Design style  </label>
+                                               <datalist class="" id="design">    
+                                             {
+                                              designstyleofmerchant && designstyleofmerchant.map(item=>(
+                                                <option>{item}</option>
+                                              ))
+                                             }
+                     
+                               </datalist>
+
+
+
+                                          </div>
+         
 
 
                                         <div  className='input-group'>
@@ -4645,41 +4793,7 @@ const handleimageClick=()=>{
                    
 
                                           </div>
-                                                                       <div  className='input-group'>
-
-                                          <div className='listBoxContainer'>
-                                     <button className='listButtonMaterial'
-                                   onBlur={() => showDesignDrop(false)}
-                                    onFocus={() => showDesignDrop(!desgindrop)}>{designselect}<IoIosArrowDown
-                    style={{
-                        transform: desgindrop ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: '0.3s ease-in-out'
-                    }} /></button>
-            <ul className='listItemsMaterial' style={{
-                opacity: !desgindrop ? "0" : "1",
-                transition: "0.3s ease",
-                visibility: !desgindrop ? "hidden" : "visible",
-                transformOrigin: "top center"
-            }}>
-                {
-                    designstylearray.map((name, index) => {
-                        return (<li className='list' key={index}
-                            onClick={() => { setDesignSelect(name); showDesignDrop(false) }}
-                            style={{ fontWeight: select === name ? '500' : '400' }}>
-                            <span className='checkIcon'>
-                                {select === name ? <BiCheck size={25} /> : null}
-                            </span>
-                           
-                            {name}
-                        </li>)
-                    })
-                }
-            </ul>
-        </div>
-                                           
-
-
-                                          </div> 
+                        
 
 
                                                                    
@@ -4874,13 +4988,16 @@ const handleimageClick=()=>{
 
 <div>
           <div className='' style={{marginTop:'20px'}}>
-            <label>Images <span className="required-field"></span><span id='requiredimages'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span>
+         
+            <div class="upload-btn-wrapper">
+  <button class="btnimage">Upload Image</button>
+  <input type="file"   id='b1' name="myfile" onChange={imagefilechange}  accept= "image/*" multiple/>
+  <p className='filemessage'></p>
+</div>
+<p  style={{color:'red'}}>{message && message}</p>
            
            
-            </label>
            
-            <input type='file'  id='b1' onChange={imagefilechange}  accept= "image/*" multiple/>
-            <p  style={{color:'red'}}>{message && message}</p>
 
           </div>
         
@@ -4892,17 +5009,23 @@ const handleimageClick=()=>{
           {images && images.map(img=>
        
        <div >
+        
 
  <img src= {URL.createObjectURL(img)} key={img} alt='image preview'  style={{width:'100%', height:' 100%',marginRight:'',
     borderRadius:'10px'}}  />
 <span  > <h5 onClick={()=>removeImage(img)} className=''><FaTimes  style={{color:'red', cursor:'pointer', border:'1px solid blue', borderRadius:'5px'}}/></h5>  </span>
      </div>
+    
 
 
        )
         }
 
            <div></div>
+           <div></div>
+           <div></div>
+
+
           </div>
         </div>
 
@@ -4969,7 +5092,7 @@ const handleimageClick=()=>{
             </div>}
         </div>
 
-        
+       </div> 
 
 
 

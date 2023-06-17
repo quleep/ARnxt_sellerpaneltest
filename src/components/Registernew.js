@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import swal from 'sweetalert';
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
+import Footertest from './Footertest';
 
 
 
@@ -772,7 +773,7 @@ else{
       
 
      
-
+    <Footertest/>
     </div>
   )
 }
