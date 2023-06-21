@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
+import Navbar from './Navbar';
 
 
 
@@ -442,7 +443,7 @@ else{
   return (
     <div >
 
-      <Navbartest/>
+      <Navbar/>
         
 <section className=" " style={{backgroundColor:'#eee', marginTop:''}}>
   <div className="container  " style={{marginTop:'80px'}} >
@@ -744,7 +745,7 @@ else{
                   <div className="d-flex align-items-center justify-content-center pb-4">
                     <p className="mb-0 me-2" style={{fontFamily:'Manrope, san-serif', fontSize:'15px', fontWeight:'bold'}}> have an account?</p>
                     <button type="button" className="btnall">
-                    <Link className="" to="/loginnew"  style={{color:'black'}}>Login</Link>
+                    <Link className="" to="/login"  style={{color:'black'}}>Login</Link>
                     </button>
                   </div>
 

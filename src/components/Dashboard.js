@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner } from 'react-icons/fa';
+import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner, FaUser, FaHamburger } from 'react-icons/fa';
 import validator from 'validator';
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -48,6 +48,8 @@ const gettagsofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws
 const getcolorofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcolorofmerchant'
 const getdesignofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdesignofmerchant'
 const getcollectionofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcollectionofmerchant'
+const getmerchantallproducturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/merchantallproduct'
+const getanalyticsdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getanalyticsdata'
 
 
 
@@ -92,6 +94,7 @@ const Dashboard = () => {
   const [partnercity, setPartnerCity] = useState('');
   const [partnerpin, setPartnerPin] = useState('')
   const [partnershopname, setPartnerShopName] = useState('');
+  const [analyticsdata, setAnalyticsData] = useState()
 
 
 
@@ -135,6 +138,7 @@ const Dashboard = () => {
   const [care, setCare] = useState('');
 
   const [proid, setProid]= useState('');
+  const [allproductmerchant, setAllProductMerchant] = useState()
 
  
   const [firstsub, setFirstSub] = useState();
@@ -587,6 +591,7 @@ const profileHandler=(e)=>{
   
   document.querySelector('.profilediv').style.display= 'block'
   document.querySelector('.tabsContainer').style.display = 'none'
+  document.querySelector('.analyticsdiv').style.display = 'none'
 
   document.querySelector('.sidebarmain').style.display= 'none'
   document.querySelector('.merchantdiv').style.display= 'none'
@@ -1916,6 +1921,7 @@ document.querySelector('#spinner').style.display = 'inline-flex'
       
 
   if(partnerproduct === ''){
+    window.scroll(0,0)
     document.querySelector('#spinner').style.display = 'none'
 
        setAccActive(0)
@@ -1931,6 +1937,8 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
   }
   if(partnerbrand === ''){
+    window.scroll(0,0)
+
     document.querySelector('#spinner').style.display = 'none'
 
     setAccActive(0)
@@ -1947,6 +1955,8 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
   }
   if(partnermodelid === ''){
+    window.scroll(0,0)
+
     document.querySelector('#spinner').style.display = 'none'
 
     setAccActive(0)
@@ -1963,6 +1973,8 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
   }
   if(select === 'Category'){
+    window.scroll(0,0)
+
     document.querySelector('#spinner').style.display = 'none'
 
     setAccActive(0)
@@ -1979,6 +1991,8 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
   }
   if(subcatselect === 'Sub-category'){
+    window.scroll(0,0)
+
     document.querySelector('#spinner').style.display = 'none'
 
     setAccActive(0)
@@ -2000,6 +2014,8 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
  
       if(selectedrooms.length === 0){
+    window.scroll(0,0)
+
 document.querySelector('#spinner').style.display = 'none'
 
         setAccActive(1)
@@ -2017,6 +2033,8 @@ document.querySelector('#spinner').style.display = 'none'
       }
 
       if(partnerspecification === ''){
+    window.scroll(0,0)
+
         setAccActive(1)
 document.querySelector('#spinner').style.display = 'none'
 
@@ -2092,6 +2110,8 @@ const productdetails= {
   sellerinfo: partnersellerinfo,
   care: partnercare,
   imageurl: newarrylatest,
+  status : 'imageuploaded',
+  imagerejection: '',
 
   currency: currencyselect,
   registration_Time: new Date().toString(),
@@ -3675,9 +3695,6 @@ const searchmodelHandler=(e)=>{
 }
 
 
-
-
-
 const profileUpdateHandler=(e)=>{
   e.preventDefault()
 
@@ -3882,16 +3899,89 @@ const profileUpdateHandler=(e)=>{
 
 const modelManagementHandler=(e)=>{
   e.preventDefault();
+  const body={
+    merchantid: p_id
+   }
+   axios.post(getmerchantallproducturl, body).then(res=>{
+    setAllProductMerchant(res.data)
+     
+   }).catch(error=>{
+    console.log(error)
+   })
+
+   const bodynew={
+    merchantid: p_id
+   }
+   axios.post(getanalyticsdataurl, bodynew).then(res=>{
+  if(res){
+    setAnalyticsData(res.data)
+  }
+   
+     
+   }).catch(error=>{
+    console.log(error)
+   })
+
+  document.querySelector('.profilediv').style.display = 'none'
+
+  document.querySelector('.analyticsdiv').style.display = 'block'
   document.querySelector('.sidebarmain').style.display = 'none'
   document.querySelector('.tabsContainer').style.display = 'block'
 
   document.querySelector('.profilediv').style.display = 'none'
+ 
+
+
+}
+
+const handleAnalytics= ()=>{
+ 
+
+  
 
 }
 
 
 
 
+const getviewcount =(val)=>{
+      let count= 0;
+      analyticsdata && analyticsdata.forEach(item=>{
+        if(item.productId === val){
+          count= count+1
+        }
+      })
+   return count
+}
+const getviewsource =(val)=>{
+    let count =0;
+  analyticsdata && analyticsdata.forEach(item=>{
+    if(item.productId === val && item.source === 'Web' ){
+     count = count+1
+    }
+  })
+ return count;
+}
+const getviewsourcecount=(val)=>{
+  let count =0;
+  analyticsdata && analyticsdata.forEach(item=>{
+    if(item.productId === val && item.source === 'Business App Integration' ){
+     count = count+1
+    }
+  })
+ return count;
+}
+
+const getuserid= (val)=>{
+     let useridnew;
+  analyticsdata && analyticsdata.forEach(item=>{
+    if(item.productId === val  ){
+      useridnew = item.userId
+    }
+  })
+ 
+  return useridnew 
+}
 
 
 createTheme("solarized", {
@@ -3916,12 +4006,42 @@ createTheme("solarized", {
   }
 });
 
+let nameproduct;
+let brandmerchant;
+let categorymerchant;
+let subcategorymerchant;
+let appviewsmerchant;
 
+const csv= allproductmerchant && allproductmerchant.map(item=>{
+     
+      
+      return (
+       {
+         productname: item.productname,
+         brand: item.brand,
+         category: item.category,
+         subcategory: item.subcategory,
+         Appviews: getviewsource(item.product_Id),
+         Webviews: getviewsourcecount(item.product_Id),
+         Totalviews: getviewcount(item.product_Id),
+         userId: getuserid(item.product_Id)
+
+       }
+       
+      )
+      
+
+})
+
+console.log(csv)
+
+let count=0;
 const columns= [
 
   {
     name: "Product name",
     selector: row=> row.productname,
+ 
    
     sortable: true
   },
@@ -3942,27 +4062,51 @@ const columns= [
     sortable: true
   },
   {
-    name: "Product length",
-    selector: row=> row.lengthprod,
+    name: "Status",
+    selector: row=> row.statusvalue,
     sortable: true
   },
+
   {
-    name: "Product Breadth",
-    selector: row=> row.breadthprod,
-    sortable: true
+    
+    name: "Web Views",
+    selector: (row) => (
+     
+    <p style={{paddingLeft:'30px'}}>{getviewsource(row.product_Id)}</p>  
+      
+       ),
+      sortable: true    
   },
   {
-    name: "Product height",
-    selector: row=> row.height,
-    sortable: true
-  }
- 
- 
- 
-  
+    
+    name: "App Views",
+    selector: (row) => (
+      <p style={{paddingLeft:'30px'}}>{getviewsourcecount(row.product_Id)}</p>  
+     ),
+      sortable: true    
+  },
+  {
+    
+    name: "Total Views",
+    selector: (row) => (
+      <p style={{paddingLeft:'30px'}}>{getviewcount(row.product_Id)}</p>  
+     
+     ),
+      sortable: true    
+  },
+ {
+    name: "Image",
+    selector: (row) => (
+      <div className='imagedivlist'>
+        <img src={row.imageurl[0]}   />
 
-
-]
+      </div>
+      )
+       
+   
+  },
+ 
+ ]
 
 
 
@@ -4011,8 +4155,8 @@ const handleRemoveRoom=(val,len)=>{
 
 
 const handleClickRoom=()=>{
-  showDesignRoom(!designroom)
-
+ 
+    showDesignRoom(!designroom)
   
 }
 const history = useHistory()
@@ -4120,194 +4264,236 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
 })
 
 
+function toggleMenu() {
+  let navigation = document.querySelector('.navigation');
+  let toggle = document.querySelector('.toggle');
+  navigation.classList.toggle('active');
+  toggle.classList.toggle('active');
+}
+const handleham=()=>{
+  console.log('hell')
+  document.querySelector('.menu').style.display= 'block'
+}
 
+
+const tabledata= [
+
+  {
+    name: "Product name",
+    selector: row=> row.productname,
+   
+    sortable: true
+  },
+  {
+    name: "Product price",
+    selector: row=> row.offerprice,
+    sortable: true
+  },
+
+
+
+
+  
+
+
+
+ 
+ 
+ 
+  
+
+
+]
+function convertArrayOfObjectsToCSV(array) {
+	let result;
+
+	const columnDelimiter = ',';
+	const lineDelimiter = '\n';
+	const keys = Object.keys(array[0]);
+
+	result = '';
+	result += keys.join(columnDelimiter);
+	result += lineDelimiter;
+
+	array.forEach(item => {
+		let ctr = 0;
+		keys.forEach(key => {
+			if (ctr > 0) result += columnDelimiter;
+
+			result += item[key];
+			
+			ctr++;
+		});
+		result += lineDelimiter;
+});
+
+	return result;
+}
+
+
+function downloadCSV(array) {
+	const link = document.createElement('a');
+	let csv = convertArrayOfObjectsToCSV(array);
+	if (csv == null) return;
+
+	const filename = 'export.csv';
+
+	if (!csv.match(/^data:text\/csv/i)) {
+		csv = `data:text/csv;charset=utf-8,${csv}`;
+	}
+
+	link.setAttribute('href', encodeURI(csv));
+	link.setAttribute('download', filename);
+	link.click();
+}
+ let hamburger = document.querySelector('.hamburger');
+ let navlinks = document.getElementById('nav-links');
+ let links = document.querySelectorAll('.links');
+
+  hamburger && hamburger.addEventListener('click', ()=>{
+ navlinks && navlinks.classList.toggle('hide');
+ hamburger && hamburger.classList.toggle('lines-rotate');
+ })
+
+ for(let i=0; i< links.length; i++){
+  links[i].addEventListener('click', ()=>{
+    navlinks.classList.toggle('hide')
+  })
+ }
+ const logouthandler =()=>{
+    sessionStorage.removeItem('user')
+    history.push('/')
+ }
 
   return (
-    <div>
-      <div id='navbarnew' className='navbar navbar-expand-lg  navbar-toggleable-md fixed-top  py-3'>
+    
+    <div className=''>
 
-        <div className='navcontainer' >
-         
-       <div>
-        <div className='usernamecontainer'>
-
-        </div>
-       </div>
-       <div></div>
-       <div></div>
-
-     
+      <div className='nav-container' >
+      <div class="logo" onClick={logouthandler} style={{cursor:'pointer'}}>
+      <img src= '/assets/images/arnxtreg.png' />
       
+       
+      </div>
+        <div className='hamburger'>
+          <span className='lines'></span>
+          <span className='lines'></span>
+          <span className='lines'></span>
+         </div>
+         <ul id='nav-links'>
+           
+            <li onClick={profileHandler} ><p><FaUser  style={{marginRight:'5px', marginTop:'-5px', fontSize:'20px'}}/>{u_id}</p></li>
 
+           <li><a href='/' className='links'>Home</a></li>
+           <li><a href='/product' className='links'>Product</a></li>
+           <li><a href='/contact' className='links'>Contact</a></li>
+           <li><a href='/blog' className='links'>Blog</a></li>
+       
+           <li><button className='logoutnavbar' onClick={logouthandler} >Logout</button></li>
 
+         </ul>
 
         </div>
+      <div className='navbardashboard' style={{display:'none'}}>
+      <div class="logo">
+      <img src= '/assets/images/arnxtreg.png' />
+      
+       
+      </div>
+      <div class="menu">
+        <div class="menu-links">
+          <p><FaUser style={{ marginTop:"-5px"}}/>  {u_id}</p>
+         
+   
+          <a href="/">Home</a>
+          <a href="/product">Product</a>
+          <a href="/contact">Contact</a>
+          <a href="/blog">Blog</a>
+          
+
+        </div>
+        <button class="log-in">Logout</button>
+      </div>
+      <div class="menu-btn" onClick={handleham}>
+        <FaHamburger/>
+       
+      </div>
       </div>
 
+      <div class="navigation">
+    <ul>
+      <li onClick= {profileHandler}>
+        <a href="">
+          <span class="icon"> <i className='bx bxs-user-circle'></i></span>
+          <span class="title">Profile</span>
+        </a>
+      </li>
+   
+      <li>
+        <a  href="">
+          <span class="icon"> <i className='bx bxs-credit-card' ></i></span>
+          <span class="title">Pricing</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="icon"> <i className='bx bxs-offer'></i></span>
+          <span class="title">Trial</span>
+        </a>
+      </li>
+      <li onClick={modelManagementHandler}>
+        <a href="">
+          <span class="icon"> <i className='bx bx-compass'></i></span>
+          <span class="title">Model Management</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="icon"> <i className='bx bx-cog'></i></span>
+          <span class="title">Campaign Management</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="icon"> <i class='bx bxs-briefcase-alt'></i></span>
+          <span class="title">Plans</span>
+        </a>
+      </li>
+      <li onClick={handleAnalytics}>
+        <a href="">
+          <span class="icon"><i className='bx bx-analyse'></i></span>
+          <span class="title">Analytics</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="icon"> <i class='bx bx-chat'></i></span>
+          <span class="title">Merchant Guide</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+ 
 
       <div>
      
 
-
-<div className="sidebar ">
-    <div className="logo-details" >
-     
-     <img src= '/assets/images/arnxtreg.png' />
-    </div>
-    <ul className="nav-links">
+   
     
-      {/*
 
-      
-      <li>
-        <div className="icon-link">
-          <a href="#">
-            <i className='bx bx-bulb'></i>
-            <span className="link_name">Profile</span>
-          </a>
-          <i className='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul className="sub-menu">
-          <li><a className="link_name" href="#">Solutions</a></li>
-          <li><a href="#">Payments API</a></li>
-          <li><a href="#">Accounts APi</a></li>
-          <li><a href="#">Finance API</a></li>
-        </ul>
-      </li>
-      <li>
-        <div className="icon-link">
-          <a href="#">
-            <i className='bx bx-news'></i>
-            <span className="link_name">Posts</span>
-          </a>
-          <i className='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul className="sub-menu">
-          <li><a className="link_name" href="#">Posts</a></li>
-          <li><a href="#">Recent</a></li>
-          <li><a href="#">Trending</a></li>
-          <li><a href="#">Most Visited</a></li>
-        </ul>
-      </li>
-       <li>
-        <div className="icon-link">
-          <a href="#">
-            <i className='bx bx-file-find'></i>
-            <span className="link_name">Insights</span>
-          </a>
-          <i className='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul className="sub-menu">
-          <li><a className="link_name" href="#">Insights</a></li>
-          <li><a href="#">Money Movement</a></li>
-          <li><a href="#">Enterprise Spotlight</a></li>
-          <li><a href="#">Financial Burnout</a></li>
-        </ul>
-      </li>
-  */}
-          <li>
-        <div className="icon-link">
-       
-        
-        </div>
-       
-      </li>
 
-      <li>
-        <a href="#" onClick= {profileHandler}>
-        <i className='bx bxs-user-circle'></i>
-          <span className="link_name">Profile</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name"  >Profile</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i className='bx bxs-credit-card' ></i>
-          <span className="link_name">Pricing</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Pricing</a></li>
-        </ul>
-      </li>
-      
-      <li>
-        <a href="#">
-        <i className='bx bxs-offer'></i>
-          <span className="link_name">Trial</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Trial</a></li>
-        </ul>
-      </li>
-      <li>
-        <a onClick={modelManagementHandler} style={{cursor:'pointer'}} >
-          <i className='bx bx-compass'></i>
-          <span className="link_name">Model Management</span>
-        
-        </a>
-        {
-          /*
 
-            <ul className="merchantsub"  >
-          
-        
-          <li><a href='' onClick={selfuploadHandler} >Self upload</a></li>
-          <li><a href='' onClick={merchantHandler}>Send Images</a></li>
-          <li><a href="" onClick={selfselectHandler} >Select existing</a></li>
-
-        </ul>
-        */
-        }
-      
-      
-        
-      </li>
-      <li>
-        <a href="#">
-          <i className='bx bx-cog'></i>
-          <span className="link_name">Campaign management</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Campaign management</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-        <i class='bx bxs-briefcase-alt'></i>
-          <span className="link_name">Plans</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Plans</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-        <i className='bx bx-analyse'></i>
-          <span className="link_name">Analytics</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Analytics</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-        <i class='bx bx-chat'></i>
-          <span className="link_name">Merchant guide</span>
-        </a>
-        <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">Merchant guide</a></li>
-        </ul>
-      </li>
-    
-    </ul>
-  </div>
-
+ 
     <div className='alertpopup'>
      <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
     </div>
-<div className='mainhomecontainer'>
+
+    <div className='mainbodycontainer'> 
+
+
+
+    <div className='mainhomecontainer'  >
   <div className='tabsContainer' >
             <div className="btnContainer">
                 <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`} 
@@ -4319,10 +4505,9 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
             </div>
             {isActive === 1 && <div className="tabData">
                 <div className="tabContent">
-                    <h5>"Perhaps Some Guys": Pat Cummins' 
-                        Brutal Take After Loss Against India In 2nd Test
-                    </h5>
-                    <p>Updated: February 19, 2023</p>
+                    <h2>Coming Soon...
+                    </h2>
+                   
                 </div>
             </div>}
             {isActive === 2 && <div className="tabData">
@@ -4525,7 +4710,7 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
 <div className='listBoxContainer'>
             <button className='listButton'
                 onBlur={() => showDropDown(false)}
-                onFocus={() => showDropDown(!dropDown)}>{select}<IoIosArrowDown
+                onFocus={() => showDropDown(!dropDown)}>{select}<span className= {select === "Category" ? 'required-fieldcat': 'requiredfield'}></span><IoIosArrowDown
                     style={{
                         transform: dropDown ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: '0.3s ease-in-out'
@@ -4560,7 +4745,7 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
                                           <div className='listBoxContainer'>
                               <button className='listButton'
                                onBlur={() => showSubDropDown(false)}
-                                onFocus={() => showSubDropDown(!subdropdown)}>{subcatselect} <IoIosArrowDown
+                                onFocus={() => showSubDropDown(!subdropdown)}>{subcatselect} <span className= {subcatselect === "Sub-category" ? 'required-fieldsubcat': 'requiredfield'}></span> <IoIosArrowDown
                               style={{
                                   transform: subdropdown ? 'rotate(180deg)' : 'rotate(0deg)',
                                   transition: '0.3s ease-in-out'
@@ -4630,6 +4815,7 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
 
                                           </div>
                                         
+                                       
 
 
 
@@ -4751,7 +4937,7 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
                                      <button className='listButtonMaterial'
                                      onClick={handleClickRoom}
                                     
-                                    >{roomsdrop}<IoIosArrowDown
+                                    >{roomsdrop}<span className= { selectedrooms.length === 0 ? 'required-roomtype': 'requiredfield'}></span><IoIosArrowDown
                                     
                     style={{
                         transform: designroom ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -5084,15 +5270,48 @@ let newcolordata= colorsofmerchant.filter((item,index)=>{
             </div>}
             {isActive === 3 && <div className="tabData">
                 <div className="tabContent">
-                    <h5>Watch: R Ashwin Rattles Steve Smith At Non-Striker's End, 
-                        Virat Kohli's Reaction Can't Be Missed
-                    </h5>
-                    <p>Updated: February 19, 2023</p>
+                    <h2>Coming Soon...
+                    </h2>
+                   
                 </div>
             </div>}
         </div>
 
        </div> 
+       
+    <div className='analyticsdiv'>
+      <div className='csvbuttoncontainer'>
+      <button onClick={()=>downloadCSV(csv)} >csv</button>
+
+      </div>
+<div className=''>
+<DataTable
+    
+
+  
+    title="Product data"
+ columns={columns}
+  pagination    
+
+   data={allproductmerchant && allproductmerchant}
+    highlightOnHover
+ 
+ fixedHeader= {true}
+ fixedHeaderScrollHeight='600px'
+ customStyles={tableCustomStyles}
+responsive= {true}
+ 
+
+
+
+
+/>
+ </div> 
+
+</div>
+
+    </div>
+
 
 
 
@@ -6318,11 +6537,11 @@ coloroptions.map(item=>(
 
 
       </div>
-      <div className='mytransaction' >
+      <div className='mytransaction' style={{display:'none'}} >
         <h3>My Transactions</h3>
       </div>
 
-      <div  className='transactiondiv'>
+      <div  className='transactiondiv'  style={{display:'none'}}>
         
        
       <table  >

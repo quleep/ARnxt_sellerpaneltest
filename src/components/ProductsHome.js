@@ -7,6 +7,7 @@ import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import { Helmet } from 'react-helmet';
 import Footertest from './Footertest';
+import Navbar from './Navbar';
 
 const ProductsHome = () => {
     
@@ -47,7 +48,7 @@ const click3= ()=>{
     
      return (
    <div   className='productspage'  >
-    <Navbartest/>
+    <Navbar/>
 
      <Helmet>
        <title> Arnxt - Products | Augmented Reality Products for Business </title>

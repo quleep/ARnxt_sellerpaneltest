@@ -12,6 +12,7 @@ import Navbartest from "./Navbartest";
 import { Helmet } from "react-helmet";
 import Footer from "./Footer";
 import Footertest from "./Footertest";
+import Navbar from "./Navbar";
 
 
 const HomePage = () => {
@@ -346,7 +347,7 @@ function incNbrc(){
 
    
     <div  id='homemain'  style={{overflowX:'hidden'}}>
-       <Navbartest/>
+     <Navbar/>
      
        <Helmet>
           <title> Augmented Reality MarketPlace for Businesses | ARnxt </title>

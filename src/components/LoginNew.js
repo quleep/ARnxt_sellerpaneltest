@@ -7,6 +7,7 @@ import { setUserSession } from '../service/AuthService';
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
+import Navbar from './Navbar';
 
 
 
@@ -70,7 +71,7 @@ const LoginNew = ({history}) => {
   
 
 <section className="h-100 " style={{backgroundColor:'#eee'}}>
-  <Navbartest/>
+  <Navbar/>
   
   <div className="container py-5 h-100"   >
   <Metadata title={'Login'}/>
@@ -125,7 +126,7 @@ const LoginNew = ({history}) => {
                   <div className="d-flex align-items-center justify-content-center pb-4 "  >
                     <p className="mb-0 me-2" style={{fontFamily:'Manrope, san-serif', fontWeight:'bold'}}>Don't have an account?</p>
                     <button type="button" className="btnlogin">
-                    <Link className="" to="/registernew"  style={{color:'black'}}>Create new</Link>
+                    <Link className="" to="/register"  style={{color:'black'}}>Create new</Link>
 
                     </button>
                   </div>

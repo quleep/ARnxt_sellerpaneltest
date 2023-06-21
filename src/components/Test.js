@@ -308,6 +308,130 @@ const Test = () => {
                           <option value="simpolo"/>
                           <option value="Rak"/>
 
+
+                              <div id='navbarnew' className='navbar navbar-expand-lg  navbar-toggleable-md fixed-top  py-3'>
+
+        <div className='navcontainer' >
+         
+       <div>
+        <div className='usernamecontainer'>
+
+        </div>
+       </div>
+       <div></div>
+       <div></div>
+
+     
+      
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      sidebar//
+
+      <div className="sidebar ">
+    <div className="logo-details" >
+     
+     <img src= '/assets/images/arnxtreg.png' />
+    </div>
+    <ul className="nav-links">
+    
+   
+          <li>
+        <div className="icon-link">
+       
+        
+        </div>
+       
+      </li>
+
+      <li>
+        <a href="#" onClick= {profileHandler}>
+        <i className='bx bxs-user-circle'></i>
+          <span className="link_name">Profile</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name"  >Profile</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i className='bx bxs-credit-card' ></i>
+          <span className="link_name">Pricing</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Pricing</a></li>
+        </ul>
+      </li>
+      
+      <li>
+        <a href="#">
+        <i className='bx bxs-offer'></i>
+          <span className="link_name">Trial</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Trial</a></li>
+        </ul>
+      </li>
+      <li>
+        <a onClick={modelManagementHandler} style={{cursor:'pointer'}} >
+          <i className='bx bx-compass'></i>
+          <span className="link_name">Model Management</span>
+        
+        </a>
+   
+      
+        
+      </li>
+      <li>
+        <a href="#">
+          <i className='bx bx-cog'></i>
+          <span className="link_name">Campaign management</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Campaign management</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+        <i class='bx bxs-briefcase-alt'></i>
+          <span className="link_name">Plans</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Plans</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+        <i className='bx bx-analyse'></i>
+          <span className="link_name">Analytics</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Analytics</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+        <i class='bx bx-chat'></i>
+          <span className="link_name">Merchant guide</span>
+        </a>
+        <ul className="sub-menu blank">
+          <li><a className="link_name" href="#">Merchant guide</a></li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div>
+      
     
 
     */

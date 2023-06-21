@@ -3,6 +3,7 @@ import { Metadata } from "../layout/MetaData";
 import { Helmet } from "react-helmet";
 import Navbartest from "./Navbartest";
 import Footertest from "./Footertest";
+import Navbar from "./Navbar";
 
 function TermsAndConditions() {
   // scrolled to top when redirected from a page
@@ -11,8 +12,8 @@ function TermsAndConditions() {
   }, []);
 
   return (
-    <div className="mt-5 p-5">
-      <Navbartest/>
+    <div className="" style={{marginTop:'60px'}}>
+      <Navbar/>
              <Helmet>
        <title>Arnxt - Terms and Conditions | Augmented Reality | Metaverse </title>
        <meta 

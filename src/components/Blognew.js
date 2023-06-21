@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import { useHistory } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 const Blognew = () => {
@@ -18,7 +19,7 @@ const Blognew = () => {
   }
   return (
     <div>
-    <Navbartest/>  
+    <Navbar/>  
 <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 

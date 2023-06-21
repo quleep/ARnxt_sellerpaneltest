@@ -8,6 +8,7 @@ import { Metadata } from "../layout/MetaData";
 import { Helmet } from "react-helmet";
 import Navbartest from "./Navbartest";
 import Footertest from "./Footertest";
+import Navbar from "./Navbar";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -133,7 +134,7 @@ function Pricing() {
 
   return (
     <div className="pricetable_div"  >
-    <Navbartest/>
+    <Navbar/>
 
        
      <Helmet>

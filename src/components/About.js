@@ -6,6 +6,7 @@ import { BsSpeedometer } from "react-icons/bs";
 import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
+import Navbar from './Navbar';
 
 function About() {
   // scrolled to top when redirected from a page
@@ -15,7 +16,7 @@ function About() {
 
   return (
     <div>
-      <Navbartest/>
+      <Navbar/>
       <Metadata title={'About'}/>
    
       <div  className='aboutdivmain' >

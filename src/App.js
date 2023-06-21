@@ -4,6 +4,7 @@ import React, { Component, useState } from "react";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
+import { useCookies } from 'react-cookie';
 
 //importing components
 import { Footer, Model_Approval, Add_tag } from "./components";
@@ -87,9 +88,12 @@ import Dashboard from "./components/Dashboard";
 import Test from "./components/Test";
 import TestNew from "./components/TestNew";
 import { Helmet } from "react-helmet";
+import Navbar from "./components/Navbar";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
+
+
 
 class App extends Component {
   constructor() {
@@ -123,10 +127,13 @@ class App extends Component {
       })
       .catch(() => {});
   }
+ 
+
 
   render() {
     return (
       <div className="App">
+         
         <Router>
           <Helmet>
             <title>Augmented Reality MarketPlace for Businesses | ARnxt</title>
@@ -165,6 +172,8 @@ class App extends Component {
           <Route path="/blogthird" exact component={BlogThird} />
           <Route exact path="/career" component={Career} />
           <Route path="/career/:id" component={JobDesc} />
+         
+
 
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/test" exact component={Test} />

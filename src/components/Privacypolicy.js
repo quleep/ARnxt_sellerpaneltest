@@ -4,6 +4,7 @@ import { Metadata } from '../layout/MetaData';
 import { Helmet } from 'react-helmet';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
+import Navbar from './Navbar';
 
 function Privacypolicy() {
   // scrolled to top when redirected from a page
@@ -14,7 +15,7 @@ function Privacypolicy() {
 
   return (
     <div>
-      <Navbartest/>
+      <Navbar/>
           <Helmet>
        <title>Arnxt - Privacy Policy | Augmented Reality | Metaverse </title>
        <meta 
