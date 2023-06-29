@@ -705,7 +705,7 @@ else{
                                   <input type="tel" 
                                       onChange={event=> setAssisted(event.target.value)}
                     
-                                    id="formcheck"  className="form-control"  style={  assistedcheck ? {display:'block', marginLeft:'10px'}:{display:'none'}}  placeholder=""/>
+                                    id="formcheck"  className="form-control"  style={  assistedcheck ? {display:'block', marginLeft:'10px'}:{display:'none'}}  placeholder="Sales Id"/>
 
                                   </div>
 

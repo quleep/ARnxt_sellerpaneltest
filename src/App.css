@@ -3306,7 +3306,7 @@ form .page .btns button.next {
   width: 250px;
 }
 
-.categorylist li p {
+.categorylist ul li p {
   font-size: 15px;
   font-family: Manrope, sans-serif;
   color: black;
@@ -9043,11 +9043,11 @@ body.active-modal {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -550px;
+    top: -800px;
    
     right: 0;
     background-color: #0c0eaa;
-    padding: 35px 0;
+    padding: 10px 0;
  
   
    

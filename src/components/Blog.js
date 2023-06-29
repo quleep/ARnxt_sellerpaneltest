@@ -13,7 +13,7 @@ function Blog() {
   return (
       <div>
            <Navbar/>  
-<Helmet>
+        <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 
           name='description'
