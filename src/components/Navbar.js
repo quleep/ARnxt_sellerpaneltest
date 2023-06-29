@@ -10,28 +10,31 @@ import { useHistory } from 'react-router-dom';
 
 
 function Navbar() {
+  const [loginuser, setLoginUser] = useState(false)
 
  const history = useHistory()
 
   const userEmail= sessionStorage.getItem('user')
 if(userEmail){
+  
   const emailID= JSON.parse(userEmail)
   let p_id= emailID.userid
   const u_id =emailID.name
 }
 
-  let hamburger = document.querySelector('.hamburger');
-  let navlinks = document.getElementById('nav-links');
+  let hamburger = document.querySelector('.hamburgerall');
+  let navlinks = document.getElementById('navmain');
   let links = document.querySelectorAll('.links');
  
    hamburger && hamburger.addEventListener('click', ()=>{
-  navlinks && navlinks.classList.toggle('hide');
+    
+  navlinks && navlinks.classList.toggle('hidenavbar');
   hamburger && hamburger.classList.toggle('lines-rotate');
   })
  
   for(let i=0; i< links.length; i++){
    links[i].addEventListener('click', ()=>{
-     navlinks.classList.toggle('hide')
+     navlinks.classList.toggle('hidenavbar')
    })
   }
 
@@ -45,6 +48,10 @@ if(userEmail){
   document.querySelector('.dropdownnavbar').style.display= 'none'
 
  }
+ const logouthandler =()=>{
+  sessionStorage.removeItem('user')
+  sessionStorage.removeItem('token')
+ }
 
   return (
   <div >
@@ -52,19 +59,23 @@ if(userEmail){
   <div class="logo"  style={{cursor:'pointer'}}>
   
     <a href='/'>
-    <img src= '/assets/images/arnxtreg.png' /> </a>
+    <img src= '/assets/images/arnxt logo.png' /> </a>
   
    
   </div>
-    <div className='hamburger'>
-      <span className='lines'></span>
-      <span className='lines'></span>
-      <span className='lines'></span>
+    <div className='hamburgerall'>
+      <span className='linesall'></span>
+      <span className='linesall'></span>
+      <span className='linesall'></span>
      </div>
-     <ul id='nav-links'>
+     <ul id='navmain'>
        
      
-
+       {
+          typeof sessionStorage.getItem('user') === 'string' ?
+          <li  onMouseOver={removedropdown}><a href='/dashboard' className='links'  >Dashboard</a></li> :
+          <p></p>
+       } 
        <li  onMouseOver={removedropdown}><a href='/product' className='links'>Product</a></li>
        <li  onMouseOver={removedropdown}><a href='/price' className='links'>Pricing</a></li>
        <li  className= 'resource' onMouseOver={dropdownview} ><a className='links'>Resources</a>  </li>
@@ -79,8 +90,15 @@ if(userEmail){
         </div>
 
        <li  onMouseOver={removedropdown}><a href='/about' className='links'>About Us</a></li>
-   
-       <button className='loginnavbar' type='submit'   ><a style={{cursor:'pointer'}} href='/login'>Login</a></button>
+       {
+        typeof sessionStorage.getItem('user') === 'string' ?
+       <button className= 'logoutnav' type='submit'   ><a style={{cursor:'pointer'}} href='/login' onClick={logouthandler} >Logout</a></button>
+       :
+       <button className= 'loginnavbar' type='submit'   ><a style={{cursor:'pointer'}} href='/login'>Login</a></button>
+
+
+
+       }
 
      </ul>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner, FaUser, FaHamburger } from 'react-icons/fa';
+import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner, FaUser, FaHamburger, FaFileDownload, FaDownload } from 'react-icons/fa';
 import validator from 'validator';
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -645,6 +645,8 @@ const merchantHandler=(e)=>{
 
 const selfselectHandler=(e)=>{
   e.preventDefault();
+ 
+
   document.querySelector('#tabbar1').style='border-bottom: 4px solid green'
   document.querySelector('#tabbar2').style='border-bottom: none'
   document.querySelector('#tabbar3').style='border-bottom: none'
@@ -4071,8 +4073,8 @@ const columns= [
     
     name: "Web Views",
     selector: (row) => (
-     
-    <p style={{paddingLeft:'30px'}}>{getviewsource(row.product_Id)}</p>  
+ 
+   getviewsource(row.product_Id) 
       
        ),
       sortable: true    
@@ -4081,7 +4083,7 @@ const columns= [
     
     name: "App Views",
     selector: (row) => (
-      <p style={{paddingLeft:'30px'}}>{getviewsourcecount(row.product_Id)}</p>  
+      getviewsourcecount(row.product_Id) 
      ),
       sortable: true    
   },
@@ -4089,7 +4091,7 @@ const columns= [
     
     name: "Total Views",
     selector: (row) => (
-      <p style={{paddingLeft:'30px'}}>{getviewcount(row.product_Id)}</p>  
+      getviewcount(row.product_Id)
      
      ),
       sortable: true    
@@ -4351,6 +4353,7 @@ function downloadCSV(array) {
  let links = document.querySelectorAll('.links');
 
   hamburger && hamburger.addEventListener('click', ()=>{
+    console.log('dashboard')
  navlinks && navlinks.classList.toggle('hide');
  hamburger && hamburger.classList.toggle('lines-rotate');
  })
@@ -4361,7 +4364,7 @@ function downloadCSV(array) {
   })
  }
  const logouthandler =()=>{
-    sessionStorage.removeItem('user')
+   
     history.push('/')
  }
 
@@ -4371,7 +4374,7 @@ function downloadCSV(array) {
 
       <div className='nav-container' >
       <div class="logo" onClick={logouthandler} style={{cursor:'pointer'}}>
-      <img src= '/assets/images/arnxtreg.png' />
+      <img src= '/assets/images/arnxt logo.png' />
       
        
       </div>
@@ -4380,18 +4383,25 @@ function downloadCSV(array) {
           <span className='lines'></span>
           <span className='lines'></span>
          </div>
-         <ul id='nav-links'>
+        
+        <ul id='nav-links'>
            
-            <li onClick={profileHandler} ><p><FaUser  style={{marginRight:'5px', marginTop:'-5px', fontSize:'20px'}}/>{u_id}</p></li>
+           <li onClick={profileHandler} ><p><FaUser  style={{marginRight:'5px', marginTop:'-5px', fontSize:'20px'}}/>{u_id}</p></li>
 
-           <li><a href='/' className='links'>Home</a></li>
-           <li><a href='/product' className='links'>Product</a></li>
-           <li><a href='/contact' className='links'>Contact</a></li>
-           <li><a href='/blog' className='links'>Blog</a></li>
-       
-           <li><button className='logoutnavbar' onClick={logouthandler} >Logout</button></li>
+          <li><a href='/' className='links'>Home</a></li>
+          <li><a href='/product' className='links'>Product</a></li>
+          <li><a href='/contact' className='links'>Contact</a></li>
+          <li><a href='/blog' className='links'>Blog</a></li>
+      
+          <li><button className='logoutnavbar' onClick={logouthandler} >Logout</button></li>
 
-         </ul>
+        </ul>
+
+        
+     
+
+        
+    
 
         </div>
       <div className='navbardashboard' style={{display:'none'}}>
@@ -4497,20 +4507,20 @@ function downloadCSV(array) {
   <div className='tabsContainer' >
             <div className="btnContainer">
                 <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`} 
-                onClick={() => handleActive(1)}>Search Models</button>
+                onClick={() => handleActive(1)}>Upload Images</button>
                 <button className={`tabs ${isActive === 2 ? 'activeTab' : ''}`} 
-                onClick={() => handleActive(2)}>Upload Images</button>
+                onClick={() => handleActive(2)}>Search Models</button>
                 <button className={`tabs ${isActive === 3 ? 'activeTab' : ''}`} 
                 onClick={() => handleActive(3)}>Upload Models</button>
             </div>
-            {isActive === 1 && <div className="tabData">
+            {isActive === 2 && <div className="tabData">
                 <div className="tabContent">
                     <h2>Coming Soon...
                     </h2>
                    
                 </div>
             </div>}
-            {isActive === 2 && <div className="tabData">
+            {isActive === 1 && <div className="tabData">
                 <div className="tabContent">
                 <div className='accordionContainer'>
 
@@ -5278,12 +5288,27 @@ function downloadCSV(array) {
         </div>
 
        </div> 
+       <div className='modelviewer' >
+            <model-viewer
+             src= 'https://arnxt-models-webar.s3.ap-south-1.amazonaws.com/Euro_Bed.glb'
+                    
+                    modes="scene-viewer quick-look webxr"
+                    ar-scale="fixed"
+                    auto-rotate ar
+                    camera-controls
+                    shadow-intensity="1"
+                ref={modelRef.current}
+             >
+
+            </model-viewer>
+          </div>
        
     <div className='analyticsdiv'>
       <div className='csvbuttoncontainer'>
-      <button onClick={()=>downloadCSV(csv)} >csv</button>
+      <button onClick={()=>downloadCSV(csv)} >Download <FaDownload/></button>
 
       </div>
+     
 <div className=''>
 <DataTable
     
@@ -6339,26 +6364,7 @@ coloroptions.map(item=>(
       />
       </div>
           </div>
-          <div style={{display:'none'}} >
-            <model-viewer
-            
-
-                    src= 'https://arnxt-models-webar.s3.ap-south-1.amazonaws.com/Euro_Bed.glb'
-                    ar
-                    modes="scene-viewer quick-look webxr"
-                   
-                  
-                    auto-rotate
-                    camera-controls
-                    style={{ width: "100vw", height: "90vh" , marginTop:'-80px', marginLeft:'-90px'}}
-            
-           
-             ref={modelRef.current}
-            
-            >
-
-            </model-viewer>
-          </div>
+      
        
 
       </div>

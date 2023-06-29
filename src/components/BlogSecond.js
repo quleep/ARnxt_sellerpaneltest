@@ -4,6 +4,8 @@ import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import { useLocation } from 'react-router-dom';
+import Navbar from './Navbar';
+import { Helmet } from 'react-helmet';
 
 const BlogSecond = () => {
     useEffect(() => {
@@ -54,8 +56,22 @@ const BlogSecond = () => {
       
       return (
           <div>
-            <Navbartest/>
-            <Metadata title={'Blogs'}/>
+              <Navbar/>  
+<Helmet>
+       <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
+       <meta 
+          name='description'
+          content='Know useful information about augmented reality, virtual reality, metaverse, festemverse etc '
+          />
+          <meta name='keywords' content='
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+          
+          
+          
+          ' />
+       
+     </Helmet>
             <div
             id="privacythird"
             className="section section-padding offwhite-bg mt-5 p-5"

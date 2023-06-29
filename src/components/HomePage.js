@@ -424,7 +424,7 @@ function incNbrc(){
                   </div>
                   <div  className="">
                     <button className="btnpartner" >
-                      <a href="/registernew" >Become our partner</a>
+                      <a href="/register" >Become our partner</a>
                     </button>
                   </div>
 

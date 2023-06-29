@@ -149,7 +149,7 @@ function About() {
         </div>
         <div className='joinus'>
         <button className='btnaboutus' >
-          <a href='/contactusnew' >View openings</a> </button>
+          <a href='/career' >View openings</a> </button>
 
 
         </div>

@@ -70,7 +70,7 @@ const submithandler=(event)=>{
             <div  className='companycontentcontainer'>
              
               <p>
-              Quleep is a leading innovation-driven technology company having the advantage of building next-generation technology products / services for modern industries, enterprises, and businesses. Quleep specialises in developing B2B2C Augmented reality product for business across the Globe. We are expert in creating immersive and outstanding visual delight that intensify human interaction through emerging technologies.  Lets help you to create experiential solutions to accelerate business with customer delight.
+              Quleep is a cutting-edge technology company specialising in the development and innovation of products in the metaverse and augmented reality (AR) domains. With a mission to transform the way people interact with digital content and bridge the gap between the virtual and physical worlds, Quleep is at the forefront of shaping the future of immersive experiences.
               </p>
 
             </div>
@@ -84,9 +84,9 @@ const submithandler=(event)=>{
             </div>
             <div className='contactuscontentone'>
               <p>
-              Noida - Serenia, IHDP Business Park,
+              Plot No, 7 to 10, Sector 126
 
-Sector 127, Noida-201303 
+              Noida, Uttar Pradesh 201303
               </p>
 
             </div>

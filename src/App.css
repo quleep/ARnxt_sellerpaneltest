@@ -6811,6 +6811,22 @@ body.active-modal {
 .selfuploaddiv {
   display: none;
 }
+.loginnavbarnone{
+  display: none;
+}
+.modelviewer{
+  display: none;
+  width: 100%;
+    height: 100vh;
+    max-height: 550px;
+    max-width:  600px;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+  margin-left: 300px;
+  border: 1px solid red;
+
+
+}
 
 .merchantdiv {
   display: none;
@@ -6884,11 +6900,9 @@ body.active-modal {
 
   top: 90px;
   width: fit-content;
-  right: 300px;
+  right: 260px;
   height: auto;
- 
- 
-  background-color: rgb(27, 27, 212);
+   background-color: rgb(27, 27, 212);
 }
 
 
@@ -7474,6 +7488,7 @@ body.active-modal {
 
   align-items: center;
   justify-content: center;
+  
  
 }
 
@@ -8373,15 +8388,20 @@ body.active-modal {
 .iconimageinside {
   display: flex;
   flex-wrap: wrap;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
 
-  padding: 5px;
+ 
+  
   margin-left: 5px;
 }
 .iconimageinside img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+ 
 }
 
 .footer {
@@ -8461,15 +8481,16 @@ body.active-modal {
 }
  .logo{
   display: flex;
-  width: 150px;
-  height: auto;
-  flex-wrap: wrap;
+  
  
+  flex-wrap: wrap;
+  width: 200px;
+  height: 200px;
  
 }
  .logo img{
   max-width: 100%;
-  height: 100%;
+  max-height: 100%;
   object-fit: contain;
   padding: 10px;
 }
@@ -8569,14 +8590,16 @@ body.active-modal {
  
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width:  100%;
+  margin-left: 300px;
+  padding-left: 80px;
   height: 95%;
   display: none;
   margin: 10px;
   border-radius: 5px;
   overflow: scroll;
   
-  border: 1px solid rgb(233, 213, 213);
+ 
 }
 .mainbodycontainer{
   display: flex;
@@ -8585,7 +8608,7 @@ body.active-modal {
   width: auto;
   height: auto;
   margin-top: 80px;
-  margin-left: 300px;
+  width:  100%;
   align-items: left;
   justify-content: left;
  
@@ -8741,7 +8764,9 @@ body.active-modal {
 
 
 
-
+.hidenavbar{
+  top: 70px;
+}
 
 .navbarmain{
   height: 90px;
@@ -8750,14 +8775,17 @@ body.active-modal {
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-  padding: 15px 50px;
+  padding: 15px ;
  
   color: white;
  
   width: 100%;
   position: fixed;
   top: 0;
+  
   z-index: 9999;
+  
+ 
  }
 
 .navbarmain ul{
@@ -8765,6 +8793,7 @@ body.active-modal {
   display: flex;
     align-items: center;
     gap: 50px;
+    
 }
 .navbarmain ul li{
   width: fit-content;
@@ -8858,8 +8887,10 @@ body.active-modal {
   transition: 0.5s;
 }
 .hide{
-  top: 70px
+  top: 70px;
+
 }
+
 .logoutnavbar{
   width: 100px;
   height: 30px;
@@ -8890,6 +8921,25 @@ body.active-modal {
  .loginnavbar a:hover{
   color: white;
  }
+ .logoutnav{
+ 
+  width: 120px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: blue;
+  border-radius: 10px;
+ 
+}
+.logoutnav:hover{
+  background-color: transparent;
+  border: 2px solid red;
+  
+}
+ .logoutnav a:hover{
+  color: white;
+ }
+
 
 
 @media screen and (max-width: 600px) {
@@ -8934,6 +8984,7 @@ body.active-modal {
     margin-left: 50px;
     padding: 20px;
   }
+
   .hamburger{
     display: flex;
     flex-direction: column;
@@ -8943,6 +8994,21 @@ body.active-modal {
     margin-right: -10px;
    
     
+  }
+
+  .hamburgerall{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: -10px;
+  }
+  .linesall{
+    display: block;
+    background-color:  white;
+    height: 2px;
+    width: 35px;
   }
 
   .lines{
@@ -8958,26 +9024,33 @@ body.active-modal {
   }
   .nav-container{
     position: relative;
-    padding: 15px 20px;
+    padding:  15px;
     position: sticky;
     top: 0;
    
+    
    
   }
 
 
+ 
+
+
   ul{
+   
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: -550px;
+   
     right: 0;
     background-color: #0c0eaa;
     padding: 35px 0;
+ 
   
-    
+   
     margin-top: 20px;
   
   }
