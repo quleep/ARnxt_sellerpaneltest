@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaInfo, FaInfoCircle } from 'react-icons/fa';
 
 
 import { Link } from 'react-router-dom'
@@ -57,7 +57,7 @@ const Registernew = ({history}) => {
   useEffect(()=>{
   
     if(res === 201){
-      history.push('/loginnew')
+      history.push('/login')
     }
     
   },[history,res])
@@ -435,7 +435,13 @@ else{
 
 
    
+const displaytooptip= ()=>{
+  document.querySelector('.toolTipassist').style.display= 'flex'
+}
+const removetooltip= ()=>{
+  document.querySelector('.toolTipassist').style.display= 'none'
 
+}
 
 
 
@@ -696,7 +702,11 @@ else{
 
                                 <div className='assistdiv' >
                                   <div className='assist_label' >
-                                  <label className="labelregister" for="form2Example22"  style={{marginRight:'10px'}} >Assisted by</label>
+                                  <label className="labelregister" for="form2Example22"  style={{marginRight:'10px'}} >Assisted by <FaInfoCircle style={{fontSize:'12px',
+                                marginTop:'-5px', cursor:'pointer'  }} onMouseOver={displaytooptip} onMouseLeave={removetooltip} /> </label>
+                                  <div className='toolTipassist'>
+                                               <p>If assisted by sales person kindly enter sales Id</p>
+                                              </div>
                                
                                
                                      <input  className=''  id='checktick' type="checkbox" onClick={checkclick} />

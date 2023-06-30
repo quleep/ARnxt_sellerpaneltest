@@ -4397,12 +4397,6 @@ function downloadCSV(array) {
 
         </ul>
 
-        
-     
-
-        
-    
-
         </div>
       <div className='navbardashboard' style={{display:'none'}}>
       <div class="logo">
@@ -4555,7 +4549,7 @@ function downloadCSV(array) {
                                               <p className='errorproduct'></p>
 
 
-                                          </div>
+                                             </div>
                                          
                                    
 

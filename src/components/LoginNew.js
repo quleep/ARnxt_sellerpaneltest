@@ -49,7 +49,7 @@ const LoginNew = ({history}) => {
           password: password
       }
       axios.post(loginUrl, requestBody).then(response=>{
-            console.log(response)
+            
           setUserSession(response.data.user, response.data.token)
           setRes(response.status)
           
