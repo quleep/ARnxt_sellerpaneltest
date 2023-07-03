@@ -7070,6 +7070,7 @@ body.active-modal {
 }
 .productalldetails input {
   width: 100%;
+  padding-left: 10px;
   border: 1px solid rgb(219, 219, 110);
   box-shadow: 5px 5px 5px rgb(200, 202, 73);
   border-radius: 10px;

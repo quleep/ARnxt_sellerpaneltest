@@ -159,7 +159,7 @@ const Dashboard = () => {
   const [partnername, setPartnerName] = useState('');
   const [partnershopsno, setPartnerShopNO] = useState('');
   const [partneremail, setPartnerEmail] = useState('');
-  const [partneraddress, setPartnerAddress] = useState('');
+  const [addressfield, setAddressField] = useState('');
   const [partnertype, setPartnerType] = useState('');
   const [partnerno, setPartnerNo] = useState('');
   const [partnerproduct, setPartnerProduct] = useState('');
@@ -608,6 +608,7 @@ const profileHandler=(e)=>{
   }
 
   axios.post(merchantprofileurl, body).then(res=>{
+    console.log(res.data)
    setMerchantProfile(res.data)
   }).catch(error=>{
     console.log(error)
@@ -3620,21 +3621,62 @@ useEffect(()=>{
 
 useEffect(()=>{
   merchantprofile && merchantprofile.map(item=>{
+  
     setPartnerName(item.merchantname)
     setPartnerEmail(item.merchantemail)
     setPartnerNo(item.merchantphoneNo)
     setPartnerPin(item.merchantpin)
     setPartnerState(item.merchantstate)
     setPartnerCity(item.merchantcity)
-    setPartnerAddress(item.merchantaddress)
+    if(item.merchantaddress){
+      setAddressField(item.merchantaddress)
+    }else{
+      setAddressField('')
+    }
+   
     setPartnerNoOfShops(item.shopno)
     setPartnerShopName(item.shopname)
-    setPurchaseLink(item.website)
-    setIfsc(item.ifsccode)
-    setGstNo(item.gstno)
-    setBankName(item.bankname)
-    setAccountNo(item.accountno)
-    setPartnerType(item.merchanttype)
+    if(item.website){
+      setPurchaseLink(item.website)
+    }else{
+      setPurchaseLink('')
+
+    }
+    if(item.ifsccode){
+      setIfsc(item.ifsccode)
+
+    }else{
+    setIfsc('')
+
+    } 
+    if(item.gstno){
+      setGstNo(item.gstno)
+
+    }else{
+    setGstNo('')
+
+    }
+    if(item.bankname){
+      setBankName(item.bankname)
+
+    }else{
+    setBankName('')
+
+    }
+    if(item.accountno){
+      setAccountNo(item.accountno)
+
+    }else{
+    setAccountNo('')
+
+    }
+    if(item.merchanttype){
+      setPartnerType(item.merchanttype)
+
+    }else{
+    setPartnerType('')
+
+    }
 
 
 
@@ -3697,8 +3739,9 @@ const searchmodelHandler=(e)=>{
 }
 
 
-const profileUpdateHandler=(e)=>{
-  e.preventDefault()
+const profileUpdateHandler=()=>{
+ 
+
 
   
   if( partnername === ''){
@@ -3708,58 +3751,45 @@ const profileUpdateHandler=(e)=>{
     return
 
 
+  } else{
+    document.querySelector('.partnername').style = 'border: none'
+    document.querySelector('.reqpartnername').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnername').style= ''
-    document.querySelector('.reqpartnername').innerHTML = ''
 
-
-
-  }
   if( partneremail === ''){
     document.querySelector('.partneremail').style = 'border: 2px solid red'
     document.querySelector('.reqpartneremail').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partneremail').style = 'border: none'
+    document.querySelector('.reqpartneremail').innerHTML= ''
   }
-  else{
-    document.querySelector('.partneremail').style = ''
-    document.querySelector('.reqpartneremail').innerHTML = ''
 
-
-
-  }
   if( partnertype === ''){
     document.querySelector('.partnertype').style = 'border: 2px solid red'
     document.querySelector('.reqpartnertype').innerHTML= 'required'
     return
 
 
-  }
-  else{
+  }else{
     document.querySelector('.partnertype').style = 'border: none'
-
-    
-    document.querySelector('.reqpartnertype').innerHTML = ''
-
-
-
+    document.querySelector('.reqpartnertype').innerHTML= ''
   }
-  if( partneraddress === ''){
-    document.querySelector('.partneraddress').style = 'border: 2px solid red'
+
+  if( addressfield === ''){
+ 
+    document.querySelector('.addressfield').style = 'border: 2px solid red'
     document.querySelector('.reqpartneraddress').innerHTML= 'required'
     return
 
 
-  }
-  else{
-    document.querySelector('.partneraddress').style= ''
+  }else{
+    document.querySelector('.addressfield').style = 'border: none'
     document.querySelector('.reqpartneraddress').innerHTML= ''
-
-
-
   }
+
 
   if( partnerno === ''){
     document.querySelector('.partnermobile').style = 'border: 2px solid red'
@@ -3767,91 +3797,73 @@ const profileUpdateHandler=(e)=>{
     return
 
 
+  }else{
+    document.querySelector('.partnermobile').style = 'border: none'
+    document.querySelector('.reqpartnermobile').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnermobile').style= ''
-    document.querySelector('.reqpartnermobile').innerHTML = ''
 
-
-
-  }
   if( partnerstate === ''){
     document.querySelector('.partnerstate').style = 'border: 2px solid red'
     document.querySelector('.reqpartnerstate').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partnerstate').style = 'border: none'
+    document.querySelector('.reqpartnerstate').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnerstate').style= ''
-    document.querySelector('.reqpartnerstate').innerHTML = ''
 
-
-
-  }
   if( partnercity === ''){
     document.querySelector('.partnercity').style = 'border: 2px solid red'
     document.querySelector('.reqpartnercity').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partnercity').style = 'border: none'
+    document.querySelector('.reqpartnercity').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnercity').style= ''
-    document.querySelector('.reqpartnercity').innerHTML = ''
 
-
-
-  }
   if( partnerpin === ''){
     document.querySelector('.partnerpin').style = 'border: 2px solid red'
     document.querySelector('.reqpartnerpin').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partnerpin').style = 'border: none'
+    document.querySelector('.reqpartnerpin').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnerpin').style= ''
-    document.querySelector('.reqpartnerpin').innerHTML = ''
 
-
-
-  }
   if( partnernoofshops === ''){
     document.querySelector('.partnernoofshops').style = 'border: 2px solid red'
     document.querySelector('.reqpartnernoofshops').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partnernoofshops').style = 'border: none'
+    document.querySelector('.reqpartnernoofshops').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnernoofshops').style= ''
-    document.querySelector('.reqpartnernoofshops').innerHTML = ''
 
-
-
-  }
   if( partnershopname === ''){
     document.querySelector('.partnershopname').style = 'border: 2px solid red'
     document.querySelector('.reqpartnershopname').innerHTML= 'required'
     return
 
 
+  }else{
+    document.querySelector('.partnershopname').style = 'border: none'
+    document.querySelector('.reqpartnershopname').innerHTML= ''
   }
-  else{
-    document.querySelector('.partnershopname').style= ''
-    document.querySelector('.reqpartnershopname').innerHTML = ''
 
-
-
-  }
 
 
   const profilebody={
     userid: p_id,
     username: partnername,
     useremail: partneremail,
-    useraddress: partneraddress,
+    useraddress: addressfield,
     userphoneno: partnerno,
     userstate: partnerstate,
     usercity: partnercity,
@@ -4035,7 +4047,7 @@ const csv= allproductmerchant && allproductmerchant.map(item=>{
 
 })
 
-console.log(csv)
+
 
 let count=0;
 const columns= [
@@ -5152,15 +5164,7 @@ function downloadCSV(array) {
                                           </div>
                                       
              
-                                     
-
-
-                                  
-                                     
-
-
-
-                                          </div>
+                                         </div>
 
                                       
 
@@ -6412,7 +6416,7 @@ coloroptions.map(item=>(
         <div className='profiledetails'>
         <div className='productalldetails' >
             <label>Address<span className="required-field"></span><span className='reqpartneraddress'  style={{color:'red', fontSize:'15px', marginLeft:'5px'}}></span></label>
-            <input type='text' value={partneraddress} className='partneraddress' onChange={(e)=>setPartnerAddress(e.target.value)} />
+            <input type='text' value={addressfield} className='addressfield' onChange={(e)=>setAddressField(e.target.value)} />
 
             </div>
 
