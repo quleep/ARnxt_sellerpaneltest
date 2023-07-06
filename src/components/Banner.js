@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
+import ReactModal from "react-modal";
+
 const Banner = ({ filteredApplicants, showSnackbar }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -154,8 +156,25 @@ const Banner = ({ filteredApplicants, showSnackbar }) => {
             Apply Now
           </button>
         </div>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton></Modal.Header>
+        <ReactModal
+          isOpen={show}
+          onRequestClose={handleClose}
+          // You may need to adjust these styles to match your design
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999,
+            },
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              marginRight: "-50%",
+              transform: "translate(-50%, -50%)",
+            },
+          }}>
+          <Modal.Header closeButton onClick={handleClose}></Modal.Header>
           <Modal.Body>
             <div className="modal-padding">
               <form
@@ -224,7 +243,7 @@ const Banner = ({ filteredApplicants, showSnackbar }) => {
               </Toast>
             </div>
           </Modal.Body>
-        </Modal>
+        </ReactModal>
       </div>
     </>
   );

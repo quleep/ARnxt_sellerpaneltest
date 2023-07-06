@@ -15,6 +15,8 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
+import ReactModal from "react-modal";
+
 import Id from "../careerimages/id.svg";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -416,7 +418,7 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
           </div>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className="modal-padding">
@@ -486,7 +488,95 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
             </Toast>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
+      <ReactModal
+        isOpen={show}
+        onRequestClose={handleClose}
+        // You may need to adjust these styles to match your design
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 9999,
+          },
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          },
+        }}>
+        <Modal.Header closeButton onClick={handleClose}></Modal.Header>
+        <Modal.Body>
+          <div className="modal-padding">
+            <form
+              className="card-form"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}>
+              <div className="name">Name</div>
+              <input
+                type="text"
+                className="name-input"
+                required
+                onChange={handleNameChange}
+              />
+              <div className="name">Email ID</div>
+              <input
+                type="email"
+                className="name-input"
+                required
+                onChange={handleEmailChange}
+              />
+              <div className="name">Contact Number:</div>
+              <input
+                type="tel"
+                className="name-input"
+                required
+                pattern="[0-9]{10}"
+                onChange={handleContactChange}
+              />
+
+              {contactError && <div className="error">{contactError}</div>}
+              <div className="name">Upload Resume/CV:</div>
+              <input
+                type="file"
+                name="resume"
+                className="name-input"
+                accept=".pdf"
+                required
+                onChange={handleResumeChange}
+              />
+              {isLoading && <div className="loader"></div>}
+              <button
+                className="action-button"
+                type="submit"
+                disabled={isLoading}>
+                {isLoading ? "Uploading..." : "Upload"}
+              </button>
+            </form>
+
+            <Toast
+              onClose={() => setShowToast(false)}
+              bg="success"
+              show={showToast}
+              delay={3000}
+              autohide>
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded me-2"
+                  alt=""
+                />
+                <strong className="me-auto">Success</strong>
+              </Toast.Header>
+              <Toast.Body className={"text-white"}>
+                Successfully Uploaded!
+              </Toast.Body>
+            </Toast>
+          </div>
+        </Modal.Body>
+      </ReactModal>
     </div>
   );
 };

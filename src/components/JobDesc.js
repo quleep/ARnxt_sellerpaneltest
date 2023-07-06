@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Banner from "./Banner";
 import JobDetail from "./JobDetails";
 import { useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footertest from "./Footertest";
 
 const JobDesc = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,6 +17,7 @@ const JobDesc = () => {
   console.log(filteredApplicants);
   return (
     <div>
+      <Navbar></Navbar>
       <Banner
         filteredApplicants={filteredApplicants}
         showSnackbar={showSnackbar}
@@ -23,6 +26,7 @@ const JobDesc = () => {
         filteredApplicants={filteredApplicants}
         showSnackbar={showSnackbar}
       />
+      <Footertest/>
     </div>
   );
 };

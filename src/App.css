@@ -1046,7 +1046,6 @@ a {
   left: 0;
   width: 100%;
   height: 4em;
-  
 }
 
 .s-sidebar__trigger > i {
@@ -2420,7 +2419,6 @@ a {
   padding-left: 20px;
 }
 
-
 .required-field::before {
   content: "*";
   color: red;
@@ -2440,7 +2438,6 @@ a {
   font-size: 20px;
   margin-left: -30px;
   font-weight: 600;
-
 }
 .required-roomtype::before {
   content: "*";
@@ -2448,9 +2445,8 @@ a {
   font-size: 20px;
   margin-left: -120px;
   font-weight: 600;
-
 }
-.requiredfield{
+.requiredfield {
   display: none;
 }
 .productinputdiv input {
@@ -4416,7 +4412,6 @@ input::-webkit-inner-spin-button {
     margin-left: 10px;
   }
 
-
   .productinsidecontainer {
     width: 330px;
     flex-direction: row;
@@ -5702,7 +5697,6 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 600px) {
-
   .bloginsideheading h1 {
     font-size: 20px;
   }
@@ -5945,7 +5939,8 @@ body {
   justify-content: center;
   width: 70%;
   gap: 2em;
-  margin-top: 60px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 /* Style the tab */
@@ -5960,7 +5955,7 @@ body {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 21px;
   text-transform: uppercase;
   margin-top: 1em;
@@ -5981,7 +5976,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: auto;
+  width: 100%;
   gap: 1em;
 }
 .job-container:hover {
@@ -6017,6 +6012,7 @@ body {
 .experience-text {
   width: 87px;
   height: 19px;
+  align-self: center;
 
   font-family: "Rubik";
   font-style: normal;
@@ -6024,7 +6020,7 @@ body {
   font-size: 12px;
   line-height: 19px;
   /* identical to box height */
-  color: #d4d4d4;
+  color: #a29c9c;
 }
 .experience-year {
   width: 84px;
@@ -6052,7 +6048,8 @@ body {
   font-size: 12px;
   line-height: 19px;
   /* identical to box height */
-  color: #d4d4d4;
+  align-self: center;
+  color: #a29c9c;
 }
 .deadline-year {
   width: 150px;
@@ -6079,10 +6076,10 @@ body {
   align-items: center;
   width: 100%;
   gap: 2em;
+  margin-top: 4em;
   padding-top: 8em;
   padding-bottom: 4em;
-
- 
+  background: #01091e;
 }
 .openings-container {
   display: flex;
@@ -6122,7 +6119,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 450px;
+  height: 550px;
   background-color: #030e29;
 }
 .banner-column {
@@ -6135,7 +6132,6 @@ body {
 .banner-text1 {
   width: 100%;
   height: 43px;
-  font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -6150,7 +6146,6 @@ body {
 .banner-text2 {
   width: 370px;
   height: 32px;
-  font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -6172,7 +6167,7 @@ body {
 .jobdetail {
   display: flex;
   justify-content: center;
-  height: 2000px;
+  height: 1800px;
   text-align: left;
 }
 .jobdetail-main {
@@ -6198,7 +6193,6 @@ body {
 .headline {
   width: 100%;
   height: auto;
-  font-family: "Rubik";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
@@ -6335,6 +6329,9 @@ body {
   .career-description {
     font-size: 14px;
   }
+  .jobdetail{
+    height: 2500px;
+  }
   /* For mobile phones: */
   .jobdetail-main {
     width: 100%;
@@ -6349,6 +6346,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
   .tab {
     display: none;
@@ -6367,7 +6366,7 @@ body {
   }
   .job-name {
     width: auto;
-    font-size: 12px;
+    font-size: 13px;
     margin-left: 1em;
   }
   .experience-text {
@@ -6646,15 +6645,15 @@ body.active-modal {
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 350px;
- }
- 
-.navcontainer>*{
+}
+
+.navcontainer > * {
   flex: 1 1 80px;
- 
+
   align-items: center;
   justify-content: center;
 }
-.usernamecontainer{
+.usernamecontainer {
   display: flex;
   width: 250px;
   height: 30px;
@@ -6776,7 +6775,6 @@ body.active-modal {
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text {
- 
   font-size: 35px;
 }
 .home-section .home-content .bx-menu {
@@ -6809,21 +6807,19 @@ body.active-modal {
 .selfuploaddiv {
   display: none;
 }
-.loginnavbarnone{
+.loginnavbarnone {
   display: none;
 }
-.modelviewer{
+.modelviewer {
   display: none;
   width: 100%;
-    height: 100vh;
-    max-height: 550px;
-    max-width:  600px;
-    background-color: #FFFFFF;
-    flex-wrap: wrap;
+  height: 100vh;
+  max-height: 550px;
+  max-width: 600px;
+  background-color: #ffffff;
+  flex-wrap: wrap;
   margin-left: 300px;
   border: 1px solid red;
-
-
 }
 
 .merchantdiv {
@@ -6892,7 +6888,7 @@ body.active-modal {
 .searchproductstab p:hover {
   color: green;
 }
-.dropdownnavbar{
+.dropdownnavbar {
   display: none;
   position: absolute;
 
@@ -6900,60 +6896,40 @@ body.active-modal {
   width: fit-content;
   right: 260px;
   height: auto;
-   background-color: rgb(27, 27, 212);
+  background-color: rgb(27, 27, 212);
 }
-
 
 .dropdownnavbar a {
   margin: 5px;
-  
- 
- 
+
   color: rgb(223, 211, 211);
- 
+
   display: block;
   padding: 12px;
   text-decoration: none;
   cursor: pointer;
 }
-.dropdownnavbar a:hover{
+.dropdownnavbar a:hover {
   border-bottom: 2px solid rgb(50, 214, 50);
   margin: 5px;
   color: rgb(50, 214, 50);
-  
- 
-
 }
 .profilediv {
-  
   display: none;
   margin-top: 0px;
-  width:  100%;
+  width: 100%;
   height: 100%;
- 
- 
- 
- 
-
- 
-  
 }
 
 .profileinput {
- 
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 80%;
   height: auto;
-
-  
 }
 .profileinput > * {
   flex: 1 1 250px;
- 
-
 
   margin: 10px;
 }
@@ -7105,30 +7081,20 @@ body.active-modal {
   position: relative;
   overflow: hidden;
   display: inline-block;
-  
+
   cursor: pointer;
-  
- 
-  
-  
-  
 }
 
 .btnimage {
-
   width: 140px;
   height: 40px;
   border: 1px solid rgb(163, 153, 153);
   color: black;
-  background-color: transparent ;
+  background-color: transparent;
   padding: 8px 20px;
   border-radius: 10px;
   font-size: 12px;
   cursor: pointer;
- 
-
-
-
 }
 
 .imagedivcontainer {
@@ -7143,7 +7109,6 @@ body.active-modal {
 }
 .imagedivcontainer > * {
   flex: 1 1 60px;
-
 
   height: 80px;
   width: 100px;
@@ -7465,30 +7430,21 @@ body.active-modal {
   display: flex;
   flex-wrap: wrap;
   width: 900px;
- 
- 
- 
-  
- 
-
 }
-.tablewrapper{
+.tablewrapper {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
 }
-.mainhomecontainer{
+.mainhomecontainer {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   height: auto;
- 
 
   align-items: center;
   justify-content: center;
-  
- 
 }
 
 .btnContainer {
@@ -7496,9 +7452,7 @@ body.active-modal {
   display: flex;
   background-color: rgba(44, 2, 117, 0.2);
   border-radius: 8px;
- 
- 
- 
+
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
@@ -7529,9 +7483,8 @@ body.active-modal {
   margin-top: 10px;
   background-color: white;
   border-radius: 8px;
-   width: fit-content;
+  width: fit-content;
   padding-bottom: 10px;
-  
 }
 .tabContent > h5 {
   font-weight: 500;
@@ -7551,26 +7504,16 @@ body.active-modal {
   width: auto;
   background-color: white;
   display: flex;
- flex-direction: row;
+  flex-direction: row;
   flex-wrap: wrap;
   grid-gap: 15px;
   color: rgb(9, 11, 79);
   transition: 0.6s ease-in-out;
- 
- 
-  
- 
-
-  
-  
 }
 .accordion {
   border-radius: 6px;
   width: 100%;
   height: auto;
- 
- 
-  
 }
 .accordionHeading {
   padding: 1rem;
@@ -7578,7 +7521,6 @@ body.active-modal {
   grid-gap: 10px;
   align-items: center;
   cursor: pointer;
-
 }
 .accordionHeading > h3 {
   font-weight: 600;
@@ -7591,7 +7533,6 @@ body.active-modal {
 }
 
 .accordion:nth-child(1) {
-  
   background-color: #fff6ee;
   border-left: 4px solid #ffc48b;
 }
@@ -7607,28 +7548,21 @@ body.active-modal {
   padding: 10px;
   padding-left: 3rem;
   margin-bottom: 1rem;
-
- 
-  
 }
 
 .productdetailsdiv {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-   
-  width:  100%;
+
+  width: 100%;
   gap: 20px;
-  
-  
-  
 }
 
-.productdetailsdiv>* {
+.productdetailsdiv > * {
   flex: 1 1 150px;
- 
+
   margin: 10px;
-  
 }
 .tagdisplay {
   position: relative;
@@ -7763,7 +7697,7 @@ body.active-modal {
   color: white;
   font-size: 0.9rem;
   margin-top: -60px;
- 
+
   padding: 10px;
 }
 .toolTipassist::before {
@@ -7781,7 +7715,6 @@ body.active-modal {
   margin-top: 10px;
   font-size: 12px;
 }
-
 
 .inputtextarea {
   padding: 10px;
@@ -7851,7 +7784,7 @@ body.active-modal {
   border: 1px solid rgb(54, 54, 54);
 
   cursor: pointer;
- 
+
   background-color: #fff6ee;
 }
 .listItems {
@@ -7864,7 +7797,6 @@ body.active-modal {
   margin-top: 5px;
   overflow: scroll;
   z-index: 9999;
- 
 }
 .listButtonMaterial {
   width: 250px;
@@ -7966,7 +7898,6 @@ body.active-modal {
   height: 20px;
 }
 .tagscontainer {
- 
   display: flex;
   width: 300px;
   height: 60px;
@@ -8049,11 +7980,9 @@ body.active-modal {
   border-radius: 5px;
 
   height: 40px;
- 
 }
 .listrooms:hover {
   background-color: rgb(216, 179, 185);
-  
 }
 
 .closeIcon {
@@ -8113,6 +8042,7 @@ body.active-modal {
   opacity: 1;
   transition: opacity 250ms 700ms ease;
 }
+
 .closemodal {
   position: absolute;
   float: right;
@@ -8120,8 +8050,6 @@ body.active-modal {
   right: 0;
   margin: 10px;
   cursor: pointer;
-  
-  
 }
 
 .modal-wrap {
@@ -8429,15 +8357,12 @@ body.active-modal {
   align-items: center;
   justify-content: center;
 
- 
-  
   margin-left: 5px;
 }
 .iconimageinside img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
- 
 }
 
 .footer {
@@ -8501,7 +8426,6 @@ body.active-modal {
   }
 }
 
-
 .navbar {
   height: 90px;
   background-color: hsl(0, 0%, 10%);
@@ -8515,16 +8439,14 @@ body.active-modal {
   color: #0aa5ff;
   font-size: 22px;
 }
- .logo{
+.logo {
   display: flex;
-  
- 
+
   flex-wrap: wrap;
   width: 200px;
   height: 200px;
- 
 }
- .logo img{
+.logo img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -8542,7 +8464,6 @@ body.active-modal {
   display: flex;
   align-items: center;
   gap: 32px;
-  
 }
 
 .menu-links {
@@ -8596,24 +8517,24 @@ body.active-modal {
     display: block;
   }
 }
-.imagedivlist{
+.imagedivlist {
   display: flex;
   flex-wrap: wrap;
   width: 150px;
   height: 150px;
 }
-.imagedivlist img{
+.imagedivlist img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   padding: 10px;
 }
-.csvbuttoncontainer{
+.csvbuttoncontainer {
   display: flex;
   float: right;
   margin: 20px;
 }
-.csvbuttoncontainer button{
+.csvbuttoncontainer button {
   width: 120px;
   height: 40px;
   color: white;
@@ -8622,11 +8543,10 @@ body.active-modal {
   border: none;
 }
 
-.analyticsdiv{
- 
+.analyticsdiv {
   display: flex;
   flex-wrap: wrap;
-  width:  100%;
+  width: 100%;
   margin-left: 300px;
   padding-left: 80px;
   height: 95%;
@@ -8634,22 +8554,19 @@ body.active-modal {
   margin: 10px;
   border-radius: 5px;
   overflow: scroll;
-  
- 
 }
-.mainbodycontainer{
+.mainbodycontainer {
   display: flex;
-  
+
   flex-wrap: wrap;
   width: auto;
   height: auto;
   margin-top: 80px;
-  width:  100%;
+  width: 100%;
   align-items: left;
   justify-content: left;
- 
 }
-.navbardashboard{
+.navbardashboard {
   height: 90px;
   background-color: #0c0eaa;
   padding: 20px 40px;
@@ -8659,27 +8576,23 @@ body.active-modal {
   position: sticky;
   top: 0;
   z-index: 9999;
-
-  
 }
-.navbardashboard .logo i{
+.navbardashboard .logo i {
   color: #0aa5ff;
   font-size: 22px;
 }
-.navbardashboard .logo a{
+.navbardashboard .logo a {
   font-size: 24px;
   font-weight: 700;
   color: white;
   margin-left: 12px;
 }
-.mainbodydashboard{
- 
+.mainbodydashboard {
   height: auto;
- display: flex;
- flex-direction: column;
-  
+  display: flex;
+  flex-direction: column;
 }
-.sidebarcontainer{
+.sidebarcontainer {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid red;
@@ -8689,7 +8602,6 @@ body.active-modal {
 }
 
 .navigation {
-  
   position: fixed;
   width: 90px;
   height: 100%;
@@ -8710,7 +8622,6 @@ body.active-modal {
   left: 0;
   width: 100%;
   background-color: transparent;
- 
 }
 
 .navigation ul li {
@@ -8798,75 +8709,61 @@ body.active-modal {
   }
 }
 
-
-
-.hidenavbar{
+.hidenavbar {
   top: 70px;
 }
 
-.navbarmain{
+.navbarmain {
   height: 90px;
   background-color: #0c0eaa;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-  padding: 15px ;
- 
+  padding: 15px;
+
   color: white;
- 
+
   width: 100%;
   position: fixed;
   top: 0;
-  
-  z-index: 9999;
-  
- 
- }
 
-.navbarmain ul{
+  z-index: 9999;
+}
+
+.navbarmain ul {
   list-style-type: none;
   display: flex;
-    align-items: center;
-    gap: 50px;
-    
+  align-items: center;
+  gap: 50px;
 }
-.navbarmain ul li{
+.navbarmain ul li {
   width: fit-content;
-  
- 
- 
-  
 }
-.navbarmain ul li a{
+.navbarmain ul li a {
   font-size: 18px;
   font-family: Manrope, sans-serif;
   cursor: pointer;
 
   padding-bottom: 15px;
-  transition:  0.5s;
+  transition: 0.5s;
   color: white;
-
-  
 }
-.navbarmain ul li p{
+.navbarmain ul li p {
   font-size: 20px;
   cursor: pointer;
   padding: 20px 15px;
-  transition:  0.5s;
+  transition: 0.5s;
   color: white;
   margin-top: 20px;
- 
-  
-  
 }
-.navbarmain ul li a:hover{
+.navbarmain ul li a:hover {
   color: rgb(50, 214, 50);
 
   border-bottom: 2px solid rgb(50, 214, 50);
   transition: 0.5s;
 }
-.nav-container{
+.nav-container {
   height: 90px;
   background-color: #0c0eaa;
   display: flex;
@@ -8874,60 +8771,52 @@ body.active-modal {
   align-items: center;
   gap: 50px;
   padding: 15px 50px;
- 
+
   color: white;
- 
+
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 9999;
-  
- }
+}
 
-.nav-container ul{
+.nav-container ul {
   list-style-type: none;
   display: flex;
-    align-items: center;
-    gap: 40px;
+  align-items: center;
+  gap: 40px;
 }
-.nav-container ul li{
+.nav-container ul li {
   width: fit-content;
- 
-  
 }
-.nav-container ul li a{
+.nav-container ul li a {
   font-size: 18px;
   cursor: pointer;
   font-family: Manrope, sans-serif;
   padding-bottom: 15px;
-  transition:  0.5s;
+  transition: 0.5s;
   color: white;
-  
 }
-.nav-container ul li p{
+.nav-container ul li p {
   font-size: 20px;
   font-family: Manrope, sans-serif;
 
   cursor: pointer;
   padding: 20px 15px;
-  transition:  0.5s;
+  transition: 0.5s;
   color: white;
   margin-top: 20px;
- 
-  
-  
 }
-.nav-container ul li a:hover{
+.nav-container ul li a:hover {
   color: rgb(50, 214, 50);
   border-bottom: 2px solid rgb(50, 214, 50);
   transition: 0.5s;
 }
-.hide{
+.hide {
   top: 70px;
-
 }
 
-.logoutnavbar{
+.logoutnavbar {
   width: 100px;
   height: 30px;
   border: none;
@@ -8935,104 +8824,81 @@ body.active-modal {
   background-color: blue;
   border-radius: 10px;
 }
-.logoutnavbar:hover{
+.logoutnavbar:hover {
   background-color: transparent;
   border: 2px solid red;
 }
-.loginnavbar{
- 
+.loginnavbar {
   width: 120px;
   height: 40px;
   border: none;
   color: white;
   background-color: blue;
   border-radius: 10px;
- 
 }
-.loginnavbar:hover{
+.loginnavbar:hover {
   background-color: transparent;
   border: 2px solid green;
-  
 }
- .loginnavbar a:hover{
+.loginnavbar a:hover {
   color: white;
- }
- .logoutnav{
- 
+}
+.logoutnav {
   width: 120px;
   height: 40px;
   border: none;
   color: white;
   background-color: blue;
   border-radius: 10px;
- 
 }
-.logoutnav:hover{
+.logoutnav:hover {
   background-color: transparent;
   border: 2px solid red;
-  
 }
- .logoutnav a:hover{
+.logoutnav a:hover {
   color: white;
- }
-
-
+}
 
 @media screen and (max-width: 600px) {
-  .toolTipimages{
+  .toolTipimages {
     width: 100%;
     height: fit-content;
-  right: 150px;
-  top: 10px;
-  position: relative;
- display: flex;
- flex-wrap: wrap;
- padding: 5px;
- 
-   
-    
+    right: 150px;
+    top: 10px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
   }
-  .toolTipimages::before{
+  .toolTipimages::before {
     position: absolute;
     left: 80px;
     top: 70px;
   }
-  .toolTipimages p{
+  .toolTipimages p {
     line-height: 1;
   }
 
-  .alertpopup{
+  .alertpopup {
     left: 60px;
-    top: 120px ;
+    top: 120px;
   }
-  .profilediv{
-   
+  .profilediv {
     padding: 0px;
-    margin-top:-160px;
+    margin-top: -160px;
     margin-left: -180px;
-   
-    width:  350px;
+
+    width: 350px;
   }
-  .analyticsdiv{
+  .analyticsdiv {
     margin-left: 10px;
   }
-  .mainbodycontainer{
+  .mainbodycontainer {
     margin-left: 50px;
     padding: 20px;
   }
 
-  .hamburger{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    cursor: pointer;
-    padding: 10px;
-    margin-right: -10px;
-   
-    
-  }
-
-  .hamburgerall{
+  .hamburger {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -9040,66 +8906,67 @@ body.active-modal {
     padding: 10px;
     margin-right: -10px;
   }
-  .linesall{
+
+  .hamburgerall {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: -10px;
+  }
+  .linesall {
     display: block;
-    background-color:  white;
+    background-color: white;
     height: 2px;
     width: 35px;
   }
 
-  .lines{
+  .lines {
     display: block;
-    background-color:  white;
+    background-color: white;
     height: 2px;
     width: 35px;
-  
   }
-  .lines-rotate{
+  .lines-rotate {
     background-color: green;
     border-radius: 5px;
   }
-  .nav-container{
+  .nav-container {
     position: relative;
-    padding:  15px;
+    padding: 15px;
     position: sticky;
     top: 0;
-    }
+  }
 
-ul{
-   
+  ul {
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: -800px;
-   
+
     right: 0;
     background-color: #0c0eaa;
     padding: 10px 0;
- 
-  
-   
+
     margin-top: 20px;
-  
   }
-  li a{
+  li a {
     color: white;
   }
-  li{
+  li {
     text-align: center;
     width: 90vw;
   }
-  li a:hover{
+  li a:hover {
     font-weight: bold;
     color: gray;
     border: none;
     letter-spacing: 3px;
   }
-  
 }
-
-
 
 :root {
   --bg-primary: #41444b;
