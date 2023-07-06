@@ -6274,13 +6274,13 @@ body {
   margin-top: 0.5em;
 }
 .location-blur {
-  color: #d4d4d4;
+  color: #565454;
 }
 .location-text {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   /* or 141% */
 }

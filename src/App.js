@@ -82,7 +82,6 @@ import Career from "./components/Career";
 import Joinus from "./components/Joinus";
 import Opening from "./components/Opening";
 import JobDesc from "./components/JobDesc";
-import Form from "./components/FormFill";
 
 import Dashboard from "./components/Dashboard";
 import Test from "./components/Test";
@@ -179,8 +178,6 @@ class App extends Component {
           <Route path="/test" exact component={Test} />
           <Route path="/testnew" exact component={TestNew} />
 
-          {/* <Route path="/:id" component={JobDesc} /> */}
-          <Route path="/:id/fill" component={Form} />
 
           <Switch>
             <Route path="/models" exact component={Model} />

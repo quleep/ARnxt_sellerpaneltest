@@ -118,7 +118,7 @@ const submithandler=(event)=>{
               <div className='logoimageone'>
               <a href="https://play.google.com/store/apps/details?id=com.quleep.ARnxt" target="blank" ><img className="" 
                   
-                   src="assets/images/playstorefinal.png"  alt="playstore" /></a>
+                   src="/assets/images/playstorefinal.png"  alt="playstore" /></a>
               
               </div>
 
@@ -127,7 +127,7 @@ const submithandler=(event)=>{
             <div className='logoimagetwo'>
             <a href="https://apps.apple.com/in/app/arnxt/id1598795711" target="blank" > <img className=""
                  
-                   src="assets/images/applestorelogo.jpg"  alt="apple" /> </a>
+                   src="/assets/images/applestorelogo.jpg"  alt="apple" /> </a>
                  
               </div>
 </div>
@@ -167,7 +167,7 @@ const submithandler=(event)=>{
                       href="https://www.youtube.com/channel/UCeMwHXO9Y_L5mAc0jKmxT4A"
                       target="blank"
                     >
-                      <img className="footer-image-instagram" src="assets/images/youtube.png" alt="" />
+                      <img className="footer-image-instagram" src="/assets/images/youtube.png" alt="" />
                     
                     </a>
 
@@ -180,7 +180,7 @@ const submithandler=(event)=>{
                       href="https://www.instagram.com/arnxt2021/"
                       target="blank"
                     >
-                      <img className="footer-image-instagram" src="assets/images/instagram.png" alt="" />
+                      <img className="footer-image-instagram" src="/assets/images/instagram.png" alt="" />
                     
                     </a>
 
@@ -192,7 +192,7 @@ const submithandler=(event)=>{
                       href="https://www.linkedin.com/company/arnxt"
                       target="blank"
                     >
-                      <img className="footer-image" src="assets/images/linkedin.png" alt="" />
+                      <img className="footer-image" src="/assets/images/linkedin.png" alt="" />
                      
                     </a>
 
@@ -202,7 +202,7 @@ const submithandler=(event)=>{
               <div>
               <div className='iconimageinside'>
               <a href="https://twitter.com/ARNXT1" target="blank">
-                    <img className="footer-image-twitter" src="assets/images/twitter.png" alt="" />
+                    <img className="footer-image-twitter" src="/assets/images/twitter.png" alt="" />
                      
                     </a>
 
@@ -212,7 +212,7 @@ const submithandler=(event)=>{
                 <div className='iconimageinside'>
                 <a href="https://www.facebook.com/ARNXT/" target="blank">
                      
-                      <img className="footer-image" src="assets/images/facebook.png" alt="" />
+                      <img className="footer-image" src="/assets/images/facebook.png" alt="" />
                     </a>
 
                 </div>

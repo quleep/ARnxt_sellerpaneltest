@@ -193,6 +193,7 @@ const Banner = ({ filteredApplicants, showSnackbar }) => {
                   type="email"
                   className="name-input"
                   required
+                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
                   onChange={handleEmailChange}
                 />
                 <div className="name">Contact Number:</div>
