@@ -45,7 +45,8 @@ const openqrcode = ()=>{
                <div>
 
             </div>
-         <QRCode value= {`http://192.168.1.27:8121/view?id=${location.state}`}/>
+         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${location.state}`}/>
+
                 </span>	
 	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		
 	      	</div>			          		
