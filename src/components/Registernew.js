@@ -67,11 +67,6 @@ const Registernew = ({history}) => {
     
     const checkclick= (e)=>{
      
-
-   
-      
-  
-     
       if(!assistedcheck){
 
         

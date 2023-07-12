@@ -7912,10 +7912,68 @@ body.active-modal {
 }
 .AddTagContainer {
 }
+.checkinput{
+   
+  width: 20px;
+  height: 20px;
+  border: solid #0079bf;
+  border-width: 0 2px 2px 0;
+ accent-color: white;
+ opacity: 0;
+ 
+}
+.wallchangeinside{
+  display: flex;
+  border: 2px solid rgb(192, 189, 189);
+  width: 250px;
+  height: 250px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  
+  
+}
+.wallchangeinside img{
+  width: 100%;
+  height: 100%;
+   object-fit: contain;
+   cursor: pointer;
+   padding-right: 20px;
+   
+  
+}
+.filtercheckbox input[type="checkbox"]{
+  display: none;
+   
+    
+  }
+  .filtercheckbox {
+    position: relative;
+    border: 2px solid #66bb6a;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    
+   
+   
+    
+  
+  }
+  .checkboxadd {
+  
+    background-image: url('/assets/images/check-circle.svg') ;
+    background-position: center;
+    background-size: contain;
+  }
 
 .selectcheck {
   background-color: rgb(216, 179, 185);
 }
+
+
 
 .addTagBox {
   width: 350px;
@@ -7983,6 +8041,12 @@ body.active-modal {
   font-size: 1rem;
   padding: 2px;
   cursor: pointer;
+}
+.modalcontainerar{
+  display: flex;
+  width: 400px;
+  height: 600px;
+  
 }
 
 /* .modalContainer {
@@ -8145,6 +8209,78 @@ body.active-modal {
   opacity: 1;
   transform: scale(0.6);
   transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+}
+.modalscan {
+  position: fixed;
+  display: none;
+  display: -ms-flexbox;
+  
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow-x: hidden;
+  background-color: rgba(31, 32, 41, 0.75);
+ 
+  opacity: 1;
+  transition: opacity 250ms 700ms ease;
+}
+.closemodalscan {
+  position: absolute;
+  float: right;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+  
+  
+}
+.buttonqrcode{
+  margin: 10px;
+}
+.buttonqrcode button{
+  width: 120px;
+  height: 40px;
+  border: none;
+  background-color: #1640ac;
+  color: white;
+  border-radius: 10px;
+}
+.modalscannew{
+  z-index: 0;
+}
+
+.modal-wrapscan {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  padding-top: 80px;
+
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  background-color: #fff;
+  -ms-flex-item-align: center;
+  align-self: center;
+  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, 0.25);
+  opacity: 1;
+  transform: scale(0.6);
+  transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+}
+.modal-wrapscan p{
+  margin-top: 60px;
+ 
 }
 
 .circle-loader {
@@ -8586,16 +8722,47 @@ body.active-modal {
   display: none;
   cursor: pointer;
 }
-
-@media (max-width: 53rem) {
-  .menu {
-    display: none;
-  }
-
-  .menu-btn {
-    display: block;
-  }
+.inputcamdiv input{
+  border: 2px solid rgb(211, 201, 201);
+  border-radius: 10px;
+  height: 40px;
+  width:  200px;
+  padding-left: 5px;
 }
+.inputcamdiv input:focus{
+  outline: none;
+}
+.loadcontainer{
+  display: none;
+  margin-top: -30px;
+  position: absolute;
+  left: 60%;
+  top: 30%;
+}
+.load {
+  width: 60px;
+  height: 60px;
+  margin: 110px auto 0;
+  border:solid 10px rgb(47, 47, 201);
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+   -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         2.0s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+      
+       transition: all 0.5s ease-in;
+    animation-name:             rotate; 
+    animation-duration:         1.0s; 
+    animation-iteration-count:  infinite;
+    animation-timing-function: linear; 
+   
+  }
+
+
+
 .imagedivlist{
   display: flex;
   flex-wrap: wrap;
@@ -8621,6 +8788,151 @@ body.active-modal {
   border-radius: 10px;
   border: none;
 }
+.wallchangecontainer{
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-top: 120px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+ 
+ 
+}
+.defaultinsidetext{
+ 
+ 
+  border: 1px dashed gray;
+  padding: 10px;
+ 
+ 
+
+  
+}
+.defaultimages{
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  height: 200px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+.defaultimages>*{
+  flex: 1 1 150px;
+ 
+  margin: 10px;
+ 
+}
+.defaultimages img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+.wallchangeimage{
+  display: flex;
+  width: 300px;
+  height: 600px;
+  border: 2px solid gray;
+  flex-wrap: wrap;
+  border-radius: 10px;
+
+}
+.wallchangeimage>*{
+  flex: 1 1 60px;
+ 
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+}
+.wallchangeshow{
+  display: flex;
+  width: 700px;
+  height: auto;
+  border: 2px solid  gray;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 10px;
+}
+.wallchangedisplay{
+  width: 100%;
+  height: 450px;
+  display: flex;
+  margin: 10px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+
+ 
+}
+.wallchangedisplay img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.wallchangebuttons{
+  display: flex;
+  align-self: flex-end;
+  width: 100%;
+  height: 60px;
+  margin: 10px;
+ 
+  padding-top: 10px;
+  justify-content: space-evenly;
+   margin-bottom: 20px;
+}
+ .wallchangebuttons button{
+  width: 140px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: Lato, sans-serif;
+ }
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+}
+
+.btn {
+
+  width: 140px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: Lato, sans-serif;
+
+}
+.cameradiv{
+  position: absolute;
+  display: none;
+  left: 30%;
+  top: 20%;
+ 
+  flex-direction: column;
+  
+}
+.cameradiv button{
+  border: none;
+  background-color: #001e6c;
+  color: white;
+  height: 50px;
+}
+.inputcamdiv input{
+  border: 1px solid gray;
+  border-radius: 10px;
+}
 
 .analyticsdiv{
  
@@ -8634,8 +8946,154 @@ body.active-modal {
   margin: 10px;
   border-radius: 5px;
   overflow: scroll;
-  
  
+}
+.arviewcontainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+.arviewcontainer{
+  width: 100%;
+  height: auto;
+}
+.arproductscontainer{
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-wrap: wrap;
+  flex-direction: row;
+ 
+  margin-top: 120px;
+  
+}
+.paginationcontainer{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  flex-wrap: wrap;
+ 
+}
+.arproductscontainer>*{
+  margin: 10px;
+  flex: 1 1 300px;
+ 
+}
+.arproductcard{
+  display: flex;
+  margin: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+   border: 2px solid rgb(184, 184, 194);
+   height: 400px;
+   width: 300px;
+   flex-direction: row;
+   border-radius: 10px;
+}
+.arproductcard img{
+  width:  100%;
+  height:  250px;
+  object-fit: contain;
+}
+.arproductcard button{
+
+  width: 100%;
+  height: 60px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  color: rgb(228, 220, 220);
+  background-color: rgb(110, 110, 179);
+}
+.arproductcard button:hover{
+  background-color: rgb(36, 36, 112);
+}
+.ardetails{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 120px;
+  margin-bottom: 80px;
+  align-items: center;
+  justify-content: center;
+
+}
+.arviewmodelcontainer{
+  display: flex;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgb(202, 198, 198);
+  border-radius: 10px;
+  object-fit: contain;
+}
+.arviewdetailscontainer{
+  display: flex;
+  width: 600px;
+  height: fit-content;
+  border: 2px solid rgb(206, 209, 206);
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.arviewdetailscontainer>*{
+  flex: 1 1 80px;
+  border: 1px solid gray;
+  margin: 10px;
+  border-radius: 5px;
+}
+.productdetailsinside{
+  display:  flex;
+  overflow: scroll;
+}
+.productdetailsinside label{
+  font-size: 20px;
+  padding: 5px;
+  font-weight: bold;
+  font-family: Manrope, sans-serif;
+  
+
+}
+.productdetailsinside p{
+ 
+  font-size: 15px;
+  padding-left: 10px;
+  font-family: Manrope, sans-serif;
+  text-align: justify;
+  padding: 10px;
+  font-weight: 700;
+}
+.pagination {
+  margin: 15px auto;
+  display: flex;
+  list-style: none;
+  outline: none;
+}
+.pagination > .active > a{
+  background-color: #47ccde ;
+  border-color: #47ccde ;
+  color: #fff;
+}
+.pagination > li > a{
+  border: 1px solid #47ccde ;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+  background-color: #47ccde ;
+  border-color: #47ccde;
+  outline: none ;
+}
+.pagination > li > a, .pagination > li > span{
+  color: #47ccde
+}
+.pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
+  border-radius: unset
 }
 .mainbodycontainer{
   display: flex;
@@ -8745,6 +9203,8 @@ body.active-modal {
 .navigation ul li a .icon .fa {
   font-size: 24px;
 }
+
+
 
 .navigation ul li a .title {
   position: relative;
@@ -8976,9 +9436,38 @@ body.active-modal {
   color: white;
  }
 
+.cambutton{
 
+}
 
 @media screen and (max-width: 600px) {
+ .wallchangeshow{
+  width: 400px;
+}
+.wallchangebuttons{
+  flex-direction: row;
+  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 140px;
+
+}
+.wallchangedisplay{
+  width: 300px;
+  height: 300px;
+}
+.cambutton{
+  display: none;
+}
+.wallchangebuttons button{
+ margin: 10px;
+}
+.wallchangeshow{
+  height: fit-content;
+}
+.wallchangeimage{
+  height: fit-content;
+}
   .toolTipimages{
     width: 100%;
     height: fit-content;
@@ -9099,7 +9588,15 @@ ul{
   
 }
 
+@media (max-width: 53rem) {
+  .menu {
+    display: none;
+  }
 
+  .menu-btn {
+    display: block;
+  }
+}
 
 :root {
   --bg-primary: #41444b;

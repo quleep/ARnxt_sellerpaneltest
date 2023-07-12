@@ -89,6 +89,10 @@ import Test from "./components/Test";
 import TestNew from "./components/TestNew";
 import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
+import ViewAR from "./components/ViewAR";
+import ARdetails from "./components/ARdetails";
+import Wallchange from "./components/Wallchange";
+import View from "./components/View";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -170,8 +174,17 @@ class App extends Component {
           <Route path="/test" exact component={Testpage} />
           <Route path="/blogsecond" exact component={BlogSecond} />
           <Route path="/blogthird" exact component={BlogThird} />
+          <Route path="/arview" exact component={ViewAR} />
+
           <Route exact path="/career" component={Career} />
+          <Route exact path="/details" component={ARdetails} />
+          <Route exact path="/webdetails" component={Wallchange} />
+          <Route exact path="/view" component={View} />
+
+
+
           <Route path="/career/:id" component={JobDesc} />
+          
          
 
 

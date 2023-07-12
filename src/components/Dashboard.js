@@ -6195,11 +6195,6 @@ tagsoptions.map(item=>(
 ))
 }   
 
-
-
-
-
-
    </datalist>
           </div>
         </div>
@@ -6232,11 +6227,6 @@ coloroptions.map(item=>(
 
 ))
 }   
-
-
-
-
-
 
    </datalist>
           
