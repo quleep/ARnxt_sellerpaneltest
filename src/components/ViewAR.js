@@ -27,8 +27,7 @@ const ViewAR = () => {
 
     },[])
  
-  
-   
+
 
     const slice = allproducts && allproducts.slice(offset, offset + perPage)
 
@@ -100,7 +99,7 @@ const ViewAR = () => {
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
+                    containerClassName={"paginationar"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
 

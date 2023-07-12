@@ -17,6 +17,15 @@ const View = () => {
         })
      },[])
 
+     let newurl;
+
+     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        newurl = glburl && glburl.modeldetails[0].usdz
+    } else {
+        newurl =  glburl && glburl.modeldetails[0].glb
+    }
+     
+
   return (
     
     <div>
@@ -25,7 +34,7 @@ const View = () => {
         <div className='modalcontainerar'>
             <model-viewer
            
-           src= {glburl && glburl.modeldetails[0].glb}
+           src= {newurl}
                   
                   modes="scene-viewer quick-look webxr"
                   
