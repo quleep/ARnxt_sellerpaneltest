@@ -65,14 +65,11 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
     const summary = encodeURIComponent("My favorite developer program");
     const source = encodeURIComponent("LinkedIn");
 
-    window.open(
-      `https://www.linkedin.com/shareArticle?mini=true&url=${articleUrl}&title=${title}&summary=${summary}&source=${source}`
-    );
+    const linkedinUrl = `http://www.linkedin.com/shareArticle?mini=true&url=${articleUrl}&title=${title}&summary=${summary}&source=${source}`;
+
+    window.open(linkedinUrl);
   };
 
-  const shareOnInstagram = () => {
-    window.open(`https://www.instagram.com/?url=${window.location.href}`);
-  };
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
@@ -409,11 +406,6 @@ const JobDetails = ({ filteredApplicants, showSnackbar }) => {
                 alt="Linkedin"
                 className="social-svg"
                 onClick={shareOnLinkedin}></img>
-              <img
-                src={Instagram}
-                alt="Instagram"
-                className="social-svg"
-                onClick={shareOnInstagram}></img>
             </div>
           </div>
         </div>

@@ -6307,7 +6307,7 @@ body {
 }
 .share-row {
   display: flex;
-  gap: 8px;
+  gap: 16px;
 }
 .social-svg {
   width: 35px;
