@@ -23,13 +23,27 @@ if(userEmail){
 }
 
   let hamburger = document.querySelector('.hamburgerall');
+  let crossburger = document.querySelector('.hamburgercross');
   let navlinks = document.getElementById('navmain');
   let links = document.querySelectorAll('.links');
  
    hamburger && hamburger.addEventListener('click', ()=>{
+    console.log('hellow')
     
-  navlinks && navlinks.classList.toggle('hidenavbar');
-  hamburger && hamburger.classList.toggle('lines-rotate');
+    document.querySelector('#navmain').classList.remove('hamlist')
+    document.querySelector('#navmain').classList.add('hamlistmob')
+    document.querySelector('.hamburgerall').style.display = 'none'
+    document.querySelector('.hamburgercross').style.display = 'flex'
+ 
+  })
+  crossburger && crossburger.addEventListener('click', ()=>{
+    console.log('hellow')
+    
+    document.querySelector('#navmain').classList.remove('hamlistmob')
+    document.querySelector('#navmain').classList.add('hamlist')
+    document.querySelector('.hamburgerall').style.display = 'flex'
+    document.querySelector('.hamburgercross').style.display = 'none'
+ 
   })
  
   for(let i=0; i< links.length; i++){
@@ -66,9 +80,18 @@ if(userEmail){
     <div className='hamburgerall'>
       <span className='linesall'></span>
       <span className='linesall'></span>
+
+     
       <span className='linesall'></span>
      </div>
-     <ul id='navmain'>
+     <div className='hamburgercross'>
+      <span className='linesnew'></span>
+      <span className='linesnewcross'></span>
+
+     
+      
+     </div>
+     <ul className='hamlist' id='navmain'>
        
      
        {

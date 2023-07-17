@@ -29,6 +29,9 @@ const openqrcode = ()=>{
   document.querySelector('.modalscan').style.display= 'block'
 
 }
+useEffect(()=>{
+
+},[])
    
 
   return (
@@ -53,18 +56,22 @@ const openqrcode = ()=>{
       	</div>	
             <div className='arviewmodelcontainer'>
             <model-viewer
-           
            src= {glburl && glburl.modeldetails[0].glb}
                   
-                  modes="scene-viewer quick-look webxr"
-                  
-                  auto-rotate ar
-                  camera-controls
-                  shadow-intensity="1"
-              ref={modelRef.current}
-              style={{width:'100%', height:'100%',padding:'10px'}}
-              
-           />
+           modes="scene-viewer quick-look webxr"
+           
+           auto-rotate ar
+           camera-controls
+           shadow-intensity="1"
+       ref={modelRef.current}
+       style={{width:'100%', height:'100%',padding:'10px'}}
+           
+           >
+              <button slot="ar-button" style={{backgroundColor:'white', borderRadius:'4px', border:'none', position:'absolute', top:'16px', right:'16px'}}>
+      👋 Activate AR
+  </button>
+
+           </model-viewer>
 
             </div>
             <div className='arviewdetailscontainer'>

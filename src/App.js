@@ -93,6 +93,7 @@ import ViewAR from "./components/ViewAR";
 import ARdetails from "./components/ARdetails";
 import Wallchange from "./components/Wallchange";
 import View from "./components/View";
+import Plan from "./components/Plan";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -100,6 +101,7 @@ const verifyUrl =
 
 
 class App extends Component {
+  
   constructor() {
     super();
     this.state = {
@@ -153,6 +155,7 @@ class App extends Component {
            "
             />
           </Helmet>
+          
 
           <Route path="/price" exact component={Pricing} />
 
@@ -180,6 +183,8 @@ class App extends Component {
           <Route exact path="/details" component={ARdetails} />
           <Route exact path="/webdetails" component={Wallchange} />
           <Route exact path="/view" component={View} />
+          <Route exact path="/plan" component={Plan} />
+
 
 
 

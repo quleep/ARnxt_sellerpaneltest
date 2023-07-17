@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import Navbartest from "./Navbartest";
 import Footertest from "./Footertest";
 import Navbar from "./Navbar";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -26,7 +27,7 @@ function loadScript(src) {
 
 function Pricing() {
   // scrolled to top when redirected from a page
-
+  const history = useHistory()
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -132,6 +133,14 @@ function Pricing() {
 
   }
 
+  const handleRegisterClick = ()=>{
+      if(typeof sessionStorage.getItem('user') === 'string'){
+         history.push('/plan')
+      }else{
+        history.push('/login')
+      }
+  }
+
   return (
     <div className="pricetable_div"  >
     <Navbar/>
@@ -206,9 +215,9 @@ function Pricing() {
 
                   <th scope="col" style={{width:'600px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a href="/register">Start 14 day trial</a> 
+                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
                     </button>
-                    <h4 className="plan-text">Basic</h4>
+                    <h4 className="plan-text">Starter</h4>
                     <div style={{display:'flex', border:'', marginLeft:'10px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
                    
                       <div  style={ check ? {flex:'3', border:'', width:'70px', marginLeft:'40px', marginRight:''} :{flex:'3', border:'', width:'70px', marginLeft:'20px', marginRight:''}}> 
@@ -238,9 +247,9 @@ function Pricing() {
                   </th>
                   <th scope="col" style={{width:'800px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a href="/register">Start 14 day trial</a> 
+                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
                     </button>
-                    <h4 className="plan-text">Premium</h4>
+                    <h4 className="plan-text">Basic</h4>
                     <div style={{display:'flex', border:'', marginLeft:'-5px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
                    
                    <div  style={ check ? {flex:'3', border:'', width:'70px', marginLeft:'50px', marginRight:''} : {flex:'3', border:'', width:'70px', marginLeft:'20px', marginRight:''}}> 
@@ -270,9 +279,9 @@ function Pricing() {
 
                   <th scope="col" style={{width:'1000px'}}>
                   <button className="btnall"  style={{width:'180px', marginBottom:'10px'}} >
-                  <a href="/register">Start 14 day trial</a> 
+                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
                     </button>
-                    <h4 className="plan-text">Business Pro</h4>
+                    <h4 className="plan-text">Premium</h4>
                     <div style={ check ? {display:'flex', border:'', marginLeft:'40px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}:
                     {display:'flex', border:'', marginLeft:'10px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
                    
@@ -301,9 +310,9 @@ function Pricing() {
 
                   <th scope="col"  style={{width:'600px'}}>
                   <button className="btnall" style={{width:'180px', marginBottom:'10px'}}>
-                     <a href="/register">Start 14 day trial</a> 
+                     <a onClick={handleRegisterClick}>Start 14 day trial</a> 
                     </button>
-                    <h4 className="plan-text">Enterprise</h4>
+                    <h4 className="plan-text">Business Pro</h4>
                     <div style={ check ? {display:'flex', border:'', marginLeft:'50px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}: 
                     {display:'flex', border:'', marginLeft:'50px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
                    

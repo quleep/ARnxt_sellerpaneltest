@@ -201,6 +201,10 @@ const Wallchange = () => {
         document.querySelector('.cameradiv').style.display= 'none'
 
      }
+     useEffect(()=>{
+      window.scrollTo(0,0)
+   },[])
+      
   return (
     <div>
         <Navbar/>

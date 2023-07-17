@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner, FaUser, FaHamburger, FaFileDownload, FaDownload } from 'react-icons/fa';
+import { FaTimes,FaExclamationCircle,FaInfoCircle, FaCheck, FaSpinner, FaUser, FaHamburger, FaFileDownload, FaDownload, FaTicketAlt } from 'react-icons/fa';
 import validator from 'validator';
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -16,12 +16,15 @@ import { RiAddLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { MdClose } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
+import QRCode from "react-qr-code";
+
 
 
 
 
 const imagesendurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl';
 const registerUrl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/productsalldetails';
+const urlfilesend= 'https://qt028wy4w7.execute-api.ap-south-1.amazonaws.com/default/ARnxt_models_new'
 
 
 const savedimurl= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/sendimageurl'
@@ -50,6 +53,9 @@ const getdesignofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazona
 const getcollectionofmerchanturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcollectionofmerchant'
 const getmerchantallproducturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/merchantallproduct'
 const getanalyticsdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getanalyticsdata'
+const uplodmodelsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/uploadmodels';
+const searchmodelurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel'
+const getmodeldata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
 
 
 
@@ -60,6 +66,12 @@ const Dashboard = () => {
 
   const [saveddata, setSavedData] = useState();
   const [finalarraydata, setFinalArrayData] = useState([])
+  const [uploadfileglb, setUploadFileGlb] = useState('')
+  const [uploadfilezip, setUploadFileZip] = useState('')
+  const [uploadfilefbx, setUploadFileFbx] = useState('')
+  const [uploadfileusdz, setUploadFileUsdz] = useState('')
+
+  
 
   const [weightproduct, setWeightProduct] = useState('')
 
@@ -95,6 +107,7 @@ const Dashboard = () => {
   const [partnerpin, setPartnerPin] = useState('')
   const [partnershopname, setPartnerShopName] = useState('');
   const [analyticsdata, setAnalyticsData] = useState()
+  const [searchdatavalue, setSearchDataValue] = useState(false)
 
 
 
@@ -138,6 +151,7 @@ const Dashboard = () => {
   const [care, setCare] = useState('');
 
   const [proid, setProid]= useState('');
+  const [modeldatatyped, setModelDataTyped] = useState('')
   const [allproductmerchant, setAllProductMerchant] = useState()
 
  
@@ -189,6 +203,44 @@ const Dashboard = () => {
   const [partnercare, setPartnerCare] = useState('');
   const [partneradditional, setPartnerAdditional]= useState('');
 
+
+  const [namemerchant, setNameMerchant] = useState('');
+ 
+  const [emailmerchant, setEmailMerchant] = useState('');
+ 
+ 
+
+  const [productmerchant, setProductMerchant] = useState('');
+  const [merchantbrandname, setMerchantBrandName] = useState('');
+  const [modelidmerchant, setModelidMerchant] = useState('');
+  const [mrpmerchant, setMrpMerchant] = useState('');
+  const [offerpricemerchant, setOfferPriceMerchant] = useState('');
+  const [currencymerchant, setCurrencyMerchant] = useState('INR');
+  const [lengthmerchant, setLengthMerchant] = useState('');
+  const [breadthmerchant, setBreadthMerchant] = useState('');
+  const [heightmerchant, setHeightMerchant] = useState('');
+  const [collectionmerchant, setCollectionMerchant] = useState('');
+  const [primarymaterialmerchant, setPrimaryMaterialMerchant] = useState('');
+  const [roomtypemerchant, setRoomTypeMerchant] = useState('');
+  const [weightmerchant, setWeightMerchant] = useState('');
+  const [warrantymerchant, setWarrantyMerchant] = useState('');
+  const [skumerchant, setSkuMerchant] = useState('');
+  const [merchantproductcategory, setMerchantProductCategory] = useState('Category');
+  const [merchantsubcateogry, setMerchantSubCategory] = useState('Sub-category');
+  const [subcatdetailsmerchant, setSubCatDetailsMerchant] = useState('');
+  const [tagsmerchant, setTagsMerchant] = useState([]);
+  const [colorsmerchant, setColorsMerchant] = useState([]);
+  const [specificationmerchant, setSpecificationMerchant] = useState('');
+  const [brandoverviewmerchant, setBrandOverviewMerchant] = useState('');
+  const [sellerinfomerchant, setSellerInfoMerchant] = useState('');
+  const [caremerchant, setCareMerchant] = useState('');
+  const [additionalmerchant, setAdditionalMerchant]= useState('');
+  const [unitmerchant, setUnitMerchant]= useState('');
+  const [weightunitmerchant, setWeightUnitMerchant] = useState('');
+  const [designselectmerchant, setDesignSelectMerchant] = useState('')
+  const [modelglb, setModelGlb] = useState('')
+
+
  const [gstno, setGstNo] = useState('')
  const [bankname, setBankName] = useState('')
  const [accountno, setAccountNo] = useState('')
@@ -203,6 +255,7 @@ const Dashboard = () => {
  const [currencydrop, showCurrencyDrop] = useState(false)
  const [desgindrop, showDesignDrop] = useState(false)
  const [designroom, showDesignRoom] = useState(false)
+ const [designroommerchant, showDesignRoomMerchant] = useState(false)
 
  const [select, setSelect] = useState('Category')
 
@@ -211,6 +264,8 @@ const Dashboard = () => {
  const [currencyselect, setCurrencySelect] = useState('INR')
  const [designselect, setDesignSelect] = useState('')
  const [roomsdrop, setRoomsDrop] = useState('Room Type')
+ const [dropdownroommerchant, setDropdownRoomMerchant] = useState('Room Type')
+
 
  const [buttonclick, setButtonClick] = useState(false)
 
@@ -219,9 +274,18 @@ const Dashboard = () => {
  const [tagText, setTagText] = useState('');
  const [tags, setTags] = useState([]);
  const [reRender, setReRender] = useState(false)
+
+ const [tagTextmerchant, setTagTextMerchant] = useState('');
+ const [merchanttags, setMerchantTags] = useState([]);
+ const [reRendermerchant, setReRenderMerchant] = useState(false)
+
  const [tagcolor, setTagColor] = useState('')
  const [colortags, setColorTags] = useState([])
  const [colorreRender, setColorReRender] = useState(false)
+
+ const [tagcolormerchant, setTagColorMerchant] = useState('')
+ const [colortagsmerchant, setColorTagsMerchant] = useState([])
+ const [colorreRendermerchant, setColorReRenderMerchant] = useState(false)
 
  const [showPopup, setShowPopup] = useState(false)
 
@@ -235,16 +299,33 @@ const Dashboard = () => {
  const [weightunit, setWeightUnit] = useState('')
  const [activelist, setActiveList] = useState(false)
  const [selectedrooms, setSelectedRooms] = useState([])
+ const [roomsselectmerchant, setroomsselectmerchant] = useState([])
  const [brandofmerchant, setBrandOfMerchant] = useState([])
  const [collectionofmerchant, setCollectionOfMerchant] = useState([])
  const [colorsofmerchant, setColorsOfMerchant] = useState([])
  const [tagsofmerchant, setTagsOfMerchant] = useState([])
  const [designstyleofmerchant, setDesignStyleOfMerchant] = useState([])
+ const [filefbx, setFileFbx] = useState('')
+ const [fileglb, setFileGlb] = useState('')
+ const [fileusdz, setFileUsdz] = useState('')
+ const [fileimage, setFileImage] = useState('')
+ const [uploadfilesarray, setUploadFilesArray] = useState([])
+ const [modelsearchdata, setModelSearchData] = useState()
+ const [productdata, setProductData] = useState()
+ const [modeldata, setModelData] = useState()
+
+ const [productselected, setProductSelected] = useState('')
+ const [addedmodel, setAddedModel] = useState('')
+
+
  
  
 
  const colorforceRender = () => {
   setColorReRender(!colorreRender)
+}
+const colorforceRenderMerchant = () => {
+  setColorReRenderMerchant(!colorreRendermerchant)
 }
 
 const handleAddColorTag = (e) => {
@@ -262,15 +343,39 @@ const handleAddColorTag = (e) => {
       }
   }
 }
+const handleAddColorTagMerchant = (e) => {
+  colorforceRenderMerchant()
+   if (e.key === 'Enter') {
+       setTagColorMerchant('')
+       if (tagcolormerchant !== '') {
+          let newcolortag= colortagsmerchant.filter(item=>(
+           item !== 'default'
+          ))
+           setColorTagsMerchant([...newcolortag, tagcolormerchant.toLowerCase()])
+       }
+       else {
+           console.log('empty')
+       }
+   }
+ }
 const handleColorDeleteTag = (index) => {
   colorforceRender()
   colortags.splice(index, 1)
 }
 
+const handleColorDeleteTagMerchant = (index) => {
+  colorforceRenderMerchant()
+  colortagsmerchant.splice(index, 1)
+}
+
+
 
  const forceRender = () => {
      setReRender(!reRender)
  }
+ const forceRenderMerchant = () => {
+  setReRenderMerchant(!reRendermerchant)
+}
 
  const handleAddTag = (e) => {
      forceRender()
@@ -287,10 +392,29 @@ const handleColorDeleteTag = (index) => {
          }
      }
  }
+ const handleAddTagMerchant = (e) => {
+  forceRenderMerchant()
+  if (e.key === 'Enter') {
+      setTagTextMerchant('')
+      if (tagTextmerchant !== '') {
+        let newtag= merchanttags.filter(item=>(
+           item !== 'default'
+        ))
+          setMerchantTags([...newtag, tagTextmerchant.toLowerCase()])
+      }
+      else {
+          console.log('empty')
+      }
+  }
+}
  const handleDeleteTag = (index) => {
      forceRender()
      tags.splice(index, 1)
  }
+ const handleDeleteTagMerchant = (index) => {
+  forceRenderMerchant()
+  merchanttags.splice(index, 1)
+}
 
 
   const roomTypeRender = () => {
@@ -419,12 +543,15 @@ const handleColorDeleteTag = (index) => {
  
 
  const [opentab, setOpenTab] = useState(false)
+ const [opentabmerchant, setOpenTabMerchant] = useState(false)
 
 
  const [isActive, setIsActive] = useState(1)
  const handleActive = (btn) => setIsActive(btn)
 
  const [accActive, setAccActive] = useState()
+ const [accActivemerchant, setAccActiveMerchant] = useState()
+
 
 
  let citiesByState={
@@ -459,6 +586,23 @@ Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "B
      accordionContent: "imagedetails"
  },
  ]
+ let accordionDataModel = [{
+
+  title: "Product details",
+  accordionContent: 'productdetails'
+
+
+    
+ },
+ {
+     title: "Material details",
+     accordionContent: "materialdetails"
+ },
+ {
+     title: "Upload Models",
+     accordionContent: "Model details"
+ },
+ ]
  const handleActiveAccord = (index) => {
 
  
@@ -470,6 +614,17 @@ Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "B
          setOpenTab(true)
      }
  }
+ const handleActiveAccordMerchant = (index) => {
+
+ 
+  if (accActivemerchant === index) {
+      setAccActiveMerchant()
+  }
+  else {
+      setAccActiveMerchant(index)
+      setOpenTabMerchant(true)
+  }
+}
 
 
   
@@ -596,7 +751,7 @@ const profileHandler=(e)=>{
   document.querySelector('.sidebarmain').style.display= 'none'
   document.querySelector('.merchantdiv').style.display= 'none'
   document.querySelector('.selfcontainer').style.display= 'none'
-  document.querySelector('.searchmodeldiv').style.display= 'none'
+ 
 
 
 
@@ -676,7 +831,7 @@ const selfuploadHandler=(e)=>{
   
   document.querySelector('.merchantdiv').style.display= 'none'
   document.querySelector('.profilediv').style.display= 'none'
-  document.querySelector('.searchmodeldiv').style.display= 'none'
+ 
 
 
   const body={
@@ -1007,18 +1162,14 @@ if(partnerCurrency === ''){
   setPartnerCurrency('INR')
 }
 
+if(currencymerchant === ''){
+  setCurrencyMerchant('INR')
+}
+
 const saveform=(e)=>{
   e.preventDefault();
 
 
-
-
- 
- 
-
-
-
- 
  if(partnerproduct === ''){
    document.querySelector('.partnerproductname').style = 'border: 2px solid red'
    document.querySelector('#requiredpartnerproductname').innerHTML= 'required'
@@ -1347,15 +1498,6 @@ let imageupload;
 const submitdata=(e)=>{
 
 e.preventDefault();
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1832,6 +1974,13 @@ if(tags.length === 0){
 if(colortags.length === 0){
   colortags.push('default')
 }
+if(merchanttags.length === 0){
+  merchanttags.push('default')
+}
+if(colortagsmerchant.length === 0){
+  colortagsmerchant.push('default')
+}
+
 
 
 const uploadimage= async ()=>{
@@ -3691,52 +3840,6 @@ useEffect(()=>{
 
 
 
-const searchmodelHandler=(e)=>{
-  e.preventDefault();
-  const body={
-    modelno: modelsearch
-  }
-
-
- axios.post(searchmodels, body).then(res=>{
-
-  
-    const zipfilebody= {
-      zipfilenew: res.data[0].modelglb
-    }
-
-    axios.post(zipextracturl, zipfilebody).then(res=>{
-      console.log(res)
-    }).catch(error=>{
-      console.log(error)
-    })
-
- 
-  
-  const modelbody={
-    productid: Number(res.data[0].productid)
-  }
-
-  if(res){
-    axios.post(getoneproducturl, modelbody).then(resnew=>{
-        setSearchProductData(resnew.data)
-        if(resnew){
-          document.querySelector('.tablediv').style.display = 'block'
-        }
-    }).catch(error=>{
-      console.log(error)
-    })
-
-  }
-
-  
-  setSearchModelData(res.data)
- }).catch(error=>{
-  console.log(error)
- })
-
-
-}
 
 
 const profileUpdateHandler=()=>{
@@ -3955,7 +4058,10 @@ const handleAnalytics= ()=>{
 
 }
 
+const handleAnalyticsClose =()=>{
+  document.querySelector('.analyticsdiv').style.display = 'none'
 
+}
 
 
 const getviewcount =(val)=>{
@@ -4047,6 +4153,46 @@ const csv= allproductmerchant && allproductmerchant.map(item=>{
 
 })
 
+const searchcolumn= [
+
+  {
+    name: "Product name",
+    selector: row=> row.productname,
+ 
+   
+    sortable: true
+  },
+  {
+    name: "Brand",
+    selector: row=> row.brand,
+    sortable: true
+  },
+  {
+    name: "Category",
+    selector: row=> row.category,
+    sortable: true
+  },
+
+  {
+    name: "Sub-category",
+    selector: row=> row.subcategory,
+    sortable: true
+  },
+
+
+ {
+    name: "Image",
+    selector: (row) => (
+      <div className='imagedivlist'>
+        <img src={row.imageurl && row.imageurl[0]}   />
+
+      </div>
+      )
+       
+   
+  },
+ 
+ ]
 
 
 let count=0;
@@ -4112,7 +4258,7 @@ const columns= [
     name: "Image",
     selector: (row) => (
       <div className='imagedivlist'>
-        <img src={row.imageurl[0]}   />
+        <img src={row.imageurl && row.imageurl[0]}   />
 
       </div>
       )
@@ -4155,6 +4301,32 @@ const handleActiveList=(val, len)=>{
   }
 }
 
+const handleActiveListMerchant=(val, len)=>{
+    
+  let checked = false
+  if(document.querySelector(`#checkboxroommerchant_${len}:checked`)){
+    checked = true
+  }
+  else{
+    checked = false
+  }
+
+  if(checked){
+    document.querySelector(`#listselectmerchant_${len}`).classList.add('selectcheck')
+    setroomsselectmerchant((oldArray)=> [...oldArray, val])
+  }
+  if(!checked){
+    document.querySelector(`#listselectmerchant_${len}`).classList.remove('selectcheck')
+     setroomsselectmerchant(
+      (oldArray)=>oldArray.filter((item)=>
+      item != val
+        )
+    
+     )
+
+  }
+}
+
 const handleRemoveRoom=(val,len)=>{
   setSelectedRooms(
     (oldArray)=>oldArray.filter((item)=>
@@ -4166,12 +4338,28 @@ const handleRemoveRoom=(val,len)=>{
    document.querySelector(`#listselect_${len}`).classList.remove('selectcheck')
 
 }
+const handleRemoveRoomMerchant=(val,len)=>{
+  setroomsselectmerchant(
+    (oldArray)=>oldArray.filter((item)=>
+    item != val
+      )
+  
+   )
+
+   document.querySelector(`#listselectmerchant_${len}`).classList.remove('selectcheck')
+
+}
 
 
 const handleClickRoom=()=>{
  
     showDesignRoom(!designroom)
   
+}
+const handleClickRoomMerchant=()=>{
+ 
+  showDesignRoomMerchant(!designroommerchant)
+
 }
 const history = useHistory()
 
@@ -4361,25 +4549,927 @@ function downloadCSV(array) {
 	link.click();
 }
  let hamburger = document.querySelector('.hamburger');
- let navlinks = document.getElementById('nav-links');
- let links = document.querySelectorAll('.links');
+ let crossburger = document.querySelector('.hamburgercross');
+
+
 
   hamburger && hamburger.addEventListener('click', ()=>{
-    console.log('dashboard')
- navlinks && navlinks.classList.toggle('hide');
- hamburger && hamburger.classList.toggle('lines-rotate');
- })
 
- for(let i=0; i< links.length; i++){
-  links[i].addEventListener('click', ()=>{
-    navlinks.classList.toggle('hide')
-  })
- }
+  document.querySelector('#nav-links').classList.remove('dashboardham');
+  document.querySelector('#nav-links').classList.add('dashboardmerchant');
+  document.querySelector('.hamburger').style.display = 'none'
+  document.querySelector('.hamburgercross').style.display = 'flex'
+
+
+ })
+ crossburger && crossburger.addEventListener('click', ()=>{
+  
+  document.querySelector('#nav-links').classList.remove('dashboardmerchant')
+  document.querySelector('#nav-links').classList.add('dashboardham')
+   document.querySelector('.hamburger').style.display = 'flex'
+  document.querySelector('.hamburgercross').style.display = 'none'
+
+})
+
+
  const logouthandler =()=>{
    
     history.push('/')
  }
 
+ const uploadfbxfile =(e)=>{
+  let files = Array.from(e.target.files) 
+  files.forEach(file => {
+   fileToBase64(file, (err, result) => {
+     if (result) {
+
+       let newval= file.name
+       let indx = newval.lastIndexOf(".") + 1;
+       let filetype = newval.substr(indx, newval.length).toLowerCase();
+      
+       if(  filetype === 'zip'){
+         document.querySelector('.tickfbx').style.display= 'inline-flex'
+         setFileFbx(file)
+         setUploadFilesArray((oldArray)=> [...oldArray, file])
+       }
+     else{
+      setFileFbx('')
+      document.querySelector('.tickfbx').style.display= 'none' 
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'Please select  a fbx zip file'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+       }
+ }
+   })
+
+
+   const reader = new FileReader();
+
+   reader.onload = () => {
+       if (reader.readyState === 2) {
+          
+           setImagesPreview(oldArray => [...oldArray, reader.result])
+           setImages(oldArray => [...oldArray, file])
+       
+
+          
+           }
+      
+      
+   }
+     
+
+   
+   reader.readAsDataURL(file)
+   
+})
+ }
+
+ 
+ const uploadglbfile =(e)=>{
+  let files = Array.from(e.target.files) 
+  files.forEach(file => {
+   fileToBase64(file, (err, result) => {
+     if (result) {
+
+       let newval= file.name
+       let indx = newval.lastIndexOf(".") + 1;
+       let filetype = newval.substr(indx, newval.length).toLowerCase();
+      
+       if(  filetype === 'glb' ){
+        document.querySelector('.tickglb').style.display= 'inline-flex'
+        
+         setFileGlb(file)
+         setUploadFilesArray((oldArray)=> [...oldArray, file])
+       }
+     else{
+      setFileGlb('')
+      document.querySelector('.tickglb').style.display= 'none' 
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'Please select a glb file'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+       }
+ }
+   })
+
+
+   const reader = new FileReader();
+
+   reader.onload = () => {
+       if (reader.readyState === 2) {
+          
+           setImagesPreview(oldArray => [...oldArray, reader.result])
+           setImages(oldArray => [...oldArray, file])
+       
+
+          
+           }
+      
+      
+   }
+     
+
+   
+   reader.readAsDataURL(file)
+   
+})
+ }
+
+ const uploadusdzfile =(e)=>{
+  let files = Array.from(e.target.files) 
+  files.forEach(file => {
+   fileToBase64(file, (err, result) => {
+     if (result) {
+
+       let newval= file.name
+       let indx = newval.lastIndexOf(".") + 1;
+       let filetype = newval.substr(indx, newval.length).toLowerCase();
+      
+       if(  filetype === 'usdz' || filetype === 'usdc' ){
+        document.querySelector('.tickusd').style.display= 'inline-flex'
+        
+         setFileUsdz(file)
+         setUploadFilesArray((oldArray)=> [...oldArray, file])
+       }
+     else{
+      setFileUsdz('')
+      document.querySelector('.tickusd').style.display= 'none' 
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'Please upload an usdz file'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+       }
+ }
+   })
+
+
+   const reader = new FileReader();
+
+   reader.onload = () => {
+       if (reader.readyState === 2) {
+          
+           setImagesPreview(oldArray => [...oldArray, reader.result])
+           setImages(oldArray => [...oldArray, file])
+       
+
+          
+           }
+      
+      
+   }
+     
+
+   
+   reader.readAsDataURL(file)
+   
+})
+ }
+ 
+ const uploadimagefile =(e)=>{
+  let files = Array.from(e.target.files) 
+  files.forEach(file => {
+   fileToBase64(file, (err, result) => {
+     if (result) {
+
+       let newval= file.name
+       let indx = newval.lastIndexOf(".") + 1;
+       let filetype = newval.substr(indx, newval.length).toLowerCase();
+      
+       if(  filetype === 'jpeg' || filetype === 'png' || filetype === 'jpg' ){
+        document.querySelector('.tickimage').style.display= 'inline-flex'
+        
+         setFileImage(file)
+       
+         setUploadFilesArray((oldArray)=> [...oldArray, file])
+       }
+     else{
+      setFileImage('')
+      document.querySelector('.tickimage').style.display= 'none' 
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'only jpeg jpg png files are accepted'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+       }
+ }
+   })
+
+
+   const reader = new FileReader();
+
+   reader.onload = () => {
+       if (reader.readyState === 2) {
+          
+           setImagesPreview(oldArray => [...oldArray, reader.result])
+           setImages(oldArray => [...oldArray, file])
+       
+
+          
+           }
+      
+      
+   }
+    
+   reader.readAsDataURL(file)
+   
+})
+ }
+
+ const uploadfiles = async ()=>{
+ 
+
+  for(let i=0; i< uploadfilesarray.length;i++){
+  
+     
+        
+ 
+     await fetch(urlfilesend,{
+      method: "POST",
+      body: uploadfilesarray[i].name
+    
+  
+  
+    }).then((res)=>res.json())
+       .then((res)=>{
+        
+      
+      
+  
+        
+      
+      
+      
+      fetch(res.uploadURL, {
+          
+          method: "PUT",
+          headers: {
+            "ContentType": "application/json",
+          
+          },
+    
+        body: uploadfilesarray[i]
+        
+    
+        })
+           .then((res)=>{
+          
+           
+            
+      
+        
+  
+              if(res.status === 200){
+              
+                let resnew= res.url.split('?')
+                let imgurl= resnew[0]
+               console.log(imgurl)
+                sendfilesdata(imgurl)
+                
+             
+  
+              }
+  
+              
+          
+  
+               
+          
+           })
+           .catch((err)=>console.log(err))
+         
+       })
+       .catch((err)=>console.log(err))
+  
+  
+       
+      
+  }
+  
+ }
+
+ const handleSubmitFileMerchant= async()=>{
+  
+  document.querySelector('#spinner').style.display = 'inline-flex'
+      
+
+  if(productmerchant === ''){
+    window.scroll(0,0)
+    document.querySelector('#spinner').style.display = 'none'
+
+       setAccActiveMerchant(0)
+     document.querySelector('.alertpopup').style.display = 'flex '
+     document.querySelector('.alerttext').innerHTML = 'Product name is required'
+
+     setTimeout(() => {
+     document.querySelector('.alertpopup').style.display = 'none'
+      
+     }, [3000]);
+       
+      return
+
+  }
+  if(merchantbrandname === ''){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Brand name is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(modelidmerchant === ''){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'ModelId is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(merchantproductcategory === 'Category'){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Category is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  if(merchantsubcateogry === 'Sub-category'){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Subcategory is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+
+ 
+    
+
+ 
+      if(roomsselectmerchant.length === 0){
+    window.scroll(0,0)
+
+document.querySelector('#spinner').style.display = 'none'
+
+        setAccActiveMerchant(1)
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Room type is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+
+      if(specificationmerchant === ''){
+    window.scroll(0,0)
+
+        setAccActiveMerchant(1)
+document.querySelector('#spinner').style.display = 'none'
+
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Specification is required'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+      
+      if(filefbx === ''){
+    window.scroll(0,0)
+
+        setAccActiveMerchant(2)
+document.querySelector('#spinner').style.display = 'none'
+
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Please upload fbx zip file'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+            if(fileglb === ''){
+    window.scroll(0,0)
+
+        setAccActiveMerchant(2)
+document.querySelector('#spinner').style.display = 'none'
+
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Please upload glb file'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+            if(fileusdz === ''){
+    window.scroll(0,0)
+
+        setAccActiveMerchant(2)
+document.querySelector('#spinner').style.display = 'none'
+
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Please upload usdz file'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+            if(fileimage === ''){
+    window.scroll(0,0)
+
+        setAccActiveMerchant(2)
+document.querySelector('#spinner').style.display = 'none'
+
+        document.querySelector('.alertpopup').style.display = 'block'
+        document.querySelector('.alerttext').innerHTML = 'Please upload image file'
+   
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+          
+         return
+
+
+      }
+    await uploadfiles()
+   
+ }
+
+let filesarray=[];
+ const sendfilesdata =(url)=>{
+  filesarray =[...filesarray]
+  filesarray.push(url) 
+  let glburl;
+  let usdzurl;
+  let zipurl;
+  let imgurl;
+   for (let i =0; i< filesarray.length ; i++){
+    if(filesarray[i].includes('glb')){
+     glburl = filesarray[i]
+    }
+    if(filesarray[i].includes('usdz')){
+        usdzurl = filesarray[i]
+    }
+    if(filesarray[i].includes('zip')){
+      zipurl = filesarray[i]
+    }
+    if(filesarray[i].includes('jpeg' )){
+      console.log('yes')
+      imgurl = filesarray[i]
+    }
+    if(filesarray[i].includes( 'png' )){
+      console.log('yes')
+      imgurl = filesarray[i]
+    }
+    if(filesarray[i].includes( 'jpg' )){
+      console.log('yes')
+      imgurl = filesarray[i]
+    }
+   } 
+   
+   if(uploadfilesarray.length === filesarray.length){
+    getId()
+     setProid(lastId)
+
+
+
+const productdetails= {
+
+  
+  product_Id: lastId,
+  merchant_Id: p_id,
+
+  model_Id: '',
+  modelno: modelidmerchant,
+  modelrequired: 'true',
+  unit: unitmerchant,
+  weightunit: weightunitmerchant,
+  brand: merchantbrandname.toLowerCase(),
+  lengthprod: lengthmerchant,
+  breadthprod: breadthmerchant,
+  height: heightmerchant,
+
+  productname: productmerchant.toLowerCase(),
+ 
+  mrp : Number(mrpmerchant),
+  offerprice: Number(offerpricemerchant),
+  collection : collectionmerchant.toLowerCase(),
+  primarymaterial: primarymaterialmerchant,
+  roomtype: roomsselectmerchant,
+  weight: weightmerchant,
+  warranty: warrantymerchant,
+  sku: skumerchant,
+  discount: Number(discount),
+  colorvalue: colortagsmerchant,
+  tags: merchanttags,
+  category: merchantproductcategory,
+  subcategory: merchantsubcateogry,
+  Specification: specificationmerchant,
+  brandoverview: brandoverviewmerchant,
+  sellerinfo: sellerinfomerchant,
+  care: caremerchant,
+
+ 
+  status : 'Model uploaded',
+  imagerejection: '',
+  
+  imageurl: [imgurl],
+  currency: currencymerchant,
+  registration_Time: new Date().toString(),
+  additional: additionalmerchant,
+  subcatdetail: subcatdetailsmerchant,
+  designstyle: designselectmerchant.toLowerCase()
+
+
+}
+
+
+
+const merchantbody={
+  merchant_Id: Number(p_id),
+  merchantname: u_id,
+  product_Id: lastId,
+  registration_Time: new Date().toString(),
+}
+const modelbody={
+  merchant_Id:  Number(p_id),
+  product_Id: lastId,
+  fbx: zipurl,
+  glb: glburl,
+  usdz: usdzurl,
+  imgfile: imgurl,
+ 
+  modelstatus: 'Model uploaded'
+}
+  
+
+setButtonClick(true)
+
+
+  const brandbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    brand: merchantbrandname.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(addbrandbyuserurl, brandbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+
+
+
+
+
+ const tagsbody={
+  Id: lastId,
+  merchantId: Number(p_id),
+  tags: merchanttags,
+  regtime: lastId
+}
+  axios.post(addtagsbyuserurl, tagsbody).then(res=>{
+   console.log(res)
+ }).catch(error=>{
+  console.log(error)
+ })
+
+  const colorbody={
+  Id: lastId,
+  merchantId: Number(p_id),
+  color: colortagsmerchant,
+  regtime: lastId
+}
+  axios.post(addcolorbyuserurl, colorbody).then(res=>{
+   console.log(res)
+ }).catch(error=>{
+  console.log(error)
+ })
+
+
+  const designbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    designstyle:  designselectmerchant.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(adddesignbyuserurl, designbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+  
+
+ 
+
+
+
+  const collectionbody={
+    Id: lastId,
+    merchantId: Number(p_id),
+    collections: collectionmerchant.toLowerCase(),
+    regtime: lastId
+  }
+    axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
+     console.log(res)
+   }).catch(error=>{
+    console.log(error)
+   })
+   
+
+  axios.post(registerUrl, productdetails).then((res)=>{
+    console.log(res)
+
+}).then(()=>{
+  axios.post(imagesendurl, merchantbody).then((res)=>{
+    console.log(res)
+  }).then(()=>{
+    axios.post(uplodmodelsurl, modelbody).then(res=>{
+      console.log(res)
+      if(res){
+        document.querySelector('#spinner').style.display = 'none'
+        
+              document.querySelector('.modaldiv').style.display = 'block'
+              setTimeout(() => {
+              document.querySelector('.modaldiv').style.display = 'none'
+                
+              }, [5000]);
+              
+            }
+            setButtonClick(false)
+    })
+  })
+})
+
+
+   } 
+   
+
+
+ }
+
+        
+       
+useEffect(()=>{
+  if(modeldatatyped !== ''){
+   setSearchDataValue(false)
+
+    const body={
+      searchdata: modeldatatyped
+    }
+  
+     axios.post(searchmodelurl, body).then(res=>{
+     
+      
+        setModelSearchData(res.data)
+      
+     
+       
+     }).catch(error=>[
+      console.log(error)
+     ])
+
+  } 
+  if(modeldatatyped === ''){
+    
+   setSearchDataValue(true)
+    setGlbUrl('')
+    setModelSearchData('')
+  }
+
+},[modeldatatyped])
+
+
+const handleSearchItem=(item)=>{
+  console.log(item)
+   axios.post(getmodeldata , item).then(res=>{
+    console.log(res.data)
+        document.querySelector('.searchmodeltable').style.display= 'block'
+      setProductData(res.data.productdetails)
+      if(res.data.modeldetails.length > 0){
+       
+        document.querySelector('.modeldatacontainer').style.display= 'block'
+
+        setModelGlb(res.data.modeldetails)
+      }
+      else{
+     
+       
+
+        setModelGlb('')
+      }
+   }).catch(error=>{
+    console.log(error)
+   })
+}
+
+const handleqrcode =()=>{
+  document.querySelector('.modalscan').style.display= 'block'
+ 
+
+}
+
+const handlemodalclose= ()=>{
+  document.querySelector('.modalscan').style.display= 'none'
+
+}
+
+const handleProductSelect =(e)=>{
+   if(e.selectedRows.length > 0){
+    setProductSelected(e.selectedRows && e.selectedRows[0].product_Id)
+
+   }else{
+    setProductSelected('')
+   }
+}
+  const handleAddModel= ()=>{
+    getId()
+    let moddata;
+    let proddata;
+    if(productselected === ''){
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'Please select a product'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+    }
+    if(productselected !== ''){
+     
+      axios.post(getmodeldata, productselected).then(res=>{
+       
+         moddata= res.data.modeldetails
+         proddata = res.data.productdetails
+       
+         const productdetails= {
+
+  
+          product_Id: lastId,
+          merchant_Id: p_id,
+        
+          model_Id: '',
+          modelno:  proddata[0].modelno,
+          modelrequired:  proddata[0].modelrequired,
+          unit: proddata[0].unit,
+          weightunit: proddata[0].weightunit,
+          brand: proddata[0].brand,
+          lengthprod: proddata[0].lengthprod,
+          breadthprod: proddata[0].breadthprod,
+          height: proddata[0].height,
+        
+          productname: proddata[0].productname,
+         
+          mrp : proddata[0].mrp,
+          offerprice: proddata[0].offerprice,
+          collection : proddata[0].collection,
+          primarymaterial: proddata[0].primarymaterial,
+          roomtype: proddata[0].roomtype,
+          weight: proddata[0].weight,
+          warranty: proddata[0].warranty,
+          sku: proddata[0].sku,
+          discount: proddata[0].discount,
+          colorvalue: proddata[0].colorvalue,
+          tags: proddata[0].tags,
+          category:  proddata[0].category,
+          subcategory: proddata[0].subcategory,
+          Specification: proddata[0].Specification,
+          brandoverview: proddata[0].brandoverview,
+          sellerinfo:  proddata[0].sellerinfo,
+          care: proddata[0].care,
+        
+         
+          status :  proddata[0].status,
+          imagerejection:  proddata[0].imagerejection,
+          
+          imageurl: proddata[0].imageurl,
+          currency:  proddata[0].currency,
+          registration_Time: new Date().toString(),
+          additional:  proddata[0].additional,
+          subcatdetail: proddata[0].subcatdetail,
+          designstyle: proddata[0].designstyle
+        
+        
+        }
+
+        const modelbody={
+          merchant_Id:  Number(p_id),
+          product_Id: lastId,
+          fbx: moddata[0].fbx,
+          glb: moddata[0].glb,
+          usdz: moddata[0].usdz,
+          imgfile: moddata[0].imgfile,
+         
+          modelstatus: moddata[0].modelstatus
+        }
+        axios.post(registerUrl, productdetails).then(res=>{
+          if(res){
+            axios.post(uplodmodelsurl, modelbody).then(res=>{
+              if(res){
+                document.querySelector('.modaldiv').style.display = 'block'
+                setTimeout(() => {
+                document.querySelector('.modaldiv').style.display = 'none'
+                  
+                }, [5000]);
+              }
+             
+            }).catch(error=>{
+              console.log(error)
+            })
+          }
+        }).catch(error=>{
+          console.log(error)
+        })
+      
+        
+       
+      }).catch(error=>{
+        console.log(error)
+      })
+    }
+   
+  }
   return (
     
     <div className=''>
@@ -4395,8 +5485,15 @@ function downloadCSV(array) {
           <span className='lines'></span>
           <span className='lines'></span>
          </div>
+         <div className='hamburgercross'>
+      <span className='linesnew'></span>
+      <span className='linesnewcross'></span>
+
+     
+      
+     </div>
         
-        <ul id='nav-links'>
+        <ul className='dashboardham' id='nav-links'>
            
            <li onClick={profileHandler} ><p><FaUser  style={{marginRight:'5px', marginTop:'-5px', fontSize:'20px'}}/>{u_id}</p></li>
 
@@ -4410,31 +5507,7 @@ function downloadCSV(array) {
         </ul>
 
         </div>
-      <div className='navbardashboard' style={{display:'none'}}>
-      <div class="logo">
-      <img src= '/assets/images/arnxtreg.png' />
-      
-       
-      </div>
-      <div class="menu">
-        <div class="menu-links">
-          <p><FaUser style={{ marginTop:"-5px"}}/>  {u_id}</p>
-         
-   
-          <a href="/">Home</a>
-          <a href="/product">Product</a>
-          <a href="/contact">Contact</a>
-          <a href="/blog">Blog</a>
-          
-
-        </div>
-        <button class="log-in">Logout</button>
-      </div>
-      <div class="menu-btn" onClick={handleham}>
-        <FaHamburger/>
-       
-      </div>
-      </div>
+    
 
       <div class="navigation">
     <ul>
@@ -4470,7 +5543,7 @@ function downloadCSV(array) {
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="/plan">
           <span class="icon"> <i class='bx bxs-briefcase-alt'></i></span>
           <span class="title">Plans</span>
         </a>
@@ -4495,11 +5568,6 @@ function downloadCSV(array) {
       <div>
      
 
-   
-    
-
-
-
  
     <div className='alertpopup'>
      <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
@@ -4521,9 +5589,115 @@ function downloadCSV(array) {
             </div>
             {isActive === 2 && <div className="tabData">
                 <div className="tabContent">
-                    <h2>Coming Soon...
-                    </h2>
-                   
+                                 <div  className='modaldiv'>
+
+                       <div class="modal">		
+	      	<div class="modal-wrap">
+                <span className='closemodal'  >
+                    
+                    </span>	
+			   <span>
+               <div>
+               <div class="circle-loader">
+    <div class="checkmark draw"></div>
+</div>
+     
+</div>
+<p class="success">Congratulations!</p>
+                </span>	
+	      		<p className='dataupload'> Data Uploaded Successfully.</p>	          		
+	      	</div>			          		
+      	</div>	
+                        </div>
+                <div className= 'searchmodeldiv' >
+                  <div className='searchdatadiv'>
+                  <div className='searchmodelcontainer'   >
+          <input type='text' onChange={(e)=>setModelDataTyped(e.target.value)} placeholder='search models' />
+          <div className= 'dropdownsearch'>
+             <ul>
+             {
+             searchdatavalue ? '' :  modelsearchdata && modelsearchdata.map(item=>(
+                <li onClick={()=>handleSearchItem(item.product_Id)} >{item.productname}</li>
+              ))
+             }
+
+              
+             </ul>
+            </div>         
+        </div>
+                    </div>
+
+
+                    <div className=  {searchdatavalue ? 'dropdownsearchalt' : 'modelviewerdiv'}>
+                  
+                    <div class="modalscan">		
+	      	<div class="modal-wrapscan">
+                <span className='closemodalscan' onClick={handlemodalclose}   >
+                     <FaTimes style={{color:'red', fontSize:'20px'}}/>
+                    </span>	
+			   <span>
+               <div>
+
+            </div>
+         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${modelglb && modelglb[0].product_Id}`}/>
+
+                </span>	
+	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		
+	      	</div>			          		
+      	</div>	
+                      <div className=  'modeldatacontainer' >
+                      <model-viewer
+           src= {modelglb && modelglb[0].glb}
+                  
+           modes="scene-viewer quick-look webxr"
+           
+           auto-rotate ar
+           camera-controls
+           shadow-intensity="1"
+       ref={modelRef.current}
+       style={{width:'100%', height:'100%',padding:'10px'}}
+           
+           >
+              <button slot="ar-button" className='arbutton' style={{backgroundColor:'white', borderRadius:'4px', border:'none', position:'absolute', top:'16px', right:'16px'}}>
+      👋 Activate AR
+  </button>
+ 
+           </model-viewer>
+          
+                        </div>
+                        <button className='modeldatacontainerbtn' onClick={handleqrcode}>AR QR code</button>
+                    </div>
+     
+        <div>
+        
+   
+          </div>
+      
+   
+
+      </div>
+          
+      <div className=  {searchdatavalue ? 'dropdownsearchalt' : 'searchmodeltable'} >
+            <div className='addmodeldiv'>
+              <button onClick={handleAddModel}>Add Model</button>
+              </div>
+          <DataTable
+
+       
+           title="Product data"
+              columns={searchcolumn}
+              data={productdata && productdata}
+
+                  highlightOnHover
+                  selectableRows
+                   fixedHeader
+                 customStyles={tableCustomStyles}
+                 onSelectedRowsChange={(e)=>handleProductSelect(e)}
+
+                />
+
+            </div>
+    
                 </div>
             </div>}
             {isActive === 1 && <div className="tabData">
@@ -4650,7 +5824,7 @@ function downloadCSV(array) {
                                             >Length  <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
-                                               <p>Enter 0 in case of 2D Products</p>
+                                               <p>Enter 0 if not available</p>
                                               </div>
                                             </label>
 
@@ -4664,7 +5838,7 @@ function downloadCSV(array) {
                                             <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
-                                               <p>Enter 0 in case of 2D Products</p>
+                                               <p>Enter 0 if not available</p>
                                               </div>
                                              </label>
 
@@ -4678,7 +5852,7 @@ function downloadCSV(array) {
                                             <span className='infoblock'  
                                           ><FaInfoCircle  /></span> 
                                               <div className='toolTip'>
-                                               <p>Enter 0 in case of 2D Products</p>
+                                               <p>Enter 0 if not available</p>
                                               </div>
                                              </label>
 
@@ -5277,10 +6451,725 @@ function downloadCSV(array) {
                 </div>
             </div>}
             {isActive === 3 && <div className="tabData">
-                <div className="tabContent">
-                    <h2>Coming Soon...
-                    </h2>
+            <div className="tabContent">
+                <div className='accordionContainer'>
+
+                
+            {
+                accordionDataModel.map((acc, index) => {
+                    return (
+                        <div className="accordion"
+                          >
+                            <div className='accordionHeading'    onClick={() => handleActiveAccordMerchant(index)} >
+
+                                <span className="addIcon"
+                                    style={{
+                                        transform: `${accActivemerchant === index ? 'rotate(45deg)' :
+                                            'rotate(0deg)'}`
+                                    }}>
+                                  <RiAddLine size={25} />
+                                </span>
+                                <h3>{acc.title}</h3>
+                            </div>
+                            {
+                                accActivemerchant === index ? <div className="accordionContent">
+                                    {
+                                      acc.accordionContent === 'productdetails' ? 
+                                      <div>
+
+                                         <div className='productdetailsdiv' >
+                                          <div  className='input-group'>
+                                            <input  type='text' value={productmerchant}  onChange={(e)=>setProductMerchant(e.target.value)} className='input' placeholder='product name'  />
+                                            <label className='placeholder'
+                                            >Product name <span className='required-field'></span> </label>
+                                              <p className='errorproduct'></p>
+
+
+                                             </div>
+                                         
+                                   
+
+                                          <div  className='input-group'>
+                                            <input  type='text' list='brand' value={merchantbrandname} onChange={(e)=>setMerchantBrandName(e.target.value)} className='input' placeholder='brand'  />
+                                            <label className='placeholder'
+                                            >Brand <span className='required-field'></span> </label>
+                                               <datalist class="" id="brand">    
+                                          {
+                                            brandofmerchant && brandofmerchant.map(item=>(
+                                              <option>{item}</option>
+                                            ))
+                                          }
+
+                        
+                               </datalist>
+
+
+
+                                          </div>
+                                          
+                                        
+                                          <div  className='input-group'>
+                                            <input  type='text' value={modelidmerchant} onChange={(e)=>setModelidMerchant(e.target.value)}  className='input' placeholder='model id'  />
+                                            <label className='placeholder'
+                                            >Model id <span className='required-field'></span> </label>
+
+
+
+                                          </div>
+                                        
+                                          <div  className='input-group'>
+                                            <input  type='number' value={mrpmerchant} onChange={(e)=>setMrpMerchant(e.target.value)} className='input' placeholder='MRP'  />
+                                            <label className='placeholder'
+                                            >MRP  </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={offerpricemerchant} onChange={(e)=>setOfferPriceMerchant(e.target.value)} className='input' placeholder='Offer price'  />
+                                            <label className='placeholder'
+                                            >Offer price  </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => showCurrencyDrop(false)}
+                                    onFocus={() => showCurrencyDrop(!currencydrop)}>{currencymerchant}<IoIosArrowDown
+                    style={{
+                        transform: currencydrop ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !currencydrop ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !currencydrop ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    currencyarray.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setCurrencyMerchant(name); showCurrencyDrop(false) }}
+                            style={{ fontWeight: currencymerchant === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {currencymerchant === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={lengthmerchant} onChange={(e)=>setLengthMerchant(e.target.value)} className='input' placeholder='Length'  />
+                                            <label className='placeholder'
+                                            >Length  <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 if not available</p>
+                                              </div>
+                                            </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={breadthmerchant} onChange={(e)=>setBreadthMerchant(e.target.value)} className='input' placeholder='Breadth'  />
+                                            <label className='placeholder'
+                                            >Breadth 
+                                            <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 if not available</p>
+                                              </div>
+                                             </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={heightmerchant} onChange={(e)=>setHeightMerchant(e.target.value)} className='input' placeholder='Height'  />
+                                            <label className='placeholder'
+                                            >Height 
+                                            <span className='infoblock'  
+                                          ><FaInfoCircle  /></span> 
+                                              <div className='toolTip'>
+                                               <p>Enter 0 if not available</p>
+                                              </div>
+                                             </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={unitmerchant} onChange={(e)=>setUnitMerchant(e.target.value)} className='input' placeholder='Dimension unit'  />
+                                            <label className='placeholder'
+                                            >Dimension Unit  </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={weightmerchant} onChange={(e)=>setWeightMerchant(e.target.value)}  className='input' placeholder='weight'  />
+                                            <label className='placeholder'
+                                            >Weight  </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text' value={weightunitmerchant} onChange={(e)=>setWeightUnitMerchant(e.target.value)}  className='input' placeholder='Weight unit'  />
+                                            <label className='placeholder'
+                                            >Weight Unit </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={warrantymerchant} onChange={(e)=>setWarrantyMerchant(e.target.value)} className='input' placeholder='warranty'  />
+                                            <label className='placeholder'
+                                            >Warranty (Years) </label>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+
+<div className='listBoxContainer'>
+            <button className='listButton'
+                onBlur={() => showDropDown(false)}
+                onFocus={() => showDropDown(!dropDown)}>{merchantproductcategory}<span className= {merchantproductcategory === "Category" ? 'required-fieldcat': 'requiredfield'}></span><IoIosArrowDown
+                    style={{
+                        transform: dropDown ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !dropDown ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !dropDown ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    namescategory.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setMerchantProductCategory(name.categoryitem); showDropDown(false) }}
+                            style={{ fontWeight: merchantproductcategory === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {merchantproductcategory === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name.categoryitem}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
+                                          </div>
+                                          <div  className='input-group'>
+
+                                          <div className='listBoxContainer'>
+                              <button className='listButton'
+                               onBlur={() => showSubDropDown(false)}
+                                onFocus={() => showSubDropDown(!subdropdown)}>{merchantsubcateogry} <span className= {merchantsubcateogry === "Sub-category" ? 'required-fieldsubcat': 'requiredfield'}></span> <IoIosArrowDown
+                              style={{
+                                  transform: subdropdown ? 'rotate(180deg)' : 'rotate(0deg)',
+                                  transition: '0.3s ease-in-out'
+                                   }} /></button>
+                         <ul className='listItems' style={{
+                             opacity: !subdropdown ? "0" : "1",
+                              transition: "0.3s ease",
+                           visibility: !subdropdown ? "hidden" : "visible",
+                             transformOrigin: "top center"
+                                   }}>
+                            
+                 
+                 {
+
+
+                  namescategory.map((name, index) => {
+
+                    if(name.categoryitem === merchantproductcategory){
+
+                  
+
+                      
+                      return (
+                      name.subcategory.map((item,ind)=>(
+
+
+                        <li className='list' key={ind}
+                        onClick={() => { setMerchantSubCategory(item); showDropDown(false) }}
+                        style={{ fontWeight: merchantsubcateogry === item ? '500' : '400' }}>
+                        <span className='checkIcon'>
+                            {merchantsubcateogry === item ? <BiCheck size={25} /> : null}
+                        </span>
+                       
+                        {
+                         
+                         item
+                        }
+                    </li>
+
+                      ))
+                      
+                   ) 
+
+
+
+                    }
+
                    
+                  })
+              }
+                    
+                
+            </ul>
+        </div>
+
+                                           
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={subcatdetailsmerchant} onChange={(e)=>setSubCatDetailsMerchant(e.target.value)} className='input' placeholder='Subcatdetails'  />
+                                            <label className='placeholder'
+                                            >Sub-category details  </label>
+
+
+
+                                          </div>
+                                        
+                                       
+
+
+
+
+                                          </div>
+                                        </div> :<div></div>
+
+                                       }
+
+
+                                       {
+                                      acc.accordionContent === 'materialdetails' ? 
+                                      <div>
+                                        <div className='productdetailsdiv'>
+
+                                          
+                                        <div  className='input-group'>
+                                            <input  type='text' value={skumerchant} onChange={(e)=>setSkuMerchant(e.target.value)} className='input' placeholder='SKU'  />
+                                            <label className='placeholder' 
+                                            >SKU   </label>
+
+
+
+                                          </div>
+                                          
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={collectionmerchant} onChange={(e)=>setCollectionMerchant(e.target.value)} list='collection'  className='input' placeholder='Collection'  />
+                                            <label className='placeholder'
+                                            >Collection  </label>
+                                               <datalist class="" id="collection">    
+                                         {
+                                          collectionofmerchant && collectionofmerchant.map(item=>(
+                                            <option>{item}</option>
+                                          ))
+                                         }
+                               </datalist>
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <input  type='text'  value={designselectmerchant} onChange={(e)=>setDesignSelectMerchant(e.target.value)} list='design'  className='input' placeholder='Design style'  />
+                                            <label className='placeholder'
+                                            >Design style  </label>
+                                               <datalist class="" id="design">    
+                                             {
+                                              designstyleofmerchant && designstyleofmerchant.map(item=>(
+                                                <option>{item}</option>
+                                              ))
+                                             }
+                     
+                               </datalist>
+
+
+
+                                          </div>
+         
+
+
+                                        <div  className='input-group'>
+                                            <input  type='text' list='material' value={primarymaterialmerchant} onChange={(e)=>setPrimaryMaterialMerchant(e.target.value)} className='input' placeholder='Primary material'  />
+                                            <label className='placeholder'
+                                            >Primary material </label>
+                                            <datalist class="" id="material">    
+                        <option value="Fabric"/>
+                          <option value="Leatherette"/>
+                         <option value="Solid Wood"/>
+                         <option value="Leather"/>
+                          <option value="Cann"/>
+                         <option value="Engineered wood"/>
+                         <option value="Metal"/>
+                          <option value="Plastic"/>
+                         <option value="Glass"/>
+                         <option value="stone"/>
+                          <option value="marble"/>
+                     
+                               </datalist>
+
+                                           
+
+
+
+                                          </div>
+                                          
+
+                                          <div  className='input-group'>
+                                           
+                                           
+
+                                           
+
+                    <div className='AddTagContainer'>
+            <div className="addTagBox">
+           
+              
+                <div className="addTagInput">
+
+                  <div className='tagscontainer'>
+                  {
+                       roomsselectmerchant && roomsselectmerchant.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleRemoveRoomMerchant(tag,index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                      }
+
+
+                    </div>
+               
+
+                    <div className='listBoxContainer'>
+                                     <button className='listButtonMaterial'
+                                     onClick={handleClickRoomMerchant}
+                                    
+                                    >{dropdownroommerchant}<span className= { roomsselectmerchant.length === 0 ? 'required-roomtype': 'requiredfield'}></span><IoIosArrowDown
+                                    
+                    style={{
+                        transform: designroommerchant ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+
+                    }} /></button>
+            <ul className='listItemsMaterial' style={{
+                opacity: !designroommerchant ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !designroommerchant ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    roomTypeArray.map((name, index) => {
+                        return (
+                            <li key={index} className='listrooms' id={`listselectmerchant_${index}`} 
+                              >
+                           
+                           
+                            
+                            
+                              <label>
+                                <div  className='listitems' id={`roomselectmerchant_${index}`}  >
+                                  <input type='checkbox' id= {`checkboxroommerchant_${index}`} value={name} onClick={()=> handleActiveListMerchant(name, index)} />
+                                  <p>{name}</p>
+                                </div>
+                              </label>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+                   
+                </div>
+            </div>
+        </div>
+
+                   
+
+                                          </div>
+                        
+
+
+                                                                   
+                                          <div  className='input-group'>
+                                        
+                                       
+                                          <div className='AddTagContainer'>
+            <div className="addTagBox">
+          
+              
+                <div className="addTagInput">
+                <div  className='tagscontainer'>
+                    {
+
+                     
+                        merchanttags.map((tag, index) => {
+                                  
+                            return (  
+
+                                        tag === 'default' ? 
+                                        <p></p>  :
+                                          <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleDeleteTagMerchant(index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                                
+                          
+                            )
+                        })
+                        
+                      }
+                     
+                      </div>
+
+                    <input className='inputtag' type="text" autoFocus
+                     placeholder='Add tags'
+                        value={tagTextmerchant}
+                        onKeyUpCapture={(e) => { handleAddTagMerchant(e) }}
+                        onChange={(e) => setTagTextMerchant(e.target.value)}
+                    />
+                     <label className='placeholder'
+                                            >Add tags  </label>
+                </div>
+            </div>
+        </div>
+
+                                          </div>
+
+                                          <div  className='input-group'>
+                                          <div className='AddTagContainer'>
+            <div className="addTagBox">
+              
+                <div className="addTagInput">
+                  <div className='tagscontainer'>
+                  {
+                        colortagsmerchant.map((tag, index) => {
+                            return (
+                               tag === 'default' ?  
+                               <p></p> :
+                                <div className="tags" key={index}>
+                                    <span>{tag}</span>
+                                    <div className="crossIcon"
+                                        onClick={() => handleColorDeleteTagMerchant(index)}>
+                                        <RxCross2 />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                      }
+
+                    </div>
+                 
+
+
+                    <input className='inputtag' type="text" autoFocus
+                     placeholder='Add Colors'
+                        value={tagcolormerchant}
+                        onKeyUpCapture={(e) => { handleAddColorTagMerchant(e) }}
+                        onChange={(e) => setTagColorMerchant(e.target.value)}
+                    />
+                     <label className='placeholder'
+                                            >Add Colors  </label>
+                </div>
+            </div>
+        </div>
+
+                                          </div>
+
+
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={specificationmerchant} onChange={(e)=>setSpecificationMerchant(e.target.value)}  className='input' placeholder='Specification'/>
+                                            <label className='placeholder'
+                                            >Specification <span className='required-field'></span> </label>
+
+                                              </div>
+                                        
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={brandoverviewmerchant} onChange={(e)=>setBrandOverviewMerchant(e.target.value)} className='input' placeholder='Brand Overview '  />
+                                            <label className='placeholder'
+                                            >Brand Overview  </label>
+                                              </div>
+                                          
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea'  value={sellerinfomerchant} onChange={(e)=>setSellerInfoMerchant(e.target.value)} className='input' placeholder='Seller Info'  />
+                                            <label className='placeholder'
+                                            >Seller Info  </label>
+
+                                              </div>
+                                        
+
+
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='textarea' value={caremerchant} onChange={(e)=>setCareMerchant(e.target.value)} className='input' placeholder='Care & Maintenance'  />
+                                            <label className='placeholder'
+                                            >Care & Maintenance   </label>
+
+                                              </div>
+                                         
+                                        
+
+                                          </div>
+                                          <div  className='input-group'>
+                                            <div className='textareadiv'>
+                                            <textarea  type='text' value={additionalmerchant} onChange={(e)=>setAdditionalMerchant(e.target.value)} className='input' placeholder='Additional Info'  />
+                                            <label className='placeholder'
+                                            >Additional Info </label>
+                                              </div>
+                                          
+
+
+
+                                          </div>
+                                      
+             
+                                         </div>
+
+                                      
+
+
+
+
+                                        </div> :<div></div>
+                                         }
+                                           {
+                                      acc.accordionContent === 'Model details' ? 
+                                      <div>
+             
+
+                                      <div>
+      
+        
+                                      </div>
+                                   
+
+        <div>
+          <div className='modeluploadbuttons'> 
+            <div>
+            <div class="modeluploadwrapper">
+               <button class="btnmodel">Upload fbx zip file <FaCheck className='tickfbx'/> </button>
+                 <input type="file"  id='fileinputfbx' name="myfile"  onChange={uploadfbxfile} />
+               <p className='filemessage'></p>
+                 </div></div> 
+            <div>
+            <div class="modeluploadwrapper">
+               <button class="btnmodel">Upload glb file  <FaCheck className='tickglb'/></button>
+                 <input type="file"  id='fileinputglb' name="myfile" onChange={uploadglbfile} />
+               <p className='filemessage'></p>
+                 </div>
+              </div> 
+            <div>
+            <div class="modeluploadwrapper">
+               <button class="btnmodel">Upload usdz file  <FaCheck className='tickusd'/></button>
+                 <input type="file"  id='fileinputusdz' name="myfile" onChange={uploadusdzfile} />
+               <p className='filemessage'></p>
+                 </div></div> 
+            <div>
+            <div class="modeluploadwrapper">
+               <button class="btnmodel">Upload model image (jpeg, png, jpg)  <FaCheck className='tickimage'/></button>
+                 <input type="file"  id='fileinputimage' name="myfile" onChange={uploadimagefile}  />
+               <p className='filemessage'></p>
+                 </div></div> 
+
+
+
+
+          </div>
+        </div>
+
+      
+
+       
+         
+                       <div  className='modaldiv'>
+
+                       <div class="modal">		
+	      	<div class="modal-wrap">
+                <span className='closemodal'  >
+                    
+                    </span>	
+			   <span>
+               <div>
+               <div class="circle-loader">
+    <div class="checkmark draw"></div>
+</div>
+     
+</div>
+<p class="success">Congratulations!</p>
+                </span>	
+	      		<p className='dataupload'> Data Uploaded Successfully.</p>	          		
+	      	</div>			          		
+      	</div>	
+                        </div>
+
+   
+
+     
+
+                                       
+                                        </div> :<div></div>
+
+                                         }
+                                </div> : null
+                            }
+                        </div>
+                    )
+                })
+            }
+        </div>
+
+        <div className='updatebtn' >
+            <button type='submit'  disabled = {buttonclick ? true : false} onClick={handleSubmitFileMerchant} >Submit    
+              
+            <div class="spinner-border" id='spinner'  role="status"  >
+  <span class="visually-hidden"></span>
+</div>
+             </button>
+          </div>
+
+        
                 </div>
             </div>}
         </div>
@@ -5303,6 +7192,7 @@ function downloadCSV(array) {
        
     <div className='analyticsdiv'>
       <div className='csvbuttoncontainer'>
+        <button onClick={handleAnalyticsClose}>Close</button>
       <button onClick={()=>downloadCSV(csv)} >Download <FaDownload/></button>
 
       </div>
@@ -6326,37 +8216,7 @@ coloroptions.map(item=>(
 
 
  
-      <div className= 'searchmodeldiv' >
-        <div className='searchmodelcontainer'>
-          <input type='text' onChange={(e)=>setModelSearch(e.target.value)} />
-          <button type='submit' onClick={searchmodelHandler} >search</button>
-
-      
-                  
-        </div>
-        <div>
-        <div  className='tablediv' style={{marginTop:'60px'}}>
-           <DataTable
-
-       
-        title="Product data"
-        columns={columns}
-        data={searchproductdata && searchproductdata}
-      
-        highlightOnHover
-        selectableRows
-        fixedHeader
-        customStyles={tableCustomStyles}
-      
-       
-      />
-      </div>
-          </div>
-      
-       
-
-      </div>
-
+     
    
 
 

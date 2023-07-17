@@ -68,7 +68,7 @@ const ViewAR = () => {
                         <div>
                         <div className='arproductcard'>
                                
-                           <img src={item.imageurl[0]}/>
+                           <img src={item.imageurl && item.imageurl[0]}/>
     
                              <button onClick={()=>handleDetails(item)}>View Details</button>
          

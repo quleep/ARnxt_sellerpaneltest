@@ -20,6 +20,203 @@ body {
   }
 }
 
+.section-prices {
+  padding: 1.5rem 1rem;
+  margin-top: 90px;
+}
+.section-prices .section-header {
+  background-color: #FFF;
+  margin-bottom: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: #555;
+  font-weight: 700;
+  
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, .3);
+}
+
+.list-boxs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.list-boxs .card {
+  width: 32%;
+  text-align: center;
+  position: relative;
+  max-width: 300px;
+  border: 2px solid rgb(180, 180, 180);
+  
+}
+
+.list-boxs .card .head,
+.list-boxs .card .body {
+  background-color: #FFF;
+  padding: 1.5rem 1rem;
+}
+
+.list-boxs .card .head {
+  color: #0e0c61;
+  
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: translateY(30px);
+  transition: transform .3s linear;
+  border-bottom: 1px solid #F2F2F2;
+}
+.list-boxs .card:hover .head {
+  transform: translateY(0);
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
+}
+.list-boxs .starter .head{
+  color: rgb(190, 190, 53);
+}
+.list-boxs .standard .head{
+  color: rgb(19, 212, 19);
+}
+
+.list-boxs .premium .head{
+  color: rgb(60, 48, 216);
+}
+
+
+.list-boxs .card .ticket {
+  color: #FFF;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: var(--ticket-height);
+  box-shadow: inset 0px 6px 6px -5px rgba(0, 0, 0, .25),
+              inset 0px -6px 6px -5px rgba(0, 0, 0, .25);
+}
+.list-boxs .starter .ticket  {
+  background-color: green;
+ 
+}
+
+.list-boxs .standard .ticket {
+  background-color: green;
+}
+.list-boxs .premium .ticket {
+  background-color: green;
+}
+
+.list-boxs .card .body {
+  transform: translateY(-40px);
+  transition: transform .3s linear;
+}
+.list-boxs .card:hover .body {
+  transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+.list-boxs .card p {
+  font-size: .95rem;
+  color: #333;
+  
+  text-align: justify;
+}
+
+.list-boxs .card .btn {
+  margin-top: 2rem;
+  padding: .6rem 1rem;
+  outline: none;
+  font-size: .85rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  border: 1px solid #555;
+  background-color: #555;
+  color: #333;
+  cursor: pointer;
+  transition: all .2s linear;
+}
+.list-boxs .card .btn:hover {
+  box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
+}
+
+.list-boxs .starter .btn {
+  background:  rgb(52, 52, 179);
+  border-color: white;
+  color: white;
+}
+.list-boxs .standard .btn {
+  background:  rgb(52, 52, 179);
+  border-color: white;
+  color: white;
+}
+.list-boxs .premium .btn {
+  background:  rgb(52, 52, 179);
+  border-color: white;
+  color: white;
+}
+.pricechangedashboard{
+  display: flex;
+ 
+  align-items: center;
+  justify-content: center;
+ 
+}
+.toggleswitch {
+   margin-left: 10px;
+   margin-right: 10px;
+  
+}
+.toggleswitch input[type="checkbox"] {
+  position: relative;
+  width: 55px;
+  height: 30px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgb(44, 62, 224);
+  outline: none;
+  border-radius: 2rem;
+  cursor: pointer;
+
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+.toggleswitch [type="checkbox"]::before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+   margin: 2px;
+  transition: 0.5s;
+ 
+}
+
+.toggleswitch input[type="checkbox"]:checked::before {
+  transform: translateX(100%);
+  background: #fff;
+}
+
+.toggleswitch [type="checkbox"]:checked {
+  background: #275e3e;
+}
+
+
+@media screen and (max-width: 750px) {
+  .list-boxs {
+    justify-content: space-around;
+  }
+  .list-boxs .card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .list-boxs .card {
+    width: 95%;
+  }
+}
 .sq {
   border: 10px solid #642850;
   height: 300px;
@@ -4359,12 +4556,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.card {
-  border: 2px solid;
-
-  border-image: linear-gradient(to left, rgb(247, 247, 72), rgb(53, 72, 238)) 1
-    4;
-}
 
 .uploadmessagered {
   color: red;
@@ -5983,6 +6174,8 @@ body {
   height: 100%;
   width: auto;
   gap: 1em;
+ 
+ 
 }
 .job-container:hover {
   box-shadow: 0px 10px 39px 0px rgba(0, 0, 0, 0.1);
@@ -6646,6 +6839,7 @@ body.active-modal {
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 350px;
+
  }
  
 .navcontainer>*{
@@ -6875,6 +7069,18 @@ body.active-modal {
 
   margin-right: 20px;
 }
+.addmodeldiv{
+  display: flex;
+  margin: 20px;
+
+}
+.addmodeldiv button{
+  width: 100px;
+  height: 40px;
+  background-color: #35497c;
+  color: white;
+  border-radius: 10px;
+}
 
 .searchproductstab {
   display: flex;
@@ -6964,27 +7170,96 @@ body.active-modal {
   width: 100%;
   height: 100%;
 }
+.searchmodeltable{
+display: none;
+ max-width:  100%;
+
+ overflow: scroll;
+
+}
 .searchmodeldiv {
-  display: none;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 
-  width: 100%;
+  width:  auto;
   height: 100%;
-
-  margin-left: 40px;
-  margin-top: 300px;
-  padding-bottom: 600px;
+  overflow: scroll;
+ 
+ justify-content: center;
+ align-items: center;
   margin: 20px;
-  padding-right: 350px;
-}
-.searchmodelcontainer {
-  flex: 1;
-  width: auto;
-  height: auto;
 
-  margin-top: 150px;
-  margin-left: -250px;
+ 
+}
+
+.searchdatadiv{
+  flex: 1;
+  margin: 10px;
+ 
+}
+.modelviewerdiv{
+  
+  flex: 1;
+  margin: 10px;
+
+}
+
+.modeldatacontainer{
+  display: flex;
+  width:  400px;
+  height: 400px;
+  flex-direction: column;
+  border: 2px solid rgb(187, 184, 184);
+  border-radius: 10px;
+
+}
+.arbutton{
+  display: none;
+}
+.modeldatacontainerbtn{
+  display: flex;
+  width:  100px;
+  height: 40px;
+ 
+  border-radius: 5px;
+  background-color: #35497c;
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  
+}
+.dropdownsearch{
+  position: relative;
+ 
+  width:  350px;
+  height:  300px;
+  
+  border-radius: 10px;
+  overflow: scroll;
+
+
+  
+}
+.dropdownsearch ul{
+  width: 100%;
+  
+ list-style-type: none;
+
+  padding: 0px;
+
+ 
+  
+}
+.dropdownsearch ul li{
+ 
+  margin: 10px;
+  background-color: #c3d0f3;
+  height: fit-content;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 2px 2px 2px 2px rgb(209, 203, 203);
+   cursor: pointer;
 }
 
 .tablediv {
@@ -7008,13 +7283,14 @@ body.active-modal {
   height: auto;
 }
 .searchmodelcontainer input {
-  width: 250px;
+  width: 100%;
+ 
   height: 40px;
-
+  padding-left: 10px;
   border: 1px solid gray;
   box-shadow: 5px 5px 5px gray;
   border-radius: 10px;
-  margin-right: 20px;
+  
 }
 .searchmodelcontainer input:focus {
   outline: none;
@@ -7320,16 +7596,16 @@ body.active-modal {
 
 .alertpopup {
   position: absolute;
-  left: 800px;
-  top: 400px;
-  width: 300px;
-  height: 80px;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
   z-index: 999;
   box-shadow: 2px 2px 2px 2px rgb(187, 181, 181);
   background-color: rgb(228, 197, 197);
   border-radius: 10px;
   display: none;
-  padding-left: 20px;
+  padding: 20px;
 }
 .alertsymbol {
   margin-top: 20px;
@@ -7483,8 +7759,7 @@ body.active-modal {
   flex-wrap: wrap;
   width: 100%;
   height: auto;
- 
-
+  
   align-items: center;
   justify-content: center;
   
@@ -7496,8 +7771,6 @@ body.active-modal {
   display: flex;
   background-color: rgba(44, 2, 117, 0.2);
   border-radius: 8px;
- 
- 
  
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -8784,6 +9057,7 @@ body.active-modal {
   width: 120px;
   height: 40px;
   color: white;
+  margin: 5px;
   background-color: #2257dd;
   border-radius: 10px;
   border: none;
@@ -8914,6 +9188,36 @@ body.active-modal {
  font-family: Lato, sans-serif;
 
 }
+
+.modeluploadwrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+}
+.modeluploadwrapper input[type="file"] {
+  font-size: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.btnmodel {
+
+  width: auto;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: Lato, sans-serif;
+
+}
+
 .cameradiv{
   position: absolute;
   display: none;
@@ -9071,7 +9375,7 @@ body.active-modal {
   display: flex;
   list-style: none;
   outline: none;
-  flex-wrap: wrap;
+  margin: 15px auto;
   
   
   
@@ -9108,6 +9412,7 @@ body.active-modal {
   width:  100%;
   align-items: left;
   justify-content: left;
+  
  
 }
 .navbardashboard{
@@ -9252,8 +9557,8 @@ body.active-modal {
 
 @media (max-width: 600px) {
   .navigation {
-    left: -5px;
-    width: 60px;
+    left: -20px;
+    width: 80px;
   }
   .navigation.active {
     left: 0px;
@@ -9442,10 +9747,135 @@ body.active-modal {
 .cambutton{
 
 }
+.hamlistmob{
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:  70px;
+ 
+  right: 0;
+  background-color: #0c0eaa;
+  padding: 10px 0;
+  margin-top: 20px;
+  
+}
+.modeluploadbuttons{
+  display: flex;
+  width: fit-content;
+  height: auto;
+  
+  flex-wrap: wrap;
+ 
+  flex-direction: row;
+}
+.modeluploadbuttons>*{
+  flex: 1 1 120px;
+  margin: 10px;
+ 
+}
+.tickfbx{
+  display: none;
+  color: white;
+  font-size: 20px;
+}
+.tickglb{
+  display: none;
+  color: white;
+  font-size: 20px;
+}
+.tickusd{
+  display: none;
+  color: white;
+  font-size: 20px;
+}
+
+.tickimage{
+  display: none;
+  color: white;
+  font-size: 20px;
+}
+.dashboardmerchant{
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:  70px;
+ 
+  right: 0;
+  background-color: #0c0eaa;
+  padding: 10px 0;
+  margin-top: 20px; 
+}
+.dropdownsearchalt{
+  display: none;
+}
 
 @media screen and (max-width: 600px) {
-    
+  .modeldatacontainerbtn{
+    display: none;
+  }
+  .searchmodeltable{
+    max-width:  400px;
+    overflow: scroll;
+  }
+  .dropdownsearch{
+    max-width:  300px;
+ 
+    margin-left: 20px;
+  }
+  .searchmodelcontainer input{
+    max-width: 300px;
+   
 
+  }
+  .modeldatacontainer{
+    max-width: 300px;
+    margin: 10px;
+   
+  }
+  .addmodeldiv{
+    margin-left: 40px;
+  }
+  .arbutton{
+    display: flex;
+  }
+    .mainhomecontainer{
+      max-width: 300px;
+      margin-left: 10px;
+    }
+    .input-group {
+      width: 250px;
+    }
+   
+    .addTagInput{
+      width: 160px;
+    }
+    .listButtonMaterial{
+      width: 160px;
+  }
+  .required-roomtype::before{
+    margin-left: -20px;
+  }
+    .addTagBox{
+      width: 200px;
+    }
+   
+    .input{
+      width: 200px;
+    }
+  .paginationar{
+    width: 500px;
+    margin: 0px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80px;
+   
+   
+  }
+ 
  .buttonqrcode{
     display: none;
   }
@@ -9536,12 +9966,38 @@ body.active-modal {
     cursor: pointer;
     padding: 10px;
     margin-right: -10px;
+    
+  }
+  .hamburgercross{
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: -10px;
+    
   }
   .linesall{
     display: block;
     background-color:  white;
     height: 2px;
     width: 35px;
+  }
+  .linesnew{
+    display: block;
+    background-color: white;
+    height: 2px;
+    width: 40px;
+    
+    transform: rotate(40deg);
+  }
+  .linesnewcross{
+    display: block;
+    background-color: white;
+    height: 2px;
+    width: 40px;
+    transform: rotate(-45deg);
+    margin-top: -10px;
   }
 
   .lines{
@@ -9561,15 +10017,42 @@ body.active-modal {
     position: sticky;
     top: 0;
     }
+    .dashboardham{
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top:  -800px;
+     
+      right: 0;
+      background-color: #0c0eaa;
+      padding: 10px 0;
+      margin-top: 20px; 
+    }
+    .dashboardham li a{
+      color: white;
+    }
+    .dashboardham li{
+      text-align: center;
+      width: 90vw;
+    }
+    .dashboardham li a:hover{
+      font-weight: bold;
+      color: gray;
+      border: none;
+      letter-spacing: 3px;
+    }
+    
 
-ul{
+  .hamlist{
    
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -800px;
+    top:  -800px;
    
     right: 0;
     background-color: #0c0eaa;
@@ -9577,14 +10060,14 @@ ul{
     margin-top: 20px;
   
   }
-  li a{
+ .hamlist li a{
     color: white;
   }
-  li{
+  .hamlist li{
     text-align: center;
     width: 90vw;
   }
-  li a:hover{
+  .hamlist li a:hover{
     font-weight: bold;
     color: gray;
     border: none;
