@@ -236,11 +236,11 @@ const Wallchange = () => {
                 
                 <label className='filtercheckbox' id='checkboxsingle'  >
               
-              <input type='checkbox'   className='checkinput' id= 'checksingle'  onClick={()=>handleclick(location.state.imageurl[0])} />
+              <input type='checkbox'   className='checkinput' id= 'checksingle'  onClick={()=>handleclick(location.state.id.imageurl[0])} />
               
               
               </label>
-              <img src={location.state.imageurl[0]}/>
+              <img src={location.state.id.imageurl[0]}/>
                 
             </div>
 
@@ -298,6 +298,7 @@ const Wallchange = () => {
              
                
             </div>
+       
            
                 </div>   
         

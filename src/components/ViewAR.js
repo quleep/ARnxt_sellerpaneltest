@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Footertest from './Footertest'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const ViewAR = () => {
     const productdetailsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getproducttable'
@@ -12,8 +12,23 @@ const ViewAR = () => {
     const [data, setData] = useState([]);
     const [perPage] = useState(10);
     const [pageCount, setPageCount] = useState(0)
+    const [offsetvalue, setOffsetValue] = useState();
+    const [activepagevalue, setActivePagevalue] = useState(0)
 
-    
+    const location = useLocation()
+
+    useEffect(()=>{
+      if(location.state && location.state.arviewreturn === 'true' && location.state.offsetvalue > 10){
+         setActivePagevalue(location.state.offsetvalue/10)
+        setOffset(location.state.offsetvalue)
+      }else{
+        setOffset(0)
+        setActivePagevalue(0)
+
+      }
+
+    },[])
+      
    const history = useHistory()
     useEffect(()=>{
       axios.get(productdetailsurl).then(res=>{
@@ -31,27 +46,38 @@ const ViewAR = () => {
 
     const slice = allproducts && allproducts.slice(offset, offset + perPage)
 
-   
+    console.log(slice)
+
+    
     const handlePageClick=(e)=>{
+        
         const selectedPage = e.selected;
         
-        
+        setOffsetValue(e.selected)
         setOffset(selectedPage*10)
 
        
     }
+
+   
     const handleDetails=(item)=>{
 
         if(item.modelrequired === 'true'){
             history.push({
                 pathname: '/details',
-                state: item.product_Id
+                state: {
+                  id: item.product_Id,
+                  offsetvalue: offsetvalue*10
+                }
             })
         }
       if(item.modelrequired === 'false'){
         history.push({
             pathname: '/webdetails',
-            state: item
+            state: {
+              id: item,
+              offsetvalue: offsetvalue*10
+            }
         })
       }
     }
@@ -95,6 +121,7 @@ const ViewAR = () => {
                     nextLabel={"next"}
                     breakLabel={"..."}
                     breakClassName={"break-me"}
+                    forcePage={activepagevalue}
                     pageCount={pageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}

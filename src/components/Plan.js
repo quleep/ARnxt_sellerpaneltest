@@ -4,6 +4,11 @@ import axios from 'axios'
 
 
 const Plan = () => {
+  const userEmail= sessionStorage.getItem('user')
+
+  const emailID= JSON.parse(userEmail)
+  let p_id= emailID.userid
+ 
     const paymenturl= 'https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/order';
 const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/verifypayment';
 
@@ -22,11 +27,12 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
         setPriceCheckPro(!pricecheckpro)
       }
     const handleBuyBasic =(value)=>{
-        let subsid= 'Sub8999'
-        let planid= 'Plan8999'
-        let plan_name= 'Basic plan'
-        let desc= 'Basic plan (6 months)'
-
+      console.log(value)
+        let subsid= value === '8999' ?  'Sub8999' : 'Sub29999'
+        let planid= value === '8999' ?  'Plan8999' : 'Plan29999'
+        let plan_name= 'Starter plan'
+        let desc= value === '8999' ?  'Starter plan (6 months)' : 'Starter plan (12 months)' 
+ 
         const requestbody={
             amount: value,
             plan_Id: planid,
@@ -36,18 +42,19 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
            
 
         }
+        console.log(requestbody)
         axios.post(paymenturl, requestbody).then(response=>{
             
         
         let options = {
-            key: "rzp_test_l5Zne5v6xWk2I1",
+            key: "rzp_live_YbfBrZC0QAX9az",
             amount: value, 
             currency: "INR",
             name: "Arnxt.com", 
-            description: "Payment for Basic plan",
+            description: "Payment for Starter plan",
             image: 'https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/arnxtreg.png',
             order_id: response.data.id,
-            callback_url: "https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/verifypayment",
+            callback_url: `https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/verifypayment?mid=${p_id}`,
             prefill: {
                 name: "", 
                 email: "",
@@ -65,7 +72,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
 
           rzp1.open();
     
-                 
+              
               
              
         }).catch(error=>{
@@ -77,6 +84,124 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
       
     
     }   
+
+    const handleBuyPremium =(value)=>{
+ 
+
+      let subsid= value === '35999' ? 'Sub35999' : 'Sub129999'
+      let planid= value === '35999' ? 'Plan35999' : 'Plan129999'
+      let plan_name= 'Basic plan'
+      let desc= value === '35999' ? 'Basic plan (6 months)' : 'Basic plan (12 months)'
+
+      const requestbody={
+          amount: value,
+          plan_Id: planid,
+          subscription_Id: subsid,
+          planname: plan_name,
+          desc: desc
+         
+
+      }
+      console.log(requestbody)
+      axios.post(paymenturl, requestbody).then(response=>{
+          
+      
+      let options = {
+          key: "rzp_live_YbfBrZC0QAX9az",
+          amount: value, 
+          currency: "INR",
+          name: "Arnxt.com", 
+          description: "Payment for Basic plan",
+          image: 'https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/arnxtreg.png',
+          order_id: response.data.id,
+          callback_url: `https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/verifypayment?mid=${p_id}`,
+          prefill: {
+              name: "", 
+              email: "",
+              contact: ""
+          },
+          notes: {
+              address: "Razorpay Corporate Office"
+          },
+          theme: {
+              "color": "#3399cc"
+          }
+      };
+
+      let rzp1 = new window.Razorpay(options);
+
+        rzp1.open();
+  
+               
+            
+           
+      }).catch(error=>{
+          console.log(error);
+      })
+
+
+
+    
+  
+  }  
+
+  const handleBuyPro =(value)=>{
+    let subsid=  value === '99999'? 'Sub99999' :'Sub369999'
+    let planid= value === '99999'? 'Plan99999' :'Plan369999'
+    let plan_name= 'Premium plan'
+    let desc=   value === '99999' ? 'Premium plan (6 months)' : 'Premium plan (12 months)'
+
+    const requestbody={
+        amount: value,
+        plan_Id: planid,
+        subscription_Id: subsid,
+        planname: plan_name,
+        desc: desc
+       
+
+    }
+    console.log(requestbody)
+    axios.post(paymenturl, requestbody).then(response=>{
+        
+    
+    let options = {
+        key: "rzp_live_YbfBrZC0QAX9az",
+        amount: value, 
+        currency: "INR",
+        name: "Arnxt.com", 
+        description: "Payment for premium plan",
+        image: 'https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/arnxtreg.png',
+        order_id: response.data.id,
+        callback_url: `https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/verifypayment?mid=${p_id}`,
+        prefill: {
+            name: "", 
+            email: "",
+            contact: ""
+        },
+        notes: {
+            address: "Razorpay Corporate Office"
+        },
+        theme: {
+            "color": "#3399cc"
+        }
+    };
+
+    let rzp1 = new window.Razorpay(options);
+
+      rzp1.open();
+
+             
+          
+         
+    }).catch(error=>{
+        console.log(error);
+    })
+
+
+
+  
+
+}  
    
   return (
     <div>
@@ -118,7 +243,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
              Number of 3D views/month : {pricecheckbasic ? '50,000' : '10,000' }
 
 			</p>
-			<button class="btn"   onClick={()=>handleBuyBasic(pricecheckbasic ? '1' : '1')}>Buy Now</button>
+			<button class="btn"   onClick={()=>handleBuyBasic(pricecheckbasic ? '29999' : '8999')}>Buy Now</button>
 		</div>
 	</div>
 	<div class="card standard">
@@ -152,7 +277,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
             No of Products : 100<br/>
              Number of 3D views/month : {pricecheckpremium ? '2,50,000' : '50,000'}
 			</p>
-			<button class="btn">Buy Now</button>
+			<button class="btn"  onClick={()=>handleBuyPremium(pricecheckpremium ? '129999' : '35999')}>Buy Now</button>
 		</div>
 	</div>
 	<div class="card premium">
@@ -187,7 +312,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
             No of Products : 500 <br/>
              Number of 3D views/month : Unlimited
 			</p>
-			<button class="btn">Buy Now</button>
+			<button class="btn" onClick={()=>handleBuyPro(pricecheckpro ? '369999' : '99999')}>Buy Now</button>
 		</div>
 	</div>
 </div>

@@ -10,10 +10,10 @@ const ARdetails = () => {
     const location = useLocation()
     const itemdetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
     const [glburl, setGlbUrl] = useState()
-
+   const history = useHistory();
     const modelRef =  useRef();
      useEffect(()=>{
-        axios.post(itemdetails, location.state).then(res=>{
+        axios.post(itemdetails, location.state.id).then(res=>{
             
           setGlbUrl(res.data)
         }).catch(error=>{
@@ -21,10 +21,12 @@ const ARdetails = () => {
         })
      },[])
 
+console.log(location.state)
      console.log(glburl)
      const handlemodalclose =()=>{
       document.querySelector('.modalscan').style.display= 'none'
      }
+     
 const openqrcode = ()=>{
   document.querySelector('.modalscan').style.display= 'block'
 
@@ -32,6 +34,17 @@ const openqrcode = ()=>{
 useEffect(()=>{
 
 },[])
+
+const handleBackClick=()=>{
+  history.push({
+    pathname: '/arview',
+    state: {
+     
+      offsetvalue: location.state.offsetvalue,
+      arviewreturn: 'true'
+    }
+})
+}
    
 
   return (
@@ -48,7 +61,7 @@ useEffect(()=>{
                <div>
 
             </div>
-         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${location.state}`}/>
+         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${location.state.id}`}/>
 
                 </span>	
 	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		
@@ -102,6 +115,11 @@ useEffect(()=>{
                     <div className='buttonqrcode'>
                     <button  onClick={openqrcode}>
                 AR QR code
+               </button>
+                      </div>
+                      <div className='buttonqrcode'>
+                    <button onClick={handleBackClick} >
+                  Go back
                </button>
                       </div>
              

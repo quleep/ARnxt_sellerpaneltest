@@ -4014,6 +4014,7 @@ const profileUpdateHandler=()=>{
 
 }
 
+
 const modelManagementHandler=(e)=>{
   e.preventDefault();
   const body={
@@ -4062,6 +4063,30 @@ const handleAnalyticsClose =()=>{
   document.querySelector('.analyticsdiv').style.display = 'none'
 
 }
+
+ let dat= analyticsdata && analyticsdata[0].viewtime
+let finaldate=  new Date(dat).toUTCString().split(',')[1]
+
+
+
+const getviewdate =(val)=>{
+  let viewarray= []
+  let date;
+  analyticsdata && analyticsdata.forEach(item=>{
+
+    if(item.productId === val ){
+    let datevalue=  new Date(item.viewtime).toUTCString().split(',')[1]
+     
+     date= datevalue.slice(0,12)
+       
+     }
+     
+ 
+  })
+  return date
+}
+
+
 
 
 const getviewcount =(val)=>{
@@ -4144,7 +4169,9 @@ const csv= allproductmerchant && allproductmerchant.map(item=>{
          Appviews: getviewsource(item.product_Id),
          Webviews: getviewsourcecount(item.product_Id),
          Totalviews: getviewcount(item.product_Id),
-         userId: getuserid(item.product_Id)
+         userId: getuserid(item.product_Id),
+         viewdate: getviewdate(item.product_Id),
+        
 
        }
        
@@ -4237,6 +4264,7 @@ const columns= [
        ),
       sortable: true    
   },
+
   {
     
     name: "App Views",
