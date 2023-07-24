@@ -37,7 +37,7 @@ const View = () => {
            src= {newurl}
                   
                   modes="scene-viewer quick-look webxr"
-                  
+                  ar-scale fixed
                   auto-rotate ar
                   camera-controls
                   shadow-intensity="1"

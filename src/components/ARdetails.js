@@ -46,7 +46,7 @@ const handleBackClick=()=>{
 })
 }
    
-
+console.log(glburl)
   return (
     <div>
         <Navbar/>
@@ -103,7 +103,7 @@ const handleBackClick=()=>{
                 <div>
                 <div  className='productdetailsinside'>
                       <label>Specification: </label>
-                      <p>{glburl && glburl.productdetails[0].specification}</p>
+                      <p>{glburl && glburl.productdetails[0].Specification}</p>
                     </div>
                 </div>
                 <div>
