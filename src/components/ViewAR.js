@@ -18,7 +18,7 @@ const ViewAR = () => {
     const [pageCount, setPageCount] = useState(0)
     const [offsetvalue, setOffsetValue] = useState();
     const [activepagevalue, setActivePagevalue] = useState(0)
-    const [categorydata, setCategoryData] = useState([])
+    const [categorydata, setCategoryData] = useState()
     const [subcatvalue, setSubCatValue] = useState('')
     const [subcategoryitems, setSubCategoryItems] = useState()
 
@@ -37,9 +37,35 @@ const ViewAR = () => {
     },[])
 
     useEffect(()=>{
-
+     let newarr =[]
       axios.get(categoryurl).then(res=>{
-        setCategoryData(res.data)
+         for (let i =0 ; i< res.data.length ; i++){
+          if (res.data [i].category === 'Furniture'){
+            newarr[0] = res.data[i]
+          }
+          if (res.data [i].category === 'Bathroom'){
+            newarr[1] = res.data[i]
+          }
+          if (res.data [i].category === 'Furnishing'){
+            newarr[2] = res.data[i]
+          }
+          if (res.data [i].category === 'Electrical'){
+            newarr[3] = res.data[i]
+          }
+          if (res.data [i].category === 'Electronics'){
+            newarr[4] = res.data[i]
+          }
+          if (res.data [i].category === 'Decorative'){
+            newarr[5] = res.data[i]
+          }
+          if (res.data [i].category === 'Walls'){
+            newarr[6] = res.data[i]
+          }
+          if (res.data [i].category === 'Floors'){
+            newarr[7] = res.data[i]
+          }
+         }
+        setCategoryData(newarr)
          
       }).catch(error=>{
         console.log(error)
