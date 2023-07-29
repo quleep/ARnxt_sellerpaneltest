@@ -41,6 +41,7 @@ const Blognew = () => {
        
       <div>
       <div className="carddetails">
+        
 <img src="/assets/images/blogimage1.jpg"  style={{}} className="card-img-top" alt="..."/>
 <div className="card-body1">
   <div className='cardtitle'>
@@ -64,7 +65,7 @@ const Blognew = () => {
       </div>
       <div>
       <div className="carddetails" >
-<img src="/assets/images/blogimage1.jpg"  style={{}} className="card-img-top" alt="..."/>
+<img src="/assets/images/2.jpeg"  style={{}} className="card-img-top" alt="..."/>
 <div className="card-body1">
   <div className='cardtitle'>
   <h5 className="card-title"> What Is Virtual Reality (VR)?</h5>
@@ -87,7 +88,7 @@ const Blognew = () => {
       </div>
       <div>
       <div className="carddetails" >
-<img src="/assets/images/blogimage1.jpg"  style={{}} className="card-img-top" alt="..."/>
+<img src="/assets/images/3.jpeg"  style={{}} className="card-img-top" alt="..."/>
 <div className="card-body1">
   <div className='cardtitle'>
   <h5 className="card-title">Augmented reality</h5>
@@ -108,7 +109,7 @@ const Blognew = () => {
       </div>
       <div>
       <div className="carddetails" >
-<img src="/assets/images/blogimage1.jpg"  style={{}} className="card-img-top" alt="..."/>
+<img src="/assets/images/5.jpeg"  style={{}} className="card-img-top" alt="..."/>
 <div className="card-body1">
   <div className='cardtitle'>
 <h5 className="card-title">What is Augmented Reality </h5>

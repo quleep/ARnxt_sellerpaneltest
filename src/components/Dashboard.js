@@ -56,6 +56,7 @@ const getanalyticsdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.
 const uplodmodelsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/uploadmodels';
 const searchmodelurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel'
 const getmodeldata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
+const gettagstableurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagstable'
 
 
 
@@ -250,12 +251,19 @@ const Dashboard = () => {
  const [searchproductdata, setSearchProductData] = useState();
 
  const [dropDown, showDropDown] = useState(false)
+ const [dropDownPlacement, showDropDownPlacement] = useState(false)
+ const [placementdrop, setPlacementDrop] = useState(false)
+
  const [subdropdown, showSubDropDown] = useState(false)
 
  const [currencydrop, showCurrencyDrop] = useState(false)
  const [desgindrop, showDesignDrop] = useState(false)
  const [designroom, showDesignRoom] = useState(false)
  const [designroommerchant, showDesignRoomMerchant] = useState(false)
+ const [tagsdropmerchant, showTagsDropMerchant] = useState(false)
+ const [dropmerchanttags, showDropMerchantTags] = useState(false)
+
+
 
  const [select, setSelect] = useState('Category')
 
@@ -265,6 +273,11 @@ const Dashboard = () => {
  const [designselect, setDesignSelect] = useState('')
  const [roomsdrop, setRoomsDrop] = useState('Room Type')
  const [dropdownroommerchant, setDropdownRoomMerchant] = useState('Room Type')
+ const [placementtype, setPlacementType] = useState('Placement')
+ const [typeofplacement, setTypeOfPlacement] = useState('Placement')
+
+const [dropdownTags, setDropDownTags] = useState('Tags')
+const [droptags, setDropTags] = useState('Tags')
 
 
  const [buttonclick, setButtonClick] = useState(false)
@@ -300,6 +313,10 @@ const Dashboard = () => {
  const [activelist, setActiveList] = useState(false)
  const [selectedrooms, setSelectedRooms] = useState([])
  const [roomsselectmerchant, setroomsselectmerchant] = useState([])
+ const [tagsarraymerchant, setTagsArrayMerchant] = useState([])
+ const [arraytagsmerchant, setArrayTagsMerchant] = useState([])
+
+ 
  const [brandofmerchant, setBrandOfMerchant] = useState([])
  const [collectionofmerchant, setCollectionOfMerchant] = useState([])
  const [colorsofmerchant, setColorsOfMerchant] = useState([])
@@ -316,6 +333,7 @@ const Dashboard = () => {
 
  const [productselected, setProductSelected] = useState('')
  const [addedmodel, setAddedModel] = useState('')
+ const [tagstabledata, setTagsTableData] = useState()
 
 
  
@@ -438,7 +456,14 @@ const handleColorDeleteTagMerchant = (index) => {
      roomtypetag.splice(index, 1)
  }
 
+  useEffect(()=>{
+    axios.get(gettagstableurl).then(res=>{
+      setTagsTableData(res.data)
+    }).catch(error=>{
+      console.log(error)
+    })
 
+  },[])
 
  let names = ['Furniture', 'Bathroom', 'Furnishing', 'Electrical', 'Electronics', 'Decorative', 'Walls','Floors','Upholstery','Wall paint']
 
@@ -539,7 +564,10 @@ const handleColorDeleteTagMerchant = (index) => {
 
 
 
- 
+ const placementarray = [
+   "wall", "Floor", "ceiling"
+
+ ]
  
 
  const [opentab, setOpenTab] = useState(false)
@@ -2257,7 +2285,7 @@ const productdetails= {
   tags: tags,
   category: select,
   subcategory: subcatselect,
-  Specification: partnerspecification,
+  specification: partnerspecification,
   brandoverview: partnerbrandoverview,
   sellerinfo: partnersellerinfo,
   care: partnercare,
@@ -4314,11 +4342,12 @@ const handleActiveList=(val, len)=>{
   }
 
   if(checked){
-    document.querySelector(`#listselect_${len}`).classList.add('selectcheck')
+    document.querySelector(`#checkroom_${len}`).style.display = 'block'
     setSelectedRooms((oldArray)=> [...oldArray, val])
   }
   if(!checked){
-    document.querySelector(`#listselect_${len}`).classList.remove('selectcheck')
+    document.querySelector(`#checkroom_${len}`).style.display = 'none'
+
      setSelectedRooms(
       (oldArray)=>oldArray.filter((item)=>
       item != val
@@ -4340,12 +4369,65 @@ const handleActiveListMerchant=(val, len)=>{
   }
 
   if(checked){
-    document.querySelector(`#listselectmerchant_${len}`).classList.add('selectcheck')
+      document.querySelector(`#checkmarkrooms_${len}`).style.display= 'block'
     setroomsselectmerchant((oldArray)=> [...oldArray, val])
   }
   if(!checked){
-    document.querySelector(`#listselectmerchant_${len}`).classList.remove('selectcheck')
+      document.querySelector(`#checkmarkrooms_${len}`).style.display= 'none'
+   
      setroomsselectmerchant(
+      (oldArray)=>oldArray.filter((item)=>
+      item != val
+        )
+    
+     )
+
+  }
+}
+const handleListTagsMerchant =(val, len)=>{
+
+
+  let checked = false
+  if(document.querySelector(`#checkboxtagmerchant_${len}:checked`)){
+    checked = true
+  }
+  else{
+    checked = false
+  }
+
+  if(checked){
+    document.querySelector(`#checkmark_${len}`).style.display = 'block'
+      
+    setTagsArrayMerchant((oldArray)=> [...oldArray, val])
+  }
+  if(!checked){
+    document.querySelector(`#checkmark_${len}`).style.display = 'none'
+     setTagsArrayMerchant(
+      (oldArray)=>oldArray.filter((item)=>
+      item != val
+        )
+    
+     )
+
+  }
+}
+const handleTagsMerchant =(val, len)=>{
+    
+  let checked = false
+  if(document.querySelector(`#checkboxmerchanttags_${len}:checked`)){
+    checked = true
+  }
+  else{
+    checked = false
+  }
+
+  if(checked){
+    document.querySelector(`#checktags_${len}`).style.display = 'block'
+    setArrayTagsMerchant((oldArray)=> [...oldArray, val])
+  }
+  if(!checked){
+    document.querySelector(`#checktags_${len}`).style.display = 'none'
+    setArrayTagsMerchant(
       (oldArray)=>oldArray.filter((item)=>
       item != val
         )
@@ -4356,6 +4438,7 @@ const handleActiveListMerchant=(val, len)=>{
 }
 
 const handleRemoveRoom=(val,len)=>{
+   let indexval= roomTypeArray.indexOf(val)
   setSelectedRooms(
     (oldArray)=>oldArray.filter((item)=>
     item != val
@@ -4363,10 +4446,13 @@ const handleRemoveRoom=(val,len)=>{
   
    )
 
-   document.querySelector(`#listselect_${len}`).classList.remove('selectcheck')
+       document.querySelector(`#checkroom_${indexval}`).style.display= 'none'
+
 
 }
 const handleRemoveRoomMerchant=(val,len)=>{
+
+ let indexval= roomTypeArray.indexOf(val)
   setroomsselectmerchant(
     (oldArray)=>oldArray.filter((item)=>
     item != val
@@ -4374,7 +4460,37 @@ const handleRemoveRoomMerchant=(val,len)=>{
   
    )
 
-   document.querySelector(`#listselectmerchant_${len}`).classList.remove('selectcheck')
+       document.querySelector(`#checkmarkrooms_${indexval}`).style.display= 'none'
+
+
+}
+const handleRemoveTagsMerchant=(val,len)=>{
+   let indexval= tagstabledata.indexOf(val)
+   
+      
+   let newarray =[];
+    newarray = tagsarraymerchant.filter(item=>(
+      item !== val
+    ))
+    
+  setTagsArrayMerchant(newarray)
+
+  document.querySelector(`#checkmark_${indexval}`).style.display = 'none'
+
+}
+
+
+const handleRemoveMerchantTags=(val,len)=>{
+  let indexval= tagstabledata.indexOf(val)
+  setArrayTagsMerchant(
+    (oldArray)=>oldArray.filter((item)=>
+    item != val
+      )
+  
+   )
+
+    document.querySelector(`#checktags_${indexval}`).style.display = 'none'
+
 
 }
 
@@ -4388,6 +4504,23 @@ const handleClickRoomMerchant=()=>{
  
   showDesignRoomMerchant(!designroommerchant)
 
+}
+const handleClickTagsDrop=()=>{
+ 
+  showTagsDropMerchant(!tagsdropmerchant)
+
+}
+const handleClickTagsMerchant=()=>{
+ 
+  showDropMerchantTags(!dropmerchanttags)
+
+}
+
+const handlePlacementClick = ()=>{
+  showDropDownPlacement(!dropDownPlacement)
+}
+const handleClickPlacement = ()=>{
+  setPlacementDrop(!placementdrop)
 }
 const history = useHistory()
 
@@ -4658,6 +4791,8 @@ function downloadCSV(array) {
 })
  }
 
+
+
  
  const uploadglbfile =(e)=>{
   let files = Array.from(e.target.files) 
@@ -4687,31 +4822,23 @@ function downloadCSV(array) {
       }, [3000]);
       return
        }
+
+    
  }
    })
 
 
    const reader = new FileReader();
 
-   reader.onload = () => {
-       if (reader.readyState === 2) {
-          
-           setImagesPreview(oldArray => [...oldArray, reader.result])
-           setImages(oldArray => [...oldArray, file])
-       
 
-          
-           }
-      
-      
-   }
-     
 
    
    reader.readAsDataURL(file)
    
 })
  }
+
+ console.log(fileglb)
 
  const uploadusdzfile =(e)=>{
   let files = Array.from(e.target.files) 
@@ -4967,6 +5094,42 @@ function downloadCSV(array) {
 
 
   }
+    if(placementtype === 'Placement'){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Placement is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+   if(tagsarraymerchant.length === 0){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActiveMerchant(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Please select atleast one tag'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
   if(merchantsubcateogry === 'Sub-category'){
     window.scroll(0,0)
 
@@ -5028,24 +5191,7 @@ document.querySelector('#spinner').style.display = 'none'
 
       }
       
-      if(filefbx === ''){
-    window.scroll(0,0)
 
-        setAccActiveMerchant(2)
-document.querySelector('#spinner').style.display = 'none'
-
-        document.querySelector('.alertpopup').style.display = 'block'
-        document.querySelector('.alerttext').innerHTML = 'Please upload fbx zip file'
-   
-        setTimeout(() => {
-        document.querySelector('.alertpopup').style.display = 'none'
-         
-        }, [3000]);
-          
-         return
-
-
-      }
             if(fileglb === ''){
     window.scroll(0,0)
 
@@ -5119,9 +5265,7 @@ let filesarray=[];
     if(filesarray[i].includes('usdz')){
         usdzurl = filesarray[i]
     }
-    if(filesarray[i].includes('zip')){
-      zipurl = filesarray[i]
-    }
+ 
     if(filesarray[i].includes('jpeg' )){
       console.log('yes')
       imgurl = filesarray[i]
@@ -5157,7 +5301,7 @@ const productdetails= {
   lengthprod: lengthmerchant,
   breadthprod: breadthmerchant,
   height: heightmerchant,
-
+  placement : placementtype,
   productname: productmerchant.toLowerCase(),
  
   mrp : Number(mrpmerchant),
@@ -5170,10 +5314,10 @@ const productdetails= {
   sku: skumerchant,
   discount: Number(discount),
   colorvalue: colortagsmerchant,
-  tags: merchanttags,
+  tags: tagsarraymerchant,
   category: merchantproductcategory,
   subcategory: merchantsubcateogry,
-  Specification: specificationmerchant,
+  specification: specificationmerchant,
   brandoverview: brandoverviewmerchant,
   sellerinfo: sellerinfomerchant,
   care: caremerchant,
@@ -5234,7 +5378,7 @@ setButtonClick(true)
  const tagsbody={
   Id: lastId,
   merchantId: Number(p_id),
-  tags: merchanttags,
+  tags: tagsarraymerchant,
   regtime: lastId
 }
   axios.post(addtagsbyuserurl, tagsbody).then(res=>{
@@ -5498,6 +5642,9 @@ const handleProductSelect =(e)=>{
     }
    
   }
+
+
+  
   return (
     
     <div className=''>
@@ -5903,6 +6050,7 @@ const handleProductSelect =(e)=>{
 
 
                                           </div>
+                                          
                                           <div  className='input-group'>
                                             <input  type='text' value={weightunit} onChange={(e)=>setWeightUnit(e.target.value)}  className='input' placeholder='Weight unit'  />
                                             <label className='placeholder'
@@ -5915,6 +6063,42 @@ const handleProductSelect =(e)=>{
                                             <input  type='number' value={partnerwarranty} onChange={(e)=>setPartnerWarranty(e.target.value)} className='input' placeholder='warranty'  />
                                             <label className='placeholder'
                                             >Warranty (Years) </label>
+
+
+
+                                          </div>
+
+                                          <div  className='input-group'>
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => setPlacementDrop(false)}
+                                    onFocus={() => setPlacementDrop(!placementdrop)}>{typeofplacement}<span className= {typeofplacement === "Placement" ? 'required-fieldplacement': 'requiredfield'}></span><IoIosArrowDown
+                    style={{
+                        transform: placementdrop ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !placementdrop ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !placementdrop ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    placementarray.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setTypeOfPlacement(name); setPlacementDrop(false) }}
+                            style={{ fontWeight: typeofplacement === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {typeofplacement === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
 
 
 
@@ -6034,8 +6218,11 @@ const handleProductSelect =(e)=>{
                                           </div>
                                         
                                        
-
-
+                                           <div className='input-group'>
+                                            </div>
+                                            <div className='input-group'>
+                                            </div>
+                                          
 
 
                                           </div>
@@ -6180,6 +6367,9 @@ const handleProductSelect =(e)=>{
                               <label>
                                 <div  className='listitems' id={`roomselect_${index}`}  >
                                   <input type='checkbox' id= {`checkboxroom_${index}`} value={name} onClick={()=> handleActiveList(name, index)} />
+                                           <span className='checkIcon'>
+                               <BiCheck size={25} className='tickmarktags'  id= {`checkroom_${index}`} /> 
+                            </span>
                                   <p>{name}</p>
                                 </div>
                               </label>
@@ -6202,60 +6392,83 @@ const handleProductSelect =(e)=>{
 
                                                                    
                                           <div  className='input-group'>
-                                        
-                                       
-                                          <div className='AddTagContainer'>
-            <div className="addTagBox">
-          
-              
-                <div className="addTagInput">
-                <div  className='tagscontainer'>
-                    {
+                                           
+                                           
 
-                     
-                        tags.map((tag, index) => {
+                                           
+
+                                           <div className='AddTagContainer'>
+                                   <div className="addTagBox">
                                   
-                            return (  
-
-                                        tag === 'default' ? 
-                                        <p></p>  :
-                                          <div className="tags" key={index}>
-                                    <span>{tag}</span>
-                                    <div className="crossIcon"
-                                        onClick={() => handleDeleteTag(index)}>
-                                        <RxCross2 />
-                                    </div>
-
-                                </div>
-                                
-                          
-                            )
-                        })
-                        
-                      }
-                     
-                      </div>
-
-                    <input className='inputtag' type="text" autoFocus
-                     placeholder='Add tags'
-                        value={tagText}
-                        onKeyUpCapture={(e) => { handleAddTag(e) }}
-                        onChange={(e) => setTagText(e.target.value)}
-                    />
-                     <label className='placeholder'
-                                            >Add tags  </label>
-                </div>
-            </div>
-        </div>
-
-
-
-
-                                          </div>
-
+                                     
+                                       <div className="addTagInput">
+                       
+                                         <div className='tagscontainer'>
+                                         {
+                                              arraytagsmerchant && arraytagsmerchant.map((tag, index) => {
+                                                   return (
+                                                       <div className="tags" key={index}>
+                                                           <span>{tag}</span>
+                                                           <div className="crossIcon"
+                                                               onClick={() => handleRemoveMerchantTags(tag,index)}>
+                                                               <RxCross2 />
+                                                           </div>
+                       
+                                                       </div>
+                                                   )
+                                               })
+                                             }
+                       
+                       
+                                           </div>
+                                      
+                       
+                                           <div className='listBoxContainer'>
+                                                            <button className='listButtonMaterial'
+                                                            onClick={handleClickTagsMerchant}
+                                                           
+                                                           >{droptags}<span className= { arraytagsmerchant.length === 0 ? 'required-tagsmerchant': 'requiredfield'}></span><IoIosArrowDown
+                                                           
+                                           style={{
+                                               transform: dropmerchanttags ? 'rotate(180deg)' : 'rotate(0deg)',
+                                               transition: '0.3s ease-in-out'
+                       
+                                           }} /></button>
+                                   <ul className='listItemsMaterial' style={{
+                                       opacity: !dropmerchanttags ? "0" : "1",
+                                       transition: "0.3s ease",
+                                       visibility: !dropmerchanttags ? "hidden" : "visible",
+                                       transformOrigin: "top center"
+                                   }}>
+                                       {
+                                          tagstabledata &&  tagstabledata.map((name, index) => {
+                                               return (
+                                                   <li key={index} className='listrooms' id={`merchanttags_${index}`} 
+                                                     >
+                                                  
+                                                     <label>
+                                                       <div  className='listitems' id={`tagslistmerchant_${index}`}  >
+                                                         <input type='checkbox' id= {`checkboxmerchanttags_${index}`} value={name} onClick={()=> handleTagsMerchant(name, index)} />
+                                                                            <span className='checkIcon'>
+                               <BiCheck size={25} className='tickmarktags'  id= {`checktags_${index}`} /> 
+                            </span>
+                                                         <p>{name}</p>
+                                                       </div>
+                                                     </label>
+                                                   </li>
+                                               )
+                                           })
+                                       }
+                                   </ul>
+                               </div>
                                           
-                                  
- 
+                                       </div>
+                                   </div>
+                               </div>
+                       
+                                          
+                       
+                                                                 </div>
 
                                           <div  className='input-group'>
                                           <div className='AddTagContainer'>
@@ -6367,11 +6580,6 @@ const handleProductSelect =(e)=>{
                                       
              
                                          </div>
-
-                                      
-
-
-
 
                                         </div> :<div></div>
                                          }
@@ -6658,6 +6866,46 @@ const handleProductSelect =(e)=>{
 
 
                                           </div>
+                                                                                 <div  className='input-group'>
+
+                                          
+                                         
+
+
+<div className='listBoxContainer'>
+            <button className='listButton'
+               
+                onBlur={() => showDropDownPlacement(false)}
+                onFocus={() => showDropDownPlacement(!dropDownPlacement)}>{placementtype}<span className= {placementtype === "Placement" ? 'required-fieldplacement': 'requiredfield'}></span><IoIosArrowDown
+                    style={{
+                        transform: dropDownPlacement ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !dropDownPlacement ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !dropDownPlacement ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                    placementarray.map((name, index) => {
+                        return (<li className='list' key={index}
+                            onClick={() => { setPlacementType(name); showDropDown(false) }}
+                            style={{ fontWeight: placementtype === name ? '500' : '400' }}>
+                            <span className='checkIcon'>
+                                {placementtype === name ? <BiCheck size={25} /> : null}
+                            </span>
+                           
+                            {name}
+                        </li>)
+                    })
+                }
+            </ul>
+        </div>
+
+
+
+                                          </div>
                                           <div  className='input-group'>
                                             <input  type='number' value={warrantymerchant} onChange={(e)=>setWarrantyMerchant(e.target.value)} className='input' placeholder='warranty'  />
                                             <label className='placeholder'
@@ -6773,8 +7021,12 @@ const handleProductSelect =(e)=>{
 
 
                                           </div>
+                                          <div className='input-group'>
+                                            </div>
                                         
-                                       
+                                            <div className='input-group'>
+                                            </div>
+                                            
 
 
 
@@ -6921,6 +7173,9 @@ const handleProductSelect =(e)=>{
                               <label>
                                 <div  className='listitems' id={`roomselectmerchant_${index}`}  >
                                   <input type='checkbox' id= {`checkboxroommerchant_${index}`} value={name} onClick={()=> handleActiveListMerchant(name, index)} />
+                                           <span className='checkIcon'>
+                               <BiCheck size={25} className='tickmarktags'  id= {`checkmarkrooms_${index}`} /> 
+                            </span>
                                   <p>{name}</p>
                                 </div>
                               </label>
@@ -6942,52 +7197,86 @@ const handleProductSelect =(e)=>{
 
 
                                                                    
+             
                                           <div  className='input-group'>
-                                        
-                                       
-                                          <div className='AddTagContainer'>
+                                           
+                                           
+
+                                           
+
+                    <div className='AddTagContainer'>
             <div className="addTagBox">
-          
+           
               
                 <div className="addTagInput">
-                <div  className='tagscontainer'>
-                    {
 
-                     
-                        merchanttags.map((tag, index) => {
-                                  
-                            return (  
-
-                                        tag === 'default' ? 
-                                        <p></p>  :
-                                          <div className="tags" key={index}>
+                  <div className='tagscontainer'>
+                  {
+                       tagsarraymerchant && tagsarraymerchant.map((tag, index) => {
+                            return (
+                                <div className="tags" key={index}>
                                     <span>{tag}</span>
                                     <div className="crossIcon"
-                                        onClick={() => handleDeleteTagMerchant(index)}>
+                                        onClick={() => handleRemoveTagsMerchant(tag,index)}>
                                         <RxCross2 />
                                     </div>
 
                                 </div>
-                                
-                          
                             )
                         })
-                        
                       }
-                     
-                      </div>
 
-                    <input className='inputtag' type="text" autoFocus
-                     placeholder='Add tags'
-                        value={tagTextmerchant}
-                        onKeyUpCapture={(e) => { handleAddTagMerchant(e) }}
-                        onChange={(e) => setTagTextMerchant(e.target.value)}
-                    />
-                     <label className='placeholder'
-                                            >Add tags  </label>
+
+                    </div>
+               
+
+                    <div className='listBoxContainer'>
+                                     <button className='listButtonMaterial'
+                                     onClick={handleClickTagsDrop}
+                                    
+                                    >{dropdownTags}<span className= { tagsarraymerchant.length === 0 ? 'required-tagsmerchant': 'requiredfield'}></span><IoIosArrowDown
+                                    
+                    style={{
+                        transform: tagsdropmerchant ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+
+                    }} /></button>
+            <ul className='listItemsMaterial' style={{
+                opacity: !tagsdropmerchant ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !tagsdropmerchant ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+                {
+                   tagstabledata &&  tagstabledata.map((name, index) => {
+                        return (
+                            <li key={index} className='listrooms' id={`listtagsmerchant_${index}`} 
+                              >
+                           
+                           
+                            
+                            
+                              <label>
+                                <div  className='listitems' id={`tagslistmerchant_${index}`}  >
+                                  <input type='checkbox' id= {`checkboxtagmerchant_${index}`} value={name} onClick={()=> handleListTagsMerchant(name, index)} />
+                                  <span className='checkIcon'>
+                               <BiCheck size={25} className='tickmarktags'  id= {`checkmark_${index}`} /> 
+                            </span>
+                                  <p>{name}</p>
+                                </div>
+                              </label>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+                   
                 </div>
             </div>
         </div>
+
+                   
 
                                           </div>
 
@@ -7115,13 +7404,9 @@ const handleProductSelect =(e)=>{
 
         <div>
           <div className='modeluploadbuttons'> 
+          
             <div>
-            <div class="modeluploadwrapper">
-               <button class="btnmodel">Upload fbx zip file <FaCheck className='tickfbx'/> </button>
-                 <input type="file"  id='fileinputfbx' name="myfile"  onChange={uploadfbxfile} />
-               <p className='filemessage'></p>
-                 </div></div> 
-            <div>
+              <input type='text' placeholder='text'/>
             <div class="modeluploadwrapper">
                <button class="btnmodel">Upload glb file  <FaCheck className='tickglb'/></button>
                  <input type="file"  id='fileinputglb' name="myfile" onChange={uploadglbfile} />

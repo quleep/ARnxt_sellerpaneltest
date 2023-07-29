@@ -32,7 +32,7 @@ const openqrcode = ()=>{
 
 }
 useEffect(()=>{
-
+  window.scrollTo(0,0)
 },[])
 
 const handleBackClick=()=>{
@@ -61,7 +61,7 @@ console.log(glburl)
                <div>
 
             </div>
-         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${location.state.id}`}/>
+         <QRCode value= {`arnxt.com/view?id=${location.state.id}`}/>
 
                 </span>	
 	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		
@@ -103,7 +103,7 @@ console.log(glburl)
                 <div>
                 <div  className='productdetailsinside'>
                       <label>Specification: </label>
-                      <p>{glburl && glburl.productdetails[0].Specification}</p>
+                      <p>{glburl && glburl.productdetails[0].specification}</p>
                     </div>
                 </div>
                 <div>

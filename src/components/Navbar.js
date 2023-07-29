@@ -66,14 +66,17 @@ if(userEmail){
   sessionStorage.removeItem('user')
   sessionStorage.removeItem('token')
  }
+ const handleimageclick =()=>{
+    history.push('/')
+ }
 
   return (
   <div >
   <div className='navbarmain' >
-  <div class="logo"  style={{cursor:'pointer'}}>
+  <div class="logo"  style={{cursor:'pointer'}} onClick={handleimageclick} >
   
-    <a href='/'>
-    <img src= '/assets/images/arnxt logo.png' /> </a>
+  
+    <img src= '/assets/images/arnxt logo.png' /> 
   
    
   </div>
@@ -105,7 +108,7 @@ if(userEmail){
 
        <li  className= 'resource' onMouseOver={dropdownview} ><a className='links'>Resources</a>  </li>
        <div className='dropdownnavbar'  onMouseLeave={removedropdown}   >
-         <a href='/career'>Career</a>
+        
          <a href='/blog'>Blogs</a>
          <a href='/contact'>Contact Us</a>
          <a href='/privacypolicy'>Privacy policy</a>

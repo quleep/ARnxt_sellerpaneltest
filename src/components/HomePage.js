@@ -907,7 +907,7 @@ function incNbrc(){
                 </div>
 
                
-                <a className="registercard" href="/registernew" >Register <FaArrowRight/></a>
+                <a className="registercard" href="/register" >Register <FaArrowRight/></a>
                
 
 
@@ -938,7 +938,7 @@ function incNbrc(){
                   </div>
                 </div>
 
-                <a className="" href="/loginnew" style={{ marginTop:'70px', width:'150px', marginLeft:'50px',fontFamily:'Manrope, san-serif', fontWeight:'bold',
+                <a className="" href="/login" style={{ marginTop:'70px', width:'150px', marginLeft:'50px',fontFamily:'Manrope, san-serif', fontWeight:'bold',
                 fontSize:'16px',
                  cursor:'pointer'}}>Login <FaArrowRight/></a>
 
@@ -1014,7 +1014,7 @@ function incNbrc(){
                   }}>Select the best plan and get additional <b style={{color:'green', fontSize:'18px'}}>10%</b> discount by upgrading  during the free trial.</p>
                    
                      
-                    <a className="checkoutproduct" href="/productshome" >Checkout products
+                    <a className="checkoutproduct" href="/product" >Checkout products
                      <span style={{marginTop:'-1px'}} ><FaArrowRight/></span></a>
 
 
@@ -1089,12 +1089,8 @@ function incNbrc(){
 
 
 
-        <div className="bannerdiv">
-    <img src="/assets/images/Web Banner.jpg" alt="logo"  className="bannerimage"/>
-  </div>
-  <div className="bannerdivmob">
-    <img src="/assets/images/bannermobile.jpg" alt="logo" className="bannerimagemob"/>
-  </div>
+
+
         <div className="slider-1" >
           <div className="container" >
             <div className="">

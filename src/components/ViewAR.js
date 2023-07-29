@@ -4,9 +4,13 @@ import Footertest from './Footertest'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import { useHistory, useLocation } from 'react-router-dom';
+import { FaArrowLeft, FaArrowRight, FaGreaterThan } from 'react-icons/fa';
 
 const ViewAR = () => {
     const productdetailsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getproducttable'
+    const categoryurl = 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/allcategory'
+    const fetchsubcat = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsubcategoryitems'
+    const fetchtagdata = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettags'
     const [allproducts, setAllProducts] = useState()
     const [offset, setOffset] = useState(0);
     const [data, setData] = useState([]);
@@ -14,6 +18,9 @@ const ViewAR = () => {
     const [pageCount, setPageCount] = useState(0)
     const [offsetvalue, setOffsetValue] = useState();
     const [activepagevalue, setActivePagevalue] = useState(0)
+    const [categorydata, setCategoryData] = useState([])
+    const [subcatvalue, setSubCatValue] = useState('')
+    const [subcategoryitems, setSubCategoryItems] = useState()
 
     const location = useLocation()
 
@@ -28,6 +35,19 @@ const ViewAR = () => {
       }
 
     },[])
+
+    useEffect(()=>{
+
+      axios.get(categoryurl).then(res=>{
+        setCategoryData(res.data)
+         
+      }).catch(error=>{
+        console.log(error)
+      })
+
+    },[])
+
+   
       
    const history = useHistory()
     useEffect(()=>{
@@ -50,6 +70,7 @@ const ViewAR = () => {
 
     
     const handlePageClick=(e)=>{
+      window.scrollTo(0,0)
         
         const selectedPage = e.selected;
         
@@ -82,10 +103,202 @@ const ViewAR = () => {
       }
     }
 
-   
+   const handlemodalclick =()=>{
+    document.querySelector('.modalnew').style.display ='block'
+   }
+   const handleclosemodal = ()=>{
+    document.querySelector('.modalnew').style.display ='none'
+
+   }
+   let tempsub;
+   const handlecategoryclick = (val)=>{
+      setSubCatValue(val)
+      document.querySelector('.subcategorydiv').style.display = 'block'
+      document.querySelector('.tagsdiv').style.display = 'none'
+      document.querySelector('.categorydiv').style.display = 'none'
+
+   }
+
+   const handlegoback =(e)=>{
+    e.preventDefault()
+    document.querySelector('.subcategorydiv').style.display = 'none'
+    document.querySelector('.tagsdiv').style.display = 'block'
+    document.querySelector('.categorydiv').style.display = 'block'
+   }
+
+   const handlesubcatclick =(val)=>{
+     const body= {
+       subcategory: val
+     }
+     axios.post(fetchsubcat, body).then(res=>{
+       if(res.data.length === 0){
+        window.scrollTo(0,0)
+        document.querySelector('.nodatapopup').style.display = 'flex'
+       }
+       if(res.data.length > 0){
+        document.querySelector('.nodatapopup').style.display = 'none'
+
+       }
+       setOffset(0)
+       setAllProducts(res.data)
+       setPageCount(Math.ceil(res.data.length / perPage))
+    document.querySelector('.modalnew').style.display ='none'
+
+     }).catch(error=>{
+      console.log(error)
+     })
+   }
+
+   const handletagsdata = ()=>{
+      const body = {
+        tags : "New"
+      }
+      axios.post(fetchtagdata, body).then(res=>{
+          if(res.data.length > 0){
+            window.scrollTo(0,0)
+        document.querySelector('.nodatapopup').style.display = 'none'
+
+          }
+       setOffset(0)
+          
+          setAllProducts(res.data)
+          setPageCount(Math.ceil(res.data.length / perPage))
+    document.querySelector('.modalnew').style.display ='none'
+
+      }).catch(error=>{
+        console.log(error)
+      })
+   }
+
+   const handletagsdatalatest = ()=>{
+    const body = {
+      tags : "Top Picks"
+    }
+    axios.post(fetchtagdata, body).then(res=>{
+      if(res.data.length > 0){
+        window.scrollTo(0,0)
+        document.querySelector('.nodatapopup').style.display = 'none'
+
+          }
+       setOffset(0)
+
+       setAllProducts(res.data)
+       setPageCount(Math.ceil(res.data.length / perPage))
+    document.querySelector('.modalnew').style.display ='none'
+
+    }).catch(error=>{
+      console.log(error)
+    })
+ }
+
+ const handletagsdatafeatured = ()=>{
+  const body = {
+    tags : "Featured"
+  }
+  axios.post(fetchtagdata, body).then(res=>{
+    if(res.data.length > 0){
+      window.scrollTo(0,0)
+      document.querySelector('.nodatapopup').style.display = 'none'
+
+        }
+       setOffset(0)
+
+     setAllProducts(res.data)
+     setPageCount(Math.ceil(res.data.length / perPage))
+    document.querySelector('.modalnew').style.display ='none'
+
+  }).catch(error=>{
+    console.log(error)
+  })
+}
+const handlebackproduct =()=>{
+  document.querySelector('.modalnew').style.display ='block'
+  document.querySelector('.subcategorydiv').style.display = 'block'
+  document.querySelector('.tagsdiv').style.display = 'none'
+  document.querySelector('.categorydiv').style.display = 'none'
+
+}
+
+  
   return (
     <div>
        <Navbar/>
+
+       
+       <div className='modelbuttoncontainer'>
+        <div className='hamfilterbutton'  onClick={handlemodalclick}>
+        <span className='linesfilter'></span>
+        <span className='linesfilter'></span>
+        <span className='linesfilter'></span>
+         
+        </div>
+          
+
+       <p id="openModalButton " > All data</p>
+       </div>
+       <div className='nodatapopup'>
+        <div className='popupdata'>
+          <p>Sorry no data available</p>
+          <button  onClick={handlebackproduct} >Go back</button>
+        </div>
+       </div>
+      
+    <div id="modal" class="modalnew">
+        <div class="modal-content">
+            <span class="close" id="closeModalButton" onClick={handleclosemodal}>&times;</span>
+            <div className='modaldata'>
+              <div className='tagsdiv'>
+                <h2>Trending</h2>
+                 <ul>
+                  <li onClick={handletagsdata}>
+                    <p>New</p>
+                  </li>
+                  <li>
+                    <p onClick={handletagsdatalatest} >Top Picks</p>
+                  </li>
+                  <li onClick={handletagsdatafeatured}>
+                    <p>Featured</p>
+                  </li>
+                 </ul>
+
+              </div>
+              <div className='categorydiv'>
+              <h2> Category Items</h2>
+                 <ul>
+                  {
+                    categorydata && categorydata.map((item,index) =>(
+
+                          
+                      <li  onClick={()=>handlecategoryclick(item.category)}>
+                       <p>{item.category}  <FaGreaterThan style={{float:'right', margin:'5px'}} /> </p> 
+                      
+                      </li>
+                    ))
+                  }
+                 
+               
+                 </ul>
+              </div>
+              <div className='subcategorydiv'>
+
+                <button  type='submit' onClick={handlegoback} > <FaArrowLeft/> Go back</button>
+              <h2>Subcategory Items</h2>
+                 <ul>
+                   {
+                    categorydata && categorydata.map(item=>(
+                      item.category === subcatvalue ?
+                         item.subcategory.map(itemnew=>(
+                          <li  onClick={()=>handlesubcatclick(itemnew)} >{itemnew}</li>
+                         )) : ''
+                    ))
+                   }
+                 </ul>
+              </div>
+             
+
+            </div>
+        </div>
+    </div>
 
         <div className='arviewcontainer'>
             <div className='arproductscontainer'>
