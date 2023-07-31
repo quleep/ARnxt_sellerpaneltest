@@ -81,6 +81,186 @@ body {
   color: rgb(60, 48, 216);
 }
 
+.modaldata{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height:  900px;
+  overflow: scroll;
+ 
+ 
+}
+.modaldata>*{
+  flex: 1 1 250px;
+ 
+  margin: 5px;
+  margin-bottom: 20px;
+}
+.subcategorydiv{
+  display: none;
+}
+.subcategorydiv button{
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #001e6c;
+  color: white;
+  width: 90px;
+}
+.subcategorydiv h2{
+  color: black;
+  font-family: '';
+  font-weight: 300;
+}
+.subcategorydiv ul{
+  list-style-type: none;
+  width: auto;
+  height: 100%;
+  
+  display: contents;
+
+}
+.subcategorydiv ul li{
+ 
+  
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px gray ;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+ 
+  padding-top: 5px;
+  cursor: pointer;
+  height: 40px;
+  padding-top: 10px;
+  margin: 10px;
+ 
+
+}
+.subcategorydiv ul li:hover{
+  background-color: rgb(184, 183, 183);
+  transition: 0.2 sec ease;
+}
+.subcategorydiv ul li p:hover{
+  color: rgb(36, 36, 235);
+}
+
+.tagsdiv h2{
+  color: black;
+  font-family: 'Manrope, sans-serif';
+  font-weight: 300;
+}
+.tagsdiv ul{
+  list-style-type: none;
+  width: auto;
+  height: 100%;
+ 
+  display: contents;
+
+}
+.tagsdiv ul li{
+ 
+
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px gray ;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin: 5px;
+  padding-top: 5px;
+  cursor: pointer;
+
+}
+.tagsdiv ul li:hover{
+  background-color: rgb(184, 183, 183);
+}
+.tagsdiv ul li p:hover{
+  color: rgb(36, 36, 235);
+}
+
+.categorydiv h2{
+  color: black;
+  font-family: 'Manrope, sans-serif';
+  font-weight: 300;
+}
+.categorydiv ul{
+  list-style-type: none;
+  width: auto;
+  height: 100%;
+ 
+  display: contents;
+
+}
+.categorydiv ul li{
+ 
+  
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px gray ;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  margin: 10px;
+  height: 40px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-top: 10px;
+
+
+}
+.categorydiv ul li:hover{
+  background-color: rgb(184, 183, 183);
+
+}
+.categorydiv ul li p:hover{
+  color: rgb(36, 36, 235);
+
+}
+
+.modalnew {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+ 
+}
+
+.modal-content {
+  background-color: gainsboro;
+  position: absolute;
+
+  /* Start off-screen to the left */
+  height: 100%;
+  width:  400px;
+ 
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease;
+  
+}
+
+
+.close {
+   display: flex;
+  
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+ 
+   width: fit-content;
+   align-self: flex-end;
+   margin-top: 120px;
+
+}
+
+.close:hover {
+  color: red;
+}
+
 
 .list-boxs .card .ticket {
   color: #FFF;
@@ -10104,172 +10284,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 
-.modaldata{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  height:  900px;
-  overflow: scroll;
- 
- 
-}
-.modaldata>*{
-  flex: 1 1 250px;
- 
-  margin: 5px;
-  margin-bottom: 20px;
-}
-.subcategorydiv{
-  display: none;
-}
-.subcategorydiv button{
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #001e6c;
-  color: white;
-  width: 90px;
-}
-.subcategorydiv h2{
-  color: black;
-  font-family: '';
-  font-weight: 300;
-}
-.subcategorydiv ul{
-  list-style-type: none;
-  width: auto;
-  height: 100%;
-  
-  display: contents;
 
-}
-.subcategorydiv ul li{
- 
-  
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px gray ;
-  margin: 0;
-  padding: 0;
-  text-align: center;
- 
-  padding-top: 5px;
-  cursor: pointer;
-  height: 40px;
-  padding-top: 10px;
-  margin: 10px;
- 
-
-}
-.subcategorydiv ul li:hover{
-  background-color: gray;
-  transition: 0.2 sec ease;
-}
-.tagsdiv h2{
-  color: black;
-  font-family: 'Manrope, sans-serif';
-  font-weight: 300;
-}
-.tagsdiv ul{
-  list-style-type: none;
-  width: auto;
-  height: 100%;
- 
-  display: contents;
-
-}
-.tagsdiv ul li{
- 
-
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px gray ;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  margin: 5px;
-  padding-top: 5px;
-  cursor: pointer;
-
-}
-.tagsdiv ul li:hover{
-  background-color: gray;
-}
-.categorydiv h2{
-  color: black;
-  font-family: 'Manrope, sans-serif';
-  font-weight: 300;
-}
-.categorydiv ul{
-  list-style-type: none;
-  width: auto;
-  height: 100%;
- 
-  display: contents;
-
-}
-.categorydiv ul li{
- 
-  
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px gray ;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  margin: 10px;
-  height: 40px;
-  cursor: pointer;
-  padding-left: 10px;
-  padding-top: 10px;
-
-
-}
-.categorydiv ul li:hover{
-  background-color: gray;
-}
-
-.modalnew {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
- 
-}
-
-.modal-content {
-  background-color: gainsboro;
-  position: absolute;
-
-  /* Start off-screen to the left */
-  height: 100%;
-  width:  400px;
- 
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: left 0.3s ease;
-  
-}
-
-
-.close {
-   display: flex;
-  
-  float: right;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
- 
-   width: fit-content;
-   align-self: flex-end;
-   margin-top: 120px;
-
-}
-
-.close:hover {
-  color: red;
-}
 
 /* When the modal is the target, move it to the center */
 .modal:target .modal-content {

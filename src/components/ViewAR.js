@@ -314,7 +314,7 @@ const handlebackproduct =()=>{
                     categorydata && categorydata.map(item=>(
                       item.category === subcatvalue ?
                          item.subcategory.map(itemnew=>(
-                          <li  onClick={()=>handlesubcatclick(itemnew)} >{itemnew}</li>
+                          <li  onClick={()=>handlesubcatclick(itemnew)} ><p>{itemnew}</p></li>
                          )) : ''
                     ))
                    }
