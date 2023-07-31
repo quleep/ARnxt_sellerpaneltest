@@ -4734,7 +4734,8 @@ function downloadCSV(array) {
 
 
  const logouthandler =()=>{
-   
+  sessionStorage.removeItem('user')
+  sessionStorage.removeItem('token')
     history.push('/')
  }
 
