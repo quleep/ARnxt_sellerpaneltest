@@ -6,7 +6,10 @@ import axios from 'axios'
 import QRCode from "react-qr-code";
 import { FaTimes } from 'react-icons/fa'
 
+
 const ARdetails = () => {
+
+
     const location = useLocation()
     const itemdetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
     const [glburl, setGlbUrl] = useState()
@@ -45,8 +48,8 @@ const handleBackClick=()=>{
     }
 })
 }
-   
-console.log(glburl)
+ 
+
   return (
     <div>
         <Navbar/>
