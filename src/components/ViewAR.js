@@ -264,7 +264,7 @@ const handlebackproduct =()=>{
        </div>
        <div className='nodatapopup'>
         <div className='popupdata'>
-          <p>Sorry no data available</p>
+          <p>Remodelling to perfection</p>
           <button  onClick={handlebackproduct} >Go back</button>
         </div>
        </div>

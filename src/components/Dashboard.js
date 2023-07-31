@@ -7406,7 +7406,7 @@ const handleProductSelect =(e)=>{
           <div className='modeluploadbuttons'> 
           
             <div>
-              <input type='text' placeholder='text'/>
+             
             <div class="modeluploadwrapper">
                <button class="btnmodel">Upload glb file  <FaCheck className='tickglb'/></button>
                  <input type="file"  id='fileinputglb' name="myfile" onChange={uploadglbfile} />
