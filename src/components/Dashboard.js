@@ -57,6 +57,7 @@ const uplodmodelsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/p
 const searchmodelurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel'
 const getmodeldata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
 const gettagstableurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagstable'
+const categoryurl = 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/allcategory'
 
 
 
@@ -335,9 +336,17 @@ const [droptags, setDropTags] = useState('Tags')
  const [addedmodel, setAddedModel] = useState('')
  const [tagstabledata, setTagsTableData] = useState()
 
+ const [categorytable, setCategorytable] = useState()
 
- 
- 
+
+ useEffect(()=>{
+  axios.get(categoryurl).then(res=>{
+    setCategorytable(res.data)
+  }).catch(error=>{
+    console.log(error)
+  })
+ },[])
+
 
  const colorforceRender = () => {
   setColorReRender(!colorreRender)
@@ -2152,6 +2161,42 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
 
   }
+  if(arraytagsmerchant.length === 0){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(1)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Please select atleast one tag'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+  }
+  
+   if(typeofplacement === 'Placement'){
+    window.scroll(0,0)
+
+    document.querySelector('#spinner').style.display = 'none'
+
+    setAccActive(0)
+  document.querySelector('.alertpopup').style.display = 'flex '
+  document.querySelector('.alerttext').innerHTML = 'Placement is required'
+
+  setTimeout(() => {
+  document.querySelector('.alertpopup').style.display = 'none'
+   
+  }, [3000]);
+    
+   return
+
+
+  }
+  
   if(select === 'Category'){
     window.scroll(0,0)
 
@@ -2189,10 +2234,7 @@ document.querySelector('#spinner').style.display = 'inline-flex'
 
   }
 
- 
-    
 
- 
       if(selectedrooms.length === 0){
     window.scroll(0,0)
 
@@ -2264,6 +2306,7 @@ const productdetails= {
   modelno: partnermodelid,
   modelrequired: 'false',
   unit: unit,
+  placement: typeofplacement,
   weightunit: weightunit,
   brand: partnerbrand.toLowerCase(),
   lengthprod: partnerlength,
@@ -2282,7 +2325,7 @@ const productdetails= {
   sku: partnersku,
   discount: Number(discountpartner),
   colorvalue: colortags,
-  tags: tags,
+  tags: arraytagsmerchant,
   category: select,
   subcategory: subcatselect,
   specification: partnerspecification,
@@ -6125,15 +6168,15 @@ const handleProductSelect =(e)=>{
                 transformOrigin: "top center"
             }}>
                 {
-                    namescategory.map((name, index) => {
+                    categorytable && categorytable.map((name, index) => {
                         return (<li className='list' key={index}
-                            onClick={() => { setSelect(name.categoryitem); showDropDown(false) }}
-                            style={{ fontWeight: select === name ? '500' : '400' }}>
+                            onClick={() => { setSelect(name.category); showDropDown(false); setSubCatSelect('Sub-category') }}
+                            style={{ fontWeight: select === name.category ? '500' : '400' }}>
                             <span className='checkIcon'>
-                                {select === name ? <BiCheck size={25} /> : null}
+                                {select === name.category ? <BiCheck size={25} /> : null}
                             </span>
                            
-                            {name.categoryitem}
+                            {name.category}
                         </li>)
                     })
                 }
@@ -6164,9 +6207,9 @@ const handleProductSelect =(e)=>{
                  {
 
 
-                  namescategory.map((name, index) => {
+                  categorytable && categorytable.map((name, index) => {
 
-                    if(name.categoryitem === select){
+                    if(name.category === select){
 
                   
 
@@ -6932,15 +6975,15 @@ const handleProductSelect =(e)=>{
                 transformOrigin: "top center"
             }}>
                 {
-                    namescategory.map((name, index) => {
+                    categorytable && categorytable.map((name, index) => {
                         return (<li className='list' key={index}
-                            onClick={() => { setMerchantProductCategory(name.categoryitem); showDropDown(false) }}
-                            style={{ fontWeight: merchantproductcategory === name ? '500' : '400' }}>
+                            onClick={() => { setMerchantProductCategory(name.category); showDropDown(false); setMerchantSubCategory('Sub-category') }}
+                            style={{ fontWeight: merchantproductcategory === name.category ? '500' : '400' }}>
                             <span className='checkIcon'>
-                                {merchantproductcategory === name ? <BiCheck size={25} /> : null}
+                                {merchantproductcategory === name.category ? <BiCheck size={25} /> : null}
                             </span>
                            
-                            {name.categoryitem}
+                            {name.category}
                         </li>)
                     })
                 }
@@ -6969,9 +7012,9 @@ const handleProductSelect =(e)=>{
                  {
 
 
-                  namescategory.map((name, index) => {
+                  categorytable && categorytable.map((name, index) => {
 
-                    if(name.categoryitem === merchantproductcategory){
+                    if(name.category === merchantproductcategory){
 
                   
 
