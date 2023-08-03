@@ -4823,8 +4823,7 @@ function downloadCSV(array) {
    reader.onload = () => {
        if (reader.readyState === 2) {
           
-           setImagesPreview(oldArray => [...oldArray, reader.result])
-           setImages(oldArray => [...oldArray, file])
+       
        
 
           
@@ -4952,8 +4951,7 @@ function downloadCSV(array) {
    reader.onload = () => {
        if (reader.readyState === 2) {
           
-           setImagesPreview(oldArray => [...oldArray, reader.result])
-           setImages(oldArray => [...oldArray, file])
+    
        
 
           
@@ -5113,26 +5111,15 @@ function downloadCSV(array) {
         })
            .then((res)=>{
           
-           
-            
-      
-        
-  
               if(res.status === 200){
               
                 let resnew= res.url.split('?')
                 let imgurl= resnew[0]
                console.log(imgurl)
                 sendfilesdata(imgurl)
-                
-             
-  
-              }
-  
               
-          
-  
-               
+              }
+       
           
            })
            .catch((err)=>console.log(err))
@@ -5395,15 +5382,15 @@ let filesarray=[];
     }
  
     if(filesarray[i].includes('jpeg' )){
-      console.log('yes')
+      
       imgurl = filesarray[i]
     }
     if(filesarray[i].includes( 'png' )){
-      console.log('yes')
+    
       imgurl = filesarray[i]
     }
     if(filesarray[i].includes( 'jpg' )){
-      console.log('yes')
+     
       imgurl = filesarray[i]
     }
    } 
