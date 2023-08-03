@@ -337,6 +337,10 @@ const [droptags, setDropTags] = useState('Tags')
  const [tagstabledata, setTagsTableData] = useState()
 
  const [categorytable, setCategorytable] = useState()
+ const [glbfiletick, setGlbFileTick] = useState(false)
+ const [usdzfiletick, setUsdzFileTick] = useState(false)
+ const [imagefiletick, setImageFileTick] = useState(false)
+
 
 
  useEffect(()=>{
@@ -653,9 +657,10 @@ Floors: ["Bathroom floors", "Kitchen floors","Outdoor floors", "Living room", "B
  }
  const handleActiveAccordMerchant = (index) => {
 
- 
+
   if (accActivemerchant === index) {
       setAccActiveMerchant()
+  
   }
   else {
       setAccActiveMerchant(index)
@@ -4835,13 +4840,25 @@ function downloadCSV(array) {
 })
  }
 
-
-
  
  const uploadglbfile =(e)=>{
+ 
   let files = Array.from(e.target.files) 
   files.forEach(file => {
    fileToBase64(file, (err, result) => {
+
+    if(Math.round(file.size/1024) > 15000 ){
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'File is too large'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+    }
+   
+
      if (result) {
 
        let newval= file.name
@@ -4849,14 +4866,15 @@ function downloadCSV(array) {
        let filetype = newval.substr(indx, newval.length).toLowerCase();
       
        if(  filetype === 'glb' ){
-        document.querySelector('.tickglb').style.display= 'inline-flex'
+          setGlbFileTick(true)
+     
         
          setFileGlb(file)
          setUploadFilesArray((oldArray)=> [...oldArray, file])
        }
      else{
       setFileGlb('')
-      document.querySelector('.tickglb').style.display= 'none' 
+      setGlbFileTick(false)
       document.querySelector('.alertpopup').style.display = 'flex '
       document.querySelector('.alerttext').innerHTML = 'Please select a glb file'
     
@@ -4882,12 +4900,25 @@ function downloadCSV(array) {
 })
  }
 
- console.log(fileglb)
+
+
+
 
  const uploadusdzfile =(e)=>{
   let files = Array.from(e.target.files) 
   files.forEach(file => {
    fileToBase64(file, (err, result) => {
+
+    if(Math.round(file.size/1024) > 15000){
+      document.querySelector('.alertpopup').style.display = 'flex '
+      document.querySelector('.alerttext').innerHTML = 'File is too large'
+    
+      setTimeout(() => {
+      document.querySelector('.alertpopup').style.display = 'none'
+       
+      }, [3000]);
+      return
+    }
      if (result) {
 
        let newval= file.name
@@ -4895,14 +4926,14 @@ function downloadCSV(array) {
        let filetype = newval.substr(indx, newval.length).toLowerCase();
       
        if(  filetype === 'usdz' || filetype === 'usdc' ){
-        document.querySelector('.tickusd').style.display= 'inline-flex'
-        
+     
+        setUsdzFileTick(true)
          setFileUsdz(file)
          setUploadFilesArray((oldArray)=> [...oldArray, file])
        }
      else{
       setFileUsdz('')
-      document.querySelector('.tickusd').style.display= 'none' 
+     setUsdzFileTick(false)
       document.querySelector('.alertpopup').style.display = 'flex '
       document.querySelector('.alerttext').innerHTML = 'Please upload an usdz file'
     
@@ -4937,36 +4968,97 @@ function downloadCSV(array) {
    
 })
  }
+   
+
+ const Filevalidation = () => {
+  const fi = document.getElementById('fileglb');
  
+  if (fi.files.length > 0) {
+      for (const i = 0; i <= fi.files.length - 1; i++) {
+
+          const fsize = fi.files.item(i).size;
+          const file = Math.round((fsize / 1024));
+       
+          if (file >= 4096) {
+              alert(
+                "File too Big, please select a file less than 4mb");
+          } else if (file < 2048) {
+              alert(
+                "File too small, please select a file greater than 2mb");
+          } else {
+              document.getElementById('size').innerHTML = '<b>'
+              + file + '</b> KB';
+          }
+      }
+  }
+}
+
+ const img = new Image();
+
+
+
+
  const uploadimagefile =(e)=>{
   let files = Array.from(e.target.files) 
   files.forEach(file => {
    fileToBase64(file, (err, result) => {
+   
+ 
      if (result) {
-
+         img.src = result
+        
        let newval= file.name
        let indx = newval.lastIndexOf(".") + 1;
        let filetype = newval.substr(indx, newval.length).toLowerCase();
+
+       let newarr =['jpeg', 'png', 'jpg']
+       if(!newarr.includes(filetype)){
+        setFileImage('')
       
-       if(  filetype === 'jpeg' || filetype === 'png' || filetype === 'jpg' ){
-        document.querySelector('.tickimage').style.display= 'inline-flex'
-        
+        document.querySelector('.alertpopup').style.display = 'flex '
+        document.querySelector('.alerttext').innerHTML = 'Only jpeg png jpeg types accepted'
+      
+        setTimeout(() => {
+        document.querySelector('.alertpopup').style.display = 'none'
+         
+        }, [3000]);
+        return
+       }
+
+       img.onload = function (){
+
+          const    imgWidth = img.naturalWidth;
+       const  imgHeight = img.naturalHeight;
+
+           if(  filetype === 'jpeg' || filetype === 'png' || filetype === 'jpg'  ){
+
+            if(imgWidth === 600 && imgHeight === 600){
+              
+            setImageFileTick(true)
          setFileImage(file)
        
          setUploadFilesArray((oldArray)=> [...oldArray, file])
-       }
-     else{
-      setFileImage('')
-      document.querySelector('.tickimage').style.display= 'none' 
+
+            }
+            else{
+                    setFileImage('')
+                    setImageFileTick(false)
       document.querySelector('.alertpopup').style.display = 'flex '
-      document.querySelector('.alerttext').innerHTML = 'only jpeg jpg png files are accepted'
+      document.querySelector('.alerttext').innerHTML = 'Image should be 600*600 '
     
       setTimeout(() => {
       document.querySelector('.alertpopup').style.display = 'none'
        
       }, [3000]);
       return
+            }
+     
        }
+     
+
+       }
+      
+ 
  }
    })
 
@@ -4976,15 +5068,10 @@ function downloadCSV(array) {
    reader.onload = () => {
        if (reader.readyState === 2) {
           
-           setImagesPreview(oldArray => [...oldArray, reader.result])
-           setImages(oldArray => [...oldArray, file])
+         
        
-
-          
            }
-      
-      
-   }
+      }
     
    reader.readAsDataURL(file)
    
@@ -4996,9 +5083,6 @@ function downloadCSV(array) {
 
   for(let i=0; i< uploadfilesarray.length;i++){
   
-     
-        
- 
      await fetch(urlfilesend,{
       method: "POST",
       body: uploadfilesarray[i].name
@@ -7452,34 +7536,27 @@ const handleProductSelect =(e)=>{
             <div>
              
             <div class="modeluploadwrapper">
-               <button class="btnmodel">Upload glb file  <FaCheck className='tickglb'/></button>
+               <button class="btnmodel">Upload glb file  <FaCheck className= {glbfiletick ? 'tickglbdisplay' : 'tickglb'}/></button>
                  <input type="file"  id='fileinputglb' name="myfile" onChange={uploadglbfile} />
                <p className='filemessage'></p>
                  </div>
               </div> 
             <div>
             <div class="modeluploadwrapper">
-               <button class="btnmodel">Upload usdz file  <FaCheck className='tickusd'/></button>
+               <button class="btnmodel">Upload usdz file  <FaCheck className= {usdzfiletick ? 'tickusddisplay' : 'tickusd'}/></button>
                  <input type="file"  id='fileinputusdz' name="myfile" onChange={uploadusdzfile} />
                <p className='filemessage'></p>
                  </div></div> 
             <div>
             <div class="modeluploadwrapper">
-               <button class="btnmodel">Upload model image (jpeg, png, jpg)  <FaCheck className='tickimage'/></button>
+               <button class="btnmodel">Upload model image (jpeg, png, jpg)  <FaCheck className= {imagefiletick ? 'tickimagedisplay' : 'tickimage'} /></button>
                  <input type="file"  id='fileinputimage' name="myfile" onChange={uploadimagefile}  />
                <p className='filemessage'></p>
                  </div></div> 
 
-
-
-
           </div>
         </div>
 
-      
-
-       
-         
                        <div  className='modaldiv'>
 
                        <div class="modal">		

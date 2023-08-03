@@ -10255,14 +10255,29 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   color: white;
   font-size: 20px;
 }
+.tickglbdisplay{
+  display: inline-flex;
+  color: white;
+  font-size: 20px;
+}
 .tickusd{
   display: none;
   color: white;
   font-size: 20px;
 }
+.tickusddisplay{
+  display: inline-flex;
+  color: white;
+  font-size: 20px; 
+}
 
 .tickimage{
   display: none;
+  color: white;
+  font-size: 20px;
+}
+.tickimagedisplay{
+  display: inline-flex;
   color: white;
   font-size: 20px;
 }
