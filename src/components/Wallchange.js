@@ -9,6 +9,8 @@ import axios from 'axios'
 
 
 const Wallchange = () => {
+
+ 
     let tryimage1 = '/assets/images/31.jpg'
     let tryimage2 = '/assets/images/32.jpg'
     let tryimage3 = '/assets/images/33.jpg'
@@ -115,7 +117,8 @@ const Wallchange = () => {
         url:  val
        
       }
-      axios.post('wallchange.arnxt.com/segment', body).then(res=>{
+      axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
+        console.log(res.data)
         setImageUrl(res.data.segmented_image_url)
         document.querySelector('.loadcontainer').style.display= 'none'
 
