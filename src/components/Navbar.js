@@ -28,7 +28,7 @@ if(userEmail){
   let links = document.querySelectorAll('.links');
  
    hamburger && hamburger.addEventListener('click', ()=>{
-    console.log('hellow')
+   
     
     document.querySelector('#navmain').classList.remove('hamlist')
     document.querySelector('#navmain').classList.add('hamlistmob')
@@ -37,7 +37,7 @@ if(userEmail){
  
   })
   crossburger && crossburger.addEventListener('click', ()=>{
-    console.log('hellow')
+   
     
     document.querySelector('#navmain').classList.remove('hamlistmob')
     document.querySelector('#navmain').classList.add('hamlist')

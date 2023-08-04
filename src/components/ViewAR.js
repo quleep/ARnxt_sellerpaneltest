@@ -92,7 +92,7 @@ const ViewAR = () => {
 
     const slice = allproducts && allproducts.slice(offset, offset + perPage)
 
-    console.log(slice)
+  
 
     
     const handlePageClick=(e)=>{

@@ -19,7 +19,7 @@ const Wallchange = () => {
     const [imageurl, setImageUrl] = useState('')
     const [walldistance, setWallDistance] = useState('')
     const location = useLocation()
-     console.log(location.state)
+   
 
      const fileToBase64 = (file, cb) => {
         const reader = new FileReader()
@@ -118,7 +118,7 @@ const Wallchange = () => {
        
       }
       axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
-        console.log(res.data)
+      
         setImageUrl(res.data.segmented_image_url)
         document.querySelector('.loadcontainer').style.display= 'none'
 

@@ -27,7 +27,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
         setPriceCheckPro(!pricecheckpro)
       }
     const handleBuyBasic =(value)=>{
-      console.log(value)
+    
         let subsid= value === '8999' ?  'Sub8999' : 'Sub29999'
         let planid= value === '8999' ?  'Plan8999' : 'Plan29999'
         let plan_name= 'Starter plan'
@@ -42,7 +42,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
            
 
         }
-        console.log(requestbody)
+      
         axios.post(paymenturl, requestbody).then(response=>{
             
         
@@ -102,7 +102,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
          
 
       }
-      console.log(requestbody)
+     
       axios.post(paymenturl, requestbody).then(response=>{
           
       
@@ -160,7 +160,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
        
 
     }
-    console.log(requestbody)
+  
     axios.post(paymenturl, requestbody).then(response=>{
         
     

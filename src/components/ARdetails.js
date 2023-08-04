@@ -24,8 +24,8 @@ const ARdetails = () => {
         })
      },[])
 
-console.log(location.state)
-     console.log(glburl)
+
+    
      const handlemodalclose =()=>{
       document.querySelector('.modalscan').style.display= 'none'
      }

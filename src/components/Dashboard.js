@@ -805,7 +805,7 @@ const profileHandler=(e)=>{
   }
 
   axios.post(merchantprofileurl, body).then(res=>{
-    console.log(res.data)
+    
    setMerchantProfile(res.data)
   }).catch(error=>{
     console.log(error)
@@ -1048,8 +1048,7 @@ const imagefilechange=(e)=>{
  let files = Array.from(e.target.files) 
  files.forEach(file => {
   fileToBase64(file, (err, result) => {
-    console.log(file)
-    console.log(result)
+   
     if (result) {
       setFile(result)
       setFileName(file)
@@ -2369,7 +2368,7 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(addbrandbyuserurl, brandbody).then(res=>{
-     console.log(res)
+  
    }).catch(error=>{
     console.log(error)
    })
@@ -2385,7 +2384,7 @@ setButtonClick(true)
   regtime: lastId
 }
   axios.post(addtagsbyuserurl, tagsbody).then(res=>{
-   console.log(res)
+  
  }).catch(error=>{
   console.log(error)
  })
@@ -2397,7 +2396,7 @@ setButtonClick(true)
   regtime: lastId
 }
   axios.post(addcolorbyuserurl, colorbody).then(res=>{
-   console.log(res)
+   
  }).catch(error=>{
   console.log(error)
  })
@@ -2410,7 +2409,7 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(adddesignbyuserurl, designbody).then(res=>{
-     console.log(res)
+   
    }).catch(error=>{
     console.log(error)
    })
@@ -2427,7 +2426,7 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
-     console.log(res)
+    
    }).catch(error=>{
     console.log(error)
    })
@@ -3675,7 +3674,7 @@ const submitselfHandler=(e)=>{
       setMessage('')
     },3000)
   
-    console.log(res)
+   
   }).catch(error=>{
     console.log(error)
   })
@@ -4682,7 +4681,7 @@ function toggleMenu() {
   toggle.classList.toggle('active');
 }
 const handleham=()=>{
-  console.log('hell')
+
   document.querySelector('.menu').style.display= 'block'
 }
 
@@ -5115,7 +5114,7 @@ function downloadCSV(array) {
               
                 let resnew= res.url.split('?')
                 let imgurl= resnew[0]
-               console.log(imgurl)
+             
                 sendfilesdata(imgurl)
               
               }
@@ -5481,7 +5480,7 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(addbrandbyuserurl, brandbody).then(res=>{
-     console.log(res)
+    
    }).catch(error=>{
     console.log(error)
    })
@@ -5497,7 +5496,7 @@ setButtonClick(true)
   regtime: lastId
 }
   axios.post(addtagsbyuserurl, tagsbody).then(res=>{
-   console.log(res)
+  
  }).catch(error=>{
   console.log(error)
  })
@@ -5509,7 +5508,7 @@ setButtonClick(true)
   regtime: lastId
 }
   axios.post(addcolorbyuserurl, colorbody).then(res=>{
-   console.log(res)
+
  }).catch(error=>{
   console.log(error)
  })
@@ -5522,7 +5521,7 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(adddesignbyuserurl, designbody).then(res=>{
-     console.log(res)
+   
    }).catch(error=>{
     console.log(error)
    })
@@ -5539,21 +5538,21 @@ setButtonClick(true)
     regtime: lastId
   }
     axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
-     console.log(res)
+     
    }).catch(error=>{
     console.log(error)
    })
    
 
   axios.post(registerUrl, productdetails).then((res)=>{
-    console.log(res)
+  
 
 }).then(()=>{
   axios.post(imagesendurl, merchantbody).then((res)=>{
-    console.log(res)
+   
   }).then(()=>{
     axios.post(uplodmodelsurl, modelbody).then(res=>{
-      console.log(res)
+     
       if(res){
         document.querySelector('#spinner').style.display = 'none'
         
@@ -5609,9 +5608,9 @@ useEffect(()=>{
 
 
 const handleSearchItem=(item)=>{
-  console.log(item)
+
    axios.post(getmodeldata , item).then(res=>{
-    console.log(res.data)
+   
         document.querySelector('.searchmodeltable').style.display= 'block'
       setProductData(res.data.productdetails)
       if(res.data.modeldetails.length > 0){
