@@ -115,7 +115,7 @@ const Wallchange = () => {
         url:  val
        
       }
-      axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+      axios.post('wallchange.arnxt.com/segment', body).then(res=>{
         setImageUrl(res.data.segmented_image_url)
         document.querySelector('.loadcontainer').style.display= 'none'
 
