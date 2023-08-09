@@ -57,7 +57,8 @@ const uplodmodelsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/p
 const searchmodelurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel'
 const getmodeldata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
 const gettagstableurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagstable'
-const categoryurl = 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/allcategory'
+const categoryurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails'
+const getsubcatdetailsurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/subcategoryitems'
 
 
 
@@ -263,6 +264,7 @@ const Dashboard = () => {
  const [designroommerchant, showDesignRoomMerchant] = useState(false)
  const [tagsdropmerchant, showTagsDropMerchant] = useState(false)
  const [dropmerchanttags, showDropMerchantTags] = useState(false)
+ const [dropdownsubcatdetails, setDropDownSubcatDetails] = useState(false)
 
 
 
@@ -276,6 +278,8 @@ const Dashboard = () => {
  const [dropdownroommerchant, setDropdownRoomMerchant] = useState('Room Type')
  const [placementtype, setPlacementType] = useState('Placement')
  const [typeofplacement, setTypeOfPlacement] = useState('Placement')
+ const [subcatdetailsitem, setSubCatDetailsItem] = useState('Sub-cat Details')
+ 
 
 const [dropdownTags, setDropDownTags] = useState('Tags')
 const [droptags, setDropTags] = useState('Tags')
@@ -340,12 +344,22 @@ const [droptags, setDropTags] = useState('Tags')
  const [glbfiletick, setGlbFileTick] = useState(false)
  const [usdzfiletick, setUsdzFileTick] = useState(false)
  const [imagefiletick, setImageFileTick] = useState(false)
+ const [subcatselectmerchant, setSubcatSelectMerchant] = useState('Sub-cat Details')
+ const [dropdownsubcatselectmerchant, setDropDownSubcatSelectMerchant] = useState(false)
+ const [subcategorydetailstable, setSubCategoryDetailsTable] = useState()
 
 
 
  useEffect(()=>{
   axios.get(categoryurl).then(res=>{
     setCategorytable(res.data)
+  }).catch(error=>{
+    console.log(error)
+  })
+ },[])
+ useEffect(()=>{
+  axios.get(getsubcatdetailsurl).then(res=>{
+    setSubCategoryDetailsTable(res.data)
   }).catch(error=>{
     console.log(error)
   })
@@ -2343,7 +2357,7 @@ const productdetails= {
   currency: currencyselect,
   registration_Time: new Date().toString(),
   additional: partneradditional,
-  subcatdetail: partnersubcatdetails,
+  subcatdetail: subcatdetailsitem,
   designstyle: designselect.toLowerCase()
 
 }
@@ -2658,17 +2672,8 @@ const glbchangehandler=(e)=>{
       
    })
   
- 
- 
- 
-   
- 
    const reader = new FileReader();
  
- 
-     
- 
-   
    reader.readAsDataURL(file)
    
  })
@@ -2717,13 +2722,6 @@ const glbchangehandler=(e)=>{
  
        }
      
- 
-       
- 
- 
- 
-        
-   
          fetch(urlimagesend,{
            method:'POST',
            body: file.name
@@ -5436,7 +5434,6 @@ const productdetails= {
   sellerinfo: sellerinfomerchant,
   care: caremerchant,
 
- 
   status : 'Model uploaded',
   imagerejection: '',
   
@@ -5444,13 +5441,10 @@ const productdetails= {
   currency: currencymerchant,
   registration_Time: new Date().toString(),
   additional: additionalmerchant,
-  subcatdetail: subcatdetailsmerchant,
+  subcatdetail: subcatselectmerchant,
   designstyle: designselectmerchant.toLowerCase()
 
-
 }
-
-
 
 const merchantbody={
   merchant_Id: Number(p_id),
@@ -5484,10 +5478,6 @@ setButtonClick(true)
    }).catch(error=>{
     console.log(error)
    })
-
-
-
-
 
  const tagsbody={
   Id: lastId,
@@ -5757,8 +5747,7 @@ const handleProductSelect =(e)=>{
    
   }
 
-
-  
+ 
   return (
     
     <div className=''>
@@ -6280,24 +6269,21 @@ const handleProductSelect =(e)=>{
                   categorytable && categorytable.map((name, index) => {
 
                     if(name.category === select){
-
-                  
-
-                      
+ 
                       return (
                       name.subcategory.map((item,ind)=>(
 
 
                         <li className='list' key={ind}
-                        onClick={() => { setSubCatSelect(item); showDropDown(false) }}
-                        style={{ fontWeight: select === item ? '500' : '400' }}>
+                        onClick={() => { setSubCatSelect(item.itemname); showDropDown(false) ; setSubCatDetailsItem('Sub-Cat Details') }}
+                        style={{ fontWeight: select === item.itemname ? '500' : '400' }}>
                         <span className='checkIcon'>
-                            {select === item ? <BiCheck size={25} /> : null}
+                            {select === item.itemname ? <BiCheck size={25} /> : null}
                         </span>
                        
                         {
                          
-                         item
+                         item.itemname
                         }
                     </li>
 
@@ -6323,9 +6309,61 @@ const handleProductSelect =(e)=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text'  value={partnersubcatdetails} onChange={(e)=>setPartnerSubCatDetails(e.target.value)} className='input' placeholder='Subcatdetails'  />
-                                            <label className='placeholder'
-                                            >Sub-category details  </label>
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => setDropDownSubcatDetails(false)}
+                                    onFocus={() => setDropDownSubcatDetails(!dropdownsubcatdetails)}>{subcatdetailsitem}<span className= ''></span><IoIosArrowDown
+                    style={{
+                        transform: dropdownsubcatdetails ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !dropdownsubcatdetails ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !dropdownsubcatdetails ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+             {
+
+
+subcategorydetailstable && subcategorydetailstable.map((name, index) => {
+
+  if(name.subcategoryname === subcatselect){
+
+
+
+    
+    return (
+    name.subcategorydetails.map((item,ind)=>(
+
+
+      <li className='list' key={ind}
+      onClick={() => { setSubCatDetailsItem(item.itemname); setDropDownSubcatDetails(false) }}
+      style={{ fontWeight: subcatselect === item.itemname ? '500' : '400' }}>
+      <span className='checkIcon'>
+          {subcatselect === item.itemname ? <BiCheck size={25} /> : null}
+      </span>
+     
+      {
+       
+       item.itemname
+      }
+  </li>
+
+    ))
+    
+ ) 
+
+
+
+  }
+
+ 
+})
+}
+            </ul>
+        </div>
+
 
 
 
@@ -7094,15 +7132,15 @@ const handleProductSelect =(e)=>{
 
 
                         <li className='list' key={ind}
-                        onClick={() => { setMerchantSubCategory(item); showDropDown(false) }}
-                        style={{ fontWeight: merchantsubcateogry === item ? '500' : '400' }}>
+                        onClick={() => { setMerchantSubCategory(item.itemname); showDropDown(false); setSubcatSelectMerchant('Sub-cat Details') }}
+                        style={{ fontWeight: merchantsubcateogry === item.itemname ? '500' : '400' }}>
                         <span className='checkIcon'>
-                            {merchantsubcateogry === item ? <BiCheck size={25} /> : null}
+                            {merchantsubcateogry === item.itemname ? <BiCheck size={25} /> : null}
                         </span>
                        
                         {
                          
-                         item
+                         item.itemname
                         }
                     </li>
 
@@ -7128,9 +7166,61 @@ const handleProductSelect =(e)=>{
 
                                           </div>
                                           <div  className='input-group'>
-                                            <input  type='text'  value={subcatdetailsmerchant} onChange={(e)=>setSubCatDetailsMerchant(e.target.value)} className='input' placeholder='Subcatdetails'  />
-                                            <label className='placeholder'
-                                            >Sub-category details  </label>
+                                          <div className='listBoxContainer'>
+                                     <button className='listButton'
+                                   onBlur={() => setDropDownSubcatSelectMerchant(false)}
+                                    onFocus={() => setDropDownSubcatSelectMerchant(!dropdownsubcatselectmerchant)}>{subcatselectmerchant}<span className= ''></span><IoIosArrowDown
+                    style={{
+                        transform: dropdownsubcatselectmerchant ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: '0.3s ease-in-out'
+                    }} /></button>
+            <ul className='listItems' style={{
+                opacity: !dropdownsubcatselectmerchant ? "0" : "1",
+                transition: "0.3s ease",
+                visibility: !dropdownsubcatselectmerchant ? "hidden" : "visible",
+                transformOrigin: "top center"
+            }}>
+             {
+
+
+subcategorydetailstable && subcategorydetailstable.map((name, index) => {
+
+  if(name.subcategoryname === merchantsubcateogry){
+
+
+
+    
+    return (
+    name.subcategorydetails.map((item,ind)=>(
+
+
+      <li className='list' key={ind}
+      onClick={() => { setSubcatSelectMerchant(item.itemname); setDropDownSubcatSelectMerchant(false) }}
+      style={{ fontWeight: merchantsubcateogry === item.itemname ? '500' : '400' }}>
+      <span className='checkIcon'>
+          {merchantsubcateogry === item.itemname ? <BiCheck size={25} /> : null}
+      </span>
+     
+      {
+       
+       item.itemname
+      }
+  </li>
+
+    ))
+    
+ ) 
+
+
+
+  }
+
+ 
+})
+}
+            </ul>
+        </div>
+
 
 
 
