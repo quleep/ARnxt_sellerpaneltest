@@ -5747,13 +5747,17 @@ const handleProductSelect =(e)=>{
    
   }
 
+  const iconClickHandler =()=>{
+      history.push('/')
+  }
+
  
   return (
     
     <div className=''>
 
       <div className='nav-container' >
-      <div class="logo" onClick={logouthandler} style={{cursor:'pointer'}}>
+      <div class="logo" onClick={iconClickHandler} style={{cursor:'pointer'}}>
       <img src= '/assets/images/arnxt logo.png' />
       
        
@@ -6208,10 +6212,7 @@ const handleProductSelect =(e)=>{
                                           </div>
                                           <div  className='input-group'>
 
-                                          
-                                         
-
-
+   
 <div className='listBoxContainer'>
             <button className='listButton'
                 onBlur={() => showDropDown(false)}
@@ -6302,10 +6303,6 @@ const handleProductSelect =(e)=>{
                 
             </ul>
         </div>
-
-                                           
-
-
 
                                           </div>
                                           <div  className='input-group'>
@@ -7018,13 +7015,21 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
 
 
                                           </div>
+                                          <div  className='input-group'>
+                                            <input  type='number' value={warrantymerchant} onChange={(e)=>setWarrantyMerchant(e.target.value)} className='input' placeholder='warranty'  />
+                                            <label className='placeholder'
+                                            >Warranty (Years) </label>
+
+
+
+                                          </div>
                                                                                  <div  className='input-group'>
 
                                           
                                          
 
 
-<div className='listBoxContainer'>
+                <div className='listBoxContainer'>
             <button className='listButton'
                
                 onBlur={() => showDropDownPlacement(false)}
@@ -7058,14 +7063,7 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
 
 
                                           </div>
-                                          <div  className='input-group'>
-                                            <input  type='number' value={warrantymerchant} onChange={(e)=>setWarrantyMerchant(e.target.value)} className='input' placeholder='warranty'  />
-                                            <label className='placeholder'
-                                            >Warranty (Years) </label>
-
-
-
-                                          </div>
+                                     
                                           <div  className='input-group'>
 
 <div className='listBoxContainer'>
@@ -7294,7 +7292,7 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
                                             <input  type='text' list='material' value={primarymaterialmerchant} onChange={(e)=>setPrimaryMaterialMerchant(e.target.value)} className='input' placeholder='Primary material'  />
                                             <label className='placeholder'
                                             >Primary material </label>
-                                            <datalist class="" id="material">    
+                                            <datalist className="" id="material" >    
                         <option value="Fabric"/>
                           <option value="Leatherette"/>
                          <option value="Solid Wood"/>
@@ -7309,19 +7307,11 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
                      
                                </datalist>
 
-                                           
-
-
-
                                           </div>
                                           
 
                                           <div  className='input-group'>
-                                           
-                                           
-
-                                           
-
+                       
                     <div className='AddTagContainer'>
             <div className="addTagBox">
            
@@ -7587,11 +7577,6 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
                                       
              
                                          </div>
-
-                                      
-
-
-
 
                                         </div> :<div></div>
                                          }

@@ -8126,13 +8126,34 @@ display: none;
  
   
 }
+.backbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  width: 100%;
+  padding: 10px;
+}
+.backbutton button{
+  background-color: #0079bf;
+  color: white;
+ 
+  border: none;
+  cursor: pointer;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  
+}
+.backbutton button:hover{
+  color: rgb(170, 207, 170);
+}
 
 .productdetailsdiv {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-   
-  width:  100%;
+   width:  100%;
   gap: 20px;
   
   
@@ -8354,6 +8375,20 @@ display: none;
   font-family: "Work Sans", sans-serif;
   font-weight: 500;
 }
+.listButtonsubcat{
+  width: auto;
+  height: 50px;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: inherit;
+  border: 1px solid rgb(54, 54, 54);
+
+  cursor: pointer;
+ 
+  background-color: #fff6ee; 
+}
 
 .listButton {
   width: 175px;
@@ -8416,6 +8451,7 @@ display: none;
   cursor: pointer;
   font: inherit;
   z-index: 9999;
+
 }
 .list:hover {
   background-color: hsla(340, 87%, 59%, 0.2);

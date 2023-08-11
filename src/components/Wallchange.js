@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Footertest from './Footertest'
 import { useHistory, useLocation } from 'react-router-dom'
 import Webcam from 'react-webcam'
-import { FaCross, FaTimes } from 'react-icons/fa'
+import { FaArrowLeft, FaCross, FaTimes } from 'react-icons/fa'
 import axios from 'axios'
 
 
@@ -15,6 +15,8 @@ const Wallchange = () => {
     let tryimage2 = '/assets/images/32.jpg'
     let tryimage3 = '/assets/images/33.jpg'
     const webcamRef = useRef(null);
+
+    const history = useHistory()
 
     const [imageurl, setImageUrl] = useState('')
     const [walldistance, setWallDistance] = useState('')
@@ -172,10 +174,6 @@ const Wallchange = () => {
       })
          
         
-        
-          
-          
-        
           const reader = new FileReader();
         
           reader.onload = () => {
@@ -207,6 +205,17 @@ const Wallchange = () => {
      useEffect(()=>{
       window.scrollTo(0,0)
    },[])
+
+   const handleBackClick=()=>{
+    history.push({
+      pathname: '/arview',
+      state: {
+       
+        offsetvalue: location.state.offsetvalue,
+        arviewreturn: 'true'
+      }
+  })
+  }
       
   return (
     <div>
@@ -248,6 +257,7 @@ const Wallchange = () => {
             </div>
 
             </label>
+            
         
             </div> 
             <div className='wallchangeshow'> 
@@ -301,6 +311,10 @@ const Wallchange = () => {
              
                
             </div>
+            <div className='backbutton'>
+            <button onClick={handleBackClick}> <FaArrowLeft/> Go back</button>
+            </div>
+          
        
            
                 </div>   
