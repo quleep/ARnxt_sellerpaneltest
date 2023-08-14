@@ -2351,7 +2351,7 @@ const productdetails= {
   sellerinfo: partnersellerinfo,
   care: partnercare,
   imageurl: newarrylatest,
-  status : 'imageuploaded',
+  statusvalue : 'Image uploaded',
   imagerejection: '',
 
   currency: currencyselect,
@@ -5434,7 +5434,7 @@ const productdetails= {
   sellerinfo: sellerinfomerchant,
   care: caremerchant,
 
-  status : 'Model uploaded',
+  statusvalue : 'Model uploaded',
   imagerejection: '',
   
   imageurl: [imgurl],
