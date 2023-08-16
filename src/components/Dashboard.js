@@ -59,6 +59,7 @@ const getmodeldata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/pro
 const gettagstableurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagstable'
 const categoryurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails'
 const getsubcatdetailsurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/subcategoryitems'
+const changeproductstatusurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/changeproductstatusmerchant'
 
 
 
@@ -347,6 +348,9 @@ const [droptags, setDropTags] = useState('Tags')
  const [subcatselectmerchant, setSubcatSelectMerchant] = useState('Sub-cat Details')
  const [dropdownsubcatselectmerchant, setDropDownSubcatSelectMerchant] = useState(false)
  const [subcategorydetailstable, setSubCategoryDetailsTable] = useState()
+ const [selectedproductarray, setSelectedProductArray] = useState()
+ const [statuschangevalue, setStatusChangeValue] = useState(false)
+ const [clearselected, setClearSelected] = useState(false)
 
 
 
@@ -5639,6 +5643,46 @@ const handleProductSelect =(e)=>{
     setProductSelected('')
    }
 }
+
+const handleselectproduct =(e)=>{
+
+  
+ 
+  if(e.selectedRows.length > 0){
+       setStatusChangeValue(true)
+   
+     setSelectedProductArray(e.selectedRows)
+   
+  }else{
+    setStatusChangeValue(false)
+  }
+}
+
+const handleStatusChange =(e)=>{
+
+  const body={
+    productarray: selectedproductarray,
+    statusval: e.target.value
+  }
+   axios.post(changeproductstatusurl, body ).then(res=>{
+     if(res.status === 200){
+      document.querySelector('.statuschangemessage').innerHTML = 'Status changed successfully'
+      setTimeout(() => {
+      document.querySelector('.statuschangemessage').innerHTML = ''
+      setClearSelected(true)
+      setStatusChangeValue(false)
+      
+      }, 3000);
+
+     }
+
+   }).catch(error=>{
+    console.log(error)
+   })
+   setClearSelected(false)
+
+}
+
   const handleAddModel= ()=>{
     getId()
     let moddata;
@@ -7686,7 +7730,19 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
           </div>
        
     <div className='analyticsdiv'>
+   
       <div className='csvbuttoncontainer'>
+        <div className= {statuschangevalue ? 'changestatusdiv': 'changestatusdivnone'}>
+        <select onChange={ (e)=> handleStatusChange(e)} >
+          <option style={{display:'none'}} >Change status</option>
+          <option value='Product live' >Make product Live</option>
+          <option value ='Models completed' >Discontinue product</option>
+
+        </select>
+        <p className='statuschangemessage'  ></p>
+          </div>
+    
+    
         <button onClick={handleAnalyticsClose}>Close</button>
       <button onClick={()=>downloadCSV(csv)} >Download <FaDownload/></button>
 
@@ -7695,24 +7751,23 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
 <div className=''>
 <DataTable
     
-
+    className='datatable'
   
     title="Product data"
+    
  columns={columns}
   pagination    
-
+  
    data={allproductmerchant && allproductmerchant}
     highlightOnHover
- 
+    selectableRows
+  
  fixedHeader= {true}
  fixedHeaderScrollHeight='600px'
  customStyles={tableCustomStyles}
 responsive= {true}
- 
-
-
-
-
+onSelectedRowsChange={(e)=>handleselectproduct(e)}
+ clearSelectedRows= {clearselected}
 />
  </div> 
 

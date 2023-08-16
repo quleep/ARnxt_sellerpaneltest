@@ -1425,7 +1425,23 @@ a {
   height: 4em;
   
 }
-
+.csvbuttoncontainer select{
+  margin: 5px;
+  height: 40px;
+  outline: 2px solid rgb(36, 40, 233);
+  border-radius: 10px;  
+ 
+}
+.statuschangemessage{
+  color: green;
+  font-size: 20px;
+}
+.changestatusdiv{
+  display: block;
+}
+.changestatusdivnone{
+  display: none;
+}
 .s-sidebar__trigger > i {
   display: inline-block;
   margin: 1.5em 0 0 1.5em;
@@ -8600,6 +8616,7 @@ display: none;
  
   
 }
+
 
 model-viewer {
  
