@@ -1432,6 +1432,12 @@ a {
   border-radius: 10px;  
  
 }
+.dropdownwall{
+  outline: 1px solid rgb(36, 40, 233);
+  height: 40px;
+  border-radius: 10px;
+  width:  80px;
+}
 .statuschangemessage{
   color: green;
   font-size: 20px;
@@ -8000,11 +8006,6 @@ display: none;
   flex-wrap: wrap;
   width: 900px;
  
- 
- 
-  
- 
-
 }
 .tablewrapper{
   display: flex;

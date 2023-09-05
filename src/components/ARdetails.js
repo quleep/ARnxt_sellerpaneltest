@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import QRCode from "react-qr-code";
 import { FaTimes } from 'react-icons/fa'
+import { BsBox } from "react-icons/bs";
 
 
 const ARdetails = () => {
@@ -117,7 +118,7 @@ const handleBackClick=()=>{
                   <div className='productdetailsinside'>
                     <div className='buttonqrcode'>
                     <button  onClick={openqrcode}>
-                AR QR code
+                     <BsBox style={{marginRight:'5px'}}/> Visualiser
                </button>
                       </div>
                       <div className='buttonqrcode'>

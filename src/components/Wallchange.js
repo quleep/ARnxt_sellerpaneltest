@@ -20,6 +20,7 @@ const Wallchange = () => {
 
     const [imageurl, setImageUrl] = useState('')
     const [walldistance, setWallDistance] = useState('')
+    const [type, setType] = useState('')
     const location = useLocation()
    
 
@@ -302,6 +303,16 @@ const Wallchange = () => {
                  <input type="file"  id='fileinput' name="myfile"  onChange={uploadfile}  />
                <p className='filemessage'></p>
                  </div>
+                </div>
+                <div className='inputcamdiv'>
+                   <select className='dropdownwall' onChange={(e)=>setType(e.target.value)} >
+                    <option  style={{display:' none'}}>Select</option>
+                    <option>Wall</option>
+                    <option>Floor</option>
+
+                    </select>
+               <p className='inputmessage' style={{color:'red'}}></p>
+                  
                 </div>
                 <div className='inputcamdiv'>
                    <input placeholder='distance from wall e.g = 8' className='inputwall' onChange={(e)=>setWallDistance(e.target.value)} type='number'/>
