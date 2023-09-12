@@ -1107,13 +1107,6 @@ const imagefilechange=(e)=>{
 
 
 
-
-
-
-
-
-
-
   }
 
   else{
@@ -2117,12 +2110,6 @@ for(let i=0; i<images.length;i++){
 
 
 }
-
-
-
-
-
-
 
 
   const  handleFormSubmit = async () =>{
