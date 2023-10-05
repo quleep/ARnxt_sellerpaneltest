@@ -10,6 +10,10 @@ import axios from 'axios'
 
 const Wallchange = () => {
 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+
     const [segmentimage, setSegmentImage] = useState(false)
     const [processimage, setProcessImage] = useState()
     const [imageclick, setImageClick] = useState(false)
@@ -249,19 +253,12 @@ const Wallchange = () => {
           const reader = new FileReader();
         
           reader.onload = () => {
-           
-             
-             
+              
           }
-            
-        
-          
+           
           reader.readAsDataURL(file)
           
         })
-     
-     
-     
      
        }
      
@@ -384,7 +381,7 @@ const Wallchange = () => {
                     <option value= 'floors'>Floor</option>
 
                     </select>
-               <p className='inputmessage' style={{color:'red'}}></p>
+              
                   
                 </div>
             

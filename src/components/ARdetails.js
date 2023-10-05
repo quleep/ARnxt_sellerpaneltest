@@ -11,7 +11,9 @@ import htmlToImage from 'html-to-image';
 
 const ARdetails = () => {
 
-
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
     const location = useLocation()
     const itemdetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
     const [glburl, setGlbUrl] = useState()
@@ -36,9 +38,7 @@ const openqrcode = ()=>{
   document.querySelector('.modalscan').style.display= 'block'
 
 }
-useEffect(()=>{
-  window.scrollTo(0,0)
-},[])
+
 
 const handleBackClick=()=>{
   history.push({

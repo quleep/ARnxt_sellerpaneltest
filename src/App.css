@@ -9447,6 +9447,8 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 .inputcamdiv input:focus{
   outline: none;
 }
+
+
 .loadcontainer{
   display: none;
   margin-top: -30px;
@@ -9573,7 +9575,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   border-radius: 10px;
 }
 .wallchangedisplay{
-  width: 100%;
+  width: 100vw;
   height: 450px;
   display: flex;
   margin: 10px;
@@ -9587,6 +9589,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   width: 100%;
   height: 100%;
   object-fit: contain;
+ 
 }
 .wallchangebuttons{
   display: flex;
@@ -9767,10 +9770,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   color: white;
   height: 50px;
 }
-.inputcamdiv input{
-  border: 1px solid gray;
-  border-radius: 10px;
-}
+
 
 .analyticsdiv{
  
@@ -10398,6 +10398,11 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
    
 
   }
+  .inputcamdiv{
+  
+    height: fit-content;
+    margin-top: 10px;
+ }
   .modeldatacontainer{
     max-width: 300px;
     margin: 10px;
@@ -10458,8 +10463,8 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 
 }
 .wallchangedisplay{
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
 }
 .cambutton{
   display: none;
