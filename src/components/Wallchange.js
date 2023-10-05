@@ -10,7 +10,9 @@ import axios from 'axios'
 
 const Wallchange = () => {
 
- 
+    const [segmentimage, setSegmentImage] = useState(false)
+    const [processimage, setProcessImage] = useState()
+    const [imageclick, setImageClick] = useState(false)
     let tryimage1 = '/assets/images/31.jpg'
     let tryimage2 = '/assets/images/32.jpg'
     let tryimage3 = '/assets/images/33.jpg'
@@ -52,7 +54,8 @@ const Wallchange = () => {
         getBase64FromUrl(tryimage1).then(res=>{
     
           setImageUrl(res)
-      
+          setSegmentImage(false)
+          setImageClick(true)
       
         }) 
       }
@@ -60,6 +63,10 @@ const Wallchange = () => {
         getBase64FromUrl(tryimage2).then(res=>{
     
           setImageUrl(res)
+          setSegmentImage(false)
+          setImageClick(true)
+
+
       
       
         }) 
@@ -68,6 +75,10 @@ const Wallchange = () => {
         getBase64FromUrl(tryimage3).then(res=>{
     
           setImageUrl(res)
+          setSegmentImage(false)
+          setImageClick(true)
+
+
       
       
         }) 
@@ -85,9 +96,64 @@ const Wallchange = () => {
 
       },[imageurl])
 
-     const handleclick=(val)=>{
-        let checked = false
+      const  resizeImage = async (val)=>{
+        let maxWidth 
+        let maxHeight 
+      
+        return new Promise((resolve)=>{
+            const img = new Image();
+       
+        img.src = val+ '?r=' + Math.floor(Math.random()*100000);
+          img.setAttribute('crossOrigin', 'Anonymous');
+       
+        img.onload = function () {
+        let resizedDataURL;
+        let newWidth, newHeight;
+      
+        maxWidth = img.width*18/100 
+        maxHeight = img.height*18/100
+      
+        if (img.width > img.height) {
+          
+          newWidth = maxWidth;
+          newHeight = (maxWidth * img.height) / img.width;
+        } else {
+         
+          newHeight = maxHeight;
+          newWidth = (maxHeight * img.width) / img.height;
+        }
+      
+          const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+        
+      
+         canvas.width = newWidth;
+        canvas.height = newHeight;
+        
+             ctx.drawImage(img, 0, 0, newWidth, newHeight);
+         
+       
+          resizedDataURL = canvas.toDataURL('image/jpeg')
+      
+         resolve(resizedDataURL)
+      }
+      
+        })
+      
+      }
 
+      let wallchangeimage;
+
+     
+
+     const handleclick= async (val)=>{
+
+       if(!imageclick){
+        window.alert('please select an image ')
+        return
+       }
+        let checked = false
+       let newres;
 
         if(document.querySelector('#checksingle:checked')){
           checked = true;
@@ -95,34 +161,41 @@ const Wallchange = () => {
         else{
           checked = false;
         }
-        if(walldistance === ''){
-            document.querySelector('.inputwall').style= 'border: 1px solid red'
-            document.querySelector('.inputmessage').innerHTML = 'Distance is required'
-            setTimeout(() => {
-            document.querySelector('.inputmessage').innerHTML = ''
-                 
-            }, 3000);
-            return
-        }else{
-            document.querySelector('.inputwall').style= 'border: 2px solid rgb(211, 201, 201) '
-
-        }
+        await  getBase64FromUrl(imageurl).then(res=>{
+          wallchangeimage = res
+        })
+        await  resizeImage(val).then(res=>{
+          newres = res
+         })
+          let detectmode;
+         if(type === ''){
+          detectmode = 'walls'
+         }else{
+          detectmode = type
+         }
       
         if(checked){
             document.querySelector('.loadcontainer').style.display= 'block'
             document.querySelector('#checkboxsingle').classList.add('checkboxadd')
             document.querySelector('.defaultinsidetext').style.display= 'none'
-
+            const body={
+              wallimg: wallchangeimage,
+              designimg: newres,
+               detectionmode: detectmode
+            }
+           
+            const config = {
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'auth-token': 'c0110aa4490cd8a4e5c024c4779d976f6927b6b0e4b12c2675e9558a453e933c'
+              },
+            };
               
-    const body={
-        image: imageurl,
-        distance: walldistance,
-        url:  val
-       
-      }
-      axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
-      
-        setImageUrl(res.data.segmented_image_url)
+ 
+      axios.post('http://13.127.25.111:5000/api/v1/infer', body, config).then(res=>{
+        setSegmentImage(true)
+        setProcessImage(res.data)
         document.querySelector('.loadcontainer').style.display= 'none'
 
       }).catch(error=>{
@@ -145,6 +218,7 @@ const Wallchange = () => {
         document.querySelector('.cameradiv').style.display= 'none'
 
         setImageUrl(imgsrc)
+        setSegmentImage(false)
      }
      const uploadfile = (e)=>{
        
@@ -162,13 +236,10 @@ const Wallchange = () => {
           fileToBase64(file, (err, result) => {
             if (result) {
            
-     
-                
-         
             setImageUrl(result)
         document.querySelector('.cameradiv').style.display= 'none'
 
-           
+          setSegmentImage(false) 
      
             
           }
@@ -217,7 +288,8 @@ const Wallchange = () => {
       }
   })
   }
-      
+  
+ 
   return (
     <div>
         <Navbar/>
@@ -253,7 +325,8 @@ const Wallchange = () => {
               
               
               </label>
-              <img src={location.state.id.imageurl[0]}/>
+              <img  src=  {  location.state.id.imageurl[0] }/>
+             
                 
             </div>
 
@@ -269,7 +342,7 @@ const Wallchange = () => {
             <p>Capture your space or upload it’s image</p>
              
             </div>
-            <img src={imageurl} className='imgdisplay'/>
+            <img src={segmentimage ? `data:image/png;base64, ${processimage}` : imageurl } className='imgdisplay'/>
             
             </div>
             <div className='defaultimages'>
@@ -307,18 +380,14 @@ const Wallchange = () => {
                 <div className='inputcamdiv'>
                    <select className='dropdownwall' onChange={(e)=>setType(e.target.value)} >
                     <option  style={{display:' none'}}>Select</option>
-                    <option>Wall</option>
-                    <option>Floor</option>
+                    <option value= 'walls' selected >Wall</option>
+                    <option value= 'floors'>Floor</option>
 
                     </select>
                <p className='inputmessage' style={{color:'red'}}></p>
                   
                 </div>
-                <div className='inputcamdiv'>
-                   <input placeholder='distance from wall e.g = 8' className='inputwall' onChange={(e)=>setWallDistance(e.target.value)} type='number'/>
-               <p className='inputmessage' style={{color:'red'}}></p>
-                  
-                </div>
+            
              
                
             </div>

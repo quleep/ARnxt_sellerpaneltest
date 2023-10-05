@@ -6,6 +6,7 @@ import axios from 'axios'
 import QRCode from "react-qr-code";
 import { FaTimes } from 'react-icons/fa'
 import { BsBox } from "react-icons/bs";
+import htmlToImage from 'html-to-image';
 
 
 const ARdetails = () => {
@@ -49,6 +50,7 @@ const handleBackClick=()=>{
     }
 })
 }
+
  
 
   return (
@@ -65,7 +67,8 @@ const handleBackClick=()=>{
                <div>
 
             </div>
-         <QRCode value= {`arnxt.com/view?id=${location.state.id}`}/>
+          
+         <QRCode  value= {`arnxt.com/view?id=${location.state.id}`}/>
 
                 </span>	
 	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		

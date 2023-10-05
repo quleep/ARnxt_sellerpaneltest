@@ -94,6 +94,7 @@ import ARdetails from "./components/ARdetails";
 import Wallchange from "./components/Wallchange";
 import View from "./components/View";
 import Plan from "./components/Plan";
+import Qrcode from "./Qrcode";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -184,6 +185,9 @@ class App extends Component {
           <Route exact path="/webdetails" component={Wallchange} />
           <Route exact path="/view" component={View} />
           <Route exact path="/plan" component={Plan} />
+          <Route exact path="/qrcode" component={Qrcode} />
+
+          
 
 
 
