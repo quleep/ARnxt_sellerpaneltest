@@ -104,7 +104,7 @@ if(userEmail){
        } 
        <li  onMouseOver={removedropdown}><a href='/product' className='links'>Product</a></li>
        <li  onMouseOver={removedropdown}><a href='/price' className='links'>Pricing</a></li>
-       <li  onMouseOver={removedropdown}><a href='/arview' className='links'>View in AR</a></li>
+       <li  onMouseOver={removedropdown}><a href='/arview' className='links'>View in Room</a></li>
 
        <li  className= 'resource' onMouseOver={dropdownview} ><a className='links'>Resources</a>  </li>
        <div className='dropdownnavbar'  onMouseLeave={removedropdown}   >

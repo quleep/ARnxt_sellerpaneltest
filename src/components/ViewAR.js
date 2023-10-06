@@ -130,10 +130,10 @@ const ViewAR = () => {
     }
 
    const handlemodalclick =()=>{
-    document.querySelector('.modalnew').style.display ='block'
+    document.querySelector('.modalnew').classList.toggle('modalnewclick')
    }
    const handleclosemodal = ()=>{
-    document.querySelector('.modalnew').style.display ='none'
+    document.querySelector('.modalnew').classList.remove('modalnewclick')
 
    }
    let tempsub;
@@ -260,7 +260,7 @@ const handlebackproduct =()=>{
         </div>
           
 
-       <p id="openModalButton " > All data</p>
+       <p id="openModalButton "> All</p>
        </div>
        <div className='nodatapopup'>
         <div className='popupdata'>
