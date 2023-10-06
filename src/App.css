@@ -217,7 +217,8 @@ body {
 }
 
 .modalnew {
-  opacity: 0;
+ opacity: 0;
+ visibility: hidden;
   position: fixed;
   left: 0;
   top: 0;
@@ -225,11 +226,11 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   transition: 0.5s ease;
- 
 }
 .modalnewclick{
   opacity: 1;
   transition: 0.5s ease;
+  visibility: visible;
 }
 
 .modal-content {
@@ -244,8 +245,9 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: left 0.3s ease;
-  
+ 
 }
+
 
 
 .close {

@@ -131,10 +131,17 @@ const ViewAR = () => {
 
    const handlemodalclick =()=>{
     document.querySelector('.modalnew').classList.toggle('modalnewclick')
+    
+  
+
+    
    }
    const handleclosemodal = ()=>{
-    document.querySelector('.modalnew').classList.remove('modalnewclick')
+   
 
+  document.querySelector('.modalnew').classList.remove('modalnewclick')
+
+ 
    }
    let tempsub;
    const handlecategoryclick = (val)=>{
@@ -166,9 +173,10 @@ const ViewAR = () => {
 
        }
        setOffset(0)
+       document.querySelector('.modalnew').classList.remove('modalnewclick')
        setAllProducts(res.data)
        setPageCount(Math.ceil(res.data.length / perPage))
-    document.querySelector('.modalnew').style.display ='none'
+    
 
      }).catch(error=>{
       console.log(error)
@@ -188,8 +196,10 @@ const ViewAR = () => {
        setOffset(0)
           
           setAllProducts(res.data)
+  document.querySelector('.modalnew').classList.remove('modalnewclick')
+
           setPageCount(Math.ceil(res.data.length / perPage))
-    document.querySelector('.modalnew').style.display ='none'
+  
 
       }).catch(error=>{
         console.log(error)
@@ -209,8 +219,10 @@ const ViewAR = () => {
        setOffset(0)
 
        setAllProducts(res.data)
+  document.querySelector('.modalnew').classList.remove('modalnewclick')
+
        setPageCount(Math.ceil(res.data.length / perPage))
-    document.querySelector('.modalnew').style.display ='none'
+    
 
     }).catch(error=>{
       console.log(error)
@@ -230,15 +242,17 @@ const ViewAR = () => {
        setOffset(0)
 
      setAllProducts(res.data)
+  document.querySelector('.modalnew').classList.remove('modalnewclick')
+
      setPageCount(Math.ceil(res.data.length / perPage))
-    document.querySelector('.modalnew').style.display ='none'
+   
 
   }).catch(error=>{
     console.log(error)
   })
 }
 const handlebackproduct =()=>{
-  document.querySelector('.modalnew').style.display ='block'
+  document.querySelector('.modalnew').classList.add('modalnewclick')
   document.querySelector('.subcategorydiv').style.display = 'block'
   document.querySelector('.tagsdiv').style.display = 'none'
   document.querySelector('.categorydiv').style.display = 'none'
