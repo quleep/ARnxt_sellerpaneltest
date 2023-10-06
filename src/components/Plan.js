@@ -79,10 +79,6 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
             console.log(error);
         })
 
-
-  
-      
-    
     }   
 
     const handleBuyPremium =(value)=>{

@@ -132,9 +132,6 @@ const ViewAR = () => {
    const handlemodalclick =()=>{
     document.querySelector('.modalnew').classList.toggle('modalnewclick')
     
-  
-
-    
    }
    const handleclosemodal = ()=>{
    
@@ -176,9 +173,7 @@ const ViewAR = () => {
        document.querySelector('.modalnew').classList.remove('modalnewclick')
        setAllProducts(res.data)
        setPageCount(Math.ceil(res.data.length / perPage))
-    
-
-     }).catch(error=>{
+        }).catch(error=>{
       console.log(error)
      })
    }

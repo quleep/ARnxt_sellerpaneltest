@@ -187,11 +187,6 @@ class App extends Component {
           <Route exact path="/plan" component={Plan} />
           <Route exact path="/qrcode" component={Qrcode} />
 
-          
-
-
-
-
           <Route path="/career/:id" component={JobDesc} />
           
          

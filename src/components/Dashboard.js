@@ -2285,12 +2285,7 @@ document.querySelector('#spinner').style.display = 'none'
  
    
   await uploadimage()
-  
-  
-
-    
-
-
+ 
  }
 
 
@@ -2363,118 +2358,27 @@ const merchantbody={
 }
   
 
+      
 setButtonClick(true)
 
-
-  const brandbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    brand: partnerbrand.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(addbrandbyuserurl, brandbody).then(res=>{
-  
-   }).catch(error=>{
-    console.log(error)
-   })
-
-
-
-
-
- const tagsbody={
-  Id: lastId,
-  merchantId: Number(p_id),
-  tags: tags,
-  regtime: lastId
-}
-  axios.post(addtagsbyuserurl, tagsbody).then(res=>{
-  
- }).catch(error=>{
-  console.log(error)
- })
-
-  const colorbody={
-  Id: lastId,
-  merchantId: Number(p_id),
-  color: colortags,
-  regtime: lastId
-}
-  axios.post(addcolorbyuserurl, colorbody).then(res=>{
-   
- }).catch(error=>{
-  console.log(error)
- })
-
-
-  const designbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    designstyle: designselect.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(adddesignbyuserurl, designbody).then(res=>{
-   
-   }).catch(error=>{
-    console.log(error)
-   })
-  
-
- 
-
-
-
-  const collectionbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    collections: partnercollection.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
-    
-   }).catch(error=>{
-    console.log(error)
-   })
-   
-
- 
-
-
- 
- 
-
-
   axios.post(registerUrl, productdetails).then((res)=>{
-
-}).then(()=>{
-  axios.post(imagesendurl, merchantbody).then(res=>{
     if(res){
-document.querySelector('#spinner').style.display = 'none'
-
-      document.querySelector('.modaldiv').style.display = 'block'
-      setTimeout(() => {
-      document.querySelector('.modaldiv').style.display = 'none'
-        
-      }, [5000]);
+      document.querySelector('#spinner').style.display = 'none'
       
-    }
-    setButtonClick(false)
-  })
+            document.querySelector('.modaldiv').style.display = 'block'
+            setTimeout(() => {
+            document.querySelector('.modaldiv').style.display = 'none'
+              
+            }, [5000]);
+           
+          }
+          setButtonClick(false) 
+
 })
-
-
-
-
 
    }
 
  }
-
-
-
-
-
-
 
 let arrow = document.querySelectorAll(".arrow");
 for (var i = 0; i < arrow.length; i++) {
@@ -5437,12 +5341,7 @@ const productdetails= {
 
 }
 
-const merchantbody={
-  merchant_Id: Number(p_id),
-  merchantname: u_id,
-  product_Id: lastId,
-  registration_Time: new Date().toString(),
-}
+
 const modelbody={
   merchant_Id:  Number(p_id),
   product_Id: lastId,
@@ -5457,81 +5356,10 @@ const modelbody={
 
 setButtonClick(true)
 
-
-  const brandbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    brand: merchantbrandname.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(addbrandbyuserurl, brandbody).then(res=>{
-    
-   }).catch(error=>{
-    console.log(error)
-   })
-
- const tagsbody={
-  Id: lastId,
-  merchantId: Number(p_id),
-  tags: tagsarraymerchant,
-  regtime: lastId
-}
-  axios.post(addtagsbyuserurl, tagsbody).then(res=>{
-  
- }).catch(error=>{
-  console.log(error)
- })
-
-  const colorbody={
-  Id: lastId,
-  merchantId: Number(p_id),
-  color: colortagsmerchant,
-  regtime: lastId
-}
-  axios.post(addcolorbyuserurl, colorbody).then(res=>{
-
- }).catch(error=>{
-  console.log(error)
- })
-
-
-  const designbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    designstyle:  designselectmerchant.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(adddesignbyuserurl, designbody).then(res=>{
-   
-   }).catch(error=>{
-    console.log(error)
-   })
-  
-
- 
-
-
-
-  const collectionbody={
-    Id: lastId,
-    merchantId: Number(p_id),
-    collections: collectionmerchant.toLowerCase(),
-    regtime: lastId
-  }
-    axios.post(addcollectionbyuserurl, collectionbody).then(res=>{
-     
-   }).catch(error=>{
-    console.log(error)
-   })
-   
-
   axios.post(registerUrl, productdetails).then((res)=>{
   
 
 }).then(()=>{
-  axios.post(imagesendurl, merchantbody).then((res)=>{
-   
-  }).then(()=>{
     axios.post(uplodmodelsurl, modelbody).then(res=>{
      
       if(res){
@@ -5546,7 +5374,7 @@ setButtonClick(true)
             }
             setButtonClick(false)
     })
-  })
+ 
 })
 
 
@@ -6057,11 +5885,7 @@ const handleStatusChange =(e)=>{
                                             <label className='placeholder'
                                             >Brand <span className='required-field'></span> </label>
                                                <datalist class="" id="brand">    
-                                          {
-                                            brandofmerchant && brandofmerchant.map(item=>(
-                                              <option>{item}</option>
-                                            ))
-                                          }
+                                       
 
                         
                                </datalist>
@@ -6689,15 +6513,7 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
             </div>
         </div>
 
-
-
-
                                           </div>
-
-                                                                       
-
-                                        
-                                          
 
                                           <div  className='input-group'>
                                             <div className='textareadiv'>
@@ -6910,12 +6726,7 @@ subcategorydetailstable && subcategorydetailstable.map((name, index) => {
                                             <label className='placeholder'
                                             >Brand <span className='required-field'></span> </label>
                                                <datalist class="" id="brand">    
-                                          {
-                                            brandofmerchant && brandofmerchant.map(item=>(
-                                              <option>{item}</option>
-                                            ))
-                                          }
-
+                                     
                         
                                </datalist>
 
