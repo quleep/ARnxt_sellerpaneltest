@@ -197,13 +197,14 @@ const Wallchange = () => {
             };
               
  
-      axios.post('http://wallserver.arnxt.com/api/v1/infer', body, config).then(res=>{
+      axios.post('https://wallserver.arnxt.com/api/v1/infer', body, config).then(res=>{
         setSegmentImage(true)
         setProcessImage(res.data)
         document.querySelector('.loadcontainer').style.display= 'none'
 
       }).catch(error=>{
-        console.log(error)
+        window.alert('Sorry! please try again')
+        
       })
       
         }
