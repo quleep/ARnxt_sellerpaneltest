@@ -197,7 +197,7 @@ const Wallchange = () => {
             };
               
  
-      axios.post('http://13.127.25.111:5000/api/v1/infer', body, config).then(res=>{
+      axios.post('http://wallserver.arnxt.com/api/v1/infer', body, config).then(res=>{
         setSegmentImage(true)
         setProcessImage(res.data)
         document.querySelector('.loadcontainer').style.display= 'none'
