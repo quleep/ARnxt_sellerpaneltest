@@ -8,7 +8,7 @@ import { FaArrowLeft, FaArrowRight, FaGreaterThan } from 'react-icons/fa';
 
 const ViewAR = () => {
     const productdetailsurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getproducttable'
-    const categoryurl = 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/allcategory'
+    const categoryurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails'
     const fetchsubcat = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsubcategoryitems'
     const fetchtagdata = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettags'
     const [allproducts, setAllProducts] = useState()
@@ -39,6 +39,8 @@ const ViewAR = () => {
     useEffect(()=>{
      let newarr =[]
       axios.get(categoryurl).then(res=>{
+        console.log(res)
+      
          for (let i =0 ; i< res.data.length ; i++){
           if (res.data [i].category === 'Furniture'){
             newarr[0] = res.data[i]
@@ -65,6 +67,7 @@ const ViewAR = () => {
             newarr[7] = res.data[i]
           }
          }
+         console.log(newarr)
         setCategoryData(newarr)
          
       }).catch(error=>{
@@ -142,6 +145,7 @@ const ViewAR = () => {
    }
    let tempsub;
    const handlecategoryclick = (val)=>{
+    
       setSubCatValue(val)
       document.querySelector('.subcategorydiv').style.display = 'block'
       document.querySelector('.tagsdiv').style.display = 'none'
@@ -261,15 +265,40 @@ const handlebackproduct =()=>{
 
        
        <div className='modelbuttoncontainer'>
-        <div className='hamfilterbutton'  onClick={handlemodalclick}>
+       <div className='hamfilterbutton'  onClick={handlemodalclick}>
         <span className='linesfilter'></span>
         <span className='linesfilter'></span>
         <span className='linesfilter'></span>
+
          
         </div>
           
 
        <p id="openModalButton "> All</p>
+
+    
+
+        {
+          /*
+         <div className='topcategorydiv'>
+        {
+          categorydata && categorydata.map(item=>(
+            <div className='topcategoryitems'>
+              <p>
+                {item.category}
+              </p>
+              </div>
+          ))
+        }
+        
+
+
+     </div>
+          */
+        }
+ 
+
+      
        </div>
        <div className='nodatapopup'>
         <div className='popupdata'>
@@ -323,7 +352,7 @@ const handlebackproduct =()=>{
                     categorydata && categorydata.map(item=>(
                       item.category === subcatvalue ?
                          item.subcategory.map(itemnew=>(
-                          <li  onClick={()=>handlesubcatclick(itemnew)} ><p>{itemnew}</p></li>
+                          <li  onClick={()=>handlesubcatclick(itemnew.itemname)} ><p>{itemnew.itemname}</p></li>
                          )) : ''
                     ))
                    }
