@@ -5780,7 +5780,7 @@ const handleStatusChange =(e)=>{
                <div>
 
             </div>
-         <QRCode value= {`http://ec2-65-2-79-127.ap-south-1.compute.amazonaws.com:3000/view?id=${modelglb && modelglb[0].product_Id}`}/>
+         <QRCode value= {`arnxt.com/view?id=${modelglb && modelglb[0].product_Id}`}/>
 
                 </span>	
 	      		<p className='dataupload'> Scan the QR code with your mobile device to view the product in your space.</p>	          		
