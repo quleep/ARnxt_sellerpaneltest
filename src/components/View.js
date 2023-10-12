@@ -34,6 +34,7 @@ const View = () => {
                   modes="scene-viewer quick-look webxr"
                    ar ar-scale = "fixed"
                    environment-image="neutral"
+                   ar-placement = {glburl && glburl.productdetails[0].placement}
                   camera-controls touch-action="pan-y"
                   
                   shadow-intensity="1"
