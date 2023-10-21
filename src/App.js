@@ -4,7 +4,7 @@ import React, { Component, useState } from "react";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 //importing components
 import { Footer, Model_Approval, Add_tag } from "./components";
@@ -95,14 +95,14 @@ import Wallchange from "./components/Wallchange";
 import View from "./components/View";
 import Plan from "./components/Plan";
 import Qrcode from "./Qrcode";
+import Rooms from "./components/Rooms";
+import RoomsCategory from "./components/RoomsCategory";
+import ProductDetailAR from "./components/ProductDetailAR";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
 
-
-
 class App extends Component {
-  
   constructor() {
     super();
     this.state = {
@@ -134,13 +134,10 @@ class App extends Component {
       })
       .catch(() => {});
   }
- 
-
 
   render() {
     return (
       <div className="App">
-         
         <Router>
           <Helmet>
             <title>Augmented Reality MarketPlace for Businesses | ARnxt</title>
@@ -156,7 +153,6 @@ class App extends Component {
            "
             />
           </Helmet>
-          
 
           <Route path="/price" exact component={Pricing} />
 
@@ -179,6 +175,9 @@ class App extends Component {
           <Route path="/blogsecond" exact component={BlogSecond} />
           <Route path="/blogthird" exact component={BlogThird} />
           <Route path="/arview" exact component={ViewAR} />
+          <Route path="/arview/rooms/:id" component={Rooms} />
+          <Route path="/arview/categories/:id" component={RoomsCategory} />
+          <Route path="/arview/productdetail/:id" component={ProductDetailAR} />
 
           <Route exact path="/career" component={Career} />
           <Route exact path="/details" component={ARdetails} />
@@ -188,9 +187,6 @@ class App extends Component {
           <Route exact path="/qrcode" component={Qrcode} />
 
           <Route path="/career/:id" component={JobDesc} />
-          
-         
-
 
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/test" exact component={Test} />

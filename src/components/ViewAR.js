@@ -12,7 +12,11 @@ const ViewAR = () => {
   const [brandRooms, setBrandRooms] = useState(null);
   const [categoriesDetails, setCategoriesDetails] = useState([]);
   const [roomData, setRoomData] = useState([]);
-
+  const history = useHistory();
+  const nextPage = (roomName) => {
+    history.push(`/arView/rooms/${roomName}`, { state: { roomName } });
+    console.log(roomName);
+  };
   useEffect(() => {
     // Fetch data using Axios
     axios
@@ -148,7 +152,7 @@ const ViewAR = () => {
               <div
                 key={item.id}
                 className="hori_scroll_container_child1"
-                onClick={() => router.push(`/rooms/${item.roomname}`)}>
+                onClick={() => nextPage(item.roomname)}>
                 <img
                   src={item.iconurl}
                   alt="/"
