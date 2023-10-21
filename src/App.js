@@ -98,6 +98,9 @@ import Qrcode from "./Qrcode";
 import Rooms from "./components/Rooms";
 import RoomsCategory from "./components/RoomsCategory";
 import ProductDetailAR from "./components/ProductDetailAR";
+import RoomBrands from "./components/RoomBrands";
+import CategoryAR from "./components/CategoryAR";
+import CategoryBrandsAR from "./components/CategoryBrandsAR";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -178,6 +181,12 @@ class App extends Component {
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/categories/:id" component={RoomsCategory} />
           <Route path="/arview/productdetail/:id" component={ProductDetailAR} />
+          <Route path="/arview/brands/:id" component={RoomBrands} />
+          <Route path="/arview/category/:id" component={CategoryAR} />
+          <Route
+            path="/arview/categoryBrands/:id"
+            component={CategoryBrandsAR}
+          />
 
           <Route exact path="/career" component={Career} />
           <Route exact path="/details" component={ARdetails} />

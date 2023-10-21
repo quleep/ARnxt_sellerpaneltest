@@ -1,11 +1,11 @@
-import Navbar from './Navbar';
-import Footertest from './Footertest';
+import Navbar from "./Navbar";
+import Footertest from "./Footertest";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation ,useParams,useHistory} from "react-router-dom";
+import { useLocation, useParams, useHistory } from "react-router-dom";
 
 function ProductDetailAR() {
-      const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
   const [usdzFile, setUsdzFile] = useState("");
   const param = useParams();
@@ -32,56 +32,72 @@ function ProductDetailAR() {
     fetchProductData();
   }, [param]);
   return (
-   <>
+    <>
       <Navbar />
-    <div className="hero_container">
-       <div class="product_detail_ar_container">
-      <div class="product_detail_ar_container_child">
-        <div class="product_detail_ar_container_child_child">
-          <div class="product_detail_ar_container_child_child_grid">
-            <div class="product_detail_ar_container_grid_child">
-              <model-viewer
-                id="duck"
-                camera-controls
-                touch-action="pan-y"
-                ar
-                ar-scale="fixed"
-                ar-modes="webxr scene-viewer quick-look"
-                shadow-intensity="1"
-                src={glbFile}
-                ios-src={usdzFile}
-                xr-environment
-                alt="A 3D model of a duck"></model-viewer>
-            </div>
-            <div class="product_detail_ar_container_grid_child1">
-              <h2 class="product_detail_ar_container_grid_child1_text1">
-                {productData?.productname
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ")}
-              </h2>
-
-              
-
-                <p class="product_detail_ar_container_grid_child1_text2_child">₹{productData?.offerprice}</p>
-
-              <div className="product_detail_ar_container_grid_child1_text2">
-                <div className="product_detail_ar_container_grid_child1_text2_child">
-                  Description
+      <div className="hero_container">
+        <div class="product_detail_ar_container">
+          <div class="product_detail_ar_container_child">
+            <div class="product_detail_ar_container_child_child">
+              <div class="product_detail_ar_container_child_child_grid">
+                <div class="product_detail_ar_container_grid_child">
+                  <model-viewer
+                    id="duck"
+                    camera-controls
+                    touch-action="pan-y"
+                    ar
+                    ar-scale="fixed"
+                    ar-modes="webxr scene-viewer quick-look"
+                    shadow-intensity="1"
+                    src={glbFile}
+                    ios-src={usdzFile}
+                    xr-environment
+                    alt="A 3D model of a duck"></model-viewer>
                 </div>
-                <div className="product_detail_ar_container_grid_child1_text2_child1">
-                  {productData?.additional}
+                <div class="product_detail_ar_container_grid_child1">
+                  <h2 class="product_detail_ar_container_grid_child1_text1">
+                    {productData?.productname
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
+                  </h2>
+
+                  <p class="product_detail_ar_container_grid_child1_text2_child">
+                    ₹{productData?.offerprice}
+                  </p>
+ <div className="product_detail_ar_container_grid_child1_text2">
+                    <div className="product_detail_ar_container_grid_child1_text2_child">
+                      Brands
+                    </div>
+                    <div className="product_detail_ar_container_grid_child1_text2_child1">
+                       {productData?.brand
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
+                    </div>
+                  </div>
+                  <div className="product_detail_ar_container_grid_child1_text2">
+                    <div className="product_detail_ar_container_grid_child1_text2_child">
+                      Description
+                    </div>
+                    <div className="product_detail_ar_container_grid_child1_text2_child1">
+                      {productData?.additional}
+                    </div>
+                  </div>
+                  
+                 
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-      </div>
       <Footertest />
     </>
   );
 }
 
-export default ProductDetailAR
+export default ProductDetailAR;

@@ -6,16 +6,33 @@ import ReactPaginate from "react-paginate";
 import { useHistory, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight, FaGreaterThan } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useMyContext } from "../Context/store";
 
 const ViewAR = () => {
-  const [brandsData, setBrandsData] = useState([]);
-  const [brandRooms, setBrandRooms] = useState(null);
-  const [categoriesDetails, setCategoriesDetails] = useState([]);
-  const [roomData, setRoomData] = useState([]);
+  const {
+    userId,
+    setUserId,
+    data,
+    setData,
+    roomData,
+    setRoomData,
+    categoriesDetails,
+    setCategoriesDetails,
+    brandsData,
+    setBrandsData,
+    brandRooms,
+    setBrandRooms,
+  } = useMyContext();
   const history = useHistory();
   const nextPage = (roomName) => {
     history.push(`/arView/rooms/${roomName}`, { state: { roomName } });
-    console.log(roomName);
+  };
+  const nextCategoryPage = (category) => {
+    history.push(`/arView/category/${category}`, { state: { category } });
+  };
+  
+     const nextBrandPage = (brandId) => {
+    history.push(`/arView/brands/${brandId}`, { state: { brandId } });
   };
   useEffect(() => {
     // Fetch data using Axios
@@ -186,7 +203,7 @@ const ViewAR = () => {
               <div
                 key={item.category}
                 className="hori_scroll_container_child1"
-                onClick={() => router.push(`/categories/${item.category}`)}>
+                onClick={() => nextCategoryPage(item.category)}>
                 <img
                   src={item.categoryimage}
                   alt="/"
@@ -220,7 +237,7 @@ const ViewAR = () => {
               <div
                 key={item.brandId}
                 className="hori_scroll_container_child1"
-                onClick={() => router.push(`/brands/${item.brandId}`)}>
+                      onClick={() => nextBrandPage(item.brandId)}>
                 <img
                   src={item.iconUrl}
                   alt="/"

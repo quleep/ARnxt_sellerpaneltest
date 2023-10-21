@@ -3,23 +3,20 @@ import Navbar from "./Navbar";
 import Footertest from "./Footertest";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-
-function RoomsCategory() {
-  const [products, setProducts] = useState([]);
+function CategoryBrandsAR() {
+    const [products, setProducts] = useState([]);
   const param = useParams();
   const history = useHistory();
-
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsubcategoryitems",
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbranddetails",
         {
-          subcategory: param.id,
+          brand: param.id.toLowerCase(),
         }
       );
-      //  console.log('Wishlist:', response.data);
+      console.log("brand:", response.data);
       setProducts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -77,4 +74,4 @@ function RoomsCategory() {
   );
 }
 
-export default RoomsCategory;
+export default CategoryBrandsAR;

@@ -5,55 +5,38 @@ import axios from "axios";
 import Footertest from "./Footertest";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-function Rooms() {
+import { useMyContext } from "../Context/store";
+
+function CategoryAR() {
+  const { brandRooms, setBrandRooms } = useMyContext();
+
   const [categories, setCategories] = useState([]);
   const [foundSubcategories, setFoundSubcategories] = useState([]);
   const [brandsData, setBrandsData] = useState(null);
-  const [props, setProps] = useState("");
+  const [brandsData1, setBrandsData1] = useState(null);
+
+  const [categoriesDetails, setCategoriesDetails] = useState([]);
+  const [subCategory, setSubcategory] = useState(null);
 
   const location = useLocation();
   const param = useParams();
   const history = useHistory();
-
+  const apiUrl = `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandcategory?category=${param.id}`;
   useEffect(() => {
-    const decodedParam = decodeURIComponent(param.id);
-
-    const apiUrl = `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandrooms?room=${decodedParam}`;
-
     const fetchData = async () => {
       try {
         const response = await axios.post(apiUrl); // Use GET request for query parameters
         // Handle the response data here
-        console.log("props", response.data);
-
-        const response2 = await axios.get(
-          "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandtable"
-        );
-        const response1 = await axios.get(
-          "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
+        console.log(response.data);
+        // console.log('brandsdata', brandRooms);
+        // Filter brandIds and iconUrls based on the first array
+        const filteredData = brandRooms?.filter((item) =>
+          response.data.includes(item.brandId)
         );
 
-        const brandFilter = response1.data; // Array of brand-ids to filter by (all lowercase)
-
-        const filteredData = response2.data.filter((item) =>
-          brandFilter.includes(item["brandId"].toLowerCase())
-        );
-        const transformedData = filteredData?.map((item) => {
-          // Store brandId in lowercase
-          const brandIdLowerCase = item["brand-id"].toLowerCase();
-
-          // Store iconUrl in a new variable
-          const iconUrlNewVariable = item["iconUrl"];
-
-          // Create a new object with the transformed values
-          return {
-            brandId: brandIdLowerCase,
-            iconUrlNewVariable: iconUrlNewVariable,
-          };
-        });
-        console.log(transformedData);
-        // Update the original data with the transformed data
-        setBrandsData(transformedData);
+        // Display the filtered data
+        console.log("brsnd", filteredData);
+        setBrandsData1(filteredData);
       } catch (error) {
         // Handle any errors here
         console.error(error);
@@ -61,49 +44,83 @@ function Rooms() {
     };
 
     fetchData();
-  }, [props]);
+  }, [param, brandRooms]);
   useEffect(() => {
-    const decodedParam = decodeURIComponent(param.id);
-    console.log(decodedParam);
-    // Make the POST request using Axios with an empty request body
-    axios
-      .post(
-        `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorybyrooms?room=${decodedParam}`
-      )
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [props]);
+    brands();
+  }, []);
+  const brands = async () => {
+    try {
+      const response = await axios.get(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandtable"
+      );
+      const response1 = await axios.get(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
+      );
 
-  const foundcategories = async () => {
-    const response = await axios.get(
-      "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
-    );
+      console.log("brandsarray", response);
+      const brandFilter = response1.data; // Array of brand-ids to filter by (all lowercase)
 
-    // const shuffledData = shuffleArray(response.data);
+      const filteredData = response.data.filter(
+        (item) =>
+          item &&
+          item["brandId"] &&
+          brandFilter.includes(item["brandId"].toLowerCase())
+      );
+      setBrandsData(filteredData);
 
-    const subcategories = response.data.flatMap(
-      (category) => category.subcategory
-    );
+      console.log(filteredData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    const foundSubcategories = subcategories.filter((subcategory) =>
-      categories.includes(subcategory.itemname)
-    );
+  useEffect(() => {
+    // Transform the data
+    const transformedData = brandsData?.map((item) => {
+      // Store brandId in lowercase
+      const brandIdLowerCase = item["brand-id"]?.toLowerCase();
 
-    console.log("dd", foundSubcategories);
-    setFoundSubcategories(foundSubcategories);
+      // Store iconUrl in a new variable
+      const iconUrlNewVariable = item["iconUrl"];
+
+      // Create a new object with the transformed values
+      return {
+        brandId: brandIdLowerCase,
+        iconUrlNewVariable: iconUrlNewVariable,
+      };
+    });
+
+    // Update the original data with the transformed data
+    setBrandRooms(transformedData);
+    // Display the updated JSON data
+  }, [brandsData]);
+  // Decode the URL-encoded parameter
+  // Outputs "Dining Room"
+
+  const fetchCategoriesData = async () => {
+    try {
+      const response = await axios.get(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
+      );
+      console.log("categ", response.data);
+
+      setCategoriesDetails(response.data);
+      console.log(param.id);
+      const matchingCategory = response.data.filter(
+        (item) => item.category === param.id
+      );
+      console.log(matchingCategory);
+      setCategoriesDetails(matchingCategory);
+    } catch (error) {
+      console.error("Error in fetching data: ", error);
+      // Handle the error
+    }
   };
   useEffect(() => {
-    foundcategories();
-  }, [categories]);
-  const nextPage = (itemname) => {
-    history.push(`/arView/categories/${itemname}`, { state: { itemname } });
-  };
+    fetchCategoriesData();
+  }, [param]);
   const nextBrandPage = (brandId) => {
-    history.push(`/arView/brands/${brandId}`, {
+    history.push(`/arView/categoryBrands/${brandId}`, {
       state: { brandId },
     });
   };
@@ -120,7 +137,7 @@ function Rooms() {
             <div class="rooms_category_container">
               <div class="rooms_category_container1">
                 <div class="rooms_category_container_grid">
-                  {foundSubcategories.map((item) => (
+                  {categoriesDetails[0]?.subcategory.map((item) => (
                     <div
                       class="rooms_category_container_grid_child1"
                       onClick={() => nextPage(item.itemname)}>
@@ -157,7 +174,7 @@ function Rooms() {
                       onClick={() => nextBrandPage(item.brandId)}>
                       <div class="rooms_brands_container_grid_child2">
                         <img
-                          src={item.iconUrlNewVariable}
+                          src={item.iconUrl}
                           alt="Front of men&#039;s Basic Tee in black."
                           class="rooms_category_container_grid_child2_image"
                         />
@@ -175,4 +192,4 @@ function Rooms() {
   );
 }
 
-export default Rooms;
+export default CategoryAR;
