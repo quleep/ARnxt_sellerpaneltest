@@ -125,8 +125,18 @@ function CategoryAR() {
     });
   };
   const nextPage = (itemname) => {
-    history.push(`/arView/categories/${itemname}`, { state: { itemname } });
+    if (param.id === "Walls") {
+      // Navigate to another page if the condition is met
+      history.push(`/arView/visualizer`, {
+        state: { itemname: param.id },
+      });
+    } else {
+      history.push(`/arView/categories/${itemname}`, {
+        state: { itemname },
+      });
+    }
   };
+
   return (
     <>
       <Navbar />

@@ -102,6 +102,7 @@ import RoomBrands from "./components/RoomBrands";
 import CategoryAR from "./components/CategoryAR";
 import CategoryBrandsAR from "./components/CategoryBrandsAR";
 import Visualizer from "./components/Visualizer";
+import Visualizer2D from "./components/Visualizer2D";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -181,6 +182,7 @@ class App extends Component {
           <Route path="/arview" exact component={ViewAR} />
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/visualizer" component={Visualizer} />
+          <Route path="/arview/visualizer2d" component={Visualizer2D} />
 
           <Route path="/arview/categories/:id" component={RoomsCategory} />
           <Route path="/arview/productdetail/:id" component={ProductDetailAR} />

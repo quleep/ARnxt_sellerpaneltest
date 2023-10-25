@@ -10,6 +10,9 @@ export const MyProvider = ({ children }) => {
   const [categoriesDetails, setCategoriesDetails] = useState([]);
   const [brandsData, setBrandsData] = useState([]);
   const [brandRooms, setBrandRooms] = useState(null);
+  const [image, setImage] = useState();
+  const [temporgimage, setTempOrgImage] = useState();
+
   const incrementCounter = () => {
     setCounter(counter + 1);
   };
@@ -29,6 +32,9 @@ export const MyProvider = ({ children }) => {
         setBrandsData,
         brandRooms,
         setBrandRooms,
+        image,
+        setImage,
+        temporgimage, setTempOrgImage,
       }}>
       {children}
     </MyContext.Provider>

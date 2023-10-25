@@ -1,7 +1,250 @@
 import React from "react";
+import Footertest from "./Footertest";
+import Navbar from "./Navbar";
+import { ReactComponent as CameraIcon } from "../assets/icon/camera.svg";
+import { ReactComponent as ProductIcon } from "../assets/icon/product.svg";
+import { ReactComponent as PhotoIcon } from "../assets/icon/ic_add_a_photo.svg";
+import Logo from "../assets/image/my_landing_page_logo_background_image_en-us.png";
+import Video from "../images/VID-20230830-WA0292 (1).mp4";
+import { Rooms } from "../assets/room";
+import { useLocation, useParams, useHistory } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useMyContext } from "../Context/store";
 
 function Visualizer() {
-  return <div>Visualizer</div>;
-}
+  const { image, setImage, temporgimage, setTempOrgImage } = useMyContext();
+  const [demoimages, setDemoImages] = useState([]);
+  const [base64array, setBase64Array] = useState([]);
+  const [orgimg, setOrgImg] = useState();
+  const [displaydiv, setDisplayDiv] = useState(false);
+  const [segmentimg, setSegmentImg] = useState(false);
+  const [processimg, setProcessImg] = useState();
 
+  const Rooms = [
+    {
+      label: "Bedroom",
+      image:
+        "https://roomdsign.com/wp-content/uploads/2022/12/white-wall-with-light-wood-flooring.jpg",
+    },
+    {
+      label: "Entrance",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Kitchen",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Minimalist Kitchen",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Bathroom",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Modern Bathroom",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Living Room",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Open Concept Living Room",
+      image: "/static/media/open_concept_living_room.4ef632a2d6aaa751ec15.jpg",
+    },
+    {
+      label: "Bedroom",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Entryway Space",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Office Space",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Loft Space",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+    {
+      label: "Retail",
+      image:
+        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
+    },
+  ];
+  const demoimageurl =
+    "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdemoimageurl";
+  const history = useHistory();
+
+  const handleimageclick = async (room, val) => {
+    const newarray = await filterDuplicateObjects(base64array);
+
+    newarray.forEach((item) => {
+      if (item.roomname === room) {
+        setTempOrgImage(item.base64url);
+      }
+    });
+    console.log(val);
+    setImage(val);
+    setOrgImg(val);
+    setDisplayDiv(true);
+    setSegmentImg(false);
+    setProcessImg("");
+    localStorage.setItem("room", JSON.stringify(room));
+    history.push(`/arView/visualizer2d`, {
+      state: { itemname: room },
+    });
+  };
+  function filterDuplicateObjects(arr) {
+    const uniqueSet = new Set();
+
+    return arr.filter((obj) => {
+      const key = JSON.stringify(obj);
+      const isUnique = !uniqueSet.has(key);
+
+      if (isUnique) {
+        uniqueSet.add(key);
+      }
+
+      return isUnique;
+    });
+  }
+
+  useEffect(() => {
+    axios.get(demoimageurl).then((res) => {
+      setDemoImages(res.data);
+      let newurl = res.data[0].imgurl;
+      for (let i = 0; i < res.data.length; i++) {
+        getS3ImageAsBase64(res.data[i].imgurl, function (base64Data) {
+          if (!base64array.includes(res.data[i])) {
+            setBase64Array((prevItems) => [
+              ...prevItems,
+              {
+                base64url: base64Data,
+                roomname: res.data[i].room,
+              },
+            ]);
+          }
+        });
+      }
+    });
+  }, []);
+  function getS3ImageAsBase64(s3Url, callback) {
+    var img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = s3Url;
+
+    img.onload = function () {
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      let base64Data = canvas.toDataURL("image/jpeg");
+
+      callback(base64Data);
+    };
+  }
+  return (
+    <>
+      <Navbar />
+      <div className="hero_container">
+        <div className="demo-container">
+          <div className="title_visualizer">
+            See <strong>Wallpaper</strong> in your room
+          </div>
+          <div className="content">
+            <div className="upload">
+              <div className="item-group">
+                <div className="item">
+                  <CameraIcon />
+                  <div className="hori_scroll_container_child1_text">
+                    Upload a picture of your room
+                  </div>
+                </div>
+                <div className="item">
+                  <ProductIcon />
+                  <div className="hori_scroll_container_child1_text">
+                    Try our products in your room
+                  </div>
+                </div>
+              </div>
+
+              <div className="btn_visualizer red">
+                <label
+                  htmlFor="b1"
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 10,
+                  }}>
+                  <PhotoIcon />
+                  <input
+                    type="file"
+                    id="b1"
+                    name="myfile"
+                    style={{ display: "none" }}
+                    //  onChange={imagefilechange}
+                  />
+                  <div className="hori_scroll_container_child1_text">
+                    Upload
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="video">
+              <video
+                data-autoplay
+                autoPlay
+                data-object-fit="cover"
+                playsInline
+                muted
+                loop
+                type="video/mp4"
+                src={Video}
+              />
+            </div>
+          </div>
+          <div className="room-container">
+            <div className="subtitle">
+              Don't have a picture? Try our demo rooms instead
+            </div>
+            <div className="room-select">
+              {demoimages &&
+                demoimages.map((item) => (
+                  <div
+                    className="room"
+                    onClick={() => handleimageclick(item.room, item.imgurl)}>
+                    <div className="image">
+                      <img src={item.imgurl} alt="room" />
+                    </div>
+
+                    <div className="label">{item.room}</div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footertest />
+    </>
+  );
+}
 export default Visualizer;
