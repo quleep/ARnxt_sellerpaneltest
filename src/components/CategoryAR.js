@@ -124,6 +124,9 @@ function CategoryAR() {
       state: { brandId },
     });
   };
+  const nextPage = (itemname) => {
+    history.push(`/arView/categories/${itemname}`, { state: { itemname } });
+  };
   return (
     <>
       <Navbar />
