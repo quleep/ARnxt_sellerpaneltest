@@ -124,7 +124,51 @@ function Visualizer() {
       return isUnique;
     });
   }
+  const fileToBase64 = (file, cb) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      cb(null, reader.result);
+    };
+    reader.onerror = function (error) {
+      cb(error, null);
+    };
+  };
 
+  const imagefilechange = (e) => {
+    let val = document.getElementById("b1").value;
+    let indx = val.lastIndexOf(".") + 1;
+    let filetype = val.substr(indx, val.length).toLowerCase();
+
+    if (filetype === "jpg" || filetype === "png" || filetype === "jpeg") {
+      let files = Array.from(e.target.files);
+      files.forEach((file) => {
+        fileToBase64(file, (err, result) => {
+          if (result) {
+            setTempOrgImage(result);
+            setImage(result);
+            setOrgImg(result);
+            setDisplayDiv(true);
+
+            setSegmentImg(false);
+            setProcessImg("");
+            history.push(`/arView/visualizer2d`);
+          }
+        });
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+          }
+        };
+
+        reader.readAsDataURL(file);
+      });
+    } else {
+      window.alert("Only jpeg,png,jpg files accepted");
+    }
+  };
   useEffect(() => {
     axios.get(demoimageurl).then((res) => {
       setDemoImages(res.data);
@@ -201,7 +245,7 @@ function Visualizer() {
                     id="b1"
                     name="myfile"
                     style={{ display: "none" }}
-                    //  onChange={imagefilechange}
+                    onChange={imagefilechange}
                   />
                   <div className="hori_scroll_container_child1_text">
                     Upload

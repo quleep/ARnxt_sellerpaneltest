@@ -12,11 +12,14 @@ import { ReactComponent as ArrowUp } from "../assets/icon/up-arrow.svg";
 import logo from "../assets/image/my_landing_page_logo_background_image_en-us.png";
 import axios from "axios";
 import { useMyContext } from "../Context/store";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 function Visualizer2D() {
-  const { image, setImage,  temporgimage, setTempOrgImage } = useMyContext();
+  const { image, setImage, temporgimage, setTempOrgImage, roomData } =
+    useMyContext();
   const addviewsurl =
     "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewscount";
+  const scrollContainerRef = useRef();
 
   const types = {
     name: "Rugs",
@@ -248,7 +251,14 @@ function Visualizer2D() {
   const [select, setSelect] = useState(filterList[0]);
   const StyleRef = useRef();
   const ImageRef = useRef();
-    const [processimg, setProcessImg] = useState();
+  const [processimg, setProcessImg] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageno, setPageNo] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [horizontalScrollData, setHorizontalScrollData] = useState([]);
+  const [horizontalScrollPageNo, setHorizontalScrollPageNo] = useState(1);
+  const [horizontalScrollLoading, setHorizontalScrollLoading] = useState(false);
+  const StyleRef1 = useRef();
 
   const [scrollTop, setScrollTop] = useState(0);
   useEffect(() => {
@@ -263,28 +273,95 @@ function Visualizer2D() {
       setFilter(list);
     }
   }, [favorite, list]);
+  const slideLeft = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - 400;
+  };
+
+  const slideRight = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft + 400;
+  };
   useEffect(() => {
     const fetchData = async () => {
       const subcategory = "Wallpapers";
-      const pageno = 1;
 
       try {
         const url = `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/fetchsubcatitems?subcategory=${subcategory}&pageno=${pageno}`;
         const response = await axios.get(url);
 
-        // Handle the response data, e.g., store it in state or process it as needed
         const data = response.data;
-        console.log(data);
-        setProvidedData(data);
+        setProvidedData((prevData) =>
+          prevData ? [...prevData, ...data] : data
+        );
+        setLoading(false);
       } catch (error) {
-        // Handle errors, e.g., show an error message to the user
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
 
-    // Call the fetchData function to make the request
     fetchData();
+  }, [pageno]);
+  useEffect(() => {
+    const fetchHorizontalScrollData = async () => {
+      const subcategory = "Wallpapers";
+
+      try {
+        const url = `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/fetchsubcatitems?subcategory=${subcategory}&pageno=${horizontalScrollPageNo}`;
+        const response = await axios.get(url);
+
+        const data = response.data;
+
+        setHorizontalScrollData((prevData) =>
+          prevData ? [...prevData, ...data] : data
+        );
+        setHorizontalScrollLoading(false);
+      } catch (error) {
+        console.error("Error fetching horizontal scroll data:", error);
+        setHorizontalScrollLoading(false);
+      }
+    };
+
+    fetchHorizontalScrollData();
+  }, [horizontalScrollPageNo]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        scrollContainerRef.current &&
+        scrollContainerRef.current.scrollTop +
+          scrollContainerRef.current.clientHeight >=
+          scrollContainerRef.current.scrollHeight
+      ) {
+        if (!horizontalScrollLoading) {
+          setHorizontalScrollPageNo(horizontalScrollPageNo + 1);
+          setHorizontalScrollLoading(true);
+        }
+      }
+    };
+
+    scrollContainerRef.current.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollContainerRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, [horizontalScrollPageNo, horizontalScrollLoading]);
+
+  const handleScroll1 = () => {
+    const element = StyleRef.current;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      setLoading(true);
+      setPageNo(pageno + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll1);
+    return () => {
+      window.removeEventListener("scroll", handleScroll1);
+    };
   }, []);
+
   const onChangeFavorite = (id) => {
     console.log("item", id);
     const list2 = list.map(function (item) {
@@ -347,11 +424,11 @@ function Visualizer2D() {
     if (newScale < 1) return;
     setPosition({
       scale: newScale,
-      x: position.x + (e.clientX - position.x - 350) * ratio,
+      x: position.x + (e.clientX - position.x - 30) * ratio,
       y: position.y + (e.clientY - position.y - 49) * ratio,
     });
   };
-    const resizeImage = async (val) => {
+  const resizeImage = async (val) => {
     let maxWidth;
     let maxHeight;
 
@@ -365,8 +442,9 @@ function Visualizer2D() {
         let resizedDataURL;
         let newWidth, newHeight;
 
-        maxWidth = img.width;
-        maxHeight = img.height;
+        maxWidth = (img.width * 18) / 100;
+
+        maxHeight = (img.height * 18) / 100;
 
         if (img.width > img.height) {
           newWidth = maxWidth;
@@ -390,60 +468,49 @@ function Visualizer2D() {
       };
     });
   };
-    const handlewallpaperclick = async (e, val) => {
-
+  const handlewallpaperclick = async (e, val) => {
+    setIsLoading(true);
     let newres;
     await resizeImage(val).then((res) => {
       newres = res;
     });
-        console.log(newres)
+    console.log(newres);
 
-      const body = {
-        wallimg: temporgimage,
-        designimg: newres,
-        detectionmode: "walls",
-      };
-      const config = {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          "auth-token":
-            "c0110aa4490cd8a4e5c024c4779d976f6927b6b0e4b12c2675e9558a453e933c",
-        },
-      };
-      await axios
-        .post("https://wallserver.arnxt.com/api/v1/infer", body, config)
-        .then((res) => {
-      console.log(res.data)
-          setSegmentImg(true);
-          setProcessImg(res.data);
-        })
-        .then((res) => {
-        })
-        .catch((error) => {
-          console.log(error);
-          window.alert("Please try again...");
-      
-        });
-  
+    const body = {
+      wallimg: temporgimage,
+      designimg: newres,
+      detectionmode: "walls",
+    };
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        "auth-token":
+          "c0110aa4490cd8a4e5c024c4779d976f6927b6b0e4b12c2675e9558a453e933c",
+      },
+    };
+    await axios
+      .post("http://13.127.25.111:5001/api/v1/infer", body, config)
+      .then((res) => {
+        console.log(res.data);
+        setSegmentImg(true);
+        setProcessImg(res.data);
+      })
+      .then((res) => {})
+      .catch((error) => {
+        console.log(error);
+        window.alert("Please try again...");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
+
   return (
     <>
       <Navbar />
-   
       <div className="hero_container">
         <div className="rooms-container">
-          <div className="header_visualizer">
-            <div className="btn_visualizer">
-              <CompareIcon width={24} height={24} />
-              <div className="text">Compare</div>
-            </div>
-            <div className="btn_visualizer">
-              <ChangeIcon />
-              <div className="text">Change Room</div>
-            </div>
-          </div>
-     
           <div className="main">
             <div className="left-panel">
               <div className="subtitle">
@@ -479,11 +546,12 @@ function Visualizer2D() {
                   <div className="num">0</div>
                 </div> */}
               </div>
+
               <div
                 className={type === 0 ? "styles" : "styles small"}
-                onScroll={handleScroll}
+                onScroll={handleScroll1}
                 ref={StyleRef}>
-                <div className="scroll">
+                <div className="scroll" id="slider1">
                   {providedData?.map((item) => (
                     <>
                       <div
@@ -494,9 +562,11 @@ function Visualizer2D() {
                             : "card"
                         }
                         onClick={() => onChange(item)}>
-                        <div className="details"   onClick={(e) =>
-                                  handlewallpaperclick(e, item.imageurl[0])
-                                } >
+                        <div
+                          className="details"
+                          onClick={(e) =>
+                            handlewallpaperclick(e, item.imageurl[0])
+                          }>
                           <div className="image">
                             <img src={item.imageurl[0]} alt="Rug" />
                             <div
@@ -511,16 +581,13 @@ function Visualizer2D() {
                           </div>
                           <div className="detail">
                             <div className="top">
-                              <div className="text">{item.brand}</div>
-                              <div className="bold_text">
-                                {item.productname}
+                              <div className="normal_text">{item.brand}</div>
+                              <div className="semibold_text">
+                                   {item.productname.charAt(0).toUpperCase() +
+                      item.productname.slice(1)}
                               </div>
                             </div>
-                            <div className="text">
-                              {item.lengthprod > 1
-                                ? `${item.lengthprod} sizes`
-                                : `Size: ${item.breadthprod}`}
-                            </div>
+                         
                           </div>
                         </div>
                         {item.lengthprod > 1 && (
@@ -571,6 +638,10 @@ function Visualizer2D() {
                       )}
                     </>
                   ))}
+                  {loading && <div>Loading...</div>}
+                  {!loading && providedData?.length === 0 && (
+                    <p>No more data to load.</p>
+                  )}
                   {scrollTop !== 0 && (
                     <div className="btn_visualizer back" onClick={ScrollToTop}>
                       <ArrowUp />
@@ -580,33 +651,66 @@ function Visualizer2D() {
                 </div>
               </div>
             </div>
-         <div className="main-panel">
-  <div className="image" onWheelCapture={onScroll} ref={ImageRef}>
-    <img
-      src={
+            <div className="main-panel">
+              <div className="image" onWheelCapture={onScroll} ref={ImageRef}>
+                <img
+                  src={
                     segmentimg ? `data:image/png;base64, ${processimg}` : image
                   }
-      alt="room"
-      className="room"
-      style={{
-        transformOrigin: "0 0",
-        transform: `translate(${position.x}px, ${position.y}px) scale(${position.scale})`,
-      }}
-    />
-  </div>
-  {/* <div className="loader_visualizer">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div> */}
-</div>
+                  alt="room"
+                  className="room"
+                  style={{
+                    transformOrigin: "0 0",
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${position.scale})`,
+                  }}
+                />
+              </div>
 
+              {isLoading ? (
+                <div className="loader-container">
+                  <div className="loader_visualizer">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="hori_scroll_container_visualizer">
+            <div
+              id="slider"
+              className="hori_scroll_container_child_visualizer"
+              ref={scrollContainerRef}>
+              {horizontalScrollData?.map((item) => (
+                <div
+                  key={item.id}
+                  className="hori_scroll_container_child1_visualizer"
+                  onClick={(e) => handlewallpaperclick(e, item.imageurl[0])}>
+                  <img
+                    src={item.imageurl[0]}
+                    alt="/"
+                    className="hori_scroll_container_child1_image_visualizer"
+                  />
+                  <p className="hori_scroll_container_child1_text_visualizer">
+                    {item.productname.charAt(0).toUpperCase() +
+                      item.productname.slice(1)}
+                  </p>
+                </div>
+              ))}
+              {!horizontalScrollLoading &&
+                horizontalScrollData.length === 0 && (
+                  <p>No more data to load.</p>
+                )}
+            </div>
           </div>
         </div>
       </div>

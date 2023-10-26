@@ -10655,6 +10655,20 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   color: #000000;
   font-family: "DM Sans", sans-serif;
 }
+.semibold_text {
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: 500;
+  color: #000000;
+  font-family: "DM Sans", sans-serif;
+}
+.normal_text {
+  font-size: 0.9rem;
+  line-height: 2rem;
+  font-weight: 300;
+  color: #000000;
+  font-family: "DM Sans", sans-serif;
+}
 .hori_scroll_container {
   display: flex;
   position: relative;
@@ -11393,6 +11407,7 @@ a {
   flex-direction: column;
   gap: 16px;
 }
+
 .rooms-container .main .left-panel .subtitle {
   display: flex;
   flex-direction: row;
@@ -11500,6 +11515,82 @@ a {
   overflow-x: clip;
   max-height: calc(100vh - 250px);
 }
+@media screen and (max-width: 750px) {
+
+.rooms-container .main .left-panel {
+    display: none;
+}
+.hori_scroll_container_visualizer {
+  display: flex;
+  position: absolute;
+    left: 0;
+  bottom: -150px;
+  width:100%;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  background-color:#bab7af;
+
+}
+.hori_scroll_left_arrow_visualizer {
+  display: none;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.hori_scroll_left_arrow_visualizer:hover {
+  opacity: 1;
+}
+.hori_scroll_container_child_visualizer {
+  overflow-x: scroll;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+.hori_scroll_container_child_visualizer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hori_scroll_container_child_visualizer::-webkit-scrollbar {
+  display: none;
+}
+.hori_scroll_container_child1_visualizer {
+  display: inline-block;
+  padding: 0.5rem;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  width: 200px;
+
+}
+.hori_scroll_container_child1_visualizer:hover {
+  transform: scale(
+    var(--transform-scale-x, 1.05),
+    var(--transform-scale-y, 1.05)
+  );
+}
+.hori_scroll_container_child1_image_visualizer {
+  object-fit: fill;
+  border-radius: 0.375rem;
+  width: 80%;
+  height: 130px;
+}
+.hori_scroll_container_child1_text_visualizer {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+      /* background-color:black; */
+
+}
+}
+@media screen and (min-width: 750px) {
+.hori_scroll_container_visualizer{
+  display:none;
+}
+}
+
 .rooms-container .main .left-panel .styles .card {
   cursor: pointer;
   width: 100%;
@@ -11517,7 +11608,7 @@ a {
 
 }
 .rooms-container .main .left-panel .styles .card .details .image {
-  width: 110px;
+  width: 180px;
   border-radius: 6px;
   border: 1px solid #f0f2f4;
   overflow: hidden;
@@ -11586,6 +11677,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align:left;
+  width:100%;
+  /* background-color:black; */
 }
 .rooms-container .main .left-panel .styles .card .details .detail .top {
   display: flex;
@@ -11831,6 +11925,7 @@ a {
   padding: 0;
   margin: 0;
   overflow: hidden;
+
 }
 
 .rooms-container .main .main-panel .image img {
@@ -11965,17 +12060,28 @@ a {
     padding: 16px;
   }
 }
-.loader_visualizer {
-  position: absolute;
+.loader-container {
+  position: absolute; /* Use fixed positioning */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+    background-color: rgba(0, 0, 0, 0.2);
+border-radius: 0.5rem;
+}
+
+.loader_visualizer {
+  width: 150px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-gap: 2px;
-  z-index: 1; /* Add this */
+  z-index: 1;
 }
+
 .loader_visualizer > div {
   position: relative;
   width: 100%;
