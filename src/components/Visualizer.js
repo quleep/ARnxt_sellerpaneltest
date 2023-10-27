@@ -21,72 +21,7 @@ function Visualizer() {
   const [segmentimg, setSegmentImg] = useState(false);
   const [processimg, setProcessImg] = useState();
 
-  const Rooms = [
-    {
-      label: "Bedroom",
-      image:
-        "https://roomdsign.com/wp-content/uploads/2022/12/white-wall-with-light-wood-flooring.jpg",
-    },
-    {
-      label: "Entrance",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Kitchen",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Minimalist Kitchen",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Bathroom",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Modern Bathroom",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Living Room",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Open Concept Living Room",
-      image: "/static/media/open_concept_living_room.4ef632a2d6aaa751ec15.jpg",
-    },
-    {
-      label: "Bedroom",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Entryway Space",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Office Space",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Loft Space",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-    {
-      label: "Retail",
-      image:
-        "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/shutterstock_2142108555+(1).jpg",
-    },
-  ];
+
   const demoimageurl =
     "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdemoimageurl";
   const history = useHistory();
@@ -99,7 +34,6 @@ function Visualizer() {
         setTempOrgImage(item.base64url);
       }
     });
-    console.log(val);
     setImage(val);
     setOrgImg(val);
     setDisplayDiv(true);

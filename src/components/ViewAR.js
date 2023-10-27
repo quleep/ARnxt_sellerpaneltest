@@ -30,8 +30,8 @@ const ViewAR = () => {
   const nextCategoryPage = (category) => {
     history.push(`/arView/category/${category}`, { state: { category } });
   };
-  
-     const nextBrandPage = (brandId) => {
+
+  const nextBrandPage = (brandId) => {
     history.push(`/arView/brands/${brandId}`, { state: { brandId } });
   };
   useEffect(() => {
@@ -237,7 +237,7 @@ const ViewAR = () => {
               <div
                 key={item.brandId}
                 className="hori_scroll_container_child1"
-                      onClick={() => nextBrandPage(item.brandId)}>
+                onClick={() => nextBrandPage(item.brandId)}>
                 <img
                   src={item.iconUrl}
                   alt="/"

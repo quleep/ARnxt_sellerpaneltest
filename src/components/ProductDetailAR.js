@@ -3,12 +3,17 @@ import Footertest from "./Footertest";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useParams, useHistory } from "react-router-dom";
-
+import { BsBox } from "react-icons/bs";
+import { FaTimes } from "react-icons/fa";
+import QRCode from "react-qr-code";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 function ProductDetailAR() {
   const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
   const [usdzFile, setUsdzFile] = useState("");
   const param = useParams();
+  const [modal, setModal] = useState(false);
 
   const [isGlb, setIsGlb] = useState(false);
   const [viewInARitem, setViewInARitem] = useState([]);
@@ -31,6 +36,13 @@ function ProductDetailAR() {
 
     fetchProductData();
   }, [param]);
+
+  const handlemodalclose = () => {
+    document.querySelector(".modalscan").style.display = "none";
+  };
+  const openqrcode = () => {
+    document.querySelector(".modalscan").style.display = "block";
+  };
   return (
     <>
       <Navbar />
@@ -66,17 +78,17 @@ function ProductDetailAR() {
                   <p class="product_detail_ar_container_grid_child1_text2_child">
                     ₹{productData?.offerprice}
                   </p>
- <div className="product_detail_ar_container_grid_child1_text2">
+                  <div className="product_detail_ar_container_grid_child1_text2">
                     <div className="product_detail_ar_container_grid_child1_text2_child">
                       Brands
                     </div>
                     <div className="product_detail_ar_container_grid_child1_text2_child1">
-                       {productData?.brand
-                      .split(" ")
-                      .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                      )
-                      .join(" ")}
+                      {productData?.brand
+                        .split(" ")
+                        .map(
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                        )
+                        .join(" ")}
                     </div>
                   </div>
                   <div className="product_detail_ar_container_grid_child1_text2">
@@ -87,8 +99,46 @@ function ProductDetailAR() {
                       {productData?.additional}
                     </div>
                   </div>
-                  
-                 
+                  <div className="product_detail_ar_container_grid_child1_text2">
+                    <a href="#open-modal" className="btn-link">
+                      <BsBox className="icon" /> Visualiser
+                    </a>
+                  </div>
+
+                  <div id="open-modal" class="modal-window">
+                    <div>
+                      <a href="#" title="Close" class="modal-close">
+                        Close
+                      </a>
+                      <QRCode
+                        value={`arnxt.com/arview/productdetail/${param.id}`}
+                      />
+                      <p className="semibold_text">
+                        Scan the QR code with your mobile device to view the
+                        product in your space.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="modalscan">
+                    <div class="modal-wrapscan">
+                      <span
+                        className="closemodalscan"
+                        onClick={handlemodalclose}>
+                        <FaTimes style={{ color: "red", fontSize: "20px" }} />
+                      </span>
+                      <span>
+                        <div></div>
+
+                        <QRCode
+                          value={`arnxt.com/arview/productdetail/${param.id}`}
+                        />
+                      </span>
+                      <p className="dataupload">
+                        Scan the QR code with your mobile device to view the
+                        product in your space.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

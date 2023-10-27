@@ -66,6 +66,18 @@ function RoomsCategory() {
                       ₹{item.offerprice}
                     </p>
                   </div>
+                     <div class="rooms_categories_container_grid_child3_brand">
+                 
+                    <p class="product_detail_ar_container_grid_child1_brandText">
+                       {item.brand
+                          .split(" ")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
