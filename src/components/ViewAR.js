@@ -7,6 +7,11 @@ import { useHistory, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight, FaGreaterThan } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useMyContext } from "../Context/store";
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import data2 from "./TemplateData.json";
 
 const ViewAR = () => {
   const {
@@ -22,8 +27,204 @@ const ViewAR = () => {
     setBrandsData,
     brandRooms,
     setBrandRooms,
+    nav,
+    setNav,
   } = useMyContext();
   const history = useHistory();
+  const [index, setIndex] = React.useState(0);
+  const timeoutRef = React.useRef(null);
+  const [appName] = useState("React Search Bar");
+  const [list, setList] = useState(undefined);
+  const data1 = [
+    "Bulbasaur",
+    "Ivysaur",
+    "Venusaur",
+    "Charmander",
+    "Charmeleon",
+    "Charizard",
+    "Squirtle",
+    "Wartortle",
+    "Blastoise",
+    "Caterpie",
+    "Metapod",
+    "Butterfree",
+    "Weedle",
+    "Kakuna",
+    "Beedrill",
+    "Pidgey",
+    "Pidgeotto",
+    "Pidgeot",
+    "Rattata",
+    "Raticate",
+    "Spearow",
+    "Fearow",
+    "Ekans",
+    "Arbok",
+    "Pikachu",
+    "Raichu",
+    "Sandshrew",
+    "Sandslash",
+    "Nidoran♀",
+    "Nidorina",
+    "Nidoqueen",
+    "Nidoran♂",
+    "Nidorino",
+    "Nidoking",
+    "Clefairy",
+    "Clefable",
+    "Vulpix",
+    "Ninetales",
+    "Jigglypuff",
+    "Wigglytuff",
+    "Zubat",
+    "Golbat",
+    "Oddish",
+    "Gloom",
+    "Vileplume",
+    "Paras",
+    "Parasect",
+    "Venonat",
+    "Venomoth",
+    "Diglett",
+    "Dugtrio",
+    "Meowth",
+    "Persian",
+    "Psyduck",
+    "Golduck",
+    "Mankey",
+    "Primeape",
+    "Growlithe",
+    "Arcanine",
+    "Poliwag",
+    "Poliwhirl",
+    "Poliwrath",
+    "Abra",
+    "Kadabra",
+    "Alakazam",
+    "Machop",
+    "Machoke",
+    "Machamp",
+    "Bellsprout",
+    "Weepinbell",
+    "Victreebel",
+    "Tentacool",
+    "Tentacruel",
+    "Geodude",
+    "Graveler",
+    "Golem",
+    "Ponyta",
+    "Rapidash",
+    "Slowpoke",
+    "Slowbro",
+    "Magnemite",
+    "Magneton",
+    "Farfetch'd",
+    "Doduo",
+    "Dodrio",
+    "Seel",
+    "Dewgong",
+    "Grimer",
+    "Muk",
+    "Shellder",
+    "Cloyster",
+    "Gastly",
+    "Haunter",
+    "Gengar",
+    "Onix",
+    "Drowzee",
+    "Hypno",
+    "Krabby",
+    "Kingler",
+    "Voltorb",
+    "Electrode",
+    "Exeggcute",
+    "Exeggutor",
+    "Cubone",
+    "Marowak",
+    "Hitmonlee",
+    "Hitmonchan",
+    "Lickitung",
+    "Koffing",
+    "Weezing",
+    "Rhyhorn",
+    "Rhydon",
+    "Chansey",
+    "Tangela",
+    "Kangaskhan",
+    "Horsea",
+    "Seadra",
+    "Goldeen",
+    "Seaking",
+    "Staryu",
+    "Starmie",
+    "Mr. Mime",
+    "Scyther",
+    "Jynx",
+    "Electabuzz",
+    "Magmar",
+    "Pinsir",
+    "Tauros",
+    "Magikarp",
+    "Gyarados",
+    "Lapras",
+    "Ditto",
+    "Eevee",
+    "Vaporeon",
+    "Jolteon",
+    "Flareon",
+    "Porygon",
+    "Omanyte",
+    "Omastar",
+    "Kabuto",
+    "Kabutops",
+    "Aerodactyl",
+    "Snorlax",
+    "Articuno",
+    "Zapdos",
+    "Moltres",
+    "Dratini",
+    "Dragonair",
+    "Dragonite",
+    "Mewtwo",
+    "Mew",
+  ];
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+  const searchData = (e) => {
+    const queryData = [];
+    if (e.target.value !== "") {
+      data1.forEach((person) => {
+        if (person.toLowerCase().indexOf(e.target.value) !== -1) {
+          if (queryData.length < 10) {
+            queryData.push(person);
+          }
+        }
+      });
+    }
+    setList(queryData);
+  };
+
+  React.useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setIndex((prevIndex) =>
+          prevIndex === colors.length - 1 ? 0 : prevIndex + 1
+        ),
+      delay
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [index]);
+  const colors = ["#0088FE", "#00C49F", "#FFBB28"];
+  const delay = 2500;
   const nextPage = (roomName) => {
     history.push(`/arView/rooms/${roomName}`, { state: { roomName } });
   };
@@ -35,7 +236,6 @@ const ViewAR = () => {
     history.push(`/arView/brands/${brandId}`, { state: { brandId } });
   };
   useEffect(() => {
-    // Fetch data using Axios
     axios
       .get(
         "https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/rooms"
@@ -56,12 +256,9 @@ const ViewAR = () => {
       );
       console.log("categ", response.data);
 
-      const shuffledData = shuffleArray(response.data);
-
-      setCategoriesDetails(shuffledData);
+      setCategoriesDetails(response.data);
     } catch (error) {
       console.error("Error in fetching data: ", error);
-      // Handle the error
     }
   };
   // Function to shuffle an array randomly
@@ -152,8 +349,83 @@ const ViewAR = () => {
     slider.scrollLeft = slider.scrollLeft + 400;
   };
   return (
-    <>
-      <Navbar />
+    <div>
+      <Header />
+      <DropdownMenu />
+      <div className="templateContainer">
+        <div className="searchInput_Container">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search here..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+        </div>
+        <div className="template_Container">
+          {searchTerm === ""
+            ? null
+            : data2
+                .filter((val) =>
+                  val.title.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .map((val) => (
+                  <div className="template" key={val.id}>
+                    <img src={val.image} alt="" />
+                    <h3>{val.title}</h3>
+                    <p className="price">${val.price}</p>
+                  </div>
+                ))}
+        </div>
+      </div>
+
+      <div className="slideshow" onMouseOver={() => setNav(false)}>
+        <div
+          className="slideshowSlider"
+          style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+          {/* {categoriesDetails.map((item) => (
+          <img
+            className="slide"
+                  src={item.categoryimage}
+          ></img>
+        ))} */}
+          <img
+            className="slide"
+            src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanners_02_2X_280722.jpg"
+            alt="carousel_image"
+          />
+
+          <img
+            className="slide"
+            src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanner03_2X_300822.jpg"
+            alt="carousel_image"
+          />
+
+          <img
+            className="slide"
+            src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_Promo_2X_290822_nd.gif"
+            alt="carousel_image"
+          />
+
+          <img
+            className="slide"
+            src="https://ii1.pepperfry.com/media/wysiwyg/banners/HeroBanner04_2X_300822.jpg"
+            alt="carousel_image"
+          />
+        </div>
+
+        <div className="slideshowDots">
+          {colors.map((_, idx) => (
+            <div
+              key={idx}
+              className={`slideshowDot${index === idx ? " active" : ""}`}
+              onClick={() => {
+                setIndex(idx);
+              }}></div>
+          ))}
+        </div>
+      </div>
       <div className="hero_container">
         <div className="bold_text_container">
           <div className="bold_text">Rooms</div>
@@ -255,8 +527,38 @@ const ViewAR = () => {
         </div>
       </div>
       <Footertest />
-    </>
+    </div>
   );
 };
+function Header1(props) {
+  return (
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+  );
+}
 
+function SearchBar(props) {
+  return (
+    <div>
+      <input onChange={props.search} placeholder="Search Pokemon" />
+    </div>
+  );
+}
+
+function SearchResult(props) {
+  return (
+    <div>
+      <ul>
+        {props.data.map((value) => {
+          return <Item key={value} val={value} />;
+        })}
+      </ul>
+    </div>
+  );
+}
+
+function Item(props) {
+  return <li>{props.val}</li>;
+}
 export default ViewAR;
