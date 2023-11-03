@@ -32,199 +32,63 @@ const ViewAR = () => {
   } = useMyContext();
   const history = useHistory();
   const [index, setIndex] = React.useState(0);
+  const [searchProduct, setSearchProduct] = useState(null);
+  const colors = ["#0088FE", "#00C49F", "#FFBB28"];
+  const delay = 2500;
   const timeoutRef = React.useRef(null);
   const [appName] = useState("React Search Bar");
   const [list, setList] = useState(undefined);
-  const data1 = [
-    "Bulbasaur",
-    "Ivysaur",
-    "Venusaur",
-    "Charmander",
-    "Charmeleon",
-    "Charizard",
-    "Squirtle",
-    "Wartortle",
-    "Blastoise",
-    "Caterpie",
-    "Metapod",
-    "Butterfree",
-    "Weedle",
-    "Kakuna",
-    "Beedrill",
-    "Pidgey",
-    "Pidgeotto",
-    "Pidgeot",
-    "Rattata",
-    "Raticate",
-    "Spearow",
-    "Fearow",
-    "Ekans",
-    "Arbok",
-    "Pikachu",
-    "Raichu",
-    "Sandshrew",
-    "Sandslash",
-    "Nidoran♀",
-    "Nidorina",
-    "Nidoqueen",
-    "Nidoran♂",
-    "Nidorino",
-    "Nidoking",
-    "Clefairy",
-    "Clefable",
-    "Vulpix",
-    "Ninetales",
-    "Jigglypuff",
-    "Wigglytuff",
-    "Zubat",
-    "Golbat",
-    "Oddish",
-    "Gloom",
-    "Vileplume",
-    "Paras",
-    "Parasect",
-    "Venonat",
-    "Venomoth",
-    "Diglett",
-    "Dugtrio",
-    "Meowth",
-    "Persian",
-    "Psyduck",
-    "Golduck",
-    "Mankey",
-    "Primeape",
-    "Growlithe",
-    "Arcanine",
-    "Poliwag",
-    "Poliwhirl",
-    "Poliwrath",
-    "Abra",
-    "Kadabra",
-    "Alakazam",
-    "Machop",
-    "Machoke",
-    "Machamp",
-    "Bellsprout",
-    "Weepinbell",
-    "Victreebel",
-    "Tentacool",
-    "Tentacruel",
-    "Geodude",
-    "Graveler",
-    "Golem",
-    "Ponyta",
-    "Rapidash",
-    "Slowpoke",
-    "Slowbro",
-    "Magnemite",
-    "Magneton",
-    "Farfetch'd",
-    "Doduo",
-    "Dodrio",
-    "Seel",
-    "Dewgong",
-    "Grimer",
-    "Muk",
-    "Shellder",
-    "Cloyster",
-    "Gastly",
-    "Haunter",
-    "Gengar",
-    "Onix",
-    "Drowzee",
-    "Hypno",
-    "Krabby",
-    "Kingler",
-    "Voltorb",
-    "Electrode",
-    "Exeggcute",
-    "Exeggutor",
-    "Cubone",
-    "Marowak",
-    "Hitmonlee",
-    "Hitmonchan",
-    "Lickitung",
-    "Koffing",
-    "Weezing",
-    "Rhyhorn",
-    "Rhydon",
-    "Chansey",
-    "Tangela",
-    "Kangaskhan",
-    "Horsea",
-    "Seadra",
-    "Goldeen",
-    "Seaking",
-    "Staryu",
-    "Starmie",
-    "Mr. Mime",
-    "Scyther",
-    "Jynx",
-    "Electabuzz",
-    "Magmar",
-    "Pinsir",
-    "Tauros",
-    "Magikarp",
-    "Gyarados",
-    "Lapras",
-    "Ditto",
-    "Eevee",
-    "Vaporeon",
-    "Jolteon",
-    "Flareon",
-    "Porygon",
-    "Omanyte",
-    "Omastar",
-    "Kabuto",
-    "Kabutops",
-    "Aerodactyl",
-    "Snorlax",
-    "Articuno",
-    "Zapdos",
-    "Moltres",
-    "Dratini",
-    "Dragonair",
-    "Dragonite",
-    "Mewtwo",
-    "Mew",
-  ];
-  const [searchTerm, setSearchTerm] = useState("");
+  const searchmodelurl =
+    "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel";
 
-  function resetTimeout() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [bannerImages, setBannerImages] = useState([]);
+
+  useEffect(() => {
+    const body = {
+      searchdata: searchTerm,
+    };
+
+    axios
+      .post(searchmodelurl, body)
+      .then((res) => {
+        setSearchProduct(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => [console.log(error)]);
+  }, [searchTerm]);
+  useEffect(() => {
+    // Fetch the banner images from the API
+    axios
+      .get(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbannertable"
+      )
+      .then((response) => {
+        setBannerImages(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching banner images:", error);
+      });
+  }, []);
+  const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-  }
-  const searchData = (e) => {
-    const queryData = [];
-    if (e.target.value !== "") {
-      data1.forEach((person) => {
-        if (person.toLowerCase().indexOf(e.target.value) !== -1) {
-          if (queryData.length < 10) {
-            queryData.push(person);
-          }
-        }
-      });
-    }
-    setList(queryData);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) =>
-          prevIndex === colors.length - 1 ? 0 : prevIndex + 1
-        ),
-      delay
-    );
+    timeoutRef.current = setTimeout(() => {
+      setIndex((prevIndex) =>
+        prevIndex === bannerImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, delay);
 
     return () => {
       resetTimeout();
     };
-  }, [index]);
-  const colors = ["#0088FE", "#00C49F", "#FFBB28"];
-  const delay = 2500;
+  }, [index, bannerImages, delay]);
+
   const nextPage = (roomName) => {
     history.push(`/arView/rooms/${roomName}`, { state: { roomName } });
   };
@@ -348,6 +212,11 @@ const ViewAR = () => {
     var slider = document.getElementById("slider2");
     slider.scrollLeft = slider.scrollLeft + 400;
   };
+   const nextPage1 = (product_Id) => {
+    history.push(`/arView/productdetail/${product_Id}`, {
+      state: { product_Id },
+    });
+  };
   return (
     <div>
       <Header />
@@ -357,26 +226,26 @@ const ViewAR = () => {
           <input
             id="searchInput"
             type="text"
-            placeholder="Search here..."
+            placeholder="Search products here..."
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
           />
         </div>
         <div className="template_Container">
-          {searchTerm === ""
-            ? null
-            : data2
-                .filter((val) =>
-                  val.title.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((val) => (
-                  <div className="template" key={val.id}>
-                    <img src={val.image} alt="" />
-                    <h3>{val.title}</h3>
-                    <p className="price">${val.price}</p>
-                  </div>
-                ))}
+          {searchTerm === "" ? null : searchProduct?.length === 0 ? (
+            <div className="no-product-found">No product found</div>
+          ) : (
+            searchProduct?.slice(0, 4).map((val) => (
+              <div className="template" key={val.id}  onClick={() => nextPage1(val.product_Id)}>
+                <img src={val.imageurl[0]} alt="" />
+                <div>
+                  <h3>{val.specification}</h3>
+                  <p className="price">₹{val.offerprice}</p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -384,39 +253,18 @@ const ViewAR = () => {
         <div
           className="slideshowSlider"
           style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
-          {/* {categoriesDetails.map((item) => (
-          <img
-            className="slide"
-                  src={item.categoryimage}
-          ></img>
-        ))} */}
-          <img
-            className="slide"
-            src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanners_02_2X_280722.jpg"
-            alt="carousel_image"
-          />
-
-          <img
-            className="slide"
-            src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanner03_2X_300822.jpg"
-            alt="carousel_image"
-          />
-
-          <img
-            className="slide"
-            src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_Promo_2X_290822_nd.gif"
-            alt="carousel_image"
-          />
-
-          <img
-            className="slide"
-            src="https://ii1.pepperfry.com/media/wysiwyg/banners/HeroBanner04_2X_300822.jpg"
-            alt="carousel_image"
-          />
+          {bannerImages.map((item, idx) => (
+            <img
+              key={item.Id}
+              className="slide"
+              src={item.image}
+              alt={`carousel_image_${idx}`}
+            />
+          ))}
         </div>
 
         <div className="slideshowDots">
-          {colors.map((_, idx) => (
+          {bannerImages.map((_, idx) => (
             <div
               key={idx}
               className={`slideshowDot${index === idx ? " active" : ""}`}

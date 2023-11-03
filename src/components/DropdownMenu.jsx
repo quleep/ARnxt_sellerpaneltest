@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMyContext } from "../Context/store";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
 function DropdownMenu() {
   const {
@@ -18,10 +19,12 @@ function DropdownMenu() {
     setBrandsData,
     brandRooms,
     setBrandRooms,
-    nav, setNav
+    nav,
+    setNav,
   } = useMyContext();
-    const [subCategory, setSubCategory] = useState("");
- 
+  const [subCategory, setSubCategory] = useState("");
+  const history = useHistory();
+
   const fetchCategoriesData = async () => {
     try {
       const response = await axios.get(
@@ -35,7 +38,9 @@ function DropdownMenu() {
       // Handle the error
     }
   };
-
+  const nextCategoryPage = (category) => {
+    history.push(`/arView/category/${category}`, { state: { category } });
+  };
   useEffect(() => {
     fetchCategoriesData();
   }, []);
@@ -49,75 +54,32 @@ function DropdownMenu() {
                 onMouseOver={() => {
                   setNav(true);
                   setSubCategory(item.category);
-                }}
-              >
+                }}   onClick={() => nextCategoryPage(item.category)}>
                 {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
               </p>
             </div>
           ))}
         </div>
       </div>
-      {nav ? (
-        <div className="subCategory" onMouseLeave={() => setNav(false)}   onMouseOver={() => {
-                  setNav(true);
-                }}>
-            <div className="uldiv">
-              <p>
-                {subCategory.charAt(0).toUpperCase() + subCategory.slice(1)}
-              </p>
-              <Link to="/sofas">
-                <ul>
-                  <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                       <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                </ul>
-              </Link>
-            </div>
-          <div className="uldiv">
-              <p>
-                {subCategory.charAt(0).toUpperCase() + subCategory.slice(1)}
-              </p>
-              <Link to="/sofas">
-                <ul>
-                  <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                       <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                  
-                </ul>
-              </Link>
-            </div>
+      {/* {nav ? (
+        <div
+          className="subCategory"
+          onMouseLeave={() => setNav(false)}
+          onMouseOver={() => setNav(true)}>
+          {categoriesDetails
+            .filter((item) => item.category === subCategory)
+            .map((item, index) => (
+              <div className="uldiv" key={index}                                 onClick={() => nextCategoryPage(item.category)}>
+                {item.subcategory.map((subcat, subIndex) => (
+                  <p key={subIndex}>
+                    {subcat.itemname.charAt(0).toUpperCase() +
+                      subcat.itemname.slice(1)}
+                  </p>
+                ))}
+              </div>
+            ))}
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 }

@@ -65,21 +65,28 @@
 }
 
   
-  .uldiv {
-    width: 156px;
-    text-align: left;
-    padding-left: 10px;
-  }
+.uldiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 5rem;
+}
+
   
   .uldiv p {
+    flex: 1;
+    width: 100%;
     margin: 0px;
-    font-weight: 600;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0.06em;
+       font-size: 0.9rem;
+
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
     color: #000000;
-    padding:10px 0px;
+    padding:10px;
+      cursor: pointer;
+
   }
   
   .uldiv ul {

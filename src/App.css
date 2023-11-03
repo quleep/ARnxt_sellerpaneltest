@@ -10882,11 +10882,11 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 @media (min-width: 640px) {
   .hori_scroll_container_child1 {
-    width: 320px;
-    height: 200px;
+    width: 400px;
+    height: 250px;
   }
   .hori_scroll_container_child1_image {
-    height: 200px;
+    height: 250px;
   }
   .rooms_category_container1 {
     padding-left: 1.5rem;
@@ -12259,6 +12259,8 @@ small {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+
 }
 
 .categoies_visualizer {
@@ -12384,36 +12386,79 @@ small {
   list-style: none;
 }
 .templateContainer{
-    margin: 5% 0;
+    margin: 2% 1%;
     position:relative;
 }
 .templateContainer > .searchInput_Container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+    width: 100%;
+
+  text-align:right;
 }
+
 .templateContainer > .searchInput_Container input{
-    width: 50%;
+    width: 30%;
     padding: 10px;
-    outline: none;
+      border-radius: 5px;
+    color: #9DBFAF;
+
+
 }
+.templateContainer > .searchInput_Container input::placeholder{
+     color: red;
+   font-size: 0.9rem;
+  opacity: 0.5; /* Firefox */
+
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+}
+
 .templateContainer .template_Container{
     display: flex;
-    flex-direction:row;
+    flex-direction:column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
     position:absolute;
-        background-color:white;
         z-index:1;
+right:0;
+width:30%;
+      border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
 }
 .templateContainer .template_Container .template{
     background-color: white;
-    margin: 30px;
-    padding: 0px 20px;
+     display: flex;
+    flex-direction:row;
+justify-content: flex-start;
+gap:1rem;
+align-items:center;
+width:100%;
+      border-radius: 2px;
+cursor:pointer;
 }
+ .templateContainer .template_Container .template:nth-child(2n) {
+    background-color: #f1f1f1;
+  }
 .templateContainer .template_Container .template img{
-    height: 50px;
+    height: 100px;
+    width:30%;
+    object-fit: contain;
+}
+.templateContainer .template_Container .template h3{
+     font-size: 1rem;
+
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px; /* Adjust the max width as needed */
+}
+.templateContainer .template_Container .template p{
+     font-size: 0.9rem;
+
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  text-align:left;
 }
