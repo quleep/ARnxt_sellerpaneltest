@@ -5,6 +5,8 @@ import axios from "axios";
 import Footertest from "./Footertest";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function Rooms() {
   const [categories, setCategories] = useState([]);
   const [foundSubcategories, setFoundSubcategories] = useState([]);
@@ -109,7 +111,8 @@ function Rooms() {
   };
   return (
     <>
-      <Navbar />
+        <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <Tabs
           defaultActiveKey="home"

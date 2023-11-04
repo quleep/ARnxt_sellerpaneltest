@@ -6,7 +6,8 @@ import Footertest from "./Footertest";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useMyContext } from "../Context/store";
-
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function CategoryAR() {
   const { brandRooms, setBrandRooms } = useMyContext();
 
@@ -139,7 +140,8 @@ function CategoryAR() {
 
   return (
     <>
-      <Navbar />
+          <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <Tabs
           defaultActiveKey="home"

@@ -13,7 +13,8 @@ import logo from "../assets/image/my_landing_page_logo_background_image_en-us.pn
 import axios from "axios";
 import { useMyContext } from "../Context/store";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function Visualizer2D() {
   const { image, setImage, temporgimage, setTempOrgImage, roomData } =
     useMyContext();
@@ -506,7 +507,8 @@ function Visualizer2D() {
 
   return (
     <>
-      <Navbar />
+       <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <div className="rooms-container">
           <div className="main">

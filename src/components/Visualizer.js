@@ -11,7 +11,8 @@ import { useLocation, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useMyContext } from "../Context/store";
-
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function Visualizer() {
   const { image, setImage, temporgimage, setTempOrgImage } = useMyContext();
   const [demoimages, setDemoImages] = useState([]);
@@ -141,7 +142,8 @@ function Visualizer() {
   }
   return (
     <>
-      <Navbar />
+        <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <div className="demo-container">
           <div className="title_visualizer">

@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Footertest from "./Footertest";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function CategoryBrandsAR() {
     const [products, setProducts] = useState([]);
   const param = useParams();
@@ -31,7 +33,8 @@ function CategoryBrandsAR() {
   };
   return (
     <>
-      <Navbar />
+          <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <div class="rooms_category_container">
           <div class="rooms_category_container1">

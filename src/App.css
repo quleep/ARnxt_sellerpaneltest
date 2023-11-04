@@ -10633,7 +10633,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 .hero_container {
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 5rem;
   display: flex;
   overflow: hidden;
@@ -10734,18 +10734,21 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   display: flex;
   flex-direction: column; /* Ensures children are stacked vertically */
   align-items: center; /* Center the children horizontally */
+
 }
 .rooms_category_container1 {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 4rem;
   max-width: 42rem;
+
 }
 .rooms_category_container_grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   column-gap: 1.5rem;
   row-gap: 2.5rem;
+
 }
 .rooms_category_container_grid_child1 {
   position: relative;
@@ -10800,7 +10803,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 .product_detail_ar_container {
   display: flex;
-  margin-top: 4rem;
+  margin-top: 5rem;
   justify-content: center;
   align-items: stretch;
   min-height: 100%;
@@ -10850,14 +10853,12 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   color: #111827;
   font-family: "DM Sans", sans-serif;
 }
+
 .product_detail_ar_container_grid_child1_text2 {
-  display: flex;
+  width: 60%;
+  margin-top: 1.5rem;
+    display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
-}
-.product_detail_ar_container_grid_child1_text2 {
-  width: 40%;
-  margin-top: 1.5rem;
 }
 .product_detail_ar_container_grid_child1_text2_child {
   font-size: 1rem;
@@ -11223,7 +11224,7 @@ a {
 .demo-container .title_visualizer {
   padding-top: 40px;
   margin: 0px;
-  font-family: Roboto, Noto, sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.235;
   color: rgba(84, 84, 84, 0.87);
   padding-top: 40px;
@@ -11263,7 +11264,7 @@ a {
 }
 .demo-container .content .upload .item .text {
   margin: 0px;
-  font-family: Roboto, Noto, sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.5;
   font-size: 1.125rem;
   color: rgba(0, 0, 0, 0.87);
@@ -11289,7 +11290,7 @@ a {
   width: 100%;
   text-transform: none;
   margin: 4px 0px 0px;
-  font-family: Roboto, Noto, sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.6;
   color: white;
   font-size: 18px;
@@ -11307,7 +11308,7 @@ a {
 }
 .demo-container .room-container .subtitle {
   margin-bottom: 32px;
-  font-family: Roboto, Noto, sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.5rem;
   line-height: 1.334;
   font-weight: 700;
@@ -11319,7 +11320,7 @@ a {
   float: left;
 }
 .demo-container .room-container .room-select .room .label {
-  font-family: Roboto, Noto, sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.57;
@@ -12229,6 +12230,8 @@ small {
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  font-family: "DM Sans", sans-serif;
+
 }
 
 .btn-link:hover {
@@ -12461,4 +12464,38 @@ cursor:pointer;
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
   text-align:left;
+}
+.item-list_visualizer {
+  display: flex;
+  justify-content: center;
+gap:1rem;
+align-items:center;
+
+}
+
+.item_visualizer {
+  border: 1px solid #ccc;
+  cursor: pointer;
+    display: flex;
+        flex-direction:column;
+padding-top:1rem;
+border-radius:0.5rem;
+
+}
+.item_visualizer img{
+    height: 70px;
+    width:110px;
+    object-fit: contain;
+
+}
+.item_visualizer p{
+     font-size: 0.7rem;
+
+  font-weight: 500;
+  color:gray;
+  font-family: "DM Sans", sans-serif;
+
+}
+ .selected_visualizer {
+  background-color: lightblue;
 }

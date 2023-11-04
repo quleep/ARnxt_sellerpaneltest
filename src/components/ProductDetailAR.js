@@ -8,6 +8,8 @@ import { FaTimes } from "react-icons/fa";
 import QRCode from "react-qr-code";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Header from "./Header";
+import DropdownMenu from "./DropdownMenu";
 function ProductDetailAR() {
   const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
@@ -45,7 +47,8 @@ function ProductDetailAR() {
   };
   return (
     <>
-      <Navbar />
+         <Header />
+      <DropdownMenu />
       <div className="hero_container">
         <div class="product_detail_ar_container">
           <div class="product_detail_ar_container_child">
@@ -101,7 +104,7 @@ function ProductDetailAR() {
                   </div>
                   <div className="product_detail_ar_container_grid_child1_text2">
                     <a href="#open-modal" className="btn-link">
-                      <BsBox className="icon" /> Visualiser
+                      <BsBox className="icon" /> View In Your Room
                     </a>
                   </div>
 

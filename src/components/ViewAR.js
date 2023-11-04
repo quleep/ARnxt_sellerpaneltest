@@ -11,7 +11,6 @@ import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import data2 from "./TemplateData.json";
 
 const ViewAR = () => {
   const {
@@ -53,7 +52,6 @@ const ViewAR = () => {
       .post(searchmodelurl, body)
       .then((res) => {
         setSearchProduct(res.data);
-        console.log(res.data);
       })
       .catch((error) => [console.log(error)]);
   }, [searchTerm]);
@@ -118,7 +116,6 @@ const ViewAR = () => {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
       );
-      console.log("categ", response.data);
 
       setCategoriesDetails(response.data);
     } catch (error) {
@@ -146,7 +143,6 @@ const ViewAR = () => {
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
       );
 
-      console.log("brandsarray", response);
       const brandFilter = response1.data; // Array of brand-ids to filter by (all lowercase)
 
       const filteredData = response.data.filter((item) =>
@@ -154,8 +150,6 @@ const ViewAR = () => {
       );
       const shuffledData = shuffleArray(filteredData);
       setBrandsData(shuffledData);
-
-      console.log(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -212,7 +206,7 @@ const ViewAR = () => {
     var slider = document.getElementById("slider2");
     slider.scrollLeft = slider.scrollLeft + 400;
   };
-   const nextPage1 = (product_Id) => {
+  const nextPage1 = (product_Id) => {
     history.push(`/arView/productdetail/${product_Id}`, {
       state: { product_Id },
     });
@@ -237,7 +231,10 @@ const ViewAR = () => {
             <div className="no-product-found">No product found</div>
           ) : (
             searchProduct?.slice(0, 4).map((val) => (
-              <div className="template" key={val.id}  onClick={() => nextPage1(val.product_Id)}>
+              <div
+                className="template"
+                key={val.id}
+                onClick={() => nextPage1(val.product_Id)}>
                 <img src={val.imageurl[0]} alt="" />
                 <div>
                   <h3>{val.specification}</h3>
