@@ -64,16 +64,13 @@
 
 }
 
-  
-.uldiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 5rem;
-}
 
+
+  .uldiv {
+    width: 156px;
+    text-align: left;
+    padding-left: 10px;
+  }
   
   .uldiv p {
     flex: 1;

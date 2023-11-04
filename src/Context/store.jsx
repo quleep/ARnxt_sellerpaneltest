@@ -13,7 +13,9 @@ export const MyProvider = ({ children }) => {
   const [image, setImage] = useState();
   const [temporgimage, setTempOrgImage] = useState();
   const [nav, setNav] = useState(false);
-
+  const [subCategory, setSubCategory] = useState("");
+  const [subCategorydetails, setSubCategoryDetails] = useState("");
+  const [finalData, setFinalData] = useState([]);
   const incrementCounter = () => {
     setCounter(counter + 1);
   };
@@ -36,7 +38,8 @@ export const MyProvider = ({ children }) => {
         image,
         setImage,
         temporgimage, setTempOrgImage,
-        nav, setNav
+        nav, setNav,
+          subCategory, setSubCategory,subCategorydetails, setSubCategoryDetails,finalData, setFinalData
       }}>
       {children}
     </MyContext.Provider>

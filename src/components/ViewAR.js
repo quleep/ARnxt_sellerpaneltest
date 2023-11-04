@@ -253,7 +253,7 @@ const ViewAR = () => {
           {bannerImages.map((item, idx) => (
             <img
               key={item.Id}
-              className="slide"
+              className="slide_visualizer"
               src={item.image}
               alt={`carousel_image_${idx}`}
             />

@@ -34,8 +34,8 @@ export default function Header() {
       <div className="logo_visualizer">
         <div className="logo_visualizer_image" onClick={() => nextPage()}>
           <img
-            style={{ height: "45px", paddingRight: "30px" }}
-            src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/logo+with+text.png"
+            style={{ height: "65px" }}
+            src="https://visualiser.arnxt.com/static/media/arnxtreg.1d3559321d4d3c36c710.png"
             alt="logo"
           />
         </div>
