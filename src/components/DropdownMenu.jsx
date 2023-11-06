@@ -21,10 +21,13 @@ function DropdownMenu() {
     setBrandRooms,
     nav,
     setNav,
-              subCategory, setSubCategory,subCategorydetails, setSubCategoryDetails,finalData, setFinalData
-
+    subCategory,
+    setSubCategory,
+    subCategorydetails,
+    setSubCategoryDetails,
+    finalData,
+    setFinalData,
   } = useMyContext();
-
 
   const history = useHistory();
 
@@ -38,7 +41,6 @@ function DropdownMenu() {
       setCategoriesDetails(response.data);
     } catch (error) {
       console.error("Error in fetching data: ", error);
-      // Handle the error
     }
   };
   const fetchsubCategoriesData = async () => {
@@ -51,7 +53,6 @@ function DropdownMenu() {
       setSubCategoryDetails(response.data);
     } catch (error) {
       console.error("Error in fetching data: ", error);
-      // Handle the error
     }
   };
 
@@ -80,13 +81,15 @@ function DropdownMenu() {
         }),
         categoryimage: electronicsCategory.categoryimage,
       };
-      console.log(newObject);
-      // Update the state with the new object
-      setFinalData([newObject]);
+      console.log(newObject.subcategory);
+      setFinalData(newObject.subcategory);
     }
-  }, [subCategory,categoriesDetails,subCategorydetails]);
+  }, [subCategory, categoriesDetails, subCategorydetails]);
   const nextCategoryPage = (category) => {
     history.push(`/arView/category/${category}`, { state: { category } });
+  };
+   const nextPage = (itemname) => {
+    history.push(`/arView/categories/${itemname}`, { state: { itemname } });
   };
   useEffect(() => {
     fetchCategoriesData();
@@ -109,46 +112,32 @@ function DropdownMenu() {
             </div>
           ))}
         </div>
+        <div></div>
       </div>
-      {/* {nav ? (
+      {nav ? (
         <div
           className="subCategory"
           onMouseLeave={() => setNav(false)}
           onMouseOver={() => setNav(true)}>
           <div className="uldiv">
-               {finalData.map((item) => (
-            <div>
-               <p>
-                {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
-              </p>
-              <Link to="/sofas">
-                <ul>
-                  <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                       <li>3-Seater sofas</li>
-                  <li>2-Seater Sofas</li>
-                  <li>1-seater Sofas</li>
-                  <li>Sofa Sets</li>
-                  <li>Sectional Sofas</li>
-                  <li>Recliners</li>
-                  <li>Chaise Loungers</li>
-                  <li>Sofa Cum beds</li>
-                  <li>Futons</li>
-                </ul>
-              </Link>
-            </div>
-          ))}
-             
-            </div>
+            {finalData?.map((item1) => (
+              <div className="uldiv_container">
+                <p onClick={() => nextPage(item1.itemname)}>{item1.itemname}
+                </p>
+
+                {item1?.subcategorydetails?.map((item) => (
+                  <div
+                    className="subCategory_div"
+                    onClick={() => nextPage(item1.itemname)}>
+                    {item.itemname.charAt(0).toUpperCase() +
+                      item.itemname.slice(1)}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      ) : null} */}
+      ) : null}
     </>
   );
 }

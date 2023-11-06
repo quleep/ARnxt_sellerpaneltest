@@ -1,58 +1,53 @@
 .tabbarParent {
-    width: 100%;
-    background-color: white;
-    box-shadow: 0px 1px 0px #E7E7E7;
-           background-color: #5a5a5b;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 1px 0px #e7e7e7;
+  background-color: #5a5a5b;
+}
 
-  }
-  
-  .mainDiv {
-    max-width: 1070px;
-    height: 48px;
-    margin: 0px auto;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    background-color: #ffffff;
-               background-color: #5a5a5b;
+.mainDiv {
+  max-width: 1070px;
+  height: 48px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
+  background-color: #5a5a5b;
+}
 
-  }
-  
-  .category {
-    min-width: 10px;
-    cursor: pointer;
-      color:white;
-   
-  }
-  .category > p {
-    height: 18px;
-    line-height: 18px;
-    letter-spacing: 0.06em;
-    color: white;
-    margin: 0px;
-    padding: 0px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-     font-size: 0.9rem;
+.category {
+  min-width: 10px;
+  cursor: pointer;
+  color: white;
+}
+.category > p {
+  height: 18px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 0.9rem;
 
-    font-weight: 500;
+  font-weight: 500;
   font-family: "DM Sans", sans-serif;
-  }
-  
-  
-  .category:hover p {
-    font-weight: 600;
-    transition: all 0.1s ease;
-  }
-  
-  .category:hover {
-    border-bottom: 4px solid orangered;
-    transition: all 0.1s ease;
-  }
- .subCategory {
-  max-width: 100%;
-  margin-left: 180px;
+}
+
+.category:hover p {
+  font-weight: 600;
+  transition: all 0.1s ease;
+}
+
+.category:hover {
+  border-bottom: 4px solid orangered;
+  transition: all 0.1s ease;
+}
+.subCategory {
+  width: 100%;
   border: 1px solid #e7e7e7;
   max-height: 100vh;
   display: flex;
@@ -60,52 +55,55 @@
   z-index: 2;
   background-color: white;
   position: absolute;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
-
-  .uldiv {
-    width: 156px;
-    text-align: left;
-    padding-left: 10px;
-  }
-  
-  .uldiv p {
-    flex: 1;
-    width: 100%;
-    margin: 0px;
-       font-size: 0.9rem;
+.uldiv {
+  display: flex;
+  flex-direction: row;
+  width: 2000px;
+  justify-content: flex-start;
+  gap: 5rem;
+  overflow-x: auto;
+  background-color:rgb(252, 249, 249);
+}
+.uldiv_container {
+  width: 150px;
+}
+.uldiv p {
+  width: 100%;
+  margin: 0px;
+  font-size: 0.95rem;
 
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
-    color: #000000;
-    padding:10px;
-      cursor: pointer;
+  color: #000000;
+  cursor: pointer;
+  text-align: left;
+}
+.uldiv p:hover {
+  color: red;
+}
 
+.subCategory_div {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #9999a1;
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.subCategory_div:hover {
+  color: rgb(242, 48, 48);
+}
+
+.uldiv:nth-child(2n) {
+  background-color: #f1f1f1;
+}
+@media screen and (max-width: 1050px) {
+  .tabbarParent {
+    display: none;
   }
-  
-  .uldiv ul {
-    margin-top: 10px;
-  }
-  
-  .uldiv ul li {
-    list-style: none;
-    margin-top: 10px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0.06em;
-    color: #000000;
-    cursor: pointer;
-  }
-  
-  .uldiv ul li:hover {
-    color: orangered;
-  }
-  
-  .uldiv:nth-child(2n) {
-    background-color: #f1f1f1;
-  }
+}

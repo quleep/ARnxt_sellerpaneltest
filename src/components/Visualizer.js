@@ -21,6 +21,7 @@ function Visualizer() {
   const [displaydiv, setDisplayDiv] = useState(false);
   const [segmentimg, setSegmentImg] = useState(false);
   const [processimg, setProcessImg] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const demoimageurl =

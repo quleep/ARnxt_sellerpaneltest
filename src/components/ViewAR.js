@@ -6,6 +6,8 @@ import ReactPaginate from "react-paginate";
 import { useHistory, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight, FaGreaterThan } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { BsSearch } from "react-icons/bs";
+
 import { useMyContext } from "../Context/store";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
@@ -224,6 +226,10 @@ const ViewAR = () => {
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
+          />
+           <BsSearch
+            className="searchInput_button"
+            size={23}
           />
         </div>
         <div className="template_Container">

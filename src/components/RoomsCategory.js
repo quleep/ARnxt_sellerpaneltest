@@ -14,22 +14,14 @@ function RoomsCategory() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [subcatDetails, setSubcatDetails] = useState([]);
 
-  const items = [
-    { id: 1, name: "Item 1", imageSrc: "image1.jpg" },
-    { id: 2, name: "Item 2", imageSrc: "image2.jpg" },
-    { id: 3, name: "Item 3", imageSrc: "image3.jpg" },
-  ];
-
   const handleItemClick = async (item) => {
     setSelectedItem(item.itemname);
-    console.log(item.itemname);
     try {
       const response = await axios.post(
         `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getitembysubcatdetails?subcatname=${item.itemname}`
       );
 
       setProducts(response.data);
-      console.log(response.data);
       // const responseData = await response.json();
       // setData(responseData);
     } catch (error) {
@@ -37,7 +29,7 @@ function RoomsCategory() {
     }
   };
   const fetchData = async () => {
-        setSelectedItem("all");
+    setSelectedItem("all");
 
     try {
       const response = await axios.post(
@@ -48,7 +40,6 @@ function RoomsCategory() {
       );
       //  console.log('Wishlist:', response.data);
       setProducts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -84,17 +75,14 @@ function RoomsCategory() {
       <div className="hero_container">
         <div>
           <div className="item-list_visualizer">
-              <div
-                className={`item_visualizer ${
-                  selectedItem === "all" ? "selected_visualizer" : ""
-                }`}
-                                onClick={() => fetchData()}>
-                    <img
-                      src={All}
-                      alt="Front of men&#039;s Basic Tee in black."
-                    />
-                <p>All</p>
-              </div>
+            <div
+              className={`item_visualizer ${
+                selectedItem === "all" ? "selected_visualizer" : ""
+              }`}
+              onClick={() => fetchData()}>
+              <img src={All} alt="Front of men&#039;s Basic Tee in black." />
+              <p>All</p>
+            </div>
             {subcatDetails.map((item, id) => (
               <div
                 key={item.itemname}
@@ -102,10 +90,10 @@ function RoomsCategory() {
                   selectedItem === item.itemname ? "selected_visualizer" : ""
                 }`}
                 onClick={() => handleItemClick(item)}>
-                    <img
-                      src={item.itemvalue}
-                      alt="Front of men&#039;s Basic Tee in black."
-                    />
+                <img
+                  src={item.itemvalue}
+                  alt="Front of men&#039;s Basic Tee in black."
+                />
                 <p>{item.itemname}</p>
               </div>
             ))}

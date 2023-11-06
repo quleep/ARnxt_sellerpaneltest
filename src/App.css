@@ -368,6 +368,9 @@ body {
   .list-boxs .card {
     width: 45%;
   }
+  .btn-link {
+  display:none;
+}
 }
 
 @media screen and (max-width: 550px) {
@@ -10919,6 +10922,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
     padding-right: 2rem;
     max-width: 80rem;
   }
+  
   .rooms_category_container_grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -12298,6 +12302,11 @@ small {
   width: 100%;
   border-radius: 20px;
 }
+@media screen and (max-width: 1050px) {
+  .slide_visualizer {
+    height: 250px;
+  }
+}
 
 /* Buttons */
 
@@ -12390,6 +12399,7 @@ small {
   width: 100%;
 
   text-align: right;
+  position:relative;
 }
 
 .templateContainer > .searchInput_Container input {
@@ -12397,6 +12407,7 @@ small {
   padding: 10px;
   border-radius: 5px;
   color: #9dbfaf;
+
 }
 .templateContainer > .searchInput_Container input::placeholder {
   color: red;
@@ -12406,7 +12417,13 @@ small {
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
 }
+.searchInput_button{
+  position:absolute;
+  right:1%;
+  top:25%;
+    opacity: 0.8; /* Firefox */
 
+}
 .templateContainer .template_Container {
   display: flex;
   flex-direction: column;
