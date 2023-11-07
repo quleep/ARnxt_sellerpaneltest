@@ -131,6 +131,12 @@ function CategoryAR() {
       history.push(`/arView/visualizer`, {
         state: { itemname: param.id },
       });
+    }
+    if (param.id === "Upholstery") {
+      // Navigate to another page if the condition is met
+      history.push(`/arView/upholstry/${itemname}`, {
+        state: { itemname: param.id },
+      });
     } else {
       history.push(`/arView/categories/${itemname}`, {
         state: { itemname },
@@ -140,7 +146,7 @@ function CategoryAR() {
 
   return (
     <>
-          <Header />
+      <Header />
       <DropdownMenu />
       <div className="hero_container">
         <Tabs

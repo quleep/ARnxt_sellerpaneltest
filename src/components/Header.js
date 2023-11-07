@@ -35,7 +35,7 @@ export default function Header() {
         <div className="logo_visualizer_image" onClick={() => nextPage()}>
           <img
             style={{ height: "65px" }}
-            src="https://visualiser.arnxt.com/static/media/arnxtreg.1d3559321d4d3c36c710.png"
+            src="https://visualiser.arnxt.com/static/media/arnxtreg%20.b4b329cf9f3c06cff7cb.png"
             alt="logo"
           />
         </div>

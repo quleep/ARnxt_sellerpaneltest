@@ -63,12 +63,10 @@
   flex-direction: row;
   width: 2000px;
   justify-content: flex-start;
-  gap: 5rem;
   overflow-x: auto;
-  background-color:rgb(252, 249, 249);
 }
 .uldiv_container {
-  width: 150px;
+  width: 100%;
 }
 .uldiv p {
   width: 100%;
@@ -99,7 +97,7 @@
   color: rgb(242, 48, 48);
 }
 
-.uldiv:nth-child(2n) {
+.uldiv_container:nth-child(2n) {
   background-color: #f1f1f1;
 }
 @media screen and (max-width: 1050px) {
