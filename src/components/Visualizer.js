@@ -14,7 +14,16 @@ import { useMyContext } from "../Context/store";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 function Visualizer() {
-  const { image, setImage, temporgimage, setTempOrgImage } = useMyContext();
+  const {
+    image,
+    setImage,
+    temporgimage,
+    setTempOrgImage,
+    wallimagewidth,
+    setWallImageWidth,
+    wallimageheight,
+    setWallImageHeight,
+  } = useMyContext();
   const [demoimages, setDemoImages] = useState([]);
   const [base64array, setBase64Array] = useState([]);
   const [orgimg, setOrgImg] = useState();
@@ -23,12 +32,66 @@ function Visualizer() {
   const [processimg, setProcessImg] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-
+  const [detection, setDetection] = useState();
+  const [demoapibrand, setDemoApiBrand] = useState();
+  const imgurlnew = "";
   const demoimageurl =
     "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdemoimageurl";
   const history = useHistory();
+  const handleUrlToBase64 = (val) => {
+    let maxWidth;
+    let maxHeight;
+    let newWidth;
+    let newHeight;
+    let resizedDataURL;
 
+    return new Promise((resolve) => {
+      const img = new Image();
+
+      img.src = val + "?r=" + Math.floor(Math.random() * 100000);
+      img.setAttribute("crossOrigin", "Anonymous");
+
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        setWallImageWidth(img.width);
+        setWallImageHeight(img.height);
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img, 0, 0);
+
+        resizedDataURL = canvas.toDataURL("image/jpeg");
+
+        resolve(resizedDataURL);
+      };
+    });
+  };
+
+  const tempRoomClick = async (val) => {
+    await handleUrlToBase64(val).then((res) => {
+      setTempOrgImage(res);
+
+      setImage(val);
+      setOrgImg(val);
+      setDisplayDiv(true);
+      setSegmentImg(false);
+      setProcessImg("");
+      history.push(`/arView/visualizer2d`);
+    });
+  };
   const handleimageclick = async (room, val) => {
+    const img = new Image();
+
+    img.src = val + "?r=" + Math.floor(Math.random() * 100000);
+    img.setAttribute("crossOrigin", "Anonymous");
+
+    img.onload = function () {
+      setWallImageWidth(img.width);
+      setWallImageHeight(img.height);
+    };
     const newarray = await filterDuplicateObjects(base64array);
 
     newarray.forEach((item) => {
@@ -81,6 +144,16 @@ function Visualizer() {
       files.forEach((file) => {
         fileToBase64(file, (err, result) => {
           if (result) {
+            const img = new Image();
+            img.src = result;
+
+            img.onload = function () {
+              const width = img.width;
+              const height = img.height;
+
+              setWallImageWidth(width);
+              setWallImageHeight(height);
+            };
             setTempOrgImage(result);
             setImage(result);
             setOrgImg(result);
@@ -143,7 +216,7 @@ function Visualizer() {
   }
   return (
     <>
-        <Header />
+      <Header />
       <DropdownMenu />
       <div className="hero_container">
         <div className="demo-container">
@@ -212,7 +285,7 @@ function Visualizer() {
                 demoimages.map((item) => (
                   <div
                     className="room"
-                    onClick={() => handleimageclick(item.room, item.imgurl)}>
+                    onClick={() => tempRoomClick(item.imgurl)}>
                     <div className="image">
                       <img src={item.imgurl} alt="room" />
                     </div>

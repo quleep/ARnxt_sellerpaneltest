@@ -16,8 +16,17 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 function Visualizer2D() {
-  const { image, setImage, temporgimage, setTempOrgImage, roomData } =
-    useMyContext();
+  const {
+    image,
+    setImage,
+    temporgimage,
+    setTempOrgImage,
+    roomData,
+    wallimagewidth,
+    setWallImageWidth,
+    wallimageheight,
+    setWallImageHeight,
+  } = useMyContext();
   const addviewsurl =
     "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewscount";
   const scrollContainerRef = useRef();
@@ -429,10 +438,9 @@ function Visualizer2D() {
       y: position.y + (e.clientY - position.y - 49) * ratio,
     });
   };
-  const resizeImage = async (val) => {
+  const resizeImage = async (val, designstyle) => {
     let maxWidth;
     let maxHeight;
-
     return new Promise((resolve) => {
       const img = new Image();
 
@@ -443,18 +451,47 @@ function Visualizer2D() {
         let resizedDataURL;
         let newWidth, newHeight;
 
-        maxWidth = (img.width * 18) / 100;
+        if (img.width > 900 && img.width < 1200) {
+          maxWidth = wallimagewidth / 2;
 
-        maxHeight = (img.height * 18) / 100;
+          maxHeight = wallimageheight / 2;
+        } else if (img.width <= 900) {
+          maxWidth = wallimagewidth / 3;
+
+          maxHeight = wallimageheight / 3;
+        } else if (img.width < 1650 && img.width > 1200) {
+          maxWidth = wallimagewidth / 1.5;
+
+          maxHeight = wallimageheight / 1.5;
+        } else if (img.width > 1650 && img.width < 3000) {
+          maxWidth = wallimagewidth / 4;
+
+          maxHeight = wallimageheight / 4;
+        } else if (img.width > 3000 && img.width < 5000) {
+          maxWidth = wallimagewidth / 6;
+
+          maxHeight = wallimageheight / 6;
+        } else if (img.width > 5000 && img.width < 7000) {
+          maxWidth = wallimagewidth / 3;
+
+          maxHeight = wallimageheight / 3;
+        } else if (img.width > 7000) {
+          maxWidth = wallimagewidth / 1.5;
+
+          maxHeight = wallimageheight / 1.5;
+        } else {
+          maxWidth = img.width;
+
+          maxHeight = img.height;
+        }
 
         if (img.width > img.height) {
           newWidth = maxWidth;
-          newHeight = (maxWidth * img.height) / img.width;
+          newHeight = maxHeight;
         } else {
           newHeight = maxHeight;
           newWidth = (maxHeight * img.width) / img.height;
         }
-
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
@@ -464,7 +501,6 @@ function Visualizer2D() {
         ctx.drawImage(img, 0, 0, newWidth, newHeight);
 
         resizedDataURL = canvas.toDataURL("image/jpeg");
-
         resolve(resizedDataURL);
       };
     });
@@ -490,7 +526,9 @@ function Visualizer2D() {
           "c0110aa4490cd8a4e5c024c4779d976f6927b6b0e4b12c2675e9558a453e933c",
       },
     };
-    await       axios.post( 'https://wallserver.arnxt.com/api/v1/infer', body, config).then(res=>{
+    await axios
+      .post("https://wallserver.arnxt.com/api/v1/infer", body, config)
+      .then((res) => {
         console.log(res.data);
         setSegmentImg(true);
         setProcessImg(res.data);
@@ -507,7 +545,7 @@ function Visualizer2D() {
 
   return (
     <>
-       <Header />
+      <Header />
       <DropdownMenu />
       <div className="hero_container">
         <div className="rooms-container">
@@ -583,11 +621,10 @@ function Visualizer2D() {
                             <div className="top">
                               <div className="normal_text">{item.brand}</div>
                               <div className="semibold_text">
-                                   {item.productname.charAt(0).toUpperCase() +
-                      item.productname.slice(1)}
+                                {item.productname.charAt(0).toUpperCase() +
+                                  item.productname.slice(1)}
                               </div>
                             </div>
-                         
                           </div>
                         </div>
                         {item.lengthprod > 1 && (

@@ -16,6 +16,8 @@ export const MyProvider = ({ children }) => {
   const [subCategory, setSubCategory] = useState("");
   const [subCategorydetails, setSubCategoryDetails] = useState("");
   const [finalData, setFinalData] = useState([]);
+  const [wallimagewidth, setWallImageWidth] = useState();
+  const [wallimageheight, setWallImageHeight] = useState();
   const incrementCounter = () => {
     setCounter(counter + 1);
   };
@@ -37,9 +39,20 @@ export const MyProvider = ({ children }) => {
         setBrandRooms,
         image,
         setImage,
-        temporgimage, setTempOrgImage,
-        nav, setNav,
-          subCategory, setSubCategory,subCategorydetails, setSubCategoryDetails,finalData, setFinalData
+        temporgimage,
+        setTempOrgImage,
+        nav,
+        setNav,
+        subCategory,
+        setSubCategory,
+        subCategorydetails,
+        setSubCategoryDetails,
+        finalData,
+        setFinalData,
+        wallimagewidth,
+        setWallImageWidth,
+        wallimageheight,
+        setWallImageHeight,
       }}>
       {children}
     </MyContext.Provider>

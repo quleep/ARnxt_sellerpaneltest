@@ -27,19 +27,14 @@ function CategoryAR() {
     const fetchData = async () => {
       try {
         const response = await axios.post(apiUrl); // Use GET request for query parameters
-        // Handle the response data here
         console.log(response.data);
-        // console.log('brandsdata', brandRooms);
-        // Filter brandIds and iconUrls based on the first array
         const filteredData = brandRooms?.filter((item) =>
           response.data.includes(item.brandId)
         );
 
-        // Display the filtered data
-        console.log("brsnd", filteredData);
+        console.log("param", param.id);
         setBrandsData1(filteredData);
       } catch (error) {
-        // Handle any errors here
         console.error(error);
       }
     };
@@ -59,7 +54,7 @@ function CategoryAR() {
       );
 
       console.log("brandsarray", response);
-      const brandFilter = response1.data; // Array of brand-ids to filter by (all lowercase)
+      const brandFilter = response1.data; 
 
       const filteredData = response.data.filter(
         (item) =>
@@ -76,27 +71,20 @@ function CategoryAR() {
   };
 
   useEffect(() => {
-    // Transform the data
     const transformedData = brandsData?.map((item) => {
-      // Store brandId in lowercase
       const brandIdLowerCase = item["brand-id"]?.toLowerCase();
 
-      // Store iconUrl in a new variable
       const iconUrlNewVariable = item["iconUrl"];
 
-      // Create a new object with the transformed values
       return {
         brandId: brandIdLowerCase,
         iconUrlNewVariable: iconUrlNewVariable,
       };
     });
 
-    // Update the original data with the transformed data
     setBrandRooms(transformedData);
-    // Display the updated JSON data
   }, [brandsData]);
-  // Decode the URL-encoded parameter
-  // Outputs "Dining Room"
+
 
   const fetchCategoriesData = async () => {
     try {
@@ -114,7 +102,6 @@ function CategoryAR() {
       setCategoriesDetails(matchingCategory);
     } catch (error) {
       console.error("Error in fetching data: ", error);
-      // Handle the error
     }
   };
   useEffect(() => {
@@ -127,13 +114,11 @@ function CategoryAR() {
   };
   const nextPage = (itemname) => {
     if (param.id === "Walls") {
-      // Navigate to another page if the condition is met
       history.push(`/arView/visualizer`, {
         state: { itemname: param.id },
       });
     }
-    if (param.id === "Upholstery") {
-      // Navigate to another page if the condition is met
+    else if (param.id === "Upholstery") {
       history.push(`/arView/upholstry/${itemname}`, {
         state: { itemname: param.id },
       });

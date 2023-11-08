@@ -58,7 +58,6 @@ const ViewAR = () => {
       .catch((error) => [console.log(error)]);
   }, [searchTerm]);
   useEffect(() => {
-    // Fetch the banner images from the API
     axios
       .get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbannertable"
@@ -124,7 +123,6 @@ const ViewAR = () => {
       console.error("Error in fetching data: ", error);
     }
   };
-  // Function to shuffle an array randomly
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -145,7 +143,7 @@ const ViewAR = () => {
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
       );
 
-      const brandFilter = response1.data; // Array of brand-ids to filter by (all lowercase)
+      const brandFilter = response1.data; 
 
       const filteredData = response.data.filter((item) =>
         brandFilter.includes(item["brandId"].toLowerCase())
@@ -160,26 +158,20 @@ const ViewAR = () => {
     brands();
 
     fetchCategoriesData();
-  }, []); // Empty dependency array ensures this runs only once after initial render
+  }, []); 
   useEffect(() => {
-    // Transform the data
     const transformedData = brandsData?.map((item) => {
-      // Store brandId in lowercase
       const brandIdLowerCase = item["brand-id"].toLowerCase();
 
-      // Store iconUrl in a new variable
       const iconUrlNewVariable = item["iconUrl"];
 
-      // Create a new object with the transformed values
       return {
         brandId: brandIdLowerCase,
         iconUrlNewVariable: iconUrlNewVariable,
       };
     });
 
-    // Update the original data with the transformed data
     setBrandRooms(transformedData);
-    // Display the updated JSON data
   }, [brandsData]);
   const slideLeft = () => {
     var slider = document.getElementById("slider");
@@ -356,9 +348,9 @@ const ViewAR = () => {
             size={40}
           />
           <div id="slider2" className="hori_scroll_container_child">
-            {brandsData?.map((item) => (
+            {brandsData?.map((item,key) => (
               <div
-                key={item.brandId}
+                key={item.iconUrl}
                 className="hori_scroll_container_child1"
                 onClick={() => nextBrandPage(item.brandId)}>
                 <img
