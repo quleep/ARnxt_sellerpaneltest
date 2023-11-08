@@ -55,13 +55,12 @@ function DropdownMenu() {
       console.error("Error in fetching data: ", error);
     }
   };
-
   useEffect(() => {
     const electronicsCategory = categoriesDetails.find(
       (item) => item.category === subCategory
     );
 
-    if (electronicsCategory) {
+    if (electronicsCategory && Array.isArray(subCategorydetails)) {
       const subcategoryDetailsMap = {};
       subCategorydetails.forEach((item) => {
         subcategoryDetailsMap[item.subcategoryname] = item.subcategorydetails;

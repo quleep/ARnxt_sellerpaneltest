@@ -179,6 +179,26 @@ function Visualizer() {
     }
   };
   useEffect(() => {
+    var img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src =
+      "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/fabric5.jpg";
+
+    img.onload = function () {
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      console.log(canvas);
+
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      let base64Data = canvas.toDataURL("image/jpeg");
+      console.log(base64Data);
+    };
+  }, []);
+
+  useEffect(() => {
     axios.get(demoimageurl).then((res) => {
       setDemoImages(res.data);
       let newurl = res.data[0].imgurl;

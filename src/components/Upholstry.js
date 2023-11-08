@@ -7,6 +7,12 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useMyContext } from "../Context/store";
 import { TbAugmentedReality } from "react-icons/tb";
+import texture1 from "../../src/assets/textureImages/download (4).jpg";
+import texture2 from "../../src/assets/textureImages/download (5).jpg";
+import texture3 from "../../src/assets/textureImages/download (6).jpg";
+import { BsBox } from "react-icons/bs";
+import QRCode from "react-qr-code";
+import { FaTimes } from "react-icons/fa";
 
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
@@ -71,6 +77,10 @@ function Upholstry() {
     setSelectedTexture("");
     setActiveTab(2);
   };
+
+  const handlemodalclose = () => {
+    document.querySelector(".modalscan").style.display = "none";
+  };
   return (
     <>
       <Header />
@@ -90,40 +100,73 @@ function Upholstry() {
             ar-modes="webxr scene-viewer quick-look"
             shadow-intensity="1"
             xr-environment>
-            {/* <div className="view_in_ar_container">
-              
-                <TbAugmentedReality
-            size={40}
-          />
-            </div> */}
+            <div className="view_in_ar_container">
+              <a href="#open-modal" className="view_in_ar_button">
+                <BsBox className="icon" /> View In Your Room
+              </a>
+            </div>
+            <div id="open-modal" class="modal-window">
+              <div>
+                <a href="#" title="Close" class="modal-close">
+                  Close
+                </a>
+                <QRCode value={`arnxt.com/arView/upholstry/${param.id}`} />
+                <p className="semibold_text">
+                  Scan the QR code with your mobile device to view the product
+                  in your space.
+                </p>
+              </div>
+            </div>
+            <div class="modalscan">
+              <div class="modal-wrapscan">
+                <span className="closemodalscan" onClick={handlemodalclose}>
+                  <FaTimes style={{ color: "red", fontSize: "20px" }} />
+                </span>
+                <span>
+                  <div></div>
+
+                  <QRCode
+                    value={`arnxt.com/arview/productdetail/${param.id}`}
+                  />
+                </span>
+                <p className="dataupload">
+                  Scan the QR code with your mobile device to view the product
+                  in your space.
+                </p>
+              </div>
+            </div>
             <div className="view_in_ar_wallpapers">
               <div id="slider1" className="hori_scroll_container_child">
                 <div
                   //   className="hori_scroll_container_child1"
                   className="hori_scroll_container_wallpapers"
-                  onClick={() =>
-                    changeWallpaper(
-                      "https://jobpostingbucket.s3.ap-south-1.amazonaws.com/fabric1.jpg"
-                    )
-                  }>
+                  onClick={() => changeWallpaper(texture1)}>
                   <img
-                    src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/fabric1.jpg"
+                    src={texture1}
                     alt="/"
                     className="hori_scroll_container_child1_image1"
                   />
                 </div>
-                {products.map((item) => (
-                  <div
-                    //   className="hori_scroll_container_child1"
-                    className="hori_scroll_container_wallpapers"
-                    onClick={() => changeWallpaper(item.imageurl[0])}>
-                    <img
-                      src={item.imageurl[0]}
-                      alt="/"
-                      className="hori_scroll_container_child1_image1"
-                    />
-                  </div>
-                ))}
+                <div
+                  //   className="hori_scroll_container_child1"
+                  className="hori_scroll_container_wallpapers"
+                  onClick={() => changeWallpaper(texture2)}>
+                  <img
+                    src={texture2}
+                    alt="/"
+                    className="hori_scroll_container_child1_image1"
+                  />
+                </div>
+                <div
+                  //   className="hori_scroll_container_child1"
+                  className="hori_scroll_container_wallpapers"
+                  onClick={() => changeWallpaper(texture3)}>
+                  <img
+                    src={texture3}
+                    alt="/"
+                    className="hori_scroll_container_child1_image1"
+                  />
+                </div>
               </div>
             </div>
             <div className="view_in_ar_mesh">
