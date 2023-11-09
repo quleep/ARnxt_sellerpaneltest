@@ -5,6 +5,8 @@ import axios from "axios";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import { BsBox } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+
 import QRCode from "react-qr-code";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -47,7 +49,7 @@ function ProductDetailAR() {
   };
   return (
     <>
-         <Header />
+      <Header />
       <DropdownMenu />
       <div className="hero_container">
         <div class="product_detail_ar_container">
@@ -85,7 +87,9 @@ function ProductDetailAR() {
                     <div className="product_detail_ar_container_grid_child1_text2_child">
                       Brands
                     </div>
-                    <div className="product_detail_ar_container_grid_child1_text2_child1">
+                    <div
+                      className="product_detail_ar_container_grid_child1_text2_child1"
+                      style={{ textTransform: "uppercase" }}>
                       {productData?.brand
                         .split(" ")
                         .map(
@@ -111,7 +115,7 @@ function ProductDetailAR() {
                   <div id="open-modal" class="modal-window">
                     <div>
                       <a href="#" title="Close" class="modal-close">
-                        Close
+                        <AiOutlineClose />
                       </a>
                       <QRCode
                         value={`arnxt.com/arview/productdetail/${param.id}`}

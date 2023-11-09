@@ -12231,20 +12231,23 @@ a {
 }
 
 .modal-close {
-  color: #aaa;
-  font-size: 1rem;
-  line-height: 2rem;
-  font-weight: 800;
-  font-family: "DM Sans", sans-serif;
   position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
+  right: 10px; /* Adjust as needed */
+  top: 10px; /* Adjust as needed */
   text-decoration: none;
+  color: #333; /* Adjust the color to your preference */
+  font-size: 24px; /* Adjust the font size to your preference */
+  transition: color 0.2s; /* Add a smooth color transition on hover */
+    transition: color 0.2s, padding 0.3s, background-color 0.3s, border-radius 0.3s; /* Add transitions for color, padding, background color, and border radius */
+
+padding:0.3rem;
   &:hover {
-    color: black;
+    color: #000; /* Change the color on hover */
+    background-color:lightgray;
+border-radius:0.2rem;
   }
 }
+
 
 .modal-window {
   & > div {

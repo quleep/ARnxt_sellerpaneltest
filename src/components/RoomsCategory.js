@@ -99,7 +99,6 @@ function RoomsCategory() {
         <div class="rooms_category_container">
           <div class="rooms_category_container1">
             <div class="rooms_category_container_grid">
-              
               {products.map((item) => (
                 <div
                   class="rooms_category_container_grid_child1"
@@ -128,7 +127,9 @@ function RoomsCategory() {
                     </p>
                   </div>
                   <div class="rooms_categories_container_grid_child3_brand">
-                    <p class="product_detail_ar_container_grid_child1_brandText">
+                    <p
+                      class="product_detail_ar_container_grid_child1_brandText"
+                      style={{ textTransform: "uppercase" }}>
                       {item.brand
                         .split(" ")
                         .map(
