@@ -87,7 +87,7 @@ function DropdownMenu() {
   const nextCategoryPage = (category) => {
     history.push(`/arView/category/${category}`, { state: { category } });
   };
-   const nextPage = (itemname) => {
+  const nextPage = (itemname) => {
     history.push(`/arView/categories/${itemname}`, { state: { itemname } });
   };
   useEffect(() => {
@@ -118,11 +118,30 @@ function DropdownMenu() {
           className="subCategory"
           onMouseLeave={() => setNav(false)}
           onMouseOver={() => setNav(true)}>
-          <div className="uldiv">
+          {/* <div className="uldiv">
             {finalData?.map((item1) => (
               <div className="uldiv_container">
                 <p onClick={() => nextPage(item1.itemname)}>{item1.itemname}
                 </p>
+
+                {item1?.subcategorydetails?.map((item) => (
+                  <div
+                    className="subCategory_div"
+                    onClick={() => nextPage(item1.itemname)}>
+                    {item.itemname.charAt(0).toUpperCase() +
+                      item.itemname.slice(1)}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div> */}
+          <div id="slider" className="hori_scroll_container_header">
+            {finalData?.map((item1) => (
+              <div
+                key={item1.id}
+                className="hori_scroll_container_header_child"
+                onClick={() => nextPage(item1.itemname)}>
+                <p onClick={() => nextPage(item1.itemname)}>{item1.itemname}</p>
 
                 {item1?.subcategorydetails?.map((item) => (
                   <div

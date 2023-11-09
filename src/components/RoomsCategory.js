@@ -22,8 +22,6 @@ function RoomsCategory() {
       );
 
       setProducts(response.data);
-      // const responseData = await response.json();
-      // setData(responseData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -38,7 +36,6 @@ function RoomsCategory() {
           subcategory: param.id,
         }
       );
-      //  console.log('Wishlist:', response.data);
       setProducts(response.data);
     } catch (error) {
       console.error("Error:", error);
@@ -102,6 +99,7 @@ function RoomsCategory() {
         <div class="rooms_category_container">
           <div class="rooms_category_container1">
             <div class="rooms_category_container_grid">
+              
               {products.map((item) => (
                 <div
                   class="rooms_category_container_grid_child1"

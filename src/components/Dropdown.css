@@ -52,6 +52,8 @@
   max-height: 100vh;
   display: flex;
   flex-direction: row;
+
+
   z-index: 2;
   background-color: white;
   position: absolute;
@@ -92,6 +94,8 @@
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
   cursor: pointer;
+    height: 100%;
+
 }
 .subCategory_div:hover {
   color: rgb(242, 48, 48);

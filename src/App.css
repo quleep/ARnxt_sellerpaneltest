@@ -10701,6 +10701,42 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 .hori_scroll_container_child::-webkit-scrollbar {
   display: none;
 }
+.hori_scroll_container_header {
+  overflow-x: scroll;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+
+}
+.hori_scroll_container_header {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hori_scroll_container_header::-webkit-scrollbar {
+  display: none;
+}
+.hori_scroll_container_header_child {
+  display: inline-block;
+  flex:1;
+  padding: 0.5rem;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  width: 200px;
+     vertical-align: top;
+
+}
+.hori_scroll_container_header_child:nth-child(2n) {
+  background-color: #f1f1f1;
+}
+.hori_scroll_container_header_child p{
+ text-align:left;
+   font-size: 0.95rem;
+
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+}
 .hori_scroll_container_child1 {
   display: inline-block;
   padding: 0.5rem;
@@ -10715,6 +10751,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
     var(--transform-scale-y, 1.05)
   );
 }
+
 .hori_scroll_container_child1_image {
   object-fit: fill;
   border-radius: 0.375rem;
@@ -10749,6 +10786,12 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   grid-template-columns: repeat(1, minmax(0, 1fr));
   column-gap: 1.5rem;
   row-gap: 2.5rem;
+}
+.rooms_category_container_grid p{
+ font-size: 1rem;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+
 }
 .rooms_category_container_grid_child1 {
   position: relative;
@@ -11540,7 +11583,7 @@ a {
     display: none;
   }
 
-.hori_scroll_container_visualizer {
+  .hori_scroll_container_visualizer {
     display: flex;
     position: fixed; /* Change 'absolute' to 'fixed' */
     left: 0;
@@ -11549,7 +11592,7 @@ a {
     margin-bottom: 0.5rem;
     align-items: center;
     background-color: #bab7af;
-}
+  }
 
   .hori_scroll_left_arrow_visualizer {
     display: none;
@@ -11823,7 +11866,11 @@ a {
   height: 87px;
 }
 .rooms-container .main .left-panel .styles.small .card .details .image {
-  width: 87px;
+  width: 100%;
+}
+.rooms-container .main .left-panel .styles.small .card .details .image img {
+  object-fit:cover;
+  background-color:black;
 }
 .rooms-container .main .left-panel .styles.small .card .details .detail {
   display: none;
@@ -11942,8 +11989,14 @@ a {
   padding: 0;
   margin: 0;
   overflow: hidden;
-}
+    transition: transform 0.3s ease; /* Adjust the duration and easing as needed */
 
+}
+.rooms-container .main .main-panel .image:hover {
+  transform: scale(1.3); /* Adjust the scale factor for the zoom effect */
+
+
+}
 .rooms-container .main .main-panel .image img {
   position: absolute;
   object-fit: contain;
@@ -12396,20 +12449,19 @@ small {
 }
 .templateContainer {
   margin: 2% 1%;
-  position: relative;
 }
 .templateContainer > .searchInput_Container {
   width: 100%;
+    position: relative;
 
-  text-align: right;
-  position: relative;
 }
 
 .templateContainer > .searchInput_Container input {
-  width: 90%;
+  width: 50%;
   padding: 10px;
   border-radius: 5px;
   color: #9dbfaf;
+
 }
 .templateContainer > .searchInput_Container input::placeholder {
   color: red;
@@ -12421,7 +12473,7 @@ small {
 }
 .searchInput_button {
   position: absolute;
-  right: 1%;
+  right: 27%;
   top: 25%;
   opacity: 0.8; /* Firefox */
 }
@@ -12432,8 +12484,9 @@ small {
   justify-content: center;
   position: absolute;
   z-index: 1;
-  right: 0;
-  width: 100%;
+  gap:1rem;
+  right: 25%;
+  width: 50%;
   border-radius: 10px;
   background-color: #ffffff;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -12479,6 +12532,11 @@ small {
   justify-content: center;
   gap: 1rem;
   align-items: center;
+   overflow-x: scroll;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+   width: 100%;
+  height: 100%;
 }
 
 .item_visualizer {
@@ -12509,16 +12567,16 @@ small {
   right: 1rem;
   top: 1rem;
   cursor: pointer;
-  z-index:3;
-  background-color:lightblue;
-  padding:0.5rem;
-  border-radius:0.2rem;
+  z-index: 3;
+  background-color: lightblue;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
 }
 .view_in_ar_button {
-  display:flex;
-  flex-direction:row;
-justify-content:center;
-align-items:center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .view_in_ar_mesh {
   position: absolute;
@@ -12594,4 +12652,5 @@ align-items:center;
   .view_in_ar_container {
     display: none;
   }
+
 }
