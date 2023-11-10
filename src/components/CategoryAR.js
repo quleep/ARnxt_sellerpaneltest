@@ -54,7 +54,7 @@ function CategoryAR() {
       );
 
       console.log("brandsarray", response);
-      const brandFilter = response1.data; 
+      const brandFilter = response1.data;
 
       const filteredData = response.data.filter(
         (item) =>
@@ -84,7 +84,6 @@ function CategoryAR() {
 
     setBrandRooms(transformedData);
   }, [brandsData]);
-
 
   const fetchCategoriesData = async () => {
     try {
@@ -117,8 +116,7 @@ function CategoryAR() {
       history.push(`/arView/visualizer`, {
         state: { itemname: param.id },
       });
-    }
-    else if (param.id === "Upholstery") {
+    } else if (param.id === "Upholstery") {
       history.push(`/arView/upholstry/${itemname}`, {
         state: { itemname: param.id },
       });

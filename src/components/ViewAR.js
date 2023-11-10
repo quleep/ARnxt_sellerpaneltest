@@ -112,17 +112,35 @@ const ViewAR = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-  const fetchCategoriesData = async () => {
-    try {
-      const response = await axios.get(
-        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
-      );
+const fetchCategoriesData = async () => {
+  try {
+    const response = await axios.get(
+      "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
+    );
 
-      setCategoriesDetails(response.data);
-    } catch (error) {
-      console.error("Error in fetching data: ", error);
-    }
-  };
+    const orderedCategories = [
+      "Furniture",
+      "Walls",
+      "Floors",
+      "Furnishing",
+      "Decorative",
+      "Upholstery",
+      "Sanitary",
+      "Electronics",
+      "Electrical",
+      "Bathroom",
+    ];
+
+    const sortedData = response.data.sort((a, b) => {
+      return orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category);
+    });
+console.log(sortedData)
+    setCategoriesDetails(sortedData);
+  } catch (error) {
+    console.error("Error in fetching data: ", error);
+  }
+};
+
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {

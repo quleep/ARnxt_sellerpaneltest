@@ -269,10 +269,9 @@ function Visualizer2D() {
   const [horizontalScrollPageNo, setHorizontalScrollPageNo] = useState(1);
   const [horizontalScrollLoading, setHorizontalScrollLoading] = useState(false);
   const StyleRef1 = useRef();
- const [isHovered, setIsHovered] = useState(false);
- const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
-  
   const [scrollTop, setScrollTop] = useState(0);
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("room"));
@@ -297,7 +296,7 @@ function Visualizer2D() {
   };
   const handleMouseEnter = (e) => {
     setIsHovered(true);
-      const image = e.target;
+    const image = e.target;
     const x = e.nativeEvent.offsetX / image.offsetWidth;
     const y = e.nativeEvent.offsetY / image.offsetHeight;
 
@@ -634,7 +633,11 @@ function Visualizer2D() {
                           </div>
                           <div className="detail">
                             <div className="top">
-                              <div className="normal_text">{item.brand}</div>
+                              <div
+                                className="normal_text"
+                                style={{ textTransform: "uppercase" }}>
+                                {item.brand}
+                              </div>
                               <div className="semibold_text">
                                 {item.productname.charAt(0).toUpperCase() +
                                   item.productname.slice(1)}
@@ -704,21 +707,28 @@ function Visualizer2D() {
               </div>
             </div>
             <div className="main-panel">
-              <div ref={ImageRef}  className={`image ${isHovered ? 'zoomed' : ''}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-                  style=  {isHovered ? {transform:'scale(2)', cursor:  'crosshair', transformOrigin: `${cursorPosition.x * 100}% ${cursorPosition.y * 100}%`} : {}}
->
+              <div
+                ref={ImageRef}
+                className={`image ${isHovered ? "zoomed" : ""}`}
+                onMouseMove={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={
+                  isHovered
+                    ? {
+                        transform: "scale(2)",
+                        cursor: "crosshair",
+                        transformOrigin: `${cursorPosition.x * 100}% ${
+                          cursorPosition.y * 100
+                        }%`,
+                      }
+                    : {}
+                }>
                 <img
                   src={
                     segmentimg ? `data:image/png;base64, ${processimg}` : image
                   }
                   alt="room"
                   className="room"
-                  style={{
-                    transformOrigin: "0 0",
-                    transform: `translate(${position.x}px, ${position.y}px) scale(${position.scale})`,
-                  }}
                 />
               </div>
 
