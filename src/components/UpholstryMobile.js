@@ -17,7 +17,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
-function Upholstry() {
+function UpholstryMobile() {
   const [products, setProducts] = useState([]);
   const param = useParams();
   const [index, setIndex] = useState(0);
@@ -84,9 +84,6 @@ function Upholstry() {
   };
   return (
     <>
-      <Header />
-      <DropdownMenu />
-      <div className="hero_container">
         <div className="App">
           <model-viewer
             id="helmet"
@@ -111,7 +108,7 @@ function Upholstry() {
                       <a href="#" title="Close" class="modal-close">
                         <AiOutlineClose />
                       </a>
-                                   <QRCode value={`arnxt.com/arView/upholstry/${param.id}`} />
+                                     <QRCode value={`arnxt.com/arView/upholstry_mobile/${param.id}`} />
                       <p className="semibold_text">
                         Scan the QR code with your mobile device to view the
                         product in your space.
@@ -189,9 +186,8 @@ function Upholstry() {
             </div>
           </model-viewer>
         </div>
-      </div>
     </>
   );
 }
 
-export default Upholstry;
+export default UpholstryMobile;

@@ -104,6 +104,9 @@ import CategoryBrandsAR from "./components/CategoryBrandsAR";
 import Visualizer from "./components/Visualizer";
 import Visualizer2D from "./components/Visualizer2D";
 import Upholstry from "./components/Upholstry.js";
+import UpholstryMobile from "./components/UpholstryMobile.js";
+import VisualizerMobile from "./components/VisualizerMobile.js";
+import Visualizer2Dmobile from "./components/Visualizer2Dmobile.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -183,13 +186,17 @@ class App extends Component {
           <Route path="/arview" exact component={ViewAR} />
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/visualizer" component={Visualizer} />
+                    <Route path="/arview/visualizer_mobile" component={VisualizerMobile} />
+
           <Route path="/arview/visualizer2d" component={Visualizer2D} />
+          <Route path="/arview/visualizer2d_mobile" component={Visualizer2Dmobile} />
 
           <Route path="/arview/categories/:id" component={RoomsCategory} />
           <Route path="/arview/productdetail/:id" component={ProductDetailAR} />
           <Route path="/arview/brands/:id" component={RoomBrands} />
           <Route path="/arview/category/:id" component={CategoryAR} />
           <Route path="/arview/upholstry/:id" component={Upholstry} />
+          <Route path="/arview/upholstry_mobile/:id" component={UpholstryMobile} />
 
           <Route
             path="/arview/categoryBrands/:id"
