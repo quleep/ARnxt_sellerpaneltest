@@ -107,17 +107,17 @@ function Upholstry() {
               </a>
             </div>
             <div id="open-modal" class="modal-window">
-                    <div>
-                      <a href="#" title="Close" class="modal-close">
-                        <AiOutlineClose />
-                      </a>
-                                   <QRCode value={`arnxt.com/arView/upholstry/${param.id}`} />
-                      <p className="semibold_text">
-                        Scan the QR code with your mobile device to view the
-                        product in your space.
-                      </p>
-                    </div>
-                  </div>
+              <div>
+                <a href="#" title="Close" class="modal-close">
+                  <AiOutlineClose />
+                </a>
+                <QRCode value={`arnxt.com/arView/upholstry/${param.id}`} />
+                <p className="semibold_text">
+                  Scan the QR code with your mobile device to view the product
+                  in your space.
+                </p>
+              </div>
+            </div>
             <div class="modalscan">
               <div class="modal-wrapscan">
                 <span className="closemodalscan" onClick={handlemodalclose}>

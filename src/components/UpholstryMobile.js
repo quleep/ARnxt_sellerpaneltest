@@ -84,108 +84,106 @@ function UpholstryMobile() {
   };
   return (
     <>
-        <div className="App">
-          <model-viewer
-            id="helmet"
-            camera-controls
-            touch-action="pan-y"
-            src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/Sofa+2.glb"
-            ar
-            ar-scale="fixed"
-            alt="A 3D model of a helmet"
-            ref={modelViewerRef}
-            animation-name="Dance"
-            ar-modes="webxr scene-viewer quick-look"
-            shadow-intensity="1"
-            xr-environment>
-            <div className="view_in_ar_container">
-              <a href="#open-modal" className="view_in_ar_button">
-                <BsBox className="icon" /> View In Your Room
+      <div className="App">
+        <model-viewer
+          id="helmet"
+          camera-controls
+          touch-action="pan-y"
+          src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/Sofa+2.glb"
+          ar
+          ar-scale="fixed"
+          alt="A 3D model of a helmet"
+          ref={modelViewerRef}
+          animation-name="Dance"
+          ar-modes="webxr scene-viewer quick-look"
+          shadow-intensity="1"
+          xr-environment>
+          <div className="view_in_ar_container">
+            <a href="#open-modal" className="view_in_ar_button">
+              <BsBox className="icon" /> View In Your Room
+            </a>
+          </div>
+          <div id="open-modal" class="modal-window">
+            <div>
+              <a href="#" title="Close" class="modal-close">
+                <AiOutlineClose />
               </a>
+              <QRCode value={`arnxt.com/arView/upholstry_mobile/${param.id}`} />
+              <p className="semibold_text">
+                Scan the QR code with your mobile device to view the product in
+                your space.
+              </p>
             </div>
-            <div id="open-modal" class="modal-window">
-                    <div>
-                      <a href="#" title="Close" class="modal-close">
-                        <AiOutlineClose />
-                      </a>
-                                     <QRCode value={`arnxt.com/arView/upholstry_mobile/${param.id}`} />
-                      <p className="semibold_text">
-                        Scan the QR code with your mobile device to view the
-                        product in your space.
-                      </p>
-                    </div>
-                  </div>
-            <div class="modalscan">
-              <div class="modal-wrapscan">
-                <span className="closemodalscan" onClick={handlemodalclose}>
-                  <FaTimes style={{ color: "red", fontSize: "20px" }} />
-                </span>
-                <span>
-                  <div></div>
+          </div>
+          <div class="modalscan">
+            <div class="modal-wrapscan">
+              <span className="closemodalscan" onClick={handlemodalclose}>
+                <FaTimes style={{ color: "red", fontSize: "20px" }} />
+              </span>
+              <span>
+                <div></div>
 
-                  <QRCode
-                    value={`arnxt.com/arview/productdetail/${param.id}`}
-                  />
-                </span>
-                <p className="dataupload">
-                  Scan the QR code with your mobile device to view the product
-                  in your space.
-                </p>
-              </div>
+                <QRCode value={`arnxt.com/arview/productdetail/${param.id}`} />
+              </span>
+              <p className="dataupload">
+                Scan the QR code with your mobile device to view the product in
+                your space.
+              </p>
             </div>
-            <div className="view_in_ar_wallpapers">
-              <div id="slider1" className="hori_scroll_container_child">
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture1)}>
-                  <img
-                    src={texture1}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture2)}>
-                  <img
-                    src={texture2}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture3)}>
-                  <img
-                    src={texture3}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="view_in_ar_mesh">
+          </div>
+          <div className="view_in_ar_wallpapers">
+            <div id="slider1" className="hori_scroll_container_child">
               <div
-                onClick={handleBase}
-                className={activeTab === 0 ? "active" : ""}>
-                <button>Base</button>
+                //   className="hori_scroll_container_child1"
+                className="hori_scroll_container_wallpapers"
+                onClick={() => changeWallpaper(texture1)}>
+                <img
+                  src={texture1}
+                  alt="/"
+                  className="hori_scroll_container_child1_image1"
+                />
               </div>
               <div
-                onClick={handleSeat}
-                className={activeTab === 1 ? "active" : ""}>
-                <button>Seat</button>
+                //   className="hori_scroll_container_child1"
+                className="hori_scroll_container_wallpapers"
+                onClick={() => changeWallpaper(texture2)}>
+                <img
+                  src={texture2}
+                  alt="/"
+                  className="hori_scroll_container_child1_image1"
+                />
               </div>
               <div
-                onClick={handleArmRest}
-                className={activeTab === 2 ? "active" : ""}>
-                <button>Arm Rest</button>
+                //   className="hori_scroll_container_child1"
+                className="hori_scroll_container_wallpapers"
+                onClick={() => changeWallpaper(texture3)}>
+                <img
+                  src={texture3}
+                  alt="/"
+                  className="hori_scroll_container_child1_image1"
+                />
               </div>
             </div>
-          </model-viewer>
-        </div>
+          </div>
+          <div className="view_in_ar_mesh">
+            <div
+              onClick={handleBase}
+              className={activeTab === 0 ? "active" : ""}>
+              <button>Base</button>
+            </div>
+            <div
+              onClick={handleSeat}
+              className={activeTab === 1 ? "active" : ""}>
+              <button>Seat</button>
+            </div>
+            <div
+              onClick={handleArmRest}
+              className={activeTab === 2 ? "active" : ""}>
+              <button>Arm Rest</button>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </>
   );
 }

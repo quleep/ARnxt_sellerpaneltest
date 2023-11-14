@@ -4298,7 +4298,6 @@ form .page .btns button.next {
   margin-top: -400px;
 }
 
-
 .textterms {
   font-family: Manrope, sans-serif;
 }
@@ -10529,7 +10528,6 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   display: block;
 }
 
-
 #controls {
   position: absolute;
   bottom: 16px;
@@ -10663,26 +10661,24 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   height: 100%;
   white-space: nowrap;
   scroll-behavior: smooth;
-
 }
 
 .hori_scroll_container_header_child {
   display: inline-block;
-  flex:1;
+  flex: 1;
   padding: 0.5rem;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   width: 180px;
-     vertical-align: top;
-
+  vertical-align: top;
 }
 .hori_scroll_container_header_child:nth-child(2n) {
   background-color: #f1f1f1;
 }
-.hori_scroll_container_header_child p{
- text-align:left;
-   font-size: 0.95rem;
+.hori_scroll_container_header_child p {
+  text-align: left;
+  font-size: 0.95rem;
 
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
@@ -10737,11 +10733,10 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   column-gap: 1.5rem;
   row-gap: 2.5rem;
 }
-.rooms_category_container_grid p{
- font-size: 1rem;
+.rooms_category_container_grid p {
+  font-size: 1rem;
   text-align: center;
   font-family: "DM Sans", sans-serif;
-
 }
 .rooms_category_container_grid_child1 {
   position: relative;
@@ -11819,8 +11814,8 @@ a {
   width: 100%;
 }
 .rooms-container .main .left-panel .styles.small .card .details .image img {
-  object-fit:cover;
-  background-color:black;
+  object-fit: cover;
+  background-color: black;
 }
 .rooms-container .main .left-panel .styles.small .card .details .detail {
   display: none;
@@ -11939,13 +11934,10 @@ a {
   padding: 0;
   margin: 0;
   overflow: hidden;
-    transition: transform 0.3s ease; /* Adjust the duration and easing as needed */
-
+  transition: transform 0.3s ease; /* Adjust the duration and easing as needed */
 }
 .rooms-container .main .main-panel .image:hover {
   transform: scale(1.3); /* Adjust the scale factor for the zoom effect */
-
-
 }
 .rooms-container .main .main-panel .image img {
   position: absolute;
@@ -12188,16 +12180,16 @@ a {
   color: #333; /* Adjust the color to your preference */
   font-size: 24px; /* Adjust the font size to your preference */
   transition: color 0.2s; /* Add a smooth color transition on hover */
-    transition: color 0.2s, padding 0.3s, background-color 0.3s, border-radius 0.3s; /* Add transitions for color, padding, background color, and border radius */
+  transition: color 0.2s, padding 0.3s, background-color 0.3s,
+    border-radius 0.3s; /* Add transitions for color, padding, background color, and border radius */
 
-padding:0.3rem;
+  padding: 0.3rem;
   &:hover {
     color: #000; /* Change the color on hover */
-    background-color:lightgray;
-border-radius:0.2rem;
+    background-color: lightgray;
+    border-radius: 0.2rem;
   }
 }
-
 
 .modal-window {
   & > div {
@@ -12405,8 +12397,7 @@ small {
 }
 .templateContainer > .searchInput_Container {
   width: 100%;
-    position: relative;
-
+  position: relative;
 }
 
 .templateContainer > .searchInput_Container input {
@@ -12414,7 +12405,6 @@ small {
   padding: 10px;
   border-radius: 5px;
   color: #9dbfaf;
-
 }
 .templateContainer > .searchInput_Container input::placeholder {
   color: red;
@@ -12437,7 +12427,7 @@ small {
   justify-content: center;
   position: absolute;
   z-index: 1;
-  gap:1rem;
+  gap: 1rem;
   right: 25%;
   width: 50%;
   border-radius: 10px;
@@ -12485,10 +12475,10 @@ small {
   justify-content: center;
   gap: 1rem;
   align-items: center;
-   overflow-x: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   scroll-behavior: smooth;
-   width: 100%;
+  width: 100%;
   height: 100%;
 }
 
@@ -12608,10 +12598,7 @@ small {
   .view_in_ar_container {
     display: none;
   }
-.slideshow {
-
-  max-width: 90%;
-
+  .slideshow {
+    max-width: 90%;
+  }
 }
-}
-

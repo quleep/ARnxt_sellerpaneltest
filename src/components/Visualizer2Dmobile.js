@@ -559,224 +559,219 @@ function Visualizer2Dmobile() {
 
   return (
     <>
-
-        <div className="rooms-container">
-          <div className="main">
-            <div className="left-panel">
-              <div className="subtitle">
-                <div className="text">Wallpapers</div>
-                <div className="types">
-                  <div
-                    className={
-                      type === 0 ? "btn_visualizer active" : "btn_visualizer"
-                    }
-                    onClick={() => setType(0)}>
-                    <ListIcon />
-                  </div>
-                  <div
-                    className={
-                      type === 1 ? "btn_visualizer active" : "btn_visualizer"
-                    }
-                    onClick={() => setType(1)}>
-                    <SmallIcon />
-                  </div>
+      <div className="rooms-container">
+        <div className="main">
+          <div className="left-panel">
+            <div className="subtitle">
+              <div className="text">Wallpapers</div>
+              <div className="types">
+                <div
+                  className={
+                    type === 0 ? "btn_visualizer active" : "btn_visualizer"
+                  }
+                  onClick={() => setType(0)}>
+                  <ListIcon />
+                </div>
+                <div
+                  className={
+                    type === 1 ? "btn_visualizer active" : "btn_visualizer"
+                  }
+                  onClick={() => setType(1)}>
+                  <SmallIcon />
                 </div>
               </div>
+            </div>
 
-              <div className="filter">
-                <div
-                  className="filter btn_visualizer"
-                  onClick={() => setFavorite(false)}>
-                  Filters
-                </div>
-                {/* <div
+            <div className="filter">
+              <div
+                className="filter btn_visualizer"
+                onClick={() => setFavorite(false)}>
+                Filters
+              </div>
+              {/* <div
                   className="favorite btn_visualizer"
                   onClick={() => setFavorite(true)}>
                   <FavoriteIcon />
                   <div className="num">0</div>
                 </div> */}
-              </div>
+            </div>
 
-              <div
-                className={type === 0 ? "styles" : "styles small"}
-                onScroll={handleScroll1}
-                ref={StyleRef}>
-                <div className="scroll" id="slider1">
-                  {providedData?.map((item) => (
-                    <>
+            <div
+              className={type === 0 ? "styles" : "styles small"}
+              onScroll={handleScroll1}
+              ref={StyleRef}>
+              <div className="scroll" id="slider1">
+                {providedData?.map((item) => (
+                  <>
+                    <div
+                      key={getKey("item", item.product_Id)}
+                      className={
+                        item.product_Id === select.product_Id
+                          ? "card active"
+                          : "card"
+                      }
+                      onClick={() => onChange(item)}>
                       <div
-                        key={getKey("item", item.product_Id)}
-                        className={
-                          item.product_Id === select.product_Id
-                            ? "card active"
-                            : "card"
-                        }
-                        onClick={() => onChange(item)}>
-                        <div
-                          className="details"
-                          onClick={(e) =>
-                            handlewallpaperclick(e, item.imageurl[0])
-                          }>
-                          <div className="image">
-                            <img src={item.imageurl[0]} alt="Rug" />
-                            <div
-                              className={
-                                item.favorite
-                                  ? "btn_visualizer active"
-                                  : "btn_visualizer"
-                              }
-                              onClick={() => onChangeFavorite(item.product_Id)}>
-                              <FavoriteIcon2 />
-                            </div>
+                        className="details"
+                        onClick={(e) =>
+                          handlewallpaperclick(e, item.imageurl[0])
+                        }>
+                        <div className="image">
+                          <img src={item.imageurl[0]} alt="Rug" />
+                          <div
+                            className={
+                              item.favorite
+                                ? "btn_visualizer active"
+                                : "btn_visualizer"
+                            }
+                            onClick={() => onChangeFavorite(item.product_Id)}>
+                            <FavoriteIcon2 />
                           </div>
-                          <div className="detail">
-                            <div className="top">
-                              <div
-                                className="normal_text"
-                                style={{ textTransform: "uppercase" }}>
-                                {item.brand}
-                              </div>
-                              <div className="semibold_text">
-                                {item.productname.charAt(0).toUpperCase() +
-                                  item.productname.slice(1)}
-                              </div>
+                        </div>
+                        <div className="detail">
+                          <div className="top">
+                            <div
+                              className="normal_text"
+                              style={{ textTransform: "uppercase" }}>
+                              {item.brand}
+                            </div>
+                            <div className="semibold_text">
+                              {item.productname.charAt(0).toUpperCase() +
+                                item.productname.slice(1)}
                             </div>
                           </div>
                         </div>
-                        {item.lengthprod > 1 && (
-                          <div className="size">
-                            <div className="detail" key="size">
-                              Size: Size: <strong>{item.breadthprod}</strong>
-                            </div>
-                          </div>
-                        )}
                       </div>
-                      {calc() === item.product_Id && (
-                        <div className="card detail">
-                          <div className="details">
-                            <div className="detail">
-                              <div className="top">
-                                <div className="text">{select.brand}</div>
-                                <div className="name">{select.productname}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="size">
-                            <div className="detail">
-                              Size: <strong>{select.breadthprod}</strong>
-                            </div>
-                            {select.lengthprod > 1 && (
-                              <div className="size-type">
-                                {select.lengthprod.map((size, index) => (
-                                  <div
-                                    key={getKey("small", index)}
-                                    className={
-                                      index === select.selection
-                                        ? "btn_visualizer active"
-                                        : "btn_visualizer"
-                                    }
-                                    onClick={() =>
-                                      onChangeSelection(
-                                        select.product_Id,
-                                        index
-                                      )
-                                    }>
-                                    {size}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
+                      {item.lengthprod > 1 && (
+                        <div className="size">
+                          <div className="detail" key="size">
+                            Size: Size: <strong>{item.breadthprod}</strong>
                           </div>
                         </div>
                       )}
-                    </>
-                  ))}
-                  {loading && <div>Loading...</div>}
-                  {!loading && providedData?.length === 0 && (
-                    <p>No more data to load.</p>
-                  )}
-                  {scrollTop !== 0 && (
-                    <div className="btn_visualizer back" onClick={ScrollToTop}>
-                      <ArrowUp />
-                      Back To Top
                     </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="main-panel">
-              <div
-                ref={ImageRef}
-                className={`image ${isHovered ? "zoomed" : ""}`}
-                onMouseMove={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                style={
-                  isHovered
-                    ? {
-                        transform: "scale(2)",
-                        cursor: "crosshair",
-                        transformOrigin: `${cursorPosition.x * 100}% ${
-                          cursorPosition.y * 100
-                        }%`,
-                      }
-                    : {}
-                }>
-                <img
-                  src={
-                    segmentimg ? `data:image/png;base64, ${processimg}` : image
-                  }
-                  alt="room"
-                  className="room"
-                />
-              </div>
-
-              {isLoading ? (
-                <div className="loader-container">
-                  <div className="loader_visualizer">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-          <div className="hori_scroll_container_visualizer">
-            <div
-              id="slider"
-              className="hori_scroll_container_child_visualizer"
-              ref={scrollContainerRef}>
-              {horizontalScrollData?.map((item) => (
-                <div
-                  key={item.id}
-                  className="hori_scroll_container_child1_visualizer"
-                  onClick={(e) => handlewallpaperclick(e, item.imageurl[0])}>
-                  <img
-                    src={item.imageurl[0]}
-                    alt="/"
-                    className="hori_scroll_container_child1_image_visualizer"
-                  />
-                  <p className="hori_scroll_container_child1_text_visualizer">
-                    {item.productname.charAt(0).toUpperCase() +
-                      item.productname.slice(1)}
-                  </p>
-                </div>
-              ))}
-              {!horizontalScrollLoading &&
-                horizontalScrollData.length === 0 && (
+                    {calc() === item.product_Id && (
+                      <div className="card detail">
+                        <div className="details">
+                          <div className="detail">
+                            <div className="top">
+                              <div className="text">{select.brand}</div>
+                              <div className="name">{select.productname}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="size">
+                          <div className="detail">
+                            Size: <strong>{select.breadthprod}</strong>
+                          </div>
+                          {select.lengthprod > 1 && (
+                            <div className="size-type">
+                              {select.lengthprod.map((size, index) => (
+                                <div
+                                  key={getKey("small", index)}
+                                  className={
+                                    index === select.selection
+                                      ? "btn_visualizer active"
+                                      : "btn_visualizer"
+                                  }
+                                  onClick={() =>
+                                    onChangeSelection(select.product_Id, index)
+                                  }>
+                                  {size}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ))}
+                {loading && <div>Loading...</div>}
+                {!loading && providedData?.length === 0 && (
                   <p>No more data to load.</p>
                 )}
+                {scrollTop !== 0 && (
+                  <div className="btn_visualizer back" onClick={ScrollToTop}>
+                    <ArrowUp />
+                    Back To Top
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+          <div className="main-panel">
+            <div
+              ref={ImageRef}
+              className={`image ${isHovered ? "zoomed" : ""}`}
+              onMouseMove={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              style={
+                isHovered
+                  ? {
+                      transform: "scale(2)",
+                      cursor: "crosshair",
+                      transformOrigin: `${cursorPosition.x * 100}% ${
+                        cursorPosition.y * 100
+                      }%`,
+                    }
+                  : {}
+              }>
+              <img
+                src={
+                  segmentimg ? `data:image/png;base64, ${processimg}` : image
+                }
+                alt="room"
+                className="room"
+              />
+            </div>
+
+            {isLoading ? (
+              <div className="loader-container">
+                <div className="loader_visualizer">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
+        <div className="hori_scroll_container_visualizer">
+          <div
+            id="slider"
+            className="hori_scroll_container_child_visualizer"
+            ref={scrollContainerRef}>
+            {horizontalScrollData?.map((item) => (
+              <div
+                key={item.id}
+                className="hori_scroll_container_child1_visualizer"
+                onClick={(e) => handlewallpaperclick(e, item.imageurl[0])}>
+                <img
+                  src={item.imageurl[0]}
+                  alt="/"
+                  className="hori_scroll_container_child1_image_visualizer"
+                />
+                <p className="hori_scroll_container_child1_text_visualizer">
+                  {item.productname.charAt(0).toUpperCase() +
+                    item.productname.slice(1)}
+                </p>
+              </div>
+            ))}
+            {!horizontalScrollLoading && horizontalScrollData.length === 0 && (
+              <p>No more data to load.</p>
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

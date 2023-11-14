@@ -236,84 +236,81 @@ function VisualizerMobile() {
   }
   return (
     <>
-   
-        <div className="demo-container">
-          <div className="title_visualizer">
-            See <strong>Wallpaper</strong> in your room
-          </div>
-          <div className="content">
-            <div className="upload">
-              <div className="item-group">
-                <div className="item">
-                  <CameraIcon />
-                  <div className="hori_scroll_container_child1_text">
-                    Upload a picture of your room
-                  </div>
-                </div>
-                <div className="item">
-                  <ProductIcon />
-                  <div className="hori_scroll_container_child1_text">
-                    Try our products in your room
-                  </div>
+      <div className="demo-container">
+        <div className="title_visualizer">
+          See <strong>Wallpaper</strong> in your room
+        </div>
+        <div className="content">
+          <div className="upload">
+            <div className="item-group">
+              <div className="item">
+                <CameraIcon />
+                <div className="hori_scroll_container_child1_text">
+                  Upload a picture of your room
                 </div>
               </div>
-
-              <div className="btn_visualizer red">
-                <label
-                  htmlFor="b1"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: 10,
-                  }}>
-                  <PhotoIcon />
-                  <input
-                    type="file"
-                    id="b1"
-                    name="myfile"
-                    style={{ display: "none" }}
-                    onChange={imagefilechange}
-                  />
-                  <div className="hori_scroll_container_child1_text">
-                    Upload
-                  </div>
-                </label>
+              <div className="item">
+                <ProductIcon />
+                <div className="hori_scroll_container_child1_text">
+                  Try our products in your room
+                </div>
               </div>
             </div>
-            <div className="video">
-              <video
-                data-autoplay
-                autoPlay
-                data-object-fit="cover"
-                playsInline
-                muted
-                loop
-                type="video/mp4"
-                src={Video}
-              />
+
+            <div className="btn_visualizer red">
+              <label
+                htmlFor="b1"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 10,
+                }}>
+                <PhotoIcon />
+                <input
+                  type="file"
+                  id="b1"
+                  name="myfile"
+                  style={{ display: "none" }}
+                  onChange={imagefilechange}
+                />
+                <div className="hori_scroll_container_child1_text">Upload</div>
+              </label>
             </div>
           </div>
-          <div className="room-container">
-            <div className="subtitle">
-              Don't have a picture? Try our demo rooms instead
-            </div>
-            <div className="room-select">
-              {demoimages &&
-                demoimages.map((item) => (
-                  <div
-                    className="room"
-                    onClick={() => tempRoomClick(item.imgurl)}>
-                    <div className="image">
-                      <img src={item.imgurl} alt="room" />
-                    </div>
-
-                    <div className="label">{item.room}</div>
-                  </div>
-                ))}
-            </div>
+          <div className="video">
+            <video
+              data-autoplay
+              autoPlay
+              data-object-fit="cover"
+              playsInline
+              muted
+              loop
+              type="video/mp4"
+              src={Video}
+            />
           </div>
         </div>
+        <div className="room-container">
+          <div className="subtitle">
+            Don't have a picture? Try our demo rooms instead
+          </div>
+          <div className="room-select">
+            {demoimages &&
+              demoimages.map((item) => (
+                <div
+                  className="room"
+                  onClick={() => tempRoomClick(item.imgurl)}>
+                  <div className="image">
+                    <img src={item.imgurl} alt="room" />
+                  </div>
+
+                  <div className="label">{item.room}</div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

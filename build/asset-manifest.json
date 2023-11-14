@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.835a35d3.chunk.css",
-    "main.js": "/static/js/main.484d7134.chunk.js",
-    "main.js.map": "/static/js/main.484d7134.chunk.js.map",
+    "main.css": "/static/css/main.d5940366.chunk.css",
+    "main.js": "/static/js/main.37c974ae.chunk.js",
+    "main.js.map": "/static/js/main.37c974ae.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
     "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
     "static/css/2.45b16f84.chunk.css": "/static/css/2.45b16f84.chunk.css",
-    "static/js/2.7a466b21.chunk.js": "/static/js/2.7a466b21.chunk.js",
-    "static/js/2.7a466b21.chunk.js.map": "/static/js/2.7a466b21.chunk.js.map",
+    "static/js/2.50b79892.chunk.js": "/static/js/2.50b79892.chunk.js",
+    "static/js/2.50b79892.chunk.js.map": "/static/js/2.50b79892.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.685f34a5bbbf327f132c10c7a5257c96.js": "/precache-manifest.685f34a5bbbf327f132c10c7a5257c96.js",
+    "precache-manifest.93fbfd02af13fcb6441e7015d76a12d7.js": "/precache-manifest.93fbfd02af13fcb6441e7015d76a12d7.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.45b16f84.chunk.css.map": "/static/css/2.45b16f84.chunk.css.map",
-    "static/css/main.835a35d3.chunk.css.map": "/static/css/main.835a35d3.chunk.css.map",
-    "static/js/2.7a466b21.chunk.js.LICENSE.txt": "/static/js/2.7a466b21.chunk.js.LICENSE.txt",
-    "static/js/main.484d7134.chunk.js.LICENSE.txt": "/static/js/main.484d7134.chunk.js.LICENSE.txt",
+    "static/css/main.d5940366.chunk.css.map": "/static/css/main.d5940366.chunk.css.map",
+    "static/js/2.50b79892.chunk.js.LICENSE.txt": "/static/js/2.50b79892.chunk.js.LICENSE.txt",
+    "static/js/main.37c974ae.chunk.js.LICENSE.txt": "/static/js/main.37c974ae.chunk.js.LICENSE.txt",
     "static/media/Facebook.svg": "/static/media/Facebook.2880ef05.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.9aea4bd5.svg",
     "static/media/Linkedin.svg": "/static/media/Linkedin.e08040e0.svg",
@@ -75,8 +75,8 @@
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
     "static/css/2.45b16f84.chunk.css",
-    "static/js/2.7a466b21.chunk.js",
-    "static/css/main.835a35d3.chunk.css",
-    "static/js/main.484d7134.chunk.js"
+    "static/js/2.50b79892.chunk.js",
+    "static/css/main.d5940366.chunk.css",
+    "static/js/main.37c974ae.chunk.js"
   ]
 }

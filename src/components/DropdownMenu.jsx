@@ -118,7 +118,6 @@ function DropdownMenu() {
           className="subCategory"
           onMouseLeave={() => setNav(false)}
           onMouseOver={() => setNav(true)}>
-     
           <div id="slider" className="hori_scroll_container_header">
             {finalData?.map((item1) => (
               <div
