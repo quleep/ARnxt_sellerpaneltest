@@ -24,6 +24,9 @@ function RoomBrands() {
     }
   };
   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [param])
+  useEffect(() => {
     fetchData();
   }, [param]);
   const nextPage = (product_Id) => {

@@ -273,6 +273,9 @@ function Visualizer2D() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const [scrollTop, setScrollTop] = useState(0);
+   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("room"));
     setRoom(item);

@@ -64,6 +64,9 @@ function Rooms() {
 
     fetchData();
   }, [props]);
+   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
   useEffect(() => {
     const decodedParam = decodeURIComponent(param.id);
     console.log(decodedParam);

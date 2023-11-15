@@ -277,6 +277,9 @@ function Visualizer2Dmobile() {
     const item = JSON.parse(localStorage.getItem("room"));
     setRoom(item);
   }, []);
+   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
   useEffect(() => {
     if (favorite) {
       const fav = list.filter((item) => item.favorite === true);

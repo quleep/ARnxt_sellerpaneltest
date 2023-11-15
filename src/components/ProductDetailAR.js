@@ -21,7 +21,9 @@ function ProductDetailAR() {
 
   const [isGlb, setIsGlb] = useState(false);
   const [viewInARitem, setViewInARitem] = useState([]);
-
+ useEffect(() => {
+  window.scrollTo(0, 0)
+}, [param])
   useEffect(() => {
     const fetchProductData = async () => {
       try {

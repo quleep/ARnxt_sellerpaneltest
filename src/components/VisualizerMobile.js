@@ -69,7 +69,9 @@ function VisualizerMobile() {
       };
     });
   };
-
+ useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
   const tempRoomClick = async (val) => {
     await handleUrlToBase64(val).then((res) => {
       setTempOrgImage(res);

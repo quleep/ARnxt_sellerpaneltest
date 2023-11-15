@@ -26,6 +26,9 @@ function RoomsCategory() {
       console.error("Error fetching data:", error);
     }
   };
+   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [param])
   const fetchData = async () => {
     setSelectedItem("all");
 

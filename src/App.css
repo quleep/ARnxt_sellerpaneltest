@@ -10685,13 +10685,12 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 .hori_scroll_container_child1 {
   display: inline-block;
-  padding: 0.5rem;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem;
+
   cursor: pointer;
   width: 200px;
 }
-.hori_scroll_container_child1:hover {
+.hori_scroll_container_child1_image:hover {
   transform: scale(
     var(--transform-scale-x, 1.05),
     var(--transform-scale-y, 1.05)
@@ -10703,18 +10702,29 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   border-radius: 0.375rem;
   width: 100%;
   height: 130px;
+    transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hori_scroll_container_child1_image_brands {
   object-fit: contain;
   border-radius: 0.375rem;
   width: 100%;
   height: 130px;
+      transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hori_scroll_container_child1_image_brands:hover {
+  transform: scale(
+    var(--transform-scale-x, 1.05),
+    var(--transform-scale-y, 1.05)
+  );
 }
 .hori_scroll_container_child1_text {
   font-size: 1rem;
   line-height: 1.5rem;
   text-align: center;
   font-family: "DM Sans", sans-serif;
+  margin-top:0.5rem;
 }
 .rooms_category_container {
   display: flex;
@@ -10729,7 +10739,6 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 .rooms_category_container_grid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
   column-gap: 1.5rem;
   row-gap: 2.5rem;
 }
@@ -10741,6 +10750,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 .rooms_category_container_grid_child1 {
   position: relative;
   cursor: pointer;
+padding:1rem;
 }
 .rooms_brands_container_grid_child1 {
   display: flex;
@@ -10761,7 +10771,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   width: 100%;
 }
 .rooms_category_container_grid_child2_image {
-  object-fit: fill;
+  object-fit: contain;
   object-position: center;
   width: 100%;
   height: 100%;
@@ -10843,7 +10853,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 .product_detail_ar_container_grid_child1_text2 {
-  width: 60%;
+  width: 100%;
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -12233,6 +12243,7 @@ small {
   border-radius: 5px;
   transition: background-color 0.3s;
   font-family: "DM Sans", sans-serif;
+  text-align:center;
 }
 
 .btn-link:hover {

@@ -42,6 +42,9 @@ function UpholstryMobile() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, index]);
+   useEffect(() => {
+  window.scrollTo(0, 0)
+}, [param])
   const fetchData = async () => {
     try {
       const response = await axios.post(
