@@ -6,7 +6,7 @@ import axios from "axios";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 function CategoryBrandsAR() {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const param = useParams();
   const history = useHistory();
   const fetchData = async () => {
@@ -26,17 +26,17 @@ function CategoryBrandsAR() {
   useEffect(() => {
     fetchData();
   }, [param]);
-  const nextPage = (product_Id) => {
-    history.push(`/arView/productdetail/${product_Id}`, {
-      state: { product_Id },
-    });
+  const nextPage = (product_Id, item, event) => {
+    const newTab = event.ctrlKey || event.metaKey; // Check for Control key on Windows or Command key on macOS
+    const target = newTab ? "_blank" : "_self"; // Open in new tab if Control key is pressed, otherwise in the same tab
+    window.open(`/arView/productdetail/${product_Id}`, target);
   };
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
-          <Header />
+      <Header />
       <DropdownMenu />
       <div className="hero_container">
         <div class="rooms_category_container">
@@ -45,7 +45,7 @@ function CategoryBrandsAR() {
               {products.map((item) => (
                 <div
                   class="rooms_category_container_grid_child1"
-                  onClick={() => nextPage(item.product_Id)}>
+                  onClick={(e) => nextPage(item.product_Id, item, e)}>
                   <div class="rooms_category_container_grid_child2">
                     <img
                       src={item.imageurl[0]}

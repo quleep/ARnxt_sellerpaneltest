@@ -18,12 +18,14 @@ function ProductDetailAR() {
   const [usdzFile, setUsdzFile] = useState("");
   const param = useParams();
   const [modal, setModal] = useState(false);
-
+  const [isGlbKeyPresent, setIsGlbKeyPresent] = useState(false);
   const [isGlb, setIsGlb] = useState(false);
   const [viewInARitem, setViewInARitem] = useState([]);
- useEffect(() => {
-  window.scrollTo(0, 0)
-}, [param])
+  const history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [param]);
   useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -33,6 +35,8 @@ function ProductDetailAR() {
         const data = response.data.productdetails[0];
         setGlbFile(response.data.glb);
         setUsdzFile(response.data.usdz);
+        setIsGlbKeyPresent("glb" in response.data);
+
         console.log(data);
         setProductData(data);
       } catch (error) {
@@ -42,12 +46,22 @@ function ProductDetailAR() {
 
     fetchProductData();
   }, [param]);
-
+  useEffect(() => {
+    console.log("diffrentor", isGlbKeyPresent);
+  }, [isGlbKeyPresent]);
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
   };
   const openqrcode = () => {
     document.querySelector(".modalscan").style.display = "block";
+  };
+  const handleSimpleImageClick = () => {
+    // Handle the click behavior when 'glb' key is not present
+    console.log("Handle Simple Image Click");
+    // Add your logic here
+    history.push(`/arView/visualizer`, {
+      state: { itemname: param.id },
+    });
   };
   return (
     <>
@@ -59,18 +73,22 @@ function ProductDetailAR() {
             <div class="product_detail_ar_container_child_child">
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
-                  <model-viewer
-                    id="duck"
-                    camera-controls
-                    touch-action="pan-y"
-                    ar
-                    ar-scale="fixed"
-                    ar-modes="webxr scene-viewer quick-look"
-                    shadow-intensity="1"
-                    src={glbFile}
-                    ios-src={usdzFile}
-                    xr-environment
-                    alt="A 3D model of a duck"></model-viewer>
+                  {isGlbKeyPresent ? (
+                    <model-viewer
+                      id="duck"
+                      camera-controls
+                      touch-action="pan-y"
+                      ar
+                      ar-scale="fixed"
+                      ar-modes="webxr scene-viewer quick-look"
+                      shadow-intensity="1"
+                      src={glbFile}
+                      ios-src={usdzFile}
+                      xr-environment
+                      alt="A 3D model of a duck"></model-viewer>
+                  ) : (
+                    <img src={productData?.imageurl[0]} alt="Simple Image" />
+                  )}
                 </div>
                 <div class="product_detail_ar_container_grid_child1">
                   <h2 class="product_detail_ar_container_grid_child1_text1">
@@ -102,16 +120,34 @@ function ProductDetailAR() {
                   </div>
                   <div className="product_detail_ar_container_grid_child1_text2">
                     <div className="product_detail_ar_container_grid_child1_text2_child">
+                      Dimensions:
+                    </div>
+                    <div className="product_detail_ar_container_grid_child1_text2_child1">
+                      {productData?.lengthprod}m (L) x{" "}
+                      {productData?.breadthprod}m (B) x {productData?.height}m
+                      (H)
+                    </div>
+                  </div>
+
+                  <div className="product_detail_ar_container_grid_child1_text2">
+                    <div className="product_detail_ar_container_grid_child1_text2_child">
                       Description
                     </div>
                     <div className="product_detail_ar_container_grid_child1_text2_child1">
-                      {productData?.additional}
+                      {productData?.specification}
                     </div>
                   </div>
+
                   <div className="product_detail_ar_container_grid_child1_text2">
-                    <a href="#open-modal" className="btn-link">
-                      <BsBox className="icon" /> View In Your Room
-                    </a>
+                    {isGlbKeyPresent ? (
+                      <a href="#open-modal" className="btn-link">
+                        <BsBox className="icon" /> View In Your Room
+                      </a>
+                    ) : (
+                      <a className="btn-link" onClick={handleSimpleImageClick}>
+                        <BsBox className="icon" /> View In Your Room
+                      </a>
+                    )}
                   </div>
 
                   <div id="open-modal" class="modal-window">

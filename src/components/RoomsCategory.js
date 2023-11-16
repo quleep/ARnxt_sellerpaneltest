@@ -26,9 +26,9 @@ function RoomsCategory() {
       console.error("Error fetching data:", error);
     }
   };
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [param])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [param]);
   const fetchData = async () => {
     setSelectedItem("all");
 
@@ -62,11 +62,10 @@ function RoomsCategory() {
 
     fetchSubcatData();
   }, [param]);
-
-  const nextPage = (product_Id) => {
-    history.push(`/arView/productdetail/${product_Id}`, {
-      state: { product_Id },
-    });
+  const nextPage = (product_Id, item, event) => {
+    const newTab = event.ctrlKey || event.metaKey; // Check for Control key on Windows or Command key on macOS
+    const target = newTab ? "_blank" : "_self"; // Open in new tab if Control key is pressed, otherwise in the same tab
+    window.open(`/arView/productdetail/${product_Id}`, target);
   };
   return (
     <>
@@ -105,7 +104,7 @@ function RoomsCategory() {
               {products.map((item) => (
                 <div
                   class="rooms_category_container_grid_child1"
-                  onClick={() => nextPage(item.product_Id)}>
+                  onClick={(e) => nextPage(item.product_Id, item, e)}>
                   <div class="rooms_category_container_grid_child2">
                     <img
                       src={item.imageurl[0]}
