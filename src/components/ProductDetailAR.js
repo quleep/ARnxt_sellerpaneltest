@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import Footertest from "./Footertest";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import { BsBox } from "react-icons/bs";
@@ -23,9 +23,9 @@ function ProductDetailAR() {
   const [viewInARitem, setViewInARitem] = useState([]);
   const history = useHistory();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  }, [param]);
+  }, []);
   useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -123,9 +123,10 @@ function ProductDetailAR() {
                       Dimensions:
                     </div>
                     <div className="product_detail_ar_container_grid_child1_text2_child1">
-                      {productData?.lengthprod}m (L) x{" "}
-                      {productData?.breadthprod}m (B) x {productData?.height}m
-                      (H)
+                      {productData?.lengthprod}
+                      {productData?.unit} (L) x {productData?.breadthprod}
+                      {productData?.unit} (B) x {productData?.height}
+                      {productData?.unit} (H)
                     </div>
                   </div>
 

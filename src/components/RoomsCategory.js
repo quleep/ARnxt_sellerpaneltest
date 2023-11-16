@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footertest from "./Footertest";
 import { useLocation, useParams, useHistory } from "react-router-dom";
@@ -26,9 +26,9 @@ function RoomsCategory() {
       console.error("Error fetching data:", error);
     }
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  }, [param]);
+  }, []);
   const fetchData = async () => {
     setSelectedItem("all");
 

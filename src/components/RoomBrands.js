@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footertest from "./Footertest";
 import { useLocation, useParams, useHistory } from "react-router-dom";
@@ -23,9 +23,9 @@ function RoomBrands() {
       console.error("Error:", error);
     }
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  }, [param]);
+  }, []);
   useEffect(() => {
     fetchData();
   }, [param]);
