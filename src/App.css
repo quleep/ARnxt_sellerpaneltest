@@ -12415,7 +12415,10 @@ small {
   width: 50%;
   padding: 10px;
   border-radius: 5px;
-  color: #9dbfaf;
+  color: black;
+  
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
 }
 .templateContainer > .searchInput_Container input::placeholder {
   color: red;

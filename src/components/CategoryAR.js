@@ -8,6 +8,8 @@ import Tabs from "react-bootstrap/Tabs";
 import { useMyContext } from "../Context/store";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import { BsSearch } from "react-icons/bs";
+
 function CategoryAR() {
   const { brandRooms, setBrandRooms } = useMyContext();
 
@@ -15,10 +17,13 @@ function CategoryAR() {
   const [foundSubcategories, setFoundSubcategories] = useState([]);
   const [brandsData, setBrandsData] = useState(null);
   const [brandsData1, setBrandsData1] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchProduct, setSearchProduct] = useState(null);
 
   const [categoriesDetails, setCategoriesDetails] = useState([]);
   const [subCategory, setSubcategory] = useState(null);
-
+  const searchmodelurl =
+    "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/searchmodel";
   const location = useLocation();
   const param = useParams();
   const history = useHistory();
@@ -42,11 +47,23 @@ function CategoryAR() {
     fetchData();
   }, [param, brandRooms]);
   useEffect(() => {
+    const body = {
+      searchdata: searchTerm,
+    };
+
+    axios
+      .post(searchmodelurl, body)
+      .then((res) => {
+        setSearchProduct(res.data);
+      })
+      .catch((error) => [console.log(error)]);
+  }, [searchTerm]);
+  useEffect(() => {
     brands();
   }, []);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const brands = async () => {
     try {
       const response = await axios.get(
@@ -129,11 +146,46 @@ function CategoryAR() {
       });
     }
   };
-
+  const nextPage1 = (product_Id) => {
+    history.push(`/arView/productdetail/${product_Id}`, {
+      state: { product_Id },
+    });
+  };
   return (
     <>
       <Header />
       <DropdownMenu />
+      <div className="templateContainer">
+        <div className="searchInput_Container">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search products here..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+          <BsSearch className="searchInput_button" size={23} />
+        </div>
+        <div className="template_Container">
+          {searchTerm === "" ? null : searchProduct?.length === 0 ? (
+            <div className="no-product-found">No product found</div>
+          ) : (
+            searchProduct?.slice(0, 4).map((val) => (
+              <div
+                className="template"
+                key={val.id}
+                onClick={() => nextPage1(val.product_Id)}>
+                <img src={val.imageurl[0]} alt="" />
+                <div>
+                  <h3>{val.specification}</h3>
+                  <p className="price">₹{val.offerprice}</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
       <div className="hero_container">
         <Tabs
           defaultActiveKey="home"
