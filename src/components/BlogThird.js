@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { Metadata } from '../layout/MetaData';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 const BlogThird = () => {
     useEffect(() => {
@@ -12,7 +14,7 @@ const BlogThird = () => {
       
       return (
           <div>
-               <Navbar/>  
+               <Navbarhome/>  
 <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 
@@ -75,6 +77,7 @@ Hand-stitched by Jayanth Roy
               </div>
         
             </div>
+            <Footercomponent/>
           </div>
     
     

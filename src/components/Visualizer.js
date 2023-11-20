@@ -13,6 +13,8 @@ import { useState, useEffect } from "react";
 import { useMyContext } from "../Context/store";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 function Visualizer() {
   const {
     image,
@@ -238,7 +240,7 @@ function Visualizer() {
   }
   return (
     <>
-      <Header />
+      <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <div className="demo-container">
@@ -319,7 +321,7 @@ function Visualizer() {
           </div>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent/>
     </>
   );
 }

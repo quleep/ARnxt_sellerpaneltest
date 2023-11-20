@@ -9,6 +9,8 @@ import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 
 
@@ -444,7 +446,7 @@ const removetooltip= ()=>{
   return (
     <div >
 
-      <Navbar/>
+      <Navbarhome/>
         
 <section className=" " style={{backgroundColor:'#eee', marginTop:''}}>
   <div className="container  " style={{marginTop:'80px'}} >
@@ -779,7 +781,7 @@ const removetooltip= ()=>{
       
 
      
-    <Footertest/>
+    <Footercomponent/>
     </div>
   )
 }

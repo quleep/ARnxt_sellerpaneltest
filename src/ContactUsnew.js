@@ -8,6 +8,8 @@ import Navbartest from './components/Navbartest';
 import { Helmet } from 'react-helmet';
 import Footertest from './components/Footertest';
 import Navbar from './components/Navbar';
+import Navbarhome from './components/Navbarhome';
+import Footercomponent from './components/Footercomponent';
 
 
 const queryurl= 'https://adtzd6cy7j.execute-api.ap-south-1.amazonaws.com/production/query';
@@ -81,7 +83,7 @@ const ContactUsnew = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbarhome/>
       <Helmet>
        <title>Contact Arnxt | Augmented Reality MarketPlace </title>
        <meta 
@@ -220,7 +222,7 @@ const ContactUsnew = () => {
           </div>
         </div>
       </div>
-    <Footertest/>  
+    <Footercomponent/>  
     </div>
   )
 }

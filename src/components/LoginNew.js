@@ -8,6 +8,8 @@ import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 
 
@@ -71,7 +73,7 @@ const LoginNew = ({history}) => {
   
 
 <section className="h-100 " style={{backgroundColor:'#eee'}}>
-  <Navbar/>
+  <Navbarhome/>
   
   <div className="container py-5 h-100"   >
   <Metadata title={'Login'}/>
@@ -157,7 +159,7 @@ const LoginNew = ({history}) => {
     </div>
  
   </div>
- <Footertest/> 
+ <Footercomponent/> 
 </section>
 
       

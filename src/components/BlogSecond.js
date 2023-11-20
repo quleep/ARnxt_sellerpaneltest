@@ -6,6 +6,8 @@ import Footertest from './Footertest';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 const BlogSecond = () => {
     useEffect(() => {
@@ -56,7 +58,7 @@ const BlogSecond = () => {
       
       return (
           <div>
-              <Navbar/>  
+              <Navbarhome/>  
 <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 
@@ -450,7 +452,7 @@ Augmented truth can additionally be used as section of an oblique income and adv
               </div>
         
             </div>
-            <Footertest/>
+            <Footercomponent/>
           </div>
     
     

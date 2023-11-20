@@ -10,6 +10,8 @@ import Navbartest from "./Navbartest";
 import Footertest from "./Footertest";
 import Navbar from "./Navbar";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -143,7 +145,7 @@ function Pricing() {
 
   return (
     <div className="pricetable_div"  >
-    <Navbar/>
+    <Navbarhome/>
 
        
      <Helmet>
@@ -597,7 +599,7 @@ function Pricing() {
           </div>
         </div>
       </section>
-      <Footertest/>
+      <Footercomponent/>
    
     </div>
     

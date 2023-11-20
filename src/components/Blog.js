@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { Metadata } from "../layout/MetaData";
 import Navbar from "./Navbar";
 import { Helmet } from "react-helmet";
+import Navbarhome from "./Navbarhome";
 
 function Blog() {
   // scrolled to top when redirected from a page
@@ -12,7 +13,7 @@ function Blog() {
   
   return (
       <div>
-           <Navbar/>  
+           <Navbarhome/>  
         <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 

@@ -7,6 +7,8 @@ import { Metadata } from '../layout/MetaData';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 function About() {
   // scrolled to top when redirected from a page
@@ -16,7 +18,7 @@ function About() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbarhome/>
       <Metadata title={'About'}/>
    
       <div  className='aboutdivmain' >
@@ -208,7 +210,7 @@ function About() {
       */}
 
 
-  <Footertest/>
+  <Footercomponent/>
 
     </div>
   );

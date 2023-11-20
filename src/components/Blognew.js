@@ -5,6 +5,8 @@ import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import { useHistory } from 'react-router-dom';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 
 const Blognew = () => {
@@ -19,7 +21,7 @@ const Blognew = () => {
   }
   return (
     <div>
-    <Navbar/>  
+    <Navbarhome/>  
 <Helmet>
        <title>Arnxt Blog | Information about Augmented Reality & Metaverse</title>
        <meta 
@@ -140,7 +142,7 @@ const Blognew = () => {
      </div>
      
    
-     <Footertest/>
+     <Footercomponent/>
       
     </div>
     

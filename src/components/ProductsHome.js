@@ -8,6 +8,8 @@ import Navbartest from './Navbartest';
 import { Helmet } from 'react-helmet';
 import Footertest from './Footertest';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 const ProductsHome = () => {
     
@@ -48,7 +50,7 @@ const click3= ()=>{
     
      return (
    <div   className='productspage'  >
-    <Navbar/>
+    <Navbarhome/>
 
      <Helmet>
        <title> Arnxt - Products | Augmented Reality Products for Business </title>
@@ -811,7 +813,7 @@ const click3= ()=>{
 
 
 
-<Footertest/>
+<Footercomponent/>
       
     </div>
      )

@@ -13,6 +13,8 @@ import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Footercomponent from "./Footercomponent";
+import Navbarhome from "./Navbarhome";
 
 const ViewAR = () => {
   const {
@@ -134,7 +136,7 @@ const fetchCategoriesData = async () => {
     const sortedData = response.data.sort((a, b) => {
       return orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category);
     });
-console.log(sortedData)
+
     setCategoriesDetails(sortedData);
   } catch (error) {
     console.error("Error in fetching data: ", error);
@@ -225,7 +227,8 @@ console.log(sortedData)
   };
   return (
     <div>
-      <Header />
+      <Navbarhome/>
+     
       <DropdownMenu />
       <div className="templateContainer">
         <div className="searchInput_Container">
@@ -387,7 +390,7 @@ console.log(sortedData)
           />
         </div>
       </div>
-      <Footertest />
+      <Footercomponent/>
     </div>
   );
 };

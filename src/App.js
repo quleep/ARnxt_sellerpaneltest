@@ -107,6 +107,7 @@ import Upholstry from "./components/Upholstry.js";
 import UpholstryMobile from "./components/UpholstryMobile.js";
 import VisualizerMobile from "./components/VisualizerMobile.js";
 import Visualizer2Dmobile from "./components/Visualizer2Dmobile.js";
+import Homepagenew from "./components/Homepagenew.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -186,6 +187,8 @@ class App extends Component {
           <Route path="/arview" exact component={ViewAR} />
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/visualizer" component={Visualizer} />
+          <Route path="/" exact component={Homepagenew} />
+
           <Route
             path="/arview/visualizer_mobile"
             component={VisualizerMobile}
@@ -228,163 +231,6 @@ class App extends Component {
           {/* <Route path="/:id" component={JobDesc} /> */}
           <Route path="/:id/fill" component={Form} />
 
-          <Switch>
-            <Route path="/models" exact component={Model} />
-            <Route
-              path="/download/:model"
-              render={(props) => {
-                return <Download model={props.match.params.model} />;
-              }}
-            />
-          </Switch>
-          <Route
-            path="/merchant_register"
-            exact
-            component={Merchant_Register}
-          />
-
-          <Route
-            path="/plans"
-            exact
-            render={() => {
-              return (
-                <Plans
-                  rfunction={() => {
-                    return this.setState({
-                      reload: true,
-                    });
-                  }}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/hiddenplan"
-            exact
-            render={() => {
-              return (
-                <HiddenPlan
-                  rfunction={() => {
-                    return this.setState({
-                      reload: true,
-                    });
-                  }}
-                />
-              );
-            }}
-          />
-          <Route path="/merchants" exact component={Merchants} />
-          <Route
-            path="/transaction_history"
-            exact
-            component={Transaction_History}
-          />
-          <Route path="/users" exact component={Users} />
-          <Route path="/welcome_admin" exact component={Welcome_Admin} />
-          <Route path="/user_guide" exact component={User_Guide} />
-          <Route path="/merch_guide" exact component={Merch_Guide} />
-          <Route path="/contact_support" exact component={Contact_Support} />
-          <Route path="/requestDemo" exact component={Request_Demo} />
-
-          <Route path="/welcome_user" exact component={Welcome_User} />
-          <Route path="/approvemodels" exact component={Model_Approval} />
-          <Route path="/addtag" exact component={Add_tag} />
-          <Route
-            path="/user/project/:project/:user"
-            render={(props) => {
-              return (
-                <Project_Gallery
-                  projectId={props.match.params.project}
-                  userId={props.match.params.user}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/admin/users/:id"
-            render={(props) => {
-              return <User_Details_Admin userId={props.match.params.id} />;
-            }}
-          />
-          <Route
-            path="/admin/merchants/:id"
-            render={(props) => {
-              return (
-                <Merchant_Details_Admin merchantId={props.match.params.id} />
-              );
-            }}
-          />
-          <Route path="/user_profile" exact component={User_Profile} />
-          <Route path="/merchant_profile" exact component={Merchant_Profile} />
-          <Route path="/projects" exact component={Projects} />
-          <Route
-            path="/"
-            exact
-            render={() => {
-              return (
-                <HomePage
-                  rfunction={() => {
-                    return this.setState({
-                      reload: true,
-                    });
-                  }}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/merchant_login"
-            exact
-            render={() => {
-              return (
-                <Merchant_Login
-                  rfunction={() => {
-                    return this.setState({
-                      reload: true,
-                    });
-                  }}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/user_login"
-            exact
-            render={() => {
-              return (
-                <User_Login
-                  rfunction={() => {
-                    return this.setState({
-                      reload: true,
-                    });
-                  }}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/logout"
-            exact
-            render={() => {
-              sessionStorage.removeItem("token");
-              sessionStorage.removeItem("load");
-              sessionStorage.removeItem("models");
-              sessionStorage.setItem("logout", "You have logged out");
-              return <Redirect to="/" />;
-            }}
-          />
-          <Route
-            path="/logoutuser"
-            exact
-            render={() => {
-              sessionStorage.removeItem("token");
-              sessionStorage.removeItem("user");
-              return <Redirect to="/" />;
-            }}
-          />
-          <div>
-            <PrivateRoute path="/products" component={Products} />
-          </div>
         </Router>
       </div>
     );
