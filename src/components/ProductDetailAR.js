@@ -1,11 +1,12 @@
 import Navbar from "./Navbar";
 import Footertest from "./Footertest";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import { BsBox } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaPlay, FaPause } from "react-icons/fa";
 
 import QRCode from "react-qr-code";
 import Button from "react-bootstrap/Button";
@@ -22,6 +23,9 @@ function ProductDetailAR() {
   const [isGlb, setIsGlb] = useState(false);
   const [viewInARitem, setViewInARitem] = useState([]);
   const history = useHistory();
+  const modelViewerRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasAnimation, setHasAnimation] = useState(false);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -63,6 +67,56 @@ function ProductDetailAR() {
       state: { itemname: param.id },
     });
   };
+  useEffect(() => {
+    const modelViewer = modelViewerRef.current;
+
+    const handleLoad = () => {
+      // Ensure the model is fully loaded before accessing the duration
+      console.log(modelViewer.duration);
+
+      // To go to the first frame
+      modelViewer.currentTime = 0;
+
+      // Check if the duration is greater than 1 second
+      setHasAnimation(modelViewer.duration > 1);
+
+      // To go to the last frame
+      modelViewer.currentTime = modelViewer.duration;
+    };
+
+    if (modelViewer) {
+      modelViewer.addEventListener("load", handleLoad);
+    }
+
+    // Cleanup event listener
+    return () => {
+      if (modelViewer) {
+        modelViewer.removeEventListener("load", handleLoad);
+      }
+    };
+  }, [modelViewerRef.current]);
+
+  const handleToggleAnimation = async () => {
+    const modelViewer = modelViewerRef.current;
+
+    if (modelViewer) {
+      if (hasAnimation) {
+        if (isPlaying) {
+          await modelViewer.pause();
+        } else {
+          modelViewer.play();
+        }
+
+        setIsPlaying(!isPlaying);
+      } else {
+        console.log("No animation present or duration is less than 1 second.");
+      }
+    }
+  };
+  useEffect(() => {
+    console.log("anikami", hasAnimation);
+  }, [hasAnimation]);
+
   return (
     <>
       <Header />
@@ -75,10 +129,11 @@ function ProductDetailAR() {
                 <div class="product_detail_ar_container_grid_child">
                   {isGlbKeyPresent ? (
                     <model-viewer
-                      id="duck"
+                      ref={modelViewerRef}
+                      id="change-speed-demo"
                       camera-controls
                       touch-action="pan-y"
-                      autoplay
+                      animation-name="Dance"
                       ar
                       ar-scale="fixed"
                       ar-modes="webxr scene-viewer quick-look"
@@ -86,7 +141,15 @@ function ProductDetailAR() {
                       src={glbFile}
                       ios-src={usdzFile}
                       xr-environment
-                      alt="A 3D model of a duck"></model-viewer>
+                      alt="A 3D model of a duck">
+                      {hasAnimation && ( // Conditionally render controls if hasAnimation is true
+                        <div id="controls">
+                          <button onClick={handleToggleAnimation}>
+                            {isPlaying ? <FaPause /> : <FaPlay />}
+                          </button>
+                        </div>
+                      )}
+                    </model-viewer>
                   ) : (
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}
