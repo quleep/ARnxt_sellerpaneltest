@@ -9,6 +9,8 @@ import { useMyContext } from "../Context/store";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 import { BsSearch } from "react-icons/bs";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 
 function CategoryAR() {
   const { brandRooms, setBrandRooms } = useMyContext();
@@ -153,7 +155,7 @@ function CategoryAR() {
   };
   return (
     <>
-      <Header />
+      <Navbarhome/>
       <DropdownMenu />
       <div className="templateContainer">
         <div className="searchInput_Container">
@@ -246,7 +248,7 @@ function CategoryAR() {
           </Tab>
         </Tabs>
       </div>
-      <Footertest />
+      <Footercomponent />
     </>
   );
 }

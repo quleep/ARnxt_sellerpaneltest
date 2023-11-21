@@ -321,6 +321,7 @@ function Visualizer() {
           </div>
         </div>
       </div>
+      
       <Footercomponent/>
     </>
   );

@@ -11,7 +11,7 @@ const Footercomponent = () => {
         <a href="/arview">AR viewer</a>
         <a href="/arView/visualizer">Wall Visualiser</a>
         <a href="/arView/visualizer">Floor Visualiser</a>
-        <a href="/arView/upholstry/Fabric">upholstery</a>
+        <a href="/arView/upholstry/Fabric">Upholstery</a>
 
     </div>
 
@@ -34,6 +34,9 @@ const Footercomponent = () => {
         <div class="footer-title">Company</div>
         <a href="/about">About Us</a>
         <a href="/contact">Contact Us</a>
+        <a href="/privacypolicy">Privacy policy</a>
+
+        
        
      
     </div>
@@ -49,7 +52,8 @@ const Footercomponent = () => {
              src="assets/images/applestorelogo.jpg"  alt="apple" /> </a>
 
              <div className='footercopyrightdiv'>
-                <p>Copyright @ 2023, Quleep. All Right Reserved</p>
+                <p>Copyright @ 2023, QULEEP PRIVATE LIMITED</p>
+               
                 </div>
        
         </div>

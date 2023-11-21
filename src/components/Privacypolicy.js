@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet';
 import Navbartest from './Navbartest';
 import Footertest from './Footertest';
 import Navbar from './Navbar';
+import Navbarhome from './Navbarhome';
+import Footercomponent from './Footercomponent';
 
 function Privacypolicy() {
   // scrolled to top when redirected from a page
@@ -15,7 +17,7 @@ function Privacypolicy() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbarhome/>
           <Helmet>
        <title>Arnxt - Privacy Policy | Augmented Reality | Metaverse </title>
        <meta 
@@ -34,9 +36,10 @@ function Privacypolicy() {
      
       <div
         id="privacylatest"
-        className="section section-padding offwhite-bg mt-5 p-5"
+        className="privacypolicydiv"
+      
       >
-        <div className="container text-start">
+        <div className="privacypolicyinside">
           {/* heading start */}
           <div className="">
             <h3 className="text-center">Privacy Policy</h3>
@@ -169,7 +172,7 @@ function Privacypolicy() {
           </div>
           {/* navigation end */}
           {/* main section start */}
-          <div name="policy1">
+          <div name="policy1" className='policycontentdiv'>
             <h3 className="">
               What Personal Information About Customers Does Quleep Collect?
             </h3>
@@ -216,7 +219,7 @@ function Privacypolicy() {
             </div>
           </div>
 
-          <div name="policy2" className="">
+          <div name="policy2"  className='policycontentdiv'>
             <h3 className="">
               For What Purposes Does Quleep Use Your Personal Information?
             </h3>
@@ -286,7 +289,7 @@ function Privacypolicy() {
             </div>
           </div>
 
-          <div name="policy3" className="">
+          <div name="policy3"  className='policycontentdiv'>
             <h3 className="">What About Cookies and Other Identifiers?</h3>
             <div className="">
               <ul>
@@ -300,7 +303,7 @@ function Privacypolicy() {
               </ul>
             </div>
           </div>
-          <div name="policy4" className="">
+          <div name="policy4"  className='policycontentdiv'>
             <h3 className="">Does Quleep Share Your Personal Information? </h3>
             <div className="sectin-subtext">
               Information about our customers is an important part of our
@@ -311,7 +314,7 @@ function Privacypolicy() {
               subject to this Privacy Notice or follow practices at least as
               protective as those described in this Privacy Notice.
             </div>
-            <div className="">
+            <div  className='policycontentdiv'>
               <ul>
                 <li>
                   <b>Transactions involving Third Parties:</b>We make available
@@ -366,7 +369,7 @@ function Privacypolicy() {
                   organizations for fraud protection and credit risk reduction.
                 </li>
               </ul>
-              <div className="sectin-subtext">
+              <div className="secton-subtext">
                 Other than as set out above, you will receive notice when
                 personal information about you might be shared with third
                 parties, and you will have an opportunity to choose not to share
@@ -374,9 +377,9 @@ function Privacypolicy() {
               </div>
             </div>
           </div>
-          <div name="policy5" className="">
+          <div name="policy5"  className='policycontentdiv'>
             <h3 className="">How Secure Is Information About Me? </h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               We design our systems with your security and privacy in mind.
             </div>
             <div className="">
@@ -415,7 +418,7 @@ function Privacypolicy() {
               </ul>
             </div>
           </div>
-          <div name="policy6" className="">
+          <div name="policy6"  className='policycontentdiv'>
             <h3 className="">What About Advertising?</h3>
             <div className="">
               <p>
@@ -453,9 +456,9 @@ function Privacypolicy() {
             </div>
           </div>
 
-          <div name="policy7" className="">
+          <div name="policy7"  className='policycontentdiv'>
             <h3 className="">What Information Can I Access?</h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               You can access your information, including your name, address,
               payment options, profile information, Prime membership, household
               settings, and purchase history in the "Your Account" section of
@@ -471,16 +474,16 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy8" className="">
+          <div name="policy8"  className='policycontentdiv'>
             <h3 className="">What Choices Do I Have?</h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               If you have any questions as to how we collect and use your
               personal information, please contact our{" "}
               <a href="/">Grievance Officer</a>. Many of our Quleep Services
               also include settings that provide you with options as to how your
               information is being used
             </div>
-            <div className="">
+            <div  className='policycontentdiv'>
               <ul>
                 <li>
                   <b></b>As described above, you can always choose not to
@@ -556,9 +559,9 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy9" className="">
+          <div name="policy9"  className='policycontentdiv'>
             <h3 className="">Are Children Allowed to Use Quleep Services ?</h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               Quleep does not sell products for purchase by children. We sell
               children's products for purchase by adults. If you are under the
               age of 18 years, you may use Quleep Services only with the
@@ -571,9 +574,9 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy10" className="">
+          <div name="policy10" className='policycontentdiv'>
             <h3 className="">Conditions of Use, Notices , and Revisions</h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               If you choose to use Quleep Services, your use and any dispute
               over privacy is subject to this Notice and our Conditions of Use,
               including limitations on damages, resolution of disputes, and
@@ -583,7 +586,7 @@ function Privacypolicy() {
               constantly, and our Privacy Notice will change also. You should
               check our websites frequently to see recent changes.{" "}
             </div>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               Unless stated otherwise, our current Privacy Notice applies to all
               information that we have about you and your account. We stand
               behind the promises we make, however, and will never materially
@@ -599,7 +602,7 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy11" className="">
+          <div name="policy11" className='policycontentdiv'>
             <h3 className="">Related Practices and Information</h3>
             <div className="">
               <ul>
@@ -627,13 +630,13 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy12" className="">
+          <div name="policy12"  className='policycontentdiv'>
             <h3 className="">Examples of Information Collected</h3>
             <b className="">
               Information You Give Us When You Use Quleep Services
             </b>
             <div className="">
-              <div className="sectin-subtext">
+              <div className="t">
                 You provide information to us when you:{" "}
               </div>
               <div className="">
@@ -703,8 +706,8 @@ function Privacypolicy() {
               </div>
             </div>
           </div>
-          <div className="">
-            <b className="sectin-subtext">
+          <div className="policycontentdiv">
+            <b className="">
               As a result of those actions, you might supply us with such
               information as:
             </b>
@@ -746,11 +749,11 @@ function Privacypolicy() {
             </div>
           </div>
           <div className="">
-            <b className="sectin-subtext">Automatic Information</b>
-            <div className="sectin-subtext">
+            <b className="section-subtext">Automatic Information</b>
+            <div className="section-subtext">
               Examples of the information we collect and analyze include:
             </div>
-            <div className="">
+            <div className="policycontentdiv">
               <ul>
                 <li>
                   the internet protocol (IP) address used to connect your
@@ -815,11 +818,11 @@ function Privacypolicy() {
             </div>
           </div>
           <div className="">
-            <b className="sectin-subtext">Information from Other Sources</b>
-            <div className="sectin-subtext">
+            <b className="section-subtext">Information from Other Sources</b>
+            <div className="section-subtext">
               Examples of information we receive from other sources include:{" "}
             </div>
-            <div className="">
+            <div className="policycontentdiv">
               <ul>
                 <li>
                   updated delivery and address information from our carriers or
@@ -858,12 +861,12 @@ function Privacypolicy() {
             </div>
           </div>
           <div className="">
-            <b className="sectin-subtext">Information You Can Access</b>
-            <div className="sectin-subtext">
+            <b className="section-subtext">Information You Can Access</b>
+            <div className="section-subtext">
               Examples of information you can access through Quleep Services
               include:{" "}
             </div>
-            <div className="">
+            <div className="policycontentdiv">
               <ul>
                 <li>
                   status of recent orders (including subscriptions); • your
@@ -928,7 +931,7 @@ function Privacypolicy() {
           {/* main section end */}
         </div>
       </div>
-      <Footertest/>
+      <Footercomponent/>
     </div>
   );
 }

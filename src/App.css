@@ -982,6 +982,45 @@ body {
   margin-top: -10px;
   transform: rotate(-20deg);
 }
+.privacypolicydiv{
+ 
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding: 200px;
+}
+.section-subtext{
+  
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+}
+#privacy-navigation ul li{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+  font-size: 20px;
+  
+}
+.policycontentdiv{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.policycontentdiv h3{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+}
+.policycontentdiv p{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+}
+.policycontentdiv ul li{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+
+}
+
+
 
 .arrowline2 {
   width: 140px;
@@ -2861,11 +2900,22 @@ a {
   padding-left: 20px;
   margin-left: 20px;
   display: flex;
+  
 }
 .footercopyrightdiv p{
   font-size: 10px;
   font-family: 'Kanit', sans-serif;
   color: rgb(119, 119, 119);
+  
+}
+.footercopyrightdiv a{
+  font-size: 10px;
+  font-family: 'Kanit', sans-serif;
+  color: rgb(119, 119, 119);
+  margin-left: 10px;
+ 
+  padding: 0px;
+ 
 }
 .applogodiv img{
   max-width: max-content;
@@ -2955,11 +3005,14 @@ a {
   display: flex;
   margin: 10px;
   list-style-type: none;
+  
 
 }
 .mainnavbarcontentinsidediv ul li{
  
   margin: 10px;
+
+  padding: 0 20px 0 20px;
  
 
 }
@@ -3157,11 +3210,72 @@ a {
   padding-bottom: 80px;
   padding-top: 40px;
   
+  
  
   
   
 }
 .sectiononehomeinside>*{
+  flex: 1 1 400px;
+
+  margin: 5px;
+}
+.sectiontwohomeinside{
+  display: flex;
+  margin-left: 150px;
+ 
+   width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 80px;
+  padding-top: 40px;
+  
+  
+ 
+  
+  
+}
+.sectiontwohomeinside>*{
+  flex: 1 1 400px;
+
+  margin: 5px;
+}
+.sectionthreehomeinside{
+  display: flex;
+  margin-left: 150px;
+ 
+   width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 80px;
+  padding-top: 40px;
+
+  
+ 
+  
+  
+}
+.sectionthreehomeinside>*{
+  flex: 1 1 400px;
+
+  margin: 5px;
+}
+.sectionfourhomeinside{
+  display: flex;
+  margin-left: 150px;
+ 
+   width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 80px;
+  padding-top: 40px;
+  
+  
+ 
+  
+  
+}
+.sectionfourhomeinside>*{
   flex: 1 1 400px;
 
   margin: 5px;
@@ -3179,7 +3293,9 @@ a {
 .sectiontwohomegifcontainer{
   max-height: 800px;
   max-width: 800px;
-
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
 
 
 
@@ -3196,6 +3312,9 @@ a {
   max-height: 800px;
   max-width: 800px;
   padding-top: 80px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
   
    
 
@@ -3218,6 +3337,9 @@ a {
   border-radius: 10px;
   margin-top: 40px;
   margin-bottom: 40px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
  
  
 
@@ -3309,7 +3431,9 @@ a {
   padding-top: 80px;
   padding-left: 90px;
   
- 
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
 
 }
 
@@ -3368,7 +3492,9 @@ a {
 }
 .sectionthreehomeheading{
   padding-top: 80px;
-
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
 
  
   
@@ -3450,7 +3576,9 @@ a {
   padding-top: 80px;
   padding-left: 180px;
   
-  
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
   
  
   
@@ -3641,6 +3769,13 @@ a {
   padding-top: 40px;
  
   max-width: 600px;
+  opacity: 0;
+   
+  transition: opacity 1s ease-in-out;
+}
+.sectionsixhomeheadinganimation{
+  opacity: 1;
+ 
 }
 .sectionsixhomeheading h1{
  
@@ -3688,6 +3823,136 @@ a {
   font-weight:  400;
   font-family: 'Kanit', sans-serif;
   text-align: justify;
+ 
+}
+.sectionsevenhome{
+  display: flex;
+  width: 100%;
+   min-height: 400px;
+  padding: 10px;
+ 
+
+}
+.sectionsevenhomeinside{
+  display: flex;
+  margin-left: 150px;
+ 
+   width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  opacity: 0;
+  
+  transition: opacity 1s ease-in-out
+ 
+ 
+ 
+}
+.sectionsevenhomeanimation{
+  
+  opacity: 1;
+ 
+}
+.sectionsevenhomeheading{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.sectionsevenhomeheading h1{
+ 
+  color: black;
+  font-weight:  bold;
+  font-family: 'DM Serif Display', serif;
+  text-align: justify;
+  text-align-last: left;
+ 
+
+  padding-left: 5px;
+  font-size: 50px;
+ 
+}
+.sectionsevenhomeheading h2{
+ 
+  color: rgb(235, 83, 83);;
+  font-weight:  bold;
+  font-family: 'DM Serif Display', serif;
+  
+  display: inline;
+  
+  font-size: 50px;
+ 
+  
+
+}
+.sectionsevenhomedata{
+  display: flex;
+  width: 100%;
+  height: max-content;
+ 
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.sectionsevenhomedata>*{
+  flex:  1 1 300px;
+ 
+ 
+}
+.sectionsevenhomedatainside{
+  display: flex;
+  width: 100%;
+ 
+  height: 100%;
+  flex-wrap: wrap;
+ 
+}
+.sectionsevenhomedatainside h2{
+  color: rgb(142, 145, 121);
+  font-weight:  bold;
+  font-family: 'DM Serif Display', serif;
+  text-align: justify;
+  text-align-last: left;
+  width: 100%;
+ 
+
+  max-width: 400px;
+  padding-left: 5px;
+ 
+ 
+}
+.sectionsevenhomedatainside h3{
+  color: black;
+  font-weight:  bold;
+  font-family: 'DM Serif Display', serif;
+  text-align: justify;
+  text-align-last: left;
+  width: 100%;
+ 
+  border-bottom: 1px solid rgb(221, 215, 215);
+  max-width: 90%;
+  margin: 0 0 10px 5px;
+   padding: 0  0 10px 5px;
+   font-size: 40px;
+
+ 
+ 
+ 
+}
+.sectionsevenhomedatainside p{
+  font-size: 20px;
+  color: black;
+
+  font-family: 'Kanit', sans-serif;
+  text-align: justify; 
+  padding-left: 5px;
+}
+.sectionsevenhomedatainside h1{
+  color: rgb(235, 83, 83);;
+  font-weight:  bold;
+  font-family: 'DM Serif Display', serif;
+  margin-left: 5px;
+  font-size: 120px;
+  
  
 }
 .footersectiondiv{
@@ -3742,6 +4007,9 @@ a {
 
 
 @media (max-width: 1200px) {
+  .sectionsevenhomeinside{
+    margin-left: 0px;
+  }
   .sectiononehomeinside{
     margin-left: 0px;
   }

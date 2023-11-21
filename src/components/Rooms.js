@@ -7,6 +7,8 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 function Rooms() {
   const [categories, setCategories] = useState([]);
   const [foundSubcategories, setFoundSubcategories] = useState([]);
@@ -114,7 +116,7 @@ function Rooms() {
   };
   return (
     <>
-        <Header />
+       <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <Tabs
@@ -176,7 +178,7 @@ function Rooms() {
           </Tab>
         </Tabs>
       </div>
-      <Footertest />
+      <Footercomponent />
     </>
   );
 }

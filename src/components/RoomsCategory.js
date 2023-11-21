@@ -6,6 +6,8 @@ import axios from "axios";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 import All from "../../src/assets/image/allCat.png";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 
 function RoomsCategory() {
   const [products, setProducts] = useState([]);
@@ -69,7 +71,7 @@ function RoomsCategory() {
   };
   return (
     <>
-      <Header />
+     <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <div>
@@ -146,7 +148,7 @@ function RoomsCategory() {
           </div>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent/>
     </>
   );
 }

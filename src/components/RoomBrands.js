@@ -5,6 +5,8 @@ import { useLocation, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 function RoomBrands() {
   const [products, setProducts] = useState([]);
   const param = useParams();
@@ -36,7 +38,7 @@ function RoomBrands() {
   };
   return (
     <>
-      <Header />
+      <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <div class="rooms_category_container">
@@ -75,7 +77,7 @@ function RoomBrands() {
           </div>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent/>
     </>
   );
 }

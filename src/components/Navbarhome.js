@@ -25,10 +25,12 @@ const Navbarhome = () => {
                 <div className='mainnavbarcontentcontainer'>
                     <div className='mainnavbarcontentinsidediv'> 
                       <ul>
-                        <li><a href='product'>PRODUCTS</a> </li>
+                       
+                       
+                       
+                        <li><a href='/arview'>VIEW IN ROOM</a></li>
                         <li><a href='/price'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
-                        <li><a href='/arview'>VIEW IN ROOM</a></li>
 
                         <li><a href='/contact'>CONTACT US</a></li>
 
@@ -105,10 +107,10 @@ const Navbarhome = () => {
         </div>
         <div className='mainnavbardropdowncontainer'> 
                     <ul>
-                    <li><a href='product'>PRODUCTS</a> </li>
+                    
+                    <li><a href='/arview'>VIEW IN ROOM</a></li>
                         <li><a href='/price'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
-                        <li><a href='/arview'>VIEW IN ROOM</a></li>
 
                         <li><a href='/contact'>CONTACT US</a></li>
 

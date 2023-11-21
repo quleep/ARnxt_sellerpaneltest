@@ -19,6 +19,10 @@ const Homepagenew = () => {
      const section2imagediv = document.getElementById('section2imagecontainer')
      const section3imagediv = document.getElementById('section3imagecontainer')
      const section4imagediv = document.getElementById('section4imagecontainer')
+     const section7div = document.querySelector('.sectionsevenhomeinside')
+     const section6div = document.querySelector('.sectionsixhomeheading')
+
+
  
    
  
@@ -48,12 +52,33 @@ const Homepagenew = () => {
        }
        if (isElementInViewport(section3div)) {
        
-         section3div.style.opacity = '1';
+        section3div.style.opacity = '1';
         
-         section3div.style.transform = 'translateX(0)';
-         section3imagediv.style.opacity = '1' 
-         section3imagediv.style.transform = 'scale(1)' 
+        section3div.style.transform = 'translateX(0)';
+        section3imagediv.style.opacity = '1' 
+      section3imagediv.style.transform = 'scale(1)' 
+         
        }
+       if (isElementInViewport(section7div)) {
+
+       
+       
+          section7div.classList.add('sectionsevenhomeanimation')
+        
+       
+   
+         
+       }
+       if (isElementInViewport(section6div)) {
+
+       
+       
+        section6div.classList.add('sectionsixhomeheadinganimation')
+      
+     
+ 
+       
+     }
        if (isElementInViewport(section4div)) {
          section4div.style.opacity = '1';
         
@@ -146,7 +171,7 @@ const Homepagenew = () => {
 
     </div>
     <div className='sectiontwohome'>
-    <div className='sectiononehomeinside'>
+    <div className='sectiontwohomeinside'>
           
              <div className='sectiontwohomegifcontainer' id ='section2imagecontainer'>
              <img src= '/assets/images/wallpaperchange.gif' /> 
@@ -183,8 +208,8 @@ const Homepagenew = () => {
 </div>
 
 <div className='sectionthreehome'>
-<div className='sectiononehomeinside'>
-            <div className='sectionthreehomeheading' id='section3divheading' >
+<div className='sectionthreehomeinside' >
+            <div className='sectionthreehomeheading'  id='section3divheading' >
                <h1><h2>Flooring</h2> Redefined: See Try Transform</h1> 
                 <p >
                 Picture trying out different flooring styles without lifting a tile. 
@@ -204,16 +229,77 @@ const Homepagenew = () => {
               
 
             </div>
-             <div className='sectionthreehomegifcontainer' id ='section3imagecontainer'>
+             <div className='sectionthreehomegifcontainer'    id='section3imagecontainer'>
              <img src= '/assets/images/floorchange.gif' /> 
 
              </div>
         </div>
 
 </div>
+<div className='sectionsevenhome'>
+<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'>
+<div className='sectionsevenhomeheading' >
+               <h1>Watch your <h2> business </h2>grow with <h2>ArNXT</h2></h1>
+              
+            </div>
+            <div className='sectionsevenhomedata'>
+              <div>
+                <div className='sectionsevenhomedatainside'> 
+                <h2>Over</h2>
+
+                <h1>28</h1>
+
+                <h3>Brands</h3>
+                <p>We have the latest brands</p>
+
+                </div>
+              </div>
+              <div>
+              <div className='sectionsevenhomedatainside'> 
+                <h2>More than</h2>
+
+                <h1>8</h1>
+
+                <h3>Categories</h3>
+                <p>Almost all categories covered</p>
+
+                </div>
+              </div>
+              <div>
+              <div className='sectionsevenhomedatainside'> 
+                <h2>Over</h2>
+
+                <h1>100 +</h1>
+
+                <h3>Downloads</h3>
+                <p>These are active downloads of our app</p>
+
+
+                </div>
+              </div>
+              <div>
+              <div className='sectionsevenhomedatainside'> 
+                <h2>Great</h2>
+
+                <h1>4.2</h1>
+
+                <h3>Ratings</h3>
+                <p>A consistent ratings</p>
+
+
+                </div>
+              </div>
+
+
+            </div>
+           
+
+</div>
+
+</div>
 
 <div className='sectionfourhome'>
-<div className='sectiononehomeinside'>
+<div className='sectionfourhomeinside'>
           
           <div className='sectionfourhomegifcontainer' id ='section4imagecontainer'>
           <img src= '/assets/images/upholstry.gif' /> 
@@ -246,6 +332,8 @@ const Homepagenew = () => {
 
 </div>
 
+
+
 <div className='sectionsixhome'>
 <div className='sectionsixhomeinside'>
 <div className='sectionsixhomeheading' >
@@ -259,10 +347,10 @@ const Homepagenew = () => {
                   
                   </li>
                   <p>A 2 step solution to Blend ArNXT into your existing tech stack</p>
-                  <li> <h4>Cost-efficient marketing solutions</h4>
+                  <li> <h4>Sales enabling tool</h4>
                   
                   </li>
-                  <p>We provide visualisation both in web and app</p>
+                  <p>A catalyst for driving revenue generation and enhancing customer satisfaction. </p>
                   <li> <h4>Enhance User Experience</h4>
                   
                   </li>
@@ -322,6 +410,7 @@ brandsdata?.map(item=>(
 </div>
 
 </div>
+
 
 <Footercomponent/>
 </div>

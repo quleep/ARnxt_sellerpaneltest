@@ -12,6 +12,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Navbarhome from "./Navbarhome";
+import Footercomponent from "./Footercomponent";
 function ProductDetailAR() {
   const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
@@ -65,7 +67,7 @@ function ProductDetailAR() {
   };
   return (
     <>
-      <Header />
+      <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <div class="product_detail_ar_container">
@@ -191,7 +193,7 @@ function ProductDetailAR() {
           </div>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent />
     </>
   );
 }

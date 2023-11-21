@@ -17,6 +17,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Navbarhome from "./Navbarhome";
 function Upholstry() {
   const [products, setProducts] = useState([]);
   const param = useParams();
@@ -87,7 +88,7 @@ function Upholstry() {
   };
   return (
     <>
-      <Header />
+      <Navbarhome/>
       <DropdownMenu />
       <div className="hero_container">
         <div className="App">

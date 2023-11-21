@@ -15,6 +15,7 @@ import { useMyContext } from "../Context/store";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import Footercomponent from "./Footercomponent";
 function Visualizer2D() {
   const {
     image,
@@ -783,7 +784,7 @@ function Visualizer2D() {
           </div>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent />
     </>
   );
 }

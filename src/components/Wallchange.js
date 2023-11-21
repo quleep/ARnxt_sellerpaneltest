@@ -5,6 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom'
 import Webcam from 'react-webcam'
 import { FaArrowLeft, FaCross, FaTimes } from 'react-icons/fa'
 import axios from 'axios'
+import Footercomponent from './Footercomponent'
+import Navbarhome from './Navbarhome'
 
 
 
@@ -290,7 +292,7 @@ const Wallchange = () => {
  
   return (
     <div>
-        <Navbar/>
+        <Navbarhome/>
         <div className='wallchangecontainer'>
       
             <div className='loadcontainer'>
@@ -398,7 +400,7 @@ const Wallchange = () => {
                 </div>   
         
         </div>
-        <Footertest/>
+        <Footercomponent/>
       
     </div>
   )
