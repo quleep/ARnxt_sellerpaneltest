@@ -78,6 +78,7 @@ function ProductDetailAR() {
                       id="duck"
                       camera-controls
                       touch-action="pan-y"
+                      autoplay
                       ar
                       ar-scale="fixed"
                       ar-modes="webxr scene-viewer quick-look"
