@@ -112,6 +112,7 @@ function RoomsCategory() {
                       src={item.imageurl[0]}
                       alt="Front of men&#039;s Basic Tee in black."
                       class="rooms_category_container_grid_child2_image"
+                                            loading="lazy"
                     />
                   </div>
                   <div class="rooms_categories_container_grid_child3">

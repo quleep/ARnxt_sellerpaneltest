@@ -36,9 +36,24 @@ function DropdownMenu() {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
       );
-      console.log("categ ", response.data);
+     const orderedCategories = [
+      "Furniture",
+      "Walls",
+      "Floors",
+      "Furnishing",
+      "Decorative",
+      "Upholstery",
+      "Sanitary",
+      "Electronics",
+      "Electrical",
+      "Bathroom",
+    ];
 
-      setCategoriesDetails(response.data);
+    const sortedData = response.data.sort((a, b) => {
+      return orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category);
+    });
+
+    setCategoriesDetails(sortedData);
     } catch (error) {
       console.error("Error in fetching data: ", error);
     }
