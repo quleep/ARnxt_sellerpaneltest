@@ -42,6 +42,7 @@ function RoomsCategory() {
         }
       );
       setProducts(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -71,7 +72,7 @@ function RoomsCategory() {
   };
   return (
     <>
-     <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <div>
@@ -112,6 +113,7 @@ function RoomsCategory() {
                       src={item.imageurl[0]}
                       alt="Front of men&#039;s Basic Tee in black."
                       class="rooms_category_container_grid_child2_image"
+                      loading="lazy"
                     />
                   </div>
                   <div class="rooms_categories_container_grid_child3">
@@ -148,7 +150,7 @@ function RoomsCategory() {
           </div>
         </div>
       </div>
-      <Footercomponent/>
+      <Footercomponent />
     </>
   );
 }

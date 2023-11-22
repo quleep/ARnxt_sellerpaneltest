@@ -29,25 +29,7 @@ function CategoryAR() {
   const location = useLocation();
   const param = useParams();
   const history = useHistory();
-  const apiUrl = `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandcategory?category=${param.id}`;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(apiUrl); // Use GET request for query parameters
-        console.log(response.data);
-        const filteredData = brandRooms?.filter((item) =>
-          response.data.includes(item.brandId)
-        );
 
-        console.log("param", param.id);
-        setBrandsData1(filteredData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [param, brandRooms]);
   useEffect(() => {
     const body = {
       searchdata: searchTerm,
@@ -62,7 +44,7 @@ function CategoryAR() {
   }, [searchTerm]);
   useEffect(() => {
     brands();
-  }, []);
+  }, [param]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -71,8 +53,8 @@ function CategoryAR() {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandtable"
       );
-      const response1 = await axios.get(
-        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
+      const response1 = await axios.post(
+        `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandcategory?category=${param.id}`
       );
 
       console.log("brandsarray", response);
@@ -155,7 +137,7 @@ function CategoryAR() {
   };
   return (
     <>
-      <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="templateContainer">
         <div className="searchInput_Container">
