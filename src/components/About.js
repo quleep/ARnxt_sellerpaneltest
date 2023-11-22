@@ -31,20 +31,17 @@ function About() {
       </div>
       
       <p>
-      We are Quleep, a Made in India  company, working in the area of Metaverse with Global Class Products.
+      We are QULEEP PRIVATE LIMITED, a Made in India  company, working in the area of Metaverse with Global Class Products.
       </p>
       <p>
-      We have two products :-
+      Our Product :-
       </p>
       <p>
-      1.<b style={{fontFamily:'Kanit, sans-serif', fontSize:'18px',fontWeight:'bold' }} > Arnxt</b> - India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.
+       <b style={{fontFamily:'Kanit, sans-serif', fontSize:'20px',fontWeight:'bold' }} > ArNXT</b> - India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.
                            Now, you can design your complete house by choosing from widest range of categories like Furniture, Flooring elements,
                             Wall Paints, Wall Papers, Bathroom accessories, Decorative and many more. All from the comfort of your phone.
       </p>
-      <p>
-      2.<b style={{fontFamily:'Kanit, sans-serif', fontSize:'18px', fontWeight:'bold'}} >  Festemverse</b>- India's first Festive Metaverse Universe highlighting India's rich Culture, Heritage,
-                          Events & Festivals. Extending Global experience into futuristic technology, providing an unmatched experience throughout.
-      </p>
+ 
 
      </div>
      </div>
