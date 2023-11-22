@@ -37,12 +37,12 @@ function About() {
       We have two products :-
       </p>
       <p>
-      1.<b style={{fontFamily:'Manrope, san-serif', fontSize:'18px',fontWeight:'bold' }} > Arnxt</b> - India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.
+      1.<b style={{fontFamily:'Kanit, sans-serif', fontSize:'18px',fontWeight:'bold' }} > Arnxt</b> - India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.
                            Now, you can design your complete house by choosing from widest range of categories like Furniture, Flooring elements,
                             Wall Paints, Wall Papers, Bathroom accessories, Decorative and many more. All from the comfort of your phone.
       </p>
       <p>
-      2.<b style={{fontFamily:'Manrope, san-serif', fontSize:'18px', fontWeight:'bold'}} >  Festemverse</b>- India's first Festive Metaverse Universe highlighting India's rich Culture, Heritage,
+      2.<b style={{fontFamily:'Kanit, sans-serif', fontSize:'18px', fontWeight:'bold'}} >  Festemverse</b>- India's first Festive Metaverse Universe highlighting India's rich Culture, Heritage,
                           Events & Festivals. Extending Global experience into futuristic technology, providing an unmatched experience throughout.
       </p>
 
@@ -143,20 +143,7 @@ function About() {
       </div> */}
 
 
-      <div className='hiring_div ' >
-        <div className='hiring_content'>
-          <h2 className=''> Come join us !</h2>
-        
-
-        </div>
-        <div className='joinus'>
-        <button className='btnaboutus' >
-          <a href='/career' >View openings</a> </button>
-
-
-        </div>
-
-      </div>
+   
 
       {/*
       <div style={{width:'100%', height:'10px', backgrounColor:'white'}}></div>

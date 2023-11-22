@@ -3,97 +3,113 @@ import Navbarhome from './Navbarhome'
 import axios from 'axios'
 import Footercomponent from './Footercomponent'
 import { PopupButton } from "react-calendly";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Homepagenew = () => {
 
     useEffect(()=>{
         window.scroll(0,0)
    },[])
+
+   useEffect(()=>{
+    AOS.init({
+      
+    
+      });
+   },[])
    
    const [brandsdata, setBrandsData] = useState()
-   document.addEventListener('DOMContentLoaded', function () {
-     const section2div = document.getElementById('section2divheading');
-     const section3div = document.getElementById('section3divheading');
- 
-     const section4div = document.getElementById('section4divheading');
-     const section2imagediv = document.getElementById('section2imagecontainer')
-     const section3imagediv = document.getElementById('section3imagecontainer')
-     const section4imagediv = document.getElementById('section4imagecontainer')
-     const section7div = document.querySelector('.sectionsevenhomeinside')
-     const section6div = document.querySelector('.sectionsixhomeheading')
 
 
- 
-   
- 
-  
-   
-     function isElementInViewport(el) {
-       const rect = el.getBoundingClientRect();
-       
-       return (
-         rect.top >= 0 &&
-         rect.left >= 0 &&
-         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-       );
-     }
-   
-     function handleScroll() {
-       if (isElementInViewport(section2div)) {
-        
-         section2div.style.opacity = '1';
-        
-         section2div.style.transform = 'translateX(0)';
-         section2imagediv.style.opacity = '1' 
-       section2imagediv.style.transform = 'scale(1)' 
- 
- 
-       }
-       if (isElementInViewport(section3div)) {
-       
-        section3div.style.opacity = '1';
-        
-        section3div.style.transform = 'translateX(0)';
-        section3imagediv.style.opacity = '1' 
-      section3imagediv.style.transform = 'scale(1)' 
-         
-       }
-       if (isElementInViewport(section7div)) {
+   useEffect(()=>{
+   /*
+    const section2div = document.getElementById('section2divheading');
+    const section3div = document.getElementById('section3divheading');
 
-       
-       
-          section7div.classList.add('sectionsevenhomeanimation')
-        
-       
-   
-         
-       }
-       if (isElementInViewport(section6div)) {
+    const section4div = document.getElementById('section4divheading');
+    const section2imagediv = document.getElementById('section2imagecontainer')
+    const section3imagediv = document.getElementById('section3imagecontainer')
+    const section4imagediv = document.getElementById('section4imagecontainer')
+    const section7div = document.querySelector('.sectionsevenhomeinside')
+    const section6div = document.querySelector('.sectionsixhomeheading')
 
-       
-       
-        section6div.classList.add('sectionsixhomeheadinganimation')
+
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
       
-     
- 
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+  
+    function handleScroll() {
+      if (isElementInViewport(section2div)) {
        
-     }
-       if (isElementInViewport(section4div)) {
-         section4div.style.opacity = '1';
+        section2div.style.opacity = '1';
+       
+        section2div.style.transform = 'translateX(0)';
+        section2imagediv.style.opacity = '1' 
+      section2imagediv.style.transform = 'scale(1)' 
+
+
+      }
+      if (isElementInViewport(section3div)) {
+      
+       section3div.style.opacity = '1';
+       
+       section3div.style.transform = 'translateX(0)';
+       section3imagediv.style.opacity = '1' 
+     section3imagediv.style.transform = 'scale(1)' 
         
-         section4div.style.transform = 'translateX(0)';
-         section4imagediv.style.opacity = '1' 
-         section4imagediv.style.transform = 'scale(1)' 
-       }
-     }
-   
-     // Initial check in case the element is already in the viewport
-     handleScroll();
-   
-     // Attach the scroll event listener
-     window.addEventListener('scroll', handleScroll);
-   });
+      }
+      if (isElementInViewport(section7div)) {
+
+      
+      
+         section7div.classList.add('sectionsevenhomeanimation')
+       
+      
+  
+        
+      }
+      if (isElementInViewport(section6div)) {
+
+      
+      
+       section6div.classList.add('sectionsixhomeheadinganimation')
+     
+    
+
+      
+    }
+      if (isElementInViewport(section4div)) {
+        section4div.style.opacity = '1';
+       
+        section4div.style.transform = 'translateX(0)';
+        section4imagediv.style.opacity = '1' 
+        section4imagediv.style.transform = 'scale(1)' 
+      }
+    }
+
+
+    window.addEventListener('scroll', handleScroll);
+
+    
+    handleScroll();
+
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+
+    */
+
+   },[])
+ 
  
  
  
@@ -133,8 +149,8 @@ const Homepagenew = () => {
       brands()
  
    },[])
- 
-   
+
+
 
     
   return (
@@ -158,26 +174,26 @@ const Homepagenew = () => {
             url="https://calendly.com/arnxt-meet/30min"
           
             rootElement={document.getElementById("root")}
-            text="Schedule Demo Call"  
+            text="Schedule Demo"  
           /> 
               
 
             </div>
              <div className='sectiononehomegifcontainer'>
-             <img src= '/assets/images/giphy.gif' /> 
+             <img src= '/assets/images/AR furniture gif.gif' /> 
 
              </div>
         </div>
 
     </div>
     <div className='sectiontwohome'>
-    <div className='sectiontwohomeinside'>
+    <div className='sectiontwohomeinside'  data-aos="zoom-in" data-aos-duration="3000">
           
-             <div className='sectiontwohomegifcontainer' id ='section2imagecontainer'>
+             <div className='sectiontwohomegifcontainer' >
              <img src= '/assets/images/wallpaperchange.gif' /> 
 
              </div>
-             <div className='sectiontwohomeheading' id= 'section2divheading' >
+             <div className='sectiontwohomeheading'  >
                <h1 >Visualise, Personalise & Redefine your walls.</h1>
                 <p >
                 Imagine effortlessly visualising different wallpaper designs in your space before making a decision.
@@ -198,46 +214,19 @@ const Homepagenew = () => {
             url="https://calendly.com/arnxt-meet/30min"
           
             rootElement={document.getElementById("root")}
-            text="Schedule Demo Call"  
+            text="Schedule Demo"  
           /> 
               
 
             </div>
-        </div>
-
-</div>
-
-<div className='sectionthreehome'>
-<div className='sectionthreehomeinside' >
-            <div className='sectionthreehomeheading'  id='section3divheading' >
-               <h1><h2>Flooring</h2> Redefined: See Try Transform</h1> 
-                <p >
-                Picture trying out different flooring styles without lifting a tile. 
-                Visualise, experiment, and experience different floor aesthetics. 
-
-                </p>
-                    
-                <PopupButton
-                
-               className='sectiononehomecalendlybutton'
-            
-            url="https://calendly.com/arnxt-meet/30min"
-          
-            rootElement={document.getElementById("root")}
-            text="Schedule Demo Call"  
-          /> 
-              
-
-            </div>
-             <div className='sectionthreehomegifcontainer'    id='section3imagecontainer'>
-             <img src= '/assets/images/floorchange.gif' /> 
-
-             </div>
         </div>
 
 </div>
 <div className='sectionsevenhome'>
-<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'>
+<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'  data-aos="fade-left"
+ data-aos-duration="1000"
+ data-aos-offset="300"
+ data-aos-easing="ease-in-sine" >
 <div className='sectionsevenhomeheading' >
                <h1>Watch your <h2> business </h2>grow with <h2>ArNXT</h2></h1>
               
@@ -298,11 +287,46 @@ const Homepagenew = () => {
 
 </div>
 
+<div className='sectionthreehome'>
+<div className='sectionthreehomeinside'  data-aos="fade-right"
+     data-aos-duration="1000"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" >
+            <div className='sectionthreehomeheading'  id='section3divheading' >
+               <h1><h2>Flooring</h2> Redefined: See Try Transform</h1> 
+                <p >
+                Picture trying out different flooring styles without lifting a tile. 
+                Visualise, experiment, and experience different floor aesthetics. 
+
+                </p>
+                    
+                <PopupButton
+                
+               className='sectiononehomecalendlybutton'
+            
+            url="https://calendly.com/arnxt-meet/30min"
+          
+            rootElement={document.getElementById("root")}
+            text="Schedule Demo"  
+          /> 
+              
+
+            </div>
+             <div className='sectionthreehomegifcontainer'    id='section3imagecontainer'>
+             <img src= '/assets/images/Floor.gif' /> 
+
+             </div>
+        </div>
+
+</div>
+
+
 <div className='sectionfourhome'>
-<div className='sectionfourhomeinside'>
+<div className='sectionfourhomeinside'  data-aos="fade-up"
+     data-aos-anchor-placement="bottom-bottom">
           
           <div className='sectionfourhomegifcontainer' id ='section4imagecontainer'>
-          <img src= '/assets/images/upholstry.gif' /> 
+          <img src= '/assets/images/Uphosltary.gif' /> 
 
           </div>
           <div className='sectionfourhomeheading'  id ='section4divheading'>
@@ -323,7 +347,7 @@ const Homepagenew = () => {
              url="https://calendly.com/arnxt-meet/30min"
            
              rootElement={document.getElementById("root")}
-             text="Schedule Demo Call"  
+             text="Schedule Demo"  
            /> 
                
 
@@ -335,7 +359,9 @@ const Homepagenew = () => {
 
 
 <div className='sectionsixhome'>
-<div className='sectionsixhomeinside'>
+<div className='sectionsixhomeinside' data-aos="zoom-in-left"  data-aos-duration="1000"
+ data-aos-offset="300"
+ data-aos-easing="ease-in-sine">
 <div className='sectionsixhomeheading' >
                <h1>Why <h2> ArNXT </h2>?</h1>
                 <ul>
@@ -370,7 +396,10 @@ const Homepagenew = () => {
 
 </div>
 <div className='sectionfivehome'>
-<div className='sectionfivehomeinside'>
+<div className='sectionfivehomeinside' data-aos="flip-right"
+data-aos-duration="1000"
+data-aos-offset="300"
+data-aos-easing="ease-in-sine">
 <div className='sectionfivehomeheading'>
 <h1>ArNXT is <p>trusted</p> by world <p>leaders</p></h1>
 </div>

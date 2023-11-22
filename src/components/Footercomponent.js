@@ -26,7 +26,7 @@ const Footercomponent = () => {
         <div class="footer-title">ArNXT</div>
       
         <a href="/price">Pricing</a>
-        <a href="/product">Products</a>
+       
         
     </div>
 

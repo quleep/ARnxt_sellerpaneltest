@@ -266,6 +266,13 @@ body {
 .list-boxs .premium .ticket {
   background-color: green;
 }
+@media screen and (max-width: 767px) {
+  [data-aos] {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 .list-boxs .card .body {
   transform: translateY(-40px);
@@ -991,11 +998,28 @@ body {
   padding: 200px;
 }
 .section-subtext{
-  
+   display: flex;
   font-family: 'Kanit', sans-serif;
   text-align: justify;
 }
-#privacy-navigation ul li{
+.privacynavdiv{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  
+  height: auto;
+}
+.privacynavdiv ul li a{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+  font-size: 20px;
+}
+.privacynavdiv ul li p{
+  font-family: 'Kanit', sans-serif;
+  text-align: justify;
+  font-size: 20px;
+}
+#privacy-navigation ul li p{
   font-family: 'Kanit', sans-serif;
   text-align: justify;
   font-size: 20px;
@@ -3211,6 +3235,7 @@ a {
   padding-top: 40px;
   
   
+  
  
   
   
@@ -3219,6 +3244,7 @@ a {
   flex: 1 1 400px;
 
   margin: 5px;
+ 
 }
 .sectiontwohomeinside{
   display: flex;
@@ -3230,6 +3256,8 @@ a {
   padding-bottom: 80px;
   padding-top: 40px;
   
+ 
+  
   
  
   
@@ -3239,6 +3267,7 @@ a {
   flex: 1 1 400px;
 
   margin: 5px;
+ 
 }
 .sectionthreehomeinside{
   display: flex;
@@ -3247,10 +3276,10 @@ a {
    width: 100%;
   height: 100%;
   flex-wrap: wrap;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
   padding-top: 40px;
 
-  
+ 
  
   
   
@@ -3259,6 +3288,7 @@ a {
   flex: 1 1 400px;
 
   margin: 5px;
+ 
 }
 .sectionfourhomeinside{
   display: flex;
@@ -3279,23 +3309,27 @@ a {
   flex: 1 1 400px;
 
   margin: 5px;
+
+  
 }
 .sectiononehomegifcontainer{
-  width: 100%;
+    max-width: 800px;
+    max-height: 800px;
   
 
 
 }
 .sectiononehomegifcontainer img{
-  margin-top: 40px;
+  max-width: 800px;
+  max-height: 800px;
+ 
   border-radius: 20px;
+  object-fit: contain;
 }
 .sectiontwohomegifcontainer{
   max-height: 800px;
   max-width: 800px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
+
 
 
 
@@ -3311,10 +3345,8 @@ a {
 .sectionthreehomegifcontainer{
   max-height: 800px;
   max-width: 800px;
-  padding-top: 80px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
+  margin-right: 20px;
+ 
   
    
 
@@ -3327,28 +3359,20 @@ a {
    border-radius: 20px;
   
   
+  
 }
 .sectionfourhomegifcontainer{
   max-height: 800px;
   max-width: 800px;
  
- 
-   background-image: url('/assets/images/backgroundimage.jpg');
   border-radius: 10px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
- 
- 
 
 }
 .sectionfourhomegifcontainer img{
    max-width: 800px;
    max-height: 800px;
    object-fit: contain;
-    margin: 10px;
+    
    border-radius: 20px;
    padding-left: 0px;
   
@@ -3362,7 +3386,7 @@ a {
   font-family: 'DM Serif Display', serif;
   text-align: justify;
   text-align-last: left;
-  max-width: 380px;
+  max-width: 600px;
   margin-top: 30px;
  
 }
@@ -3424,16 +3448,15 @@ a {
   display: flex;
   width: 100%;
   height: max-content;
-  padding-bottom: 60px;
+
+  
   
 }
 .sectiontwohomeheading{
-  padding-top: 80px;
-  padding-left: 90px;
+  padding:   60px 20px 0 20px;
+ 
   
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
+
 
 }
 
@@ -3492,9 +3515,7 @@ a {
 }
 .sectionthreehomeheading{
   padding-top: 80px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
+ 
 
  
   
@@ -3509,6 +3530,7 @@ a {
   text-align-last: left;
    max-width: 500px;
   margin-top: 30px;
+  font-size: 40px;
   
  
  
@@ -3573,12 +3595,9 @@ a {
   background-color: #e4ecf5;
 }
 .sectionfourhomeheading{
-  padding-top: 80px;
-  padding-left: 180px;
   
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.5);
+  
+  padding:   0 20px 0 120px;
   
  
   
@@ -3592,7 +3611,7 @@ a {
   font-family: 'DM Serif Display', serif;
   text-align: justify;
   text-align-last: left;
-  max-width: 400px;
+  max-width: 600px;
   margin-top: 30px;
   
  
@@ -3751,27 +3770,31 @@ a {
    width: 100%;
   height: 100%;
   flex-wrap: wrap;
+  
+}
+.sectionsixhomeinside>*{
+  flex: 1 1 400px;
+ 
 }
 .sectionsixhomegifcontainer{
-  max-width: 600px;
-  max-height: 600px;
-  padding-left: 200px;
+  max-width: 800px;
+  max-height: 800px;
+ 
+ 
+  padding-top: 50px;
   
 }
 .sectionsixhomegifcontainer img{
   object-fit: contain;
-  max-width: 600px;
-  max-height: 600px;
-  padding-top: 150px;
-  padding-left: 50px;
+  max-width: 800px;
+  max-height: 800px;
+  
 }
 .sectionsixhomeheading{
   padding-top: 40px;
  
-  max-width: 600px;
-  opacity: 0;
-   
-  transition: opacity 1s ease-in-out;
+  
+
 }
 .sectionsixhomeheadinganimation{
   opacity: 1;
@@ -3805,7 +3828,7 @@ a {
   
 }
 .sectionsixhomeheading ul li h4{
-  font-size: 30px;
+  font-size: 25px;
   color: rgb(235, 83, 83);
   font-weight:  400;
   font-family: 'Kanit', sans-serif;
@@ -3840,9 +3863,10 @@ a {
    width: 100%;
   height: 100%;
   flex-wrap: wrap;
-  opacity: 0;
-  
-  transition: opacity 1s ease-in-out
+ 
+  padding-bottom: 80px;
+
+
  
  
  
@@ -3856,7 +3880,7 @@ a {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 30px;
+  
   margin-bottom: 30px;
 }
 .sectionsevenhomeheading h1{
@@ -3993,24 +4017,36 @@ a {
    .sectionfourhomeheading{
     padding-left: 190px;
    }
-   .sectionfourhomegifcontainer{
-    max-height: 500px;
-    max-width: 500px;
-   }
-   .sectionfourhomegifcontainer img{
-    max-width: 500px;
-    max-height: 500px;
-   }
+ 
    
 
 }
 
 
 @media (max-width: 1200px) {
+ 
   .sectionsevenhomeinside{
     margin-left: 0px;
   }
   .sectiononehomeinside{
+    margin-left: 0px;
+  }
+  .sectiontwohomeinside{
+    margin-left: 0px;
+  }
+  .sectionthreehomeinside{
+    margin-left: 0px;
+  }
+  .sectionfourhomeinside{
+    margin-left: 0px;
+  }
+  .sectionfivehomeinside{
+    margin-left: 0px;
+  }
+  .sectionsixhomeinside{
+    margin-left: 0px;
+  }
+  .sectionsevenhomeinside{
     margin-left: 0px;
   }
   .sectiononehomegifcontainer{
@@ -4031,6 +4067,7 @@ a {
   }
   .sectiontwohomeheading h1{
    margin-left: 0px;
+  
    
 
   }
@@ -5950,9 +5987,9 @@ form .page .btns button.next {
   margin-left: -20px;
 }
 .aboutdiv p {
-  font-family: Manrope, sans-serif;
+  font-family: 'Kanit', sans-serif;
   text-align: justify;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 }
 .aboutdivmain {
@@ -5965,6 +6002,9 @@ form .page .btns button.next {
 .aboutheader {
   margin-left: 400px;
   text-decoration: underline;
+}
+.aboutheader h4{
+  font-family: 'Kanit', sans-serif;
 }
 
 .imagebtndisplay1 {
