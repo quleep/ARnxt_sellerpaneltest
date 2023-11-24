@@ -14,7 +14,7 @@ const Homepagenew = () => {
 
    useEffect(()=>{
     AOS.init({
-      
+      disable: 'tablet'
     
       });
    },[])
@@ -195,7 +195,7 @@ const Homepagenew = () => {
              </div>
              <div className='sectiontwohomeheading'  >
                <h1 >Visualise, Personalise & Redefine your walls.</h1>
-                <p >
+                <p   >
                 Imagine effortlessly visualising different wallpaper designs in your space before making a decision.
 
                 </p>
@@ -224,7 +224,7 @@ const Homepagenew = () => {
 </div>
 <div className='sectionsevenhome'
  >
-<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside' >
+<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'  >
 <div className='sectionsevenhomeheading'>
                <h1>Watch your <h2> business </h2>grow with <h2>ArNXT</h2></h1>
               

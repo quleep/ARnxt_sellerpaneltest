@@ -34,13 +34,15 @@ function About() {
       We are QULEEP PRIVATE LIMITED, a Made in India  company, working in the area of Metaverse with Global Class Products.
       </p>
       <p>
-      Our Product :-
+      QULEEP PRIVATE LIMITED is a cutting-edge technology company specialising in
+                  the development and innovation of products in the metaverse
+                  and augmented reality (AR) domains. With a mission to
+                  transform the way people interact with digital content and
+                  bridge the gap between the virtual and physical worlds, Quleep
+                  is at the forefront of shaping the future of immersive
+                  experiences.
       </p>
-      <p>
-       <b style={{fontFamily:'Kanit, sans-serif', fontSize:'20px',fontWeight:'bold' }} > ArNXT</b> - India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features.
-                           Now, you can design your complete house by choosing from widest range of categories like Furniture, Flooring elements,
-                            Wall Paints, Wall Papers, Bathroom accessories, Decorative and many more. All from the comfort of your phone.
-      </p>
+ 
  
 
      </div>
