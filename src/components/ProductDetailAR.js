@@ -205,7 +205,7 @@ function ProductDetailAR() {
                     </div>
                   </div>
 
-                  <div className="product_detail_ar_container_grid_child1_text2">
+                  <div className="product_detail_ar_container_grid_child1_viewinroom">
                     {isGlbKeyPresent ? (
                       <a href="#open-modal" className="btn-link">
                         <BsBox className="icon" /> View In Your Room

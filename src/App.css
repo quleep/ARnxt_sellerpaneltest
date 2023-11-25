@@ -12256,6 +12256,13 @@ padding:1rem;
   display: flex;
   flex-direction: column;
 }
+.product_detail_ar_container_grid_child1_viewinroom {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color:black;
+}
 .product_detail_ar_container_grid_child1_text2_child {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -12935,7 +12942,10 @@ a {
   .rooms-container .main .left-panel {
     display: none;
   }
-
+.product_detail_ar_container_grid_child1_viewinroom {
+display:none;
+ 
+}
   .hori_scroll_container_visualizer {
     display: flex;
     position: fixed; /* Change 'absolute' to 'fixed' */
