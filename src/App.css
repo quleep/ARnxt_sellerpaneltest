@@ -274,6 +274,7 @@ body {
   }
 }
 
+
 .list-boxs .card .body {
   transform: translateY(-40px);
   transition: transform 0.3s linear;
@@ -1001,6 +1002,12 @@ body {
    display: flex;
   font-family: 'Kanit', sans-serif;
   text-align: justify;
+   padding: 0;
+   margin-left: 0px;
+  
+   width: 100%;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 .privacynavdiv{
   display: flex;
@@ -1008,6 +1015,7 @@ body {
   flex-direction: row;
   
   height: auto;
+ 
 }
 .privacynavdiv ul li a{
   font-family: 'Kanit', sans-serif;
@@ -1029,6 +1037,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 .policycontentdiv h3{
   font-family: 'Kanit', sans-serif;
@@ -2041,6 +2050,9 @@ a {
   margin-left: 30px;
   margin-top: -30px;
   border-radius: 8px;
+}
+.html{
+  height: fit-content;
 }
 
 .wire10 {
@@ -3987,44 +3999,10 @@ a {
   border: 1px solid red;
 }
 
-@media (max-width: 1400px) {
-  .sectiontwohomegifcontainer{
-    max-width: 600px;
-    max-height: 600px;
-   
-    
-   }
-   .sectiontwohomegifcontainer img{
-    max-width:600px;
-    max-height: 600px;
-   }
-   .sectiontwohomeheading{
-    padding-left: 10px;
-    padding-top: 40px;
-   }
-   .sectiontwohomeheading h1{
-    word-spacing: -2px;
-   }
-   .sectionthreehomegifcontainer{
-    max-width: 500px;
-    max-height: 500px;
-   
-   }
-   .sectionthreehomegifcontainer img{
-    max-width: 500px;
-    max-height: 500px;
-   }
-   .sectionfourhomeheading{
-    padding-left: 190px;
-   }
- 
-   
-
-}
 
 
-@media (max-width: 1200px) {
- 
+@media(max-width: 700px){
+
   .sectionsevenhomeinside{
     margin-left: 0px;
   }
@@ -4161,6 +4139,117 @@ a {
   padding: 5px;
 
 }
+
+}
+
+
+@media screen and (min-width: 1400px ) and (max-width: 1600px) {
+ 
+  .sectionsevenhomeinside{
+    margin-left: 20px;
+  }
+  .sectiononehomeinside{
+    margin-left: 20px;
+  }
+  .sectiontwohomeinside{
+    margin-left: 20px;
+  }
+  .sectionthreehomeinside{
+    margin-left: 20px;
+  }
+  .sectionfourhomeinside{
+    margin-left: 20px;
+  }
+  .sectionfivehomeinside{
+    margin-left: 20px;
+  }
+  .sectionsixhomeinside{
+    margin-left: 20px;
+  }
+  .sectionsevenhomeinside{
+    margin-left: 20px;
+  }
+  .sectiononehomegifcontainer{
+    width: 100%;
+     height: auto;
+  }
+  .sectiononehomegifcontainer img{
+    width: 100%;
+     height: 100%;
+  }
+  .sectiontwohomegifcontainer{
+    width: 100%;
+     height: auto;
+  }
+  .sectiontwohomegifcontainer img{
+     width: 100%;
+     height: 100%;
+  }
+  .sectiontwohomeheading{
+    padding-left: 30px;
+  }
+  .sectionfourhomeheading{
+    padding-left: 30px;
+    
+  }
+  .sectiontwohomeheading h1{
+   margin-left: 0px;
+  
+   
+
+  }
+  .sectiontwohomeheading h3{
+    margin-left: 0px;
+    
+ 
+   }
+ 
+   .sectiontwohomeheading p{
+    margin-left: 0px;
+   
+ 
+   }
+ 
+   .sectiontwohomeheading button{
+    margin-left: 0px;
+    
+ 
+   }
+   .sectionthreehomegifcontainer{
+    width: 100%;
+    height: auto;
+   }
+   .sectionthreehomegifcontainer img{
+    width: 100%;
+    height: 100%;
+   }
+   .sectionfourhomegifcontainer{
+    width: 100%;
+    height: auto;
+   }
+   .sectionfourhomegifcontainer img{
+    width: 100%;
+    height: 100%;
+   }
+ 
+   .sectionsixhomeinside{
+    margin-left: 0px;
+    
+   }
+   .sectionsixhomegifcontainer{
+    width: 100%;
+    height: auto;
+    padding-left: 0px;
+    padding-top: 0px;
+   }
+   .sectionsixhomegifcontainer img{
+    width: 100%;
+    height: 100%;
+   }
+ 
+ 
+ 
+
 
 
 }

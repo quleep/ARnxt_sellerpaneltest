@@ -238,7 +238,7 @@ function Privacypolicy() {
             <h3 className="">
               For What Purposes Does Quleep Use Your Personal Information?
             </h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               We use your personal information to operate, provide, develop, and
               improve the products and services that we offer our customers.
               These purposes include:{" "}
@@ -344,7 +344,7 @@ function Privacypolicy() {
           </div>
           <div name="policy4"  className='policycontentdiv'>
             <h3 className="">Does Quleep Share Your Personal Information? </h3>
-            <div className="sectin-subtext">
+            <div className="section-subtext">
               Information about our customers is an important part of our
               business and we are not in the business of selling our customers’
               personal information to others. We share customers’ personal
@@ -424,7 +424,7 @@ function Privacypolicy() {
           <div name="policy5"  className='policycontentdiv'>
             <h3 className="">How Secure Is Information About Me? </h3>
           
-            <div className="" id = 'privacy-navigation'>
+            <div className="policycontentdiv" >
               <ul>
                 <li>
                   <p>
@@ -676,26 +676,30 @@ function Privacypolicy() {
               Back to top
             </div>
           </div>
-          <div name="policy11" className='policycontentdiv'>
+          <div name="policy12" className='policycontentdiv'>
             <h3 className="">Related Practices and Information</h3>
-            <div className="privacynavdiv"  >
+           
+              <div className="privacynavdiv" >
               <ul>
                 <li>
-                  <a >Conditions of Use</a>
+                 Conditions of Use
                 </li>
                 <li>
-                  <a>Seller Program Policies</a>
+                  Seller Program Policies
                 </li>
                 <li>
-                  <a >Help Department</a>
+                  Help Department
                 </li>
                 <li>
-                  <a >Most Recent Purchases</a>
+                Most Recent Purchases
                 </li>
                 <li>
-                  <a >Your Profile and Community Guidelines</a>
+                  Your Profile and Community Guidelines
                 </li>
               </ul>
+
+              
+          
             </div>
             <div  
               className="ar-pointer ar-link-font-color"

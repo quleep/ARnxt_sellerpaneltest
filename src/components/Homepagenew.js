@@ -14,7 +14,7 @@ const Homepagenew = () => {
 
    useEffect(()=>{
     AOS.init({
-      
+      disable: 'tablet'
     
       });
    },[])
@@ -187,7 +187,7 @@ const Homepagenew = () => {
 
     </div>
     <div className='sectiontwohome'>
-    <div className='sectiontwohomeinside'  data-aos="zoom-in" data-aos-duration="3000">
+    <div className='sectiontwohomeinside'  >
           
              <div className='sectiontwohomegifcontainer' >
              <img src= '/assets/images/wallpaperchange.gif' /> 
@@ -195,7 +195,7 @@ const Homepagenew = () => {
              </div>
              <div className='sectiontwohomeheading'  >
                <h1 >Visualise, Personalise & Redefine your walls.</h1>
-                <p >
+                <p   >
                 Imagine effortlessly visualising different wallpaper designs in your space before making a decision.
 
                 </p>
@@ -222,12 +222,10 @@ const Homepagenew = () => {
         </div>
 
 </div>
-<div className='sectionsevenhome'>
-<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'  data-aos="fade-left"
- data-aos-duration="1000"
- data-aos-offset="300"
- data-aos-easing="ease-in-sine" >
-<div className='sectionsevenhomeheading' >
+<div className='sectionsevenhome'
+ >
+<div className='sectionsevenhomeinside' id = 'sectionsevenhomeinside'  >
+<div className='sectionsevenhomeheading'>
                <h1>Watch your <h2> business </h2>grow with <h2>ArNXT</h2></h1>
               
             </div>
@@ -288,10 +286,7 @@ const Homepagenew = () => {
 </div>
 
 <div className='sectionthreehome'>
-<div className='sectionthreehomeinside'  data-aos="fade-right"
-     data-aos-duration="1000"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine" >
+<div className='sectionthreehomeinside'   >
             <div className='sectionthreehomeheading'  id='section3divheading' >
                <h1><h2>Flooring</h2> Redefined: See Try Transform</h1> 
                 <p >
@@ -322,8 +317,7 @@ const Homepagenew = () => {
 
 
 <div className='sectionfourhome'>
-<div className='sectionfourhomeinside'  data-aos="fade-up"
-     data-aos-anchor-placement="bottom-bottom">
+<div className='sectionfourhomeinside'  >
           
           <div className='sectionfourhomegifcontainer' id ='section4imagecontainer'>
           <img src= '/assets/images/Uphosltary.gif' /> 
@@ -359,9 +353,7 @@ const Homepagenew = () => {
 
 
 <div className='sectionsixhome'>
-<div className='sectionsixhomeinside' data-aos="zoom-in-left"  data-aos-duration="1000"
- data-aos-offset="300"
- data-aos-easing="ease-in-sine">
+<div className='sectionsixhomeinside' >
 <div className='sectionsixhomeheading' >
                <h1>Why <h2> ArNXT </h2>?</h1>
                 <ul>
@@ -396,10 +388,7 @@ const Homepagenew = () => {
 
 </div>
 <div className='sectionfivehome'>
-<div className='sectionfivehomeinside' data-aos="flip-right"
-data-aos-duration="1000"
-data-aos-offset="300"
-data-aos-easing="ease-in-sine">
+<div className='sectionfivehomeinside' >
 <div className='sectionfivehomeheading'>
 <h1>ArNXT is <p>trusted</p> by world <p>leaders</p></h1>
 </div>
