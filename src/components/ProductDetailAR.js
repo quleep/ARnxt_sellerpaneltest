@@ -121,7 +121,7 @@ function ProductDetailAR() {
 
   return (
     <>
-      <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <div class="product_detail_ar_container">
@@ -142,7 +142,6 @@ function ProductDetailAR() {
                       shadow-intensity="1"
                       src={glbFile}
                       ios-src={usdzFile}
-                      xr-environment
                       alt="A 3D model of a duck">
                       {hasAnimation && ( // Conditionally render controls if hasAnimation is true
                         <div id="controls">

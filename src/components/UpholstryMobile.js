@@ -42,9 +42,9 @@ function UpholstryMobile() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, index]);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [param])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [param]);
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -63,9 +63,36 @@ function UpholstryMobile() {
     fetchData();
   }, [param]);
 
-  const changeWallpaper = (imageurl) => {
-    setSelectedTexture(imageurl);
+  const changeWallpaper = async (imageurl) => {
+    // var can = document.getElementById("imgCanvas");
+    // var img = document.getElementById("imageid");
+    // var ctx = can.getContext("2d");
+    // ctx.drawImage(img, 10, 10);
+    // var encodedBase = can.toDataURL();
+    getBase64Image(document.getElementById("imageid"), function (base64) {
+      // base64 in here.
+      console.log(base64);
+    });
   };
+  function convert(oldImag, callback) {
+    var img = new Image();
+    img.onload = function () {
+      callback(img);
+    };
+    img.setAttribute("crossorigin", "anonymous");
+    img.src = oldImag.src;
+  }
+  function getBase64Image(img, callback) {
+    convert(img, function (newImg) {
+      var canvas = document.createElement("canvas");
+      canvas.width = newImg.width;
+      canvas.height = newImg.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(newImg, 0, 0);
+      var base64 = canvas.toDataURL("image/png");
+      callback(base64);
+    });
+  }
   const handleSeat = () => {
     setIndex(1);
     setSelectedTexture("");
@@ -101,39 +128,6 @@ function UpholstryMobile() {
           ar-modes="webxr scene-viewer quick-look"
           shadow-intensity="1"
           xr-environment>
-          <div className="view_in_ar_container">
-            <a href="#open-modal" className="view_in_ar_button">
-              <BsBox className="icon" /> View In Your Room
-            </a>
-          </div>
-          <div id="open-modal" class="modal-window">
-            <div>
-              <a href="#" title="Close" class="modal-close">
-                <AiOutlineClose />
-              </a>
-              <QRCode value={`arnxt.com/arView/upholstry_mobile/${param.id}`} />
-              <p className="semibold_text">
-                Scan the QR code with your mobile device to view the product in
-                your space.
-              </p>
-            </div>
-          </div>
-          <div class="modalscan">
-            <div class="modal-wrapscan">
-              <span className="closemodalscan" onClick={handlemodalclose}>
-                <FaTimes style={{ color: "red", fontSize: "20px" }} />
-              </span>
-              <span>
-                <div></div>
-
-                <QRCode value={`arnxt.com/arview/productdetail/${param.id}`} />
-              </span>
-              <p className="dataupload">
-                Scan the QR code with your mobile device to view the product in
-                your space.
-              </p>
-            </div>
-          </div>
           <div className="view_in_ar_wallpapers">
             <div id="slider1" className="hori_scroll_container_child">
               <div
@@ -159,15 +153,22 @@ function UpholstryMobile() {
               <div
                 //   className="hori_scroll_container_child1"
                 className="hori_scroll_container_wallpapers"
-                onClick={() => changeWallpaper(texture3)}>
+                onClick={() =>
+                  changeWallpaper(
+                    "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/fabric4.jpg"
+                  )
+                }>
                 <img
-                  src={texture3}
+                  src="https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/fabric4.jpg"
+                  id="imageid"
                   alt="/"
                   className="hori_scroll_container_child1_image1"
                 />
+                <canvas id="imgCanvas" />
               </div>
             </div>
           </div>
+
           <div className="view_in_ar_mesh">
             <div
               onClick={handleBase}

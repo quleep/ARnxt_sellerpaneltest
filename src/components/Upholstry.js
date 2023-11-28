@@ -20,6 +20,8 @@ import DropdownMenu from "./DropdownMenu";
 import Navbarhome from "./Navbarhome";
 function Upholstry() {
   const [products, setProducts] = useState([]);
+  const [productsDupli, setProductsDupli] = useState([]);
+
   const param = useParams();
   const [index, setIndex] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
@@ -30,22 +32,31 @@ function Upholstry() {
     const modelViewerTexture1 = document.querySelector("model-viewer#helmet");
 
     const createAndApplyTexture = async (channel, textureUrl) => {
-      const texture = await modelViewerTexture1.createTexture(textureUrl);
+      const randomSuffix = `?random=${Math.random()}`;
+      const updatedTextureUrl = textureUrl + randomSuffix;
+      console.log("vfv", updatedTextureUrl);
+      const texture = await modelViewerTexture1.createTexture(
+        updatedTextureUrl
+      );
       const material = modelViewerTexture1.model.materials[index];
+
       if (channel.includes("base") || channel.includes("metallic")) {
         material.pbrMetallicRoughness[channel].setTexture(texture);
       } else {
         material[channel].setTexture(texture);
       }
     };
+
     console.log(selectedTexture);
+
     if (modelViewerTexture1.model) {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, index]);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [param])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [param]);
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -88,7 +99,7 @@ function Upholstry() {
   };
   return (
     <>
-      <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <div className="App">
@@ -106,7 +117,7 @@ function Upholstry() {
             shadow-intensity="1"
             xr-environment>
             <div className="view_in_ar_container">
-              <a href="#open-modal" className="view_in_ar_button">
+              <a href="#open-modal" className="btn-link">
                 <BsBox className="icon" /> View In Your Room
               </a>
             </div>
@@ -142,36 +153,17 @@ function Upholstry() {
             </div>
             <div className="view_in_ar_wallpapers">
               <div id="slider1" className="hori_scroll_container_child">
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture1)}>
-                  <img
-                    src={texture1}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture2)}>
-                  <img
-                    src={texture2}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
-                <div
-                  //   className="hori_scroll_container_child1"
-                  className="hori_scroll_container_wallpapers"
-                  onClick={() => changeWallpaper(texture3)}>
-                  <img
-                    src={texture3}
-                    alt="/"
-                    className="hori_scroll_container_child1_image1"
-                  />
-                </div>
+                {products.map((item) => (
+                  <div
+                    className="hori_scroll_container_wallpapers"
+                    onClick={() => changeWallpaper(item.imageurl[0])}>
+                    <img
+                      src={item.imageurl[0]} // Assuming imageurl is an array inside the data object
+                      alt="/"
+                      className="hori_scroll_container_child1_image1"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="view_in_ar_mesh">

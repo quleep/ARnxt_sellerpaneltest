@@ -12288,7 +12288,6 @@ padding:1rem;
 }
 .product_detail_ar_container {
   display: flex;
-  margin-top: 5rem;
   justify-content: center;
   align-items: stretch;
   min-height: 100%;
@@ -14024,7 +14023,7 @@ small {
 .view_in_ar_container {
   position: absolute;
   right: 1rem;
-  top: 1rem;
+  bottom: 1rem;
   cursor: pointer;
   z-index: 3;
   background-color: lightblue;
