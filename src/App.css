@@ -274,7 +274,6 @@ body {
   }
 }
 
-
 .list-boxs .card .body {
   transform: translateY(-40px);
   transition: transform 0.3s linear;
@@ -990,70 +989,63 @@ body {
   margin-top: -10px;
   transform: rotate(-20deg);
 }
-.privacypolicydiv{
- 
+.privacypolicydiv {
   display: flex;
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
   padding: 200px;
 }
-.section-subtext{
-   display: flex;
-  font-family: 'Kanit', sans-serif;
+.section-subtext {
+  display: flex;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
-   padding: 0;
-   margin-left: 0px;
-  
-   width: 100%;
-   margin-top: 10px;
-   margin-bottom: 10px;
+  padding: 0;
+  margin-left: 0px;
+
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.privacynavdiv{
+.privacynavdiv {
   display: flex;
   width: 100%;
   flex-direction: row;
-  
+
   height: auto;
- 
 }
-.privacynavdiv ul li a{
-  font-family: 'Kanit', sans-serif;
+.privacynavdiv ul li a {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   font-size: 20px;
 }
-.privacynavdiv ul li p{
-  font-family: 'Kanit', sans-serif;
+.privacynavdiv ul li p {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   font-size: 20px;
 }
-#privacy-navigation ul li p{
-  font-family: 'Kanit', sans-serif;
+#privacy-navigation ul li p {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   font-size: 20px;
-  
 }
-.policycontentdiv{
+.policycontentdiv {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
-.policycontentdiv h3{
-  font-family: 'Kanit', sans-serif;
+.policycontentdiv h3 {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
 }
-.policycontentdiv p{
-  font-family: 'Kanit', sans-serif;
+.policycontentdiv p {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
 }
-.policycontentdiv ul li{
-  font-family: 'Kanit', sans-serif;
+.policycontentdiv ul li {
+  font-family: "Kanit", sans-serif;
   text-align: justify;
-
 }
-
-
 
 .arrowline2 {
   width: 140px;
@@ -2051,7 +2043,7 @@ a {
   margin-top: -30px;
   border-radius: 8px;
 }
-.html{
+.html {
   height: fit-content;
 }
 
@@ -2854,7 +2846,7 @@ a {
   margin-bottom: 5px;
 }
 
-.footercontainer{
+.footercontainer {
   padding-left: 60px;
   background-color: #e4ecf5;
 }
@@ -2863,9 +2855,8 @@ a {
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #e4ecf5;
- 
-  padding: 20px;
 
+  padding: 20px;
 }
 
 .footer-column {
@@ -2873,31 +2864,27 @@ a {
   min-width: 200px;
   margin-right: 20px;
   margin-bottom: 20px;
- 
+
   justify-content: center;
   align-items: center;
-  
 }
-.footer-column a{
+.footer-column a {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 10px;
   color: black;
-  font-family: 'Kanit', sans-serif;
-
+  font-family: "Kanit", sans-serif;
 }
 
 .footer-title {
-   font-size: 30px;
+  font-size: 30px;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
   color: grey;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
-  
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
 }
-
 
 .social-icons {
   display: flex;
@@ -2911,75 +2898,63 @@ a {
   font-size: 20px;
   text-decoration: none;
 }
-.app-store-logos{
-  
+.app-store-logos {
   display: flex;
   flex-wrap: wrap;
-  
+
   justify-content: space-between;
 }
-.applogodiv{
- 
+.applogodiv {
   padding-bottom: 20px;
   justify-content: flex-start;
- 
+
   display: flex;
   padding-left: 10px;
   flex-wrap: wrap;
- 
-  
-  
 }
-.footercopyrightdiv{
+.footercopyrightdiv {
   border-left: 1px solid rgb(75, 75, 75);
   padding-top: 15px;
   padding-left: 20px;
   margin-left: 20px;
   display: flex;
-  
 }
-.footercopyrightdiv p{
+.footercopyrightdiv p {
   font-size: 10px;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   color: rgb(119, 119, 119);
-  
 }
-.footercopyrightdiv a{
+.footercopyrightdiv a {
   font-size: 10px;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   color: rgb(119, 119, 119);
   margin-left: 10px;
- 
+
   padding: 0px;
- 
 }
-.applogodiv img{
+.applogodiv img {
   max-width: max-content;
   max-height: max-content;
   margin: 5px;
   object-fit: contain;
-  
 }
-.socialiconsdiv{
- 
-   display: flex;
+.socialiconsdiv {
+  display: flex;
   min-width: 320px;
   justify-content: flex-start;
-  
-  
 }
-.socialiconsdiv img{
+.socialiconsdiv img {
   max-width: 50px;
   max-height: 50px;
   object-fit: contain;
 }
-.footersocialicons{
+.footersocialicons {
   font-size: 20px;
   margin-top: 20px;
-   
-   min-width: 30px;
-   min-height: 30px;
-   margin-right: 10px;
+
+  min-width: 30px;
+  min-height: 30px;
+  margin-right: 10px;
 }
 
 .app-store-logos img {
@@ -2987,7 +2962,7 @@ a {
   margin-top: 10px;
 }
 
-.mainnavbarcontainer{
+.mainnavbarcontainer {
   display: flex;
   width: 100%;
   height: 100px;
@@ -2995,23 +2970,20 @@ a {
   top: 0;
   position: fixed;
   z-index: 9999;
- 
 }
-.mainnavbarlogocontainer{
+.mainnavbarlogocontainer {
   flex: 1;
- 
 }
-.mainnavbarcontentcontainer{
+.mainnavbarcontentcontainer {
   flex: 3;
- 
+
   justify-content: center;
   padding: 10px;
 }
-.mainnavbarlogincontainer{
+.mainnavbarlogincontainer {
   flex: 1;
-  
 }
-.mainnavbarlogoinsidediv{
+.mainnavbarlogoinsidediv {
   display: flex;
   max-width: 200px;
   max-height: 70px;
@@ -3021,98 +2993,79 @@ a {
   flex-wrap: wrap;
   margin-top: 10px;
 }
-.mainnavbarlogoinsidediv img{
+.mainnavbarlogoinsidediv img {
   max-width: 200px;
   max-height: 70px;
   object-fit: contain;
   padding: 5px;
-
 }
-.mainnavbarcontentinsidediv{
+.mainnavbarcontentinsidediv {
   display: flex;
   width: 100%;
   height: fit-content;
- 
+
   justify-content: center;
-  
- 
 }
-.mainnavbarcontentinsidediv ul{
+.mainnavbarcontentinsidediv ul {
   display: flex;
   margin: 10px;
   list-style-type: none;
-  
-
 }
-.mainnavbarcontentinsidediv ul li{
- 
+.mainnavbarcontentinsidediv ul li {
   margin: 10px;
 
   padding: 0 20px 0 20px;
- 
-
 }
-.mainnavbarcontentinsidediv ul li a{ 
- 
- font-size: 20px;
- color: black;
- font-weight: bold;
- font-family: 'Kanit', sans-serif;
-
- 
- 
-
+.mainnavbarcontentinsidediv ul li a {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  font-family: "Kanit", sans-serif;
 }
-.mainnavbarlogincontainerinside{
+.mainnavbarlogincontainerinside {
   display: flex;
   justify-content: center;
   margin-top: 20px;
- 
+
   padding: 5px;
 }
-.mainnavbarlogincontainerinside a{
+.mainnavbarlogincontainerinside a {
   font-size: 20px;
   font-weight: bold;
   color: black;
   margin-right: 20px;
   margin-top: 5px;
-  font-family: 'Kanit', sans-serif;
- 
+  font-family: "Kanit", sans-serif;
 }
-.mainnavbarlogincontainerinside button{
-   width: 130px;
-   height: 30px;
-   background-color: rgb(235, 83, 83);
-   color: white;
-   border-radius: 20px;
-   border: none;
-   font-family: 'Kanit', sans-serif;
- 
+.mainnavbarlogincontainerinside button {
+  width: 130px;
+  height: 30px;
+  background-color: rgb(235, 83, 83);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-family: "Kanit", sans-serif;
 }
-.mainnavbarcontainermobile{
+.mainnavbarcontainermobile {
   display: flex;
   width: 100%;
   height: 100px;
   background-color: #d5e5f0;
   opacity: 0;
 }
-.mainnavbarlogocontainermobile{
+.mainnavbarlogocontainermobile {
   flex: 1;
- 
 }
-.mainnavbarcontentcontainermobile{
+.mainnavbarcontentcontainermobile {
   flex: 2;
- 
+
   justify-content: center;
   padding: 10px;
 }
-.mainnavbarlogincontainermobile{
+.mainnavbarlogincontainermobile {
   flex: 1;
- 
- 
-  
 }
-.mainnavbarcontainericon{
+.mainnavbarcontainericon {
   font-size: 20px;
   margin-top: 5px;
   cursor: pointer;
@@ -3134,31 +3087,25 @@ a {
 
 .modal-contentmainnavbarmobile {
   background: #fff;
- 
+
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   animation: slideInnavbar 0.3s ease-in-out;
 }
 
-
 .modalmainnavbarmobile.active {
   display: flex;
- 
-  
 }
-
 
 .modalmainnavbarmobile.active .modal-contentmainnavbarmobile {
   transform: translateY(0);
- 
 }
-.mainnavbardropdowncontainer{
+.mainnavbardropdowncontainer {
   display: flex;
   justify-content: center;
-
 }
 @keyframes slideInnavbar {
   from {
@@ -3185,248 +3132,183 @@ a {
     opacity: 1;
   }
 }
-.mainnavbardropdowncontainer ul{
+.mainnavbardropdowncontainer ul {
   display: flex;
   flex-direction: column;
-  
+
   list-style-type: none;
   margin: 10px;
- 
+
   width: 100%;
   margin: 5px;
-  
+
   padding: 0px;
   align-items: center;
 }
 .mainnavbardropdowncontainer ul li {
- 
   border: 1px solid rgb(243, 166, 166);
   width: 90%;
- 
+
   border-radius: 20px;
   margin-left: 0px;
- margin: 5px;
- 
-
+  margin: 5px;
 }
-.mainnavbardropdowncontainer ul li a{
+.mainnavbardropdowncontainer ul li a {
   font-size: 20px;
   color: black;
   font-weight: bold;
-  font-family: 'Kanit', sans-serif;
-
- 
- 
-
+  font-family: "Kanit", sans-serif;
 }
-.mainbodyhomepage{
- 
+.mainbodyhomepage {
   width: 100%;
   height: 100vh;
- 
- 
-  
-
 }
-.sectiononehome{
+.sectiononehome {
   display: flex;
   width: 100%;
   max-height: max-content;
   padding: 10px;
   background-color: #e4ecf5;
- 
 }
-.sectiononehomeinside{
+.sectiononehomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
   padding-bottom: 80px;
   padding-top: 40px;
-  
-  
-  
- 
-  
-  
 }
-.sectiononehomeinside>*{
+.sectiononehomeinside > * {
   flex: 1 1 400px;
 
   margin: 5px;
- 
 }
-.sectiontwohomeinside{
+.sectiontwohomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
   padding-bottom: 80px;
   padding-top: 40px;
-  
- 
-  
-  
- 
-  
-  
 }
-.sectiontwohomeinside>*{
+.sectiontwohomeinside > * {
   flex: 1 1 400px;
 
   margin: 5px;
- 
 }
-.sectionthreehomeinside{
+.sectionthreehomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
   padding-bottom: 40px;
   padding-top: 40px;
-
- 
- 
-  
-  
 }
-.sectionthreehomeinside>*{
+.sectionthreehomeinside > * {
   flex: 1 1 400px;
 
   margin: 5px;
- 
 }
-.sectionfourhomeinside{
+.sectionfourhomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
   padding-bottom: 80px;
   padding-top: 40px;
-  
-  
- 
-  
-  
 }
-.sectionfourhomeinside>*{
+.sectionfourhomeinside > * {
   flex: 1 1 400px;
 
   margin: 5px;
-
-  
 }
-.sectiononehomegifcontainer{
-    max-width: 800px;
-    max-height: 800px;
-  
-
-
-}
-.sectiononehomegifcontainer img{
+.sectiononehomegifcontainer {
   max-width: 800px;
   max-height: 800px;
- 
+}
+.sectiononehomegifcontainer img {
+  max-width: 800px;
+  max-height: 800px;
+
   border-radius: 20px;
   object-fit: contain;
 }
-.sectiontwohomegifcontainer{
+.sectiontwohomegifcontainer {
   max-height: 800px;
   max-width: 800px;
-
-
-
-
 }
-.sectiontwohomegifcontainer img{
-   max-width: 800px;
-   max-height: 800px;
-   object-fit: contain;
-   margin-top: 60px;
-   border-radius: 20px;
-  
+.sectiontwohomegifcontainer img {
+  max-width: 800px;
+  max-height: 800px;
+  object-fit: contain;
+  margin-top: 60px;
+  border-radius: 20px;
 }
-.sectionthreehomegifcontainer{
+.sectionthreehomegifcontainer {
   max-height: 800px;
   max-width: 800px;
   margin-right: 20px;
- 
-  
-   
-
 }
-.sectionthreehomegifcontainer img{
-   max-width: 800px;
-   max-height: 800px;
-   object-fit: contain;
-   margin-top: 20px;
-   border-radius: 20px;
-  
-  
-  
+.sectionthreehomegifcontainer img {
+  max-width: 800px;
+  max-height: 800px;
+  object-fit: contain;
+  margin-top: 20px;
+  border-radius: 20px;
 }
-.sectionfourhomegifcontainer{
+.sectionfourhomegifcontainer {
   max-height: 800px;
   max-width: 800px;
- 
+
   border-radius: 10px;
-
 }
-.sectionfourhomegifcontainer img{
-   max-width: 800px;
-   max-height: 800px;
-   object-fit: contain;
-    
-   border-radius: 20px;
-   padding-left: 0px;
-  
+.sectionfourhomegifcontainer img {
+  max-width: 800px;
+  max-height: 800px;
+  object-fit: contain;
+
+  border-radius: 20px;
+  padding-left: 0px;
 }
 
-
-.sectiononehomeheading h1{
- 
+.sectiononehomeheading h1 {
   color: black;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
- 
 }
-.sectiononehomeheading h2{
- 
-  color: rgb(235, 83, 83);;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
-  
+.sectiononehomeheading h2 {
+  color: rgb(235, 83, 83);
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
+
   display: inline;
   max-width: 600px;
   font-size: 40px;
-
- 
 }
-.sectiononehomeheading p{
+.sectiononehomeheading p {
   font-size: 20px;
   color: black;
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   text-align-last: left;
   max-width: 400px;
   margin-top: 30px;
   word-wrap: inherit;
- 
 }
-.sectiononehomecalendlybutton{
+.sectiononehomecalendlybutton {
   display: flex;
   width: auto;
   height: auto;
@@ -3434,254 +3316,193 @@ a {
   color: white;
   border-radius: 20px;
   border: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   margin-top: 30px;
   padding: 10px;
-
 }
-.sectiononehomeheading button{
- display: flex;
+.sectiononehomeheading button {
+  display: flex;
   width: auto;
   height: auto;
   background-color: rgb(235, 83, 83);
   color: white;
   border-radius: 20px;
   border: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   margin-top: 30px;
   padding: 10px;
-  
 }
-.sectiononehomemiddleheading{
+.sectiononehomemiddleheading {
   color: rgb(228, 69, 69);
-  
 }
-.sectiontwohome{
+.sectiontwohome {
   display: flex;
   width: 100%;
   height: max-content;
-
-  
-  
 }
-.sectiontwohomeheading{
-  padding:   60px 20px 0 20px;
- 
-  
-
-
+.sectiontwohomeheading {
+  padding: 60px 20px 0 20px;
 }
 
-.sectiontwohomeheading h1{
- 
+.sectiontwohomeheading h1 {
   color: rgb(40, 61, 40);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
   margin-left: 120px;
-
- 
 }
-.sectiontwohomeheading h3{
- 
+.sectiontwohomeheading h3 {
   color: rgb(142, 145, 121);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
   margin-left: 120px;
- 
 }
-.sectiontwohomeheading p{
+.sectiontwohomeheading p {
   font-size: 20px;
   color: black;
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   text-align-last: left;
   max-width: 400px;
   margin-top: 30px;
- 
-  margin-left: 120px;
 
- 
+  margin-left: 120px;
 }
-.sectiontwohomeheading button{
- display: flex;
+.sectiontwohomeheading button {
+  display: flex;
   width: auto;
   height: auto;
   background-color: rgb(235, 83, 83);
   color: white;
   border-radius: 20px;
   border: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   margin-top: 30px;
   padding: 10px;
   margin-left: 120px;
-  
 }
-.sectionthreehomeheading{
+.sectionthreehomeheading {
   padding-top: 80px;
- 
-
- 
-  
 }
 
-.sectionthreehomeheading h1{
- 
+.sectionthreehomeheading h1 {
   color: black;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
-   max-width: 500px;
+  max-width: 500px;
   margin-top: 30px;
   font-size: 40px;
-  
- 
- 
 }
-.sectionthreehomeheading h2{
- 
+.sectionthreehomeheading h2 {
   color: rgb(235, 83, 83);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
 
- 
-    font-size: 40px;
+  font-size: 40px;
   display: inline;
-  
- 
- 
 }
-.sectionthreehomeheading h3{
- 
+.sectionthreehomeheading h3 {
   color: rgb(142, 145, 121);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
- 
-
- 
 }
-.sectionthreehomeheading p{
+.sectionthreehomeheading p {
   font-size: 20px;
   color: black;
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   text-align-last: left;
   max-width: 400px;
   margin-top: 30px;
- 
- 
- 
 }
-.sectionthreehomeheading button{
- display: flex;
+.sectionthreehomeheading button {
+  display: flex;
   width: auto;
   height: auto;
   background-color: rgb(235, 83, 83);
   color: white;
   border-radius: 20px;
   border: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   margin-top: 30px;
   padding: 10px;
- 
-  
 }
-.sectionthreehome{
+.sectionthreehome {
   display: flex;
   width: 100%;
   max-height: max-content;
   background-color: #e4ecf5;
 }
-.sectionfourhomeheading{
-  
-  
-  padding:   0 20px 0 120px;
-  
- 
-  
-  
+.sectionfourhomeheading {
+  padding: 0 20px 0 120px;
 }
 
-.sectionfourhomeheading h1{
- 
+.sectionfourhomeheading h1 {
   color: rgb(40, 61, 40);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
-  
- 
 }
-.sectionfourhomeheading h3{
- 
+.sectionfourhomeheading h3 {
   color: rgb(142, 145, 121);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
-
- 
 }
-.sectionfourhomeheading p{
+.sectionfourhomeheading p {
   font-size: 20px;
   color: black;
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   text-align-last: left;
   max-width: 400px;
   margin-top: 30px;
- 
- 
- 
 }
-.sectionfourhomeheading button{
- display: flex;
+.sectionfourhomeheading button {
+  display: flex;
   width: auto;
   height: auto;
   background-color: rgb(235, 83, 83);
   color: white;
   border-radius: 20px;
   border: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   margin-top: 30px;
   padding: 10px;
- 
-  
 }
-.sectionfourhome{
+.sectionfourhome {
   display: flex;
   width: 100%;
   max-height: max-content;
- 
 }
-.sectionfivehome{
+.sectionfivehome {
   display: flex;
   width: 100%;
-   max-height: max-content;
-  
-  
- 
+  max-height: max-content;
 }
-.sectionfivehomeinside{
+.sectionfivehomeinside {
   display: flex;
   width: 100%;
   height: fit-content;
@@ -3689,571 +3510,462 @@ a {
 
   flex-wrap: wrap;
   justify-content: center;
-
 }
-.sectionfivehomeheading{
+.sectionfivehomeheading {
   display: flex;
   width: 100%;
   height: max-content;
-  
+
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 30px;
-  
-   
-  
 }
-.sectionfivehomeheading h1{
+.sectionfivehomeheading h1 {
   font-size: 50px;
   color: black;
- 
-  font-weight: bold;
-  font-family: 'DM Serif Display', serif;
-  display: inline;
- 
- 
- 
 
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
+  display: inline;
 }
-.sectionfivehomeheading p{
+.sectionfivehomeheading p {
   font-size: 50px;
   color: rgb(228, 69, 69);
- 
+
   font-weight: bold;
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
   display: inline;
-
- 
-
 }
-.sectionfivehomebrandsdiv{
+.sectionfivehomebrandsdiv {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
 }
-.sectionfivehomebrandsdivinside{
+.sectionfivehomebrandsdivinside {
   display: flex;
   height: max-content;
- max-width: 70%;
- 
+  max-width: 70%;
 
- margin: 100px;
- flex-wrap: wrap;
-
-
-
+  margin: 100px;
+  flex-wrap: wrap;
 }
-.sectionfivehomebrandsdivinside>*{
+.sectionfivehomebrandsdivinside > * {
   flex: 1 1 150px;
- 
+
   padding: 10px;
-
- 
-
 }
-.sectionfiveextradiv{
+.sectionfiveextradiv {
   opacity: 0;
 }
-.sectionfivehomebrandcontainer{
+.sectionfivehomebrandcontainer {
   max-width: 250px;
   max-height: 250px;
- 
-
 }
-.sectionfivehomebrandsdivinside img{
+.sectionfivehomebrandsdivinside img {
   width: 100%;
   height: 100%;
   object-fit: contain;
- 
 }
 
-.sectionsixhome{
+.sectionsixhome {
   display: flex;
   width: 100%;
-   min-height: 600px;
+  min-height: 600px;
   padding: 10px;
   background-color: #e4ecf5;
 }
-.sectionsixhomeinside{
+.sectionsixhomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
-  
 }
-.sectionsixhomeinside>*{
+.sectionsixhomeinside > * {
   flex: 1 1 400px;
- 
 }
-.sectionsixhomegifcontainer{
+.sectionsixhomegifcontainer {
   max-width: 800px;
   max-height: 800px;
- 
- 
+
   padding-top: 50px;
-  
 }
-.sectionsixhomegifcontainer img{
+.sectionsixhomegifcontainer img {
   object-fit: contain;
   max-width: 800px;
   max-height: 800px;
-  
 }
-.sectionsixhomeheading{
+.sectionsixhomeheading {
   padding-top: 40px;
- 
-  
-
 }
-.sectionsixhomeheadinganimation{
+.sectionsixhomeheadinganimation {
   opacity: 1;
- 
 }
-.sectionsixhomeheading h1{
- 
+.sectionsixhomeheading h1 {
   color: black;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   max-width: 600px;
   margin-top: 30px;
   padding-left: 5px;
- 
 }
-.sectionsixhomeheading h2{
- 
-  color: rgb(235, 83, 83);;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
-  
+.sectionsixhomeheading h2 {
+  color: rgb(235, 83, 83);
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
+
   display: inline;
   max-width: 600px;
   font-size: 40px;
-
 }
-.sectionsixhomeheading ul li{
- font-size: 20px;
-  
+.sectionsixhomeheading ul li {
+  font-size: 20px;
 }
-.sectionsixhomeheading ul li h4{
+.sectionsixhomeheading ul li h4 {
   font-size: 25px;
   color: rgb(235, 83, 83);
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   text-align-last: left;
-   
- 
- 
- 
 }
 
-.sectionsixhomeheading ul  p{
+.sectionsixhomeheading ul p {
   font-size: 20px;
   color: black;
-  font-weight:  400;
-  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
- 
 }
-.sectionsevenhome{
+.sectionsevenhome {
   display: flex;
   width: 100%;
-   min-height: 400px;
+  min-height: 400px;
   padding: 10px;
- 
-
 }
-.sectionsevenhomeinside{
+.sectionsevenhomeinside {
   display: flex;
   margin-left: 150px;
- 
-   width: 100%;
+
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
- 
+
   padding-bottom: 80px;
-
-
- 
- 
- 
 }
-.sectionsevenhomeanimation{
-  
+.sectionsevenhomeanimation {
   opacity: 1;
- 
 }
-.sectionsevenhomeheading{
+.sectionsevenhomeheading {
   display: flex;
   justify-content: center;
   width: 100%;
-  
+
   margin-bottom: 30px;
 }
-.sectionsevenhomeheading h1{
- 
+.sectionsevenhomeheading h1 {
   color: black;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
- 
 
   padding-left: 5px;
   font-size: 50px;
- 
 }
-.sectionsevenhomeheading h2{
- 
-  color: rgb(235, 83, 83);;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
-  
-  display: inline;
-  
-  font-size: 50px;
- 
-  
+.sectionsevenhomeheading h2 {
+  color: rgb(235, 83, 83);
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
 
+  display: inline;
+
+  font-size: 50px;
 }
-.sectionsevenhomedata{
+.sectionsevenhomedata {
   display: flex;
   width: 100%;
   height: max-content;
- 
+
   flex-wrap: wrap;
   margin-top: 20px;
 }
-.sectionsevenhomedata>*{
-  flex:  1 1 300px;
- 
- 
+.sectionsevenhomedata > * {
+  flex: 1 1 300px;
 }
-.sectionsevenhomedatainside{
+.sectionsevenhomedatainside {
   display: flex;
   width: 100%;
- 
+
   height: 100%;
   flex-wrap: wrap;
- 
 }
-.sectionsevenhomedatainside h2{
+.sectionsevenhomedatainside h2 {
   color: rgb(142, 145, 121);
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   width: 100%;
- 
 
   max-width: 400px;
   padding-left: 5px;
- 
- 
 }
-.sectionsevenhomedatainside h3{
+.sectionsevenhomedatainside h3 {
   color: black;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   text-align: justify;
   text-align-last: left;
   width: 100%;
- 
+
   border-bottom: 1px solid rgb(221, 215, 215);
   max-width: 90%;
   margin: 0 0 10px 5px;
-   padding: 0  0 10px 5px;
-   font-size: 40px;
-
- 
- 
- 
+  padding: 0 0 10px 5px;
+  font-size: 40px;
 }
-.sectionsevenhomedatainside p{
+.sectionsevenhomedatainside p {
   font-size: 20px;
   color: black;
 
-  font-family: 'Kanit', sans-serif;
-  text-align: justify; 
+  font-family: "Kanit", sans-serif;
+  text-align: justify;
   padding-left: 5px;
 }
-.sectionsevenhomedatainside h1{
-  color: rgb(235, 83, 83);;
-  font-weight:  bold;
-  font-family: 'DM Serif Display', serif;
+.sectionsevenhomedatainside h1 {
+  color: rgb(235, 83, 83);
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
   margin-left: 5px;
   font-size: 120px;
-  
- 
 }
-.footersectiondiv{
+.footersectiondiv {
   display: flex;
   width: 100%;
-  height:  100%;
+  height: 100%;
   flex-wrap: wrap;
   border: 1px solid red;
 }
 
-
-
-@media(max-width: 700px){
-
-  .sectionsevenhomeinside{
+@media (max-width: 700px) {
+  .sectionsevenhomeinside {
     margin-left: 0px;
   }
-  .sectiononehomeinside{
+  .sectiononehomeinside {
     margin-left: 0px;
   }
-  .sectiontwohomeinside{
+  .sectiontwohomeinside {
     margin-left: 0px;
   }
-  .sectionthreehomeinside{
+  .sectionthreehomeinside {
     margin-left: 0px;
   }
-  .sectionfourhomeinside{
+  .sectionfourhomeinside {
     margin-left: 0px;
   }
-  .sectionfivehomeinside{
+  .sectionfivehomeinside {
     margin-left: 0px;
   }
-  .sectionsixhomeinside{
+  .sectionsixhomeinside {
     margin-left: 0px;
   }
-  .sectionsevenhomeinside{
+  .sectionsevenhomeinside {
     margin-left: 0px;
   }
-  .sectiononehomegifcontainer{
-    width: 100%;
-     height: auto;
-  }
-  .sectiononehomegifcontainer img{
-    width: 100%;
-     height: 100%;
-  }
-  .sectiontwohomegifcontainer{
-    width: 100%;
-     height: auto;
-  }
-  .sectiontwohomegifcontainer img{
-     width: 100%;
-     height: 100%;
-  }
-  .sectiontwohomeheading h1{
-   margin-left: 0px;
-  
-   
-
-  }
-  .sectiontwohomeheading h3{
-    margin-left: 0px;
-    
- 
-   }
- 
-   .sectiontwohomeheading p{
-    margin-left: 0px;
-   
- 
-   }
- 
-   .sectiontwohomeheading button{
-    margin-left: 0px;
-    
- 
-   }
-   .sectionthreehomegifcontainer{
+  .sectiononehomegifcontainer {
     width: 100%;
     height: auto;
-   }
-   .sectionthreehomegifcontainer img{
+  }
+  .sectiononehomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
-   .sectionfourhomegifcontainer{
+  }
+  .sectiontwohomegifcontainer {
     width: 100%;
     height: auto;
-   }
-   .sectionfourhomegifcontainer img{
+  }
+  .sectiontwohomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
-   .sectionfourhomeheading{
+  }
+  .sectiontwohomeheading h1 {
+    margin-left: 0px;
+  }
+  .sectiontwohomeheading h3 {
+    margin-left: 0px;
+  }
+
+  .sectiontwohomeheading p {
+    margin-left: 0px;
+  }
+
+  .sectiontwohomeheading button {
+    margin-left: 0px;
+  }
+  .sectionthreehomegifcontainer {
+    width: 100%;
+    height: auto;
+  }
+  .sectionthreehomegifcontainer img {
+    width: 100%;
+    height: 100%;
+  }
+  .sectionfourhomegifcontainer {
+    width: 100%;
+    height: auto;
+  }
+  .sectionfourhomegifcontainer img {
+    width: 100%;
+    height: 100%;
+  }
+  .sectionfourhomeheading {
     padding-left: 0px;
-   }
-   .sectionsixhomeinside{
+  }
+  .sectionsixhomeinside {
     margin-left: 0px;
-    
-   }
-   .sectionsixhomegifcontainer{
+  }
+  .sectionsixhomegifcontainer {
     width: 100%;
     height: auto;
     padding-left: 0px;
     padding-top: 0px;
-   }
-   .sectionsixhomegifcontainer img{
+  }
+  .sectionsixhomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
- 
- 
- 
+  }
 
-  .mainnavbarcontainermobile{
+  .mainnavbarcontainermobile {
     opacity: 1;
-  } 
-  .mainnavbarcontainer{
+  }
+  .mainnavbarcontainer {
     display: none;
   }
 
-  .mainnavbarlogincontainerinside a{
+  .mainnavbarlogincontainerinside a {
     font-size: 15px;
     font-weight: bold;
     color: black;
     margin-right: 10px;
     margin-top: 5px;
-    font-family: 'Kanit', sans-serif;
+    font-family: "Kanit", sans-serif;
     min-width: 80px;
-   
-   
   }
-  .mainnavbarlogincontainerinside button{
+  .mainnavbarlogincontainerinside button {
     width: 100px;
     height: 30px;
     background-color: rgb(235, 83, 83);
     color: white;
     border-radius: 20px;
     border: none;
-    font-family: 'Kanit', sans-serif;
+    font-family: "Kanit", sans-serif;
     margin-right: 10px;
-  
- }
- .mainnavbarlogoinsidediv img{
-  max-width: 160px;
-  max-height: 50px;
-  object-fit: contain;
-  padding: 5px;
-
+  }
+  .mainnavbarlogoinsidediv img {
+    max-width: 160px;
+    max-height: 50px;
+    object-fit: contain;
+    padding: 5px;
+  }
 }
 
-}
-
-
-@media screen and (min-width: 1400px ) and (max-width: 1600px) {
- 
-  .sectionsevenhomeinside{
+@media screen and (min-width: 1400px) and (max-width: 1600px) {
+  .sectionsevenhomeinside {
     margin-left: 20px;
   }
-  .sectiononehomeinside{
+  .sectiononehomeinside {
     margin-left: 20px;
   }
-  .sectiontwohomeinside{
+  .sectiontwohomeinside {
     margin-left: 20px;
   }
-  .sectionthreehomeinside{
+  .sectionthreehomeinside {
     margin-left: 20px;
   }
-  .sectionfourhomeinside{
+  .sectionfourhomeinside {
     margin-left: 20px;
   }
-  .sectionfivehomeinside{
+  .sectionfivehomeinside {
     margin-left: 20px;
   }
-  .sectionsixhomeinside{
+  .sectionsixhomeinside {
     margin-left: 20px;
   }
-  .sectionsevenhomeinside{
+  .sectionsevenhomeinside {
     margin-left: 20px;
   }
-  .sectiononehomegifcontainer{
-    width: 100%;
-     height: auto;
-  }
-  .sectiononehomegifcontainer img{
-    width: 100%;
-     height: 100%;
-  }
-  .sectiontwohomegifcontainer{
-    width: 100%;
-     height: auto;
-  }
-  .sectiontwohomegifcontainer img{
-     width: 100%;
-     height: 100%;
-  }
-  .sectiontwohomeheading{
-    padding-left: 30px;
-  }
-  .sectionfourhomeheading{
-    padding-left: 30px;
-    
-  }
-  .sectiontwohomeheading h1{
-   margin-left: 0px;
-  
-   
-
-  }
-  .sectiontwohomeheading h3{
-    margin-left: 0px;
-    
- 
-   }
- 
-   .sectiontwohomeheading p{
-    margin-left: 0px;
-   
- 
-   }
- 
-   .sectiontwohomeheading button{
-    margin-left: 0px;
-    
- 
-   }
-   .sectionthreehomegifcontainer{
+  .sectiononehomegifcontainer {
     width: 100%;
     height: auto;
-   }
-   .sectionthreehomegifcontainer img{
+  }
+  .sectiononehomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
-   .sectionfourhomegifcontainer{
+  }
+  .sectiontwohomegifcontainer {
     width: 100%;
     height: auto;
-   }
-   .sectionfourhomegifcontainer img{
+  }
+  .sectiontwohomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
- 
-   .sectionsixhomeinside{
+  }
+  .sectiontwohomeheading {
+    padding-left: 30px;
+  }
+  .sectionfourhomeheading {
+    padding-left: 30px;
+  }
+  .sectiontwohomeheading h1 {
     margin-left: 0px;
-    
-   }
-   .sectionsixhomegifcontainer{
+  }
+  .sectiontwohomeheading h3 {
+    margin-left: 0px;
+  }
+
+  .sectiontwohomeheading p {
+    margin-left: 0px;
+  }
+
+  .sectiontwohomeheading button {
+    margin-left: 0px;
+  }
+  .sectionthreehomegifcontainer {
+    width: 100%;
+    height: auto;
+  }
+  .sectionthreehomegifcontainer img {
+    width: 100%;
+    height: 100%;
+  }
+  .sectionfourhomegifcontainer {
+    width: 100%;
+    height: auto;
+  }
+  .sectionfourhomegifcontainer img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sectionsixhomeinside {
+    margin-left: 0px;
+  }
+  .sectionsixhomegifcontainer {
     width: 100%;
     height: auto;
     padding-left: 0px;
     padding-top: 0px;
-   }
-   .sectionsixhomegifcontainer img{
+  }
+  .sectionsixhomegifcontainer img {
     width: 100%;
     height: 100%;
-   }
- 
- 
- 
-
-
-
+  }
 }
-
 
 .brands-div {
   width: 100%;
@@ -6076,7 +5788,7 @@ form .page .btns button.next {
   margin-left: -20px;
 }
 .aboutdiv p {
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   text-align: justify;
   font-size: 20px;
   font-weight: bold;
@@ -6092,8 +5804,8 @@ form .page .btns button.next {
   margin-left: 400px;
   text-decoration: underline;
 }
-.aboutheader h4{
-  font-family: 'Kanit', sans-serif;
+.aboutheader h4 {
+  font-family: "Kanit", sans-serif;
 }
 
 .imagebtndisplay1 {
@@ -8766,7 +8478,7 @@ body.active-modal {
 .modelviewer {
   display: none;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   max-height: 550px;
   max-width: 600px;
   background-color: #ffffff;
@@ -10015,10 +9727,6 @@ body.active-modal {
   height: 600px;
 }
 
-model-viewer {
-  overflow-x: hidden;
-}
-
 #ar-button {
   background-image: url(https://cdn.glitch.global/66a9aadc-16d1-4ae0-b613-4d181051d3c1/ar_icon.png?v=1680846317848);
   background-repeat: no-repeat;
@@ -10624,7 +10332,6 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   object-fit: contain;
 }
 
-
 .footer__container {
   max-width: 116rem;
   margin: auto;
@@ -10942,9 +10649,6 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   display: inline-block;
 }
 
-model-viewer {
-  overflow-x: hidden;
-}
 .modalcontainerar {
   display: flex;
   width: 400px;
@@ -11919,10 +11623,12 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 model-viewer {
-  background-color: #eee;
+  background-color: lightblue;
   overflow-x: hidden;
+  overflow-y: hidden;
+
   width: 100%;
-  height: 500px;
+  height: 85vh;
 }
 
 #ar-button {
@@ -12050,7 +11756,6 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   background-color: #2980b9;
 }
 
-
 @media only screen and (max-width: 800px) {
   .dim {
     font-size: 3vw;
@@ -12077,7 +11782,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 .hero_container {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 5rem;
   display: flex;
   overflow: hidden;
@@ -12189,7 +11894,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   border-radius: 0.375rem;
   width: 100%;
   height: 130px;
-    transition-duration: 300ms;
+  transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hori_scroll_container_child1_image_brands {
@@ -12197,7 +11902,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   border-radius: 0.375rem;
   width: 100%;
   height: 130px;
-      transition-duration: 300ms;
+  transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hori_scroll_container_child1_image_brands:hover {
@@ -12211,7 +11916,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   line-height: 1.5rem;
   text-align: center;
   font-family: "DM Sans", sans-serif;
-  margin-top:0.5rem;
+  margin-top: 0.5rem;
 }
 .rooms_category_container {
   display: flex;
@@ -12237,7 +11942,7 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 .rooms_category_container_grid_child1 {
   position: relative;
   cursor: pointer;
-padding:1rem;
+  padding: 1rem;
 }
 .rooms_brands_container_grid_child1 {
   display: flex;
@@ -12349,7 +12054,7 @@ padding:1rem;
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  background-color:black;
+  background-color: black;
 }
 .product_detail_ar_container_grid_child1_text2_child {
   font-size: 1rem;
@@ -12376,8 +12081,7 @@ padding:1rem;
   .hori_scroll_container_child1 {
     width: 400px;
     height: 250px;
-      padding: 1rem;
-
+    padding: 1rem;
   }
   .hori_scroll_container_child1_image {
     height: 250px;
@@ -13032,12 +12736,12 @@ a {
   .rooms-container .main .left-panel {
     display: none;
   }
-.product_detail_ar_container_grid_child1_viewinroom {
-display:none;
- 
-}
+  .product_detail_ar_container_grid_child1_viewinroom {
+    display: none;
+  }
   .hori_scroll_container_visualizer {
     display: flex;
+    flex-direction: column;
     position: fixed; /* Change 'absolute' to 'fixed' */
     left: 0;
     bottom: 0; /* Change the 'bottom' value to 0 */
@@ -13046,7 +12750,39 @@ display:none;
     align-items: center;
     background-color: #bab7af;
   }
+  .view_in_ar_mesh_hori {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 0.4rem;
+  }
+  .view_in_ar_mesh_hori div {
+    margin-top: 0.5rem;
+    background-color: lightblue;
+    flex: 1; /* Add this line to make buttons have equal width */
+    border-radius: 0.3rem;
+  }
+  .view_in_ar_mesh_hori button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: "DM Sans", sans-serif;
+    padding: 0.2rem;
+  }
+  model-viewer {
+    background-color: lightblue;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
+    width: 100%;
+    height: 80vh;
+  }
+
+  .view_in_ar_mesh_hori .active {
+    border: 2px solid blue; /* You can style the active state as you like */
+    padding-bottom: 2px;
+  }
   .hori_scroll_left_arrow_visualizer {
     display: none;
     cursor: pointer;
@@ -13433,6 +13169,16 @@ display:none;
   justify-content: center;
   overflow: hidden;
 }
+.rooms-container .main .main-panel_upholstry {
+  width: 100%;
+  height: 100%;
+  /* position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; */
+}
 .rooms-container .main .main-panel .image {
   position: absolute;
   left: 0;
@@ -13741,7 +13487,7 @@ small {
   border-radius: 5px;
   transition: background-color 0.3s;
   font-family: "DM Sans", sans-serif;
-  text-align:center;
+  text-align: center;
 }
 
 .btn-link:hover {
@@ -13914,7 +13660,7 @@ small {
   padding: 10px;
   border-radius: 5px;
   color: black;
-  
+
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
 }
@@ -14037,20 +13783,23 @@ small {
   align-items: center;
 }
 .view_in_ar_mesh {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
 .view_in_ar_mesh div {
   margin-top: 0.5rem;
   background-color: lightblue;
+  flex: 1; /* Add this line to make buttons have equal width */
+  border-radius: 0.3rem;
 }
 .view_in_ar_mesh button {
   background: transparent;
   border: none;
   cursor: pointer;
   font-family: "DM Sans", sans-serif;
-  padding: 0.2rem;
+  padding: 0.5rem;
+  font-weight: 800;
 }
 
 .view_in_ar_mesh .active {
