@@ -593,8 +593,7 @@ function UpholstryItem() {
                   ref={modelViewerRef}
                   animation-name="Dance"
                   ar-modes="webxr scene-viewer quick-look"
-                  shadow-intensity="1"
-                  xr-environment>
+                  shadow-intensity="1">
                   <div className="view_in_ar_container">
                     <a href="#open-modal" className="btn-link">
                       <BsBox className="icon" /> View In Your Room
