@@ -108,6 +108,7 @@ import UpholstryMobile from "./components/UpholstryMobile.js";
 import VisualizerMobile from "./components/VisualizerMobile.js";
 import Visualizer2Dmobile from "./components/Visualizer2Dmobile.js";
 import Homepagenew from "./components/Homepagenew.js";
+import UpholstryItem from "./components/UpholstryItem.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -206,6 +207,11 @@ class App extends Component {
           <Route path="/arview/category/:id" component={CategoryAR} />
           <Route path="/arview/upholstry/:id" component={Upholstry} />
           <Route
+            path="/arview/upholstry/:id/:category"
+            component={UpholstryItem}
+          />
+
+          <Route
             path="/arview/upholstry_mobile/:id"
             component={UpholstryMobile}
           />
@@ -230,7 +236,6 @@ class App extends Component {
 
           {/* <Route path="/:id" component={JobDesc} /> */}
           <Route path="/:id/fill" component={Form} />
-
         </Router>
       </div>
     );

@@ -387,6 +387,23 @@ function Upholstry() {
   const onChange = (item) => {
     setSelect(item);
   };
+  //  useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (
+  //       scrollContainerRef.current &&
+  //       scrollContainerRef.current.scrollTop +
+  //         scrollContainerRef.current.clientHeight >=
+  //         scrollContainerRef.current.scrollHeight
+  //     ) {
+       
+  //     }
+  //   };
+
+  //   scrollContainerRef.current.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     scrollContainerRef.current.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
   return (
     <>
       <Navbarhome />

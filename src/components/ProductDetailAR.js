@@ -130,7 +130,8 @@ function ProductDetailAR() {
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
                   {isGlbKeyPresent ? (
-                    <model-viewer
+                                  <div className="App">
+                                     <model-viewer
                       ref={modelViewerRef}
                       id="change-speed-demo"
                       camera-controls
@@ -151,6 +152,8 @@ function ProductDetailAR() {
                         </div>
                       )}
                     </model-viewer>
+</div>
+                   
                   ) : (
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}
