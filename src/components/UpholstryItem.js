@@ -285,7 +285,7 @@ function UpholstryItem() {
 
     console.log(selectedTexture);
 
-    if (modelViewerTexture1.model) {
+    if (modelViewerTexture1?.model) {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, index]);
@@ -415,23 +415,7 @@ function UpholstryItem() {
   const onChange = (item) => {
     setSelect(item);
   };
-  //  useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (
-  //       scrollContainerRef.current &&
-  //       scrollContainerRef.current.scrollTop +
-  //         scrollContainerRef.current.clientHeight >=
-  //         scrollContainerRef.current.scrollHeight
-  //     ) {
 
-  //     }
-  //   };
-
-  //   scrollContainerRef.current.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     scrollContainerRef.current.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
   return (
     <>
       <Navbarhome />
@@ -582,58 +566,60 @@ function UpholstryItem() {
             </div>
             <div className="main-panel_upholstry">
               <div className="App">
-                <model-viewer
-                  id="helmet"
-                  camera-controls
-                  touch-action="pan-y"
-                  src={selectedItem?.modeldata}
-                  ar
-                  ar-scale="fixed"
-                  alt="A 3D model of a helmet"
-                  ref={modelViewerRef}
-                  animation-name="Dance"
-                  ar-modes="webxr scene-viewer quick-look"
-                  shadow-intensity="1">
-                  <div className="view_in_ar_container">
-                    <a href="#open-modal" className="btn-link">
-                      <BsBox className="icon" /> View In Your Room
-                    </a>
-                  </div>
-                  <div id="open-modal" class="modal-window">
-                    <div>
-                      <a href="#" title="Close" class="modal-close">
-                        <AiOutlineClose />
+                {selectedItem ? (
+                  <model-viewer
+                    id="helmet"
+                    camera-controls
+                    touch-action="pan-y"
+                    src={selectedItem?.modeldata}
+                    ar
+                    ar-scale="fixed"
+                    alt="A 3D model of a helmet"
+                    ref={modelViewerRef}
+                    animation-name="Dance"
+                    ar-modes="webxr scene-viewer quick-look"
+                    shadow-intensity="1">
+                    <div className="view_in_ar_container">
+                      <a href="#open-modal" className="btn-link">
+                        <BsBox className="icon" /> View In Your Room
                       </a>
-                      <QRCode
-                        value={`arnxt.com/arView/upholstry/${param.id}`}
-                      />
-                      <p className="semibold_text">
-                        Scan the QR code with your mobile device to view the
-                        product in your space.
-                      </p>
                     </div>
-                  </div>
-                  <div class="modalscan">
-                    <div class="modal-wrapscan">
-                      <span
-                        className="closemodalscan"
-                        onClick={handlemodalclose}>
-                        <FaTimes style={{ color: "red", fontSize: "20px" }} />
-                      </span>
-                      <span>
-                        <div></div>
-
+                    <div id="open-modal" class="modal-window">
+                      <div>
+                        <a href="#" title="Close" class="modal-close">
+                          <AiOutlineClose />
+                        </a>
                         <QRCode
-                          value={`arnxt.com/arview/productdetail/${param.id}`}
+                          value={`arnxt.com/arView/upholstry/${param.id}`}
                         />
-                      </span>
-                      <p className="dataupload">
-                        Scan the QR code with your mobile device to view the
-                        product in your space.
-                      </p>
+                        <p className="semibold_text">
+                          Scan the QR code with your mobile device to view the
+                          product in your space.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </model-viewer>
+                    <div class="modalscan">
+                      <div class="modal-wrapscan">
+                        <span
+                          className="closemodalscan"
+                          onClick={handlemodalclose}>
+                          <FaTimes style={{ color: "red", fontSize: "20px" }} />
+                        </span>
+                        <span>
+                          <div></div>
+
+                          <QRCode
+                            value={`arnxt.com/arview/productdetail/${param.id}`}
+                          />
+                        </span>
+                        <p className="dataupload">
+                          Scan the QR code with your mobile device to view the
+                          product in your space.
+                        </p>
+                      </div>
+                    </div>
+                  </model-viewer>
+                ) : null}
               </div>
             </div>
           </div>
