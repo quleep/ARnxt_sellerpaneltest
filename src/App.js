@@ -205,11 +205,8 @@ class App extends Component {
           <Route path="/arview/productdetail/:id" component={ProductDetailAR} />
           <Route path="/arview/brands/:id" component={RoomBrands} />
           <Route path="/arview/category/:id" component={CategoryAR} />
-          <Route path="/arview/upholstry/:id" component={Upholstry} />
-          <Route
-            path="/arview/upholstry/:id/:category"
-            component={UpholstryItem}
-          />
+          <Route path="/arview/upholstry_item/:id" component={Upholstry} />
+          <Route path="/arview/upholstry/:id" component={UpholstryItem} />
 
           <Route
             path="/arview/upholstry_mobile/:id"

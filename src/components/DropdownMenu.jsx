@@ -36,24 +36,27 @@ function DropdownMenu() {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
       );
-     const orderedCategories = [
-      "Furniture",
-      "Walls",
-      "Floors",
-      "Furnishing",
-      "Decorative",
-      "Upholstery",
-      "Sanitary",
-      "Electronics",
-      "Electrical",
-      "Bathroom",
-    ];
+      const orderedCategories = [
+        "Furniture",
+        "Walls",
+        "Floors",
+        "Furnishing",
+        "Decorative",
+        "Upholstery",
+        "Sanitary",
+        "Electronics",
+        "Electrical",
+        "Bathroom",
+      ];
 
-    const sortedData = response.data.sort((a, b) => {
-      return orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category);
-    });
+      const sortedData = response.data.sort((a, b) => {
+        return (
+          orderedCategories.indexOf(a.category) -
+          orderedCategories.indexOf(b.category)
+        );
+      });
 
-    setCategoriesDetails(sortedData);
+      setCategoriesDetails(sortedData);
     } catch (error) {
       console.error("Error in fetching data: ", error);
     }
@@ -128,7 +131,7 @@ function DropdownMenu() {
         </div>
         <div></div>
       </div>
-      {nav ? (
+      {nav && subCategory !== "Walls" && subCategory !== "Upholstery" ? (
         <div
           className="subCategory"
           onMouseLeave={() => setNav(false)}

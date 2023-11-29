@@ -130,30 +130,29 @@ function ProductDetailAR() {
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
                   {isGlbKeyPresent ? (
-                                  <div className="App">
-                                     <model-viewer
-                      ref={modelViewerRef}
-                      id="change-speed-demo"
-                      camera-controls
-                      touch-action="pan-y"
-                      animation-name="Dance"
-                      ar
-                      ar-scale="fixed"
-                      ar-modes="webxr scene-viewer quick-look"
-                      shadow-intensity="1"
-                      src={glbFile}
-                      ios-src={usdzFile}
-                      alt="A 3D model of a duck">
-                      {hasAnimation && ( // Conditionally render controls if hasAnimation is true
-                        <div id="controls">
-                          <button onClick={handleToggleAnimation}>
-                            {isPlaying ? <FaPause /> : <FaPlay />}
-                          </button>
-                        </div>
-                      )}
-                    </model-viewer>
-</div>
-                   
+                    <div className="App">
+                      <model-viewer
+                        ref={modelViewerRef}
+                        id="change-speed-demo"
+                        camera-controls
+                        touch-action="pan-y"
+                        animation-name="Dance"
+                        ar
+                        ar-scale="fixed"
+                        ar-modes="webxr scene-viewer quick-look"
+                        shadow-intensity="1"
+                        src={glbFile}
+                        ios-src={usdzFile}
+                        alt="A 3D model of a duck">
+                        {hasAnimation && ( // Conditionally render controls if hasAnimation is true
+                          <div id="controls">
+                            <button onClick={handleToggleAnimation}>
+                              {isPlaying ? <FaPause /> : <FaPlay />}
+                            </button>
+                          </div>
+                        )}
+                      </model-viewer>
+                    </div>
                   ) : (
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}

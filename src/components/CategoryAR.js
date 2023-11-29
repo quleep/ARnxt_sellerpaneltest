@@ -121,7 +121,7 @@ function CategoryAR() {
         state: { itemname: param.id },
       });
     } else if (param.id === "Upholstery") {
-      history.push(`/arView/upholstry/${itemname}`, {
+      history.push(`/arView/upholstry_item/${itemname}`, {
         state: { itemname: param.id },
       });
     } else {
