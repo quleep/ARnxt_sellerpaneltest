@@ -618,13 +618,22 @@ function UpholstryItem() {
                         </p>
                       </div>
                     </div>
-                  </model-viewer>
-                ) : null}
-              </div>
-            </div>
-          </div>
-          <div className="hori_scroll_container_visualizer">
-            <div className="view_in_ar_mesh_hori">
+                    <div className="view_in_ar_wallpapers">
+                      <div id="slider1" className="hori_scroll_container_child">
+                        {products.map((item) => (
+                          <div
+                            className="hori_scroll_container_wallpapers"
+                            onClick={() => changeWallpaper(item.imageurl[0])}>
+                            <img
+                              src={item.imageurl[0]} // Assuming imageurl is an array inside the data object
+                              alt="/"
+                              className="hori_scroll_container_child1_image1"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                     <div className="view_in_ar_mesh_mobile">
               <div
                 onClick={handleBase}
                 className={activeTab === 0 ? "active" : ""}>
@@ -641,24 +650,12 @@ function UpholstryItem() {
                 <button>Arm Rest</button>
               </div>
             </div>
-            <div
-              id="slider"
-              className="hori_scroll_container_child_visualizer"
-              ref={scrollContainerRef}>
-              {products?.map((item) => (
-                <div
-                  key={item.id}
-                  className="hori_scroll_container_child1_visualizer"
-                  onClick={() => changeWallpaper(item.imageurl[0])}>
-                  <img
-                    src={item.imageurl[0]}
-                    alt="/"
-                    className="hori_scroll_container_child1_image_visualizer"
-                  />
-                </div>
-              ))}
+                  </model-viewer>
+                ) : null}
+              </div>
             </div>
           </div>
+        
         </div>
       </div>
     </>

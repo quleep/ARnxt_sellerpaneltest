@@ -12154,6 +12154,13 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   .hori_scroll_left_arrow {
     display: inline-block;
   }
+  .view_in_ar_wallpapers{
+  display:none;
+}
+.view_in_ar_mesh_mobile{
+    display:none;
+
+}
   .product_detail_ar_container {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -13782,6 +13789,27 @@ small {
   justify-content: center;
   align-items: center;
 }
+.view_in_ar_mesh_mobile {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+.view_in_ar_mesh_mobile div {
+  margin-top: 0.5rem;
+  background-color: white;
+}
+.view_in_ar_mesh_mobile button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  padding: 0.2rem;
+}
+
+.view_in_ar_mesh_mobile .active {
+  border: 2px solid blue; /* You can style the active state as you like */
+  padding-bottom: 2px;
+}
 .view_in_ar_mesh {
   display: flex;
   flex-direction: row;
@@ -13814,7 +13842,7 @@ small {
   scroll-behavior: smooth;
   position: absolute;
   left: 1rem;
-  top: 1rem;
+  top: 2rem;
   z-index: 2;
 }
 .view_in_ar_wallpapers {
