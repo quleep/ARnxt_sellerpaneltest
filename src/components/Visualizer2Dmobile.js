@@ -15,6 +15,9 @@ import { useMyContext } from "../Context/store";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
+
 function Visualizer2Dmobile() {
   const {
     image,
@@ -706,27 +709,22 @@ function Visualizer2Dmobile() {
           <div className="main-panel">
             <div
               ref={ImageRef}
-              className={`image ${isHovered ? "zoomed" : ""}`}
-              onMouseMove={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              style={
-                isHovered
-                  ? {
-                      transform: "scale(2)",
-                      cursor: "crosshair",
-                      transformOrigin: `${cursorPosition.x * 100}% ${
-                        cursorPosition.y * 100
-                      }%`,
-                    }
-                  : {}
-              }>
-              <img
-                src={
-                  segmentimg ? `data:image/png;base64, ${processimg}` : image
-                }
+           >
+              {/* <img
+                // src={
+                //   segmentimg ? `data:image/png;base64, ${processimg}` : image
+                // }
+              src="https://pbs.twimg.com/media/GAH377aXIAAYmcK?format=jpg&name=small"
                 alt="room"
                 className="room"
-              />
+              /> */}
+              <InnerImageZoom  zoomScale={0.3}           src={
+                   segmentimg ? `data:image/png;base64, ${processimg}` : image
+                 }
+ zoomSrc={
+                   segmentimg ? `data:image/png;base64, ${processimg}` : image
+                 } />
+
             </div>
 
             {isLoading ? (

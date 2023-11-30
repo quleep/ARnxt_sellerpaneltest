@@ -10054,6 +10054,11 @@
   "resolved" "https://registry.npmjs.org/react-img-zoom/-/react-img-zoom-0.1.0.tgz"
   "version" "0.1.0"
 
+"react-inner-image-zoom@^3.0.2":
+  "integrity" "sha512-ICjyz0wdKmLufuQkUyg4iyP0yIF2elDeHjY1+S1pOKPggrW0g9V2SCmOSA39405ZX8GVVaxadmUYWwz3OF4V5A=="
+  "resolved" "https://registry.npmjs.org/react-inner-image-zoom/-/react-inner-image-zoom-3.0.2.tgz"
+  "version" "3.0.2"
+
 "react-is@^16.12.0", "react-is@^16.13.1", "react-is@^16.3.2", "react-is@^16.6.0", "react-is@^16.7.0", "react-is@^16.8.4":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -10071,6 +10076,11 @@
   dependencies:
     "babel-runtime" "^6.26.0"
     "prop-types" "^15.7.2"
+
+"react-medium-image-zoom@^5.1.8":
+  "integrity" "sha512-2X4oLlEopIWg7qalR1Qpy4gPrU9CTF0DvJ7HNu5u/NwdyQWupEsje2vuMbjBz7+np8MmQ4DKJ6zGr1ofCuzB3g=="
+  "resolved" "https://registry.npmjs.org/react-medium-image-zoom/-/react-medium-image-zoom-5.1.8.tgz"
+  "version" "5.1.8"
 
 "react-paginate@^8.2.0":
   "integrity" "sha512-sJCz1PW+9PNIjUSn919nlcRVuleN2YPoFBOvL+6TPgrH/3lwphqiSOgdrLafLdyLDxsgK+oSgviqacF4hxsDIw=="

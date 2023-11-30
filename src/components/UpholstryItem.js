@@ -261,6 +261,7 @@ function UpholstryItem() {
   const [index, setIndex] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [type, setType] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const modelViewerRef = useRef(null);
   const [selectedTexture, setSelectedTexture] = useState("");
@@ -373,8 +374,9 @@ function UpholstryItem() {
     });
     setList(list2);
   };
-  const changeWallpaper = (imageurl) => {
-    setSelectedTexture(imageurl);
+  const changeWallpaper = (imageUrl, index) => {
+    setSelectedTexture(imageUrl);
+    setSelectedImageIndex(index);
   };
   const handleSeat = () => {
     setIndex(1);
@@ -618,22 +620,13 @@ function UpholstryItem() {
                         </p>
                       </div>
                     </div>
-                    <div className="view_in_ar_wallpapers">
-                      <div id="slider1" className="hori_scroll_container_child">
-                        {products.map((item) => (
-                          <div
-                            className="hori_scroll_container_wallpapers"
-                            onClick={() => changeWallpaper(item.imageurl[0])}>
-                            <img
-                              src={item.imageurl[0]} // Assuming imageurl is an array inside the data object
-                              alt="/"
-                              className="hori_scroll_container_child1_image1"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                     <div className="view_in_ar_mesh_mobile">
+                  </model-viewer>
+                ) : null}
+              </div>
+            </div>
+          </div>
+          <div className="hori_scroll_container_visualizer">
+            <div className="view_in_ar_mesh_hori">
               <div
                 onClick={handleBase}
                 className={activeTab === 0 ? "active" : ""}>
@@ -650,12 +643,26 @@ function UpholstryItem() {
                 <button>Arm Rest</button>
               </div>
             </div>
-                  </model-viewer>
-                ) : null}
-              </div>
+            <div
+              id="slider"
+              className="hori_scroll_container_child_visualizer"
+              ref={scrollContainerRef}>
+              {products?.map((item,index) => (
+                <div
+                  key={item.id}
+                  className={`hori_scroll_container_child1_visualizer`}
+                  onClick={() => changeWallpaper(item.imageurl[0], index)}>
+                  <img
+                    src={item.imageurl[0]}
+                    alt="/"
+                      className={`hori_scroll_container_child1_image_visualizer ${
+                    selectedImageIndex === index ? "selected" : ""
+                  }`}
+                  />
+                </div>
+              ))}
             </div>
           </div>
-        
         </div>
       </div>
     </>

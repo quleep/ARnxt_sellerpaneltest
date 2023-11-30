@@ -12776,6 +12776,8 @@ a {
     cursor: pointer;
     font-family: "DM Sans", sans-serif;
     padding: 0.2rem;
+      font-weight: 500;
+
   }
   model-viewer {
     background-color: lightblue;
@@ -12827,6 +12829,11 @@ a {
       var(--transform-scale-y, 1.05)
     );
   }
+  .hori_scroll_container_child1_image_visualizer.selected {
+  border: 3px solid #00f; 
+  padding:0.05rem;
+}
+
   .hori_scroll_container_child1_image_visualizer {
     object-fit: fill;
     border-radius: 0.375rem;
@@ -13827,7 +13834,7 @@ small {
   cursor: pointer;
   font-family: "DM Sans", sans-serif;
   padding: 0.5rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .view_in_ar_mesh .active {

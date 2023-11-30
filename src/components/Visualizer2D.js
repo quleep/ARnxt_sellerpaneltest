@@ -590,11 +590,11 @@ function Visualizer2D() {
               </div>
 
               <div className="filter">
-                <div
+                {/* <div
                   className="filter btn_visualizer"
                   onClick={() => setFavorite(false)}>
                   Filters
-                </div>
+                </div> */}
                 {/* <div
                   className="favorite btn_visualizer"
                   onClick={() => setFavorite(true)}>
