@@ -12835,7 +12835,7 @@ a {
 }
 
   .hori_scroll_container_child1_image_visualizer {
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 0.375rem;
     width: 90%;
     height: 80px;
