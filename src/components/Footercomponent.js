@@ -18,7 +18,7 @@ const Footercomponent = () => {
           <a href="/arview">AR viewer</a>
           <a href="/arView/visualizer">Wall Visualiser</a>
           <a href="/arView/visualizer">Floor Visualiser</a>
-          <a href="/arView/upholstry/Fabric">Upholstery</a>
+          <a href="/arView/upholstry_item/Fabric">Upholstery</a>
         </div>
 
         <div class="footer-column">
