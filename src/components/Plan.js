@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
 import axios from 'axios'
+import Navbarhome from './Navbarhome'
+import Footertest from './Footertest'
+import Footercomponent from './Footercomponent'
 
 
 const Plan = () => {
@@ -201,7 +204,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
    
   return (
     <div>
-        <Navbar/>
+        <Navbarhome/>
         <div class="section-prices">
 <h2 class="section-header">Our Pricing</h2>
 <div class="list-boxs">
@@ -313,7 +316,7 @@ const verifyurl='https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpa
 	</div>
 </div>
 </div>
-      
+       
     </div>
   )
 }

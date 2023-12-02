@@ -1,7 +1,12 @@
-import React from 'react'
-import { FaAlignJustify, FaLine, FaRegWindowClose } from 'react-icons/fa'
+import React, { useEffect, useState, useTransition } from 'react'
+import { FaAlignJustify, FaLine, FaRegWindowClose, FaUser } from 'react-icons/fa'
+import { getUser } from '../service/AuthService'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 const Navbarhome = () => {
+
+    const history = useHistory()
+    const [username, setUserName] = useState()
     const handleclick = ()=>{
         
         document.getElementById('newmodal').classList.add('active')
@@ -13,6 +18,34 @@ const Navbarhome = () => {
      
          
      }
+
+  
+     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+     useEffect(() => {
+       
+       const uservalue = getUser()
+         if(uservalue === null){
+           setIsLoggedIn(false)
+         } else{
+            setIsLoggedIn(true)
+            setUserName(uservalue.name)
+         }
+   
+     }, []);
+     const handlelogout = ()=>{
+        if(isLoggedIn){
+            sessionStorage.removeItem('user')
+            sessionStorage.removeItem('token')
+            history.push('/')
+        }else{
+            history.push('/arview')
+        }
+     }
+
+
+  
+ 
   return (
     <div>
         <div className='mainnavbarcontainer' >
@@ -41,11 +74,16 @@ const Navbarhome = () => {
                 </div>
                 <div className='mainnavbarlogincontainer'>
                    <div className='mainnavbarlogincontainerinside'>
-                        <a href='/login'>
-                            LOG IN
-                        </a>
 
-                        <a href='/arview'><button> FREE TRIAL</button></a> 
+
+                      {
+                        isLoggedIn ? (
+                            <a ><FaUser/> {username}</a>
+                        ):(<a href='/login'>LOG IN</a>)
+                      }
+
+
+                        <a   ><button onClick={handlelogout}> {isLoggedIn ? 'LOGOUT' : 'FREE TRIAL'} </button></a> 
 
                    </div>
 
@@ -65,12 +103,15 @@ const Navbarhome = () => {
                 </div>
                 <div className='mainnavbarlogincontainermobile'>
                 <div className='mainnavbarlogincontainerinside'>
-                        <a href='/login'>
-                            LOG IN
-                        </a>
+                {
+                        isLoggedIn ? (
+                            <a ><FaUser/> {username}</a>
+                        ):(<a href='/login'>LOG IN</a>)
+                      }
 
-                        <button> FREE TRIAL</button>
-                        <FaAlignJustify onClick={handleclick} className='mainnavbarcontainericon' />
+
+                        <a   ><button onClick={handlelogout}> {isLoggedIn ? 'LOGOUT' : 'FREE TRIAL'} </button></a> 
+                       <FaAlignJustify onClick={handleclick} className='mainnavbarcontainericon' />
 
                    </div>
 
@@ -91,11 +132,14 @@ const Navbarhome = () => {
                 </div>
                 <div className='mainnavbarlogincontainermobile'>
                 <div className='mainnavbarlogincontainerinside'>
-                        <a href='/login'>
-                            LOG IN
-                        </a>
+                {
+                        isLoggedIn ? (
+                            <a ><FaUser/> {username}</a>
+                        ):(<a href='/login'>LOG IN</a>)
+                      }
 
-                        <button> FREE TRIAL</button>
+
+                        <a   ><button onClick={handlelogout}> {isLoggedIn ? 'LOGOUT' : 'FREE TRIAL'} </button></a> 
                       
                         <FaRegWindowClose onClick={handlemodalclose} className='mainnavbarcontainericon' />
 

@@ -28,6 +28,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 import QRCode from "react-qr-code";
+import Navbarhome from "./Navbarhome";
 
 const imagesendurl =
   "https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl";
@@ -4572,6 +4573,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
 
   return (
     <div className="">
+      <Navbarhome/>
       <div className="nav-container">
         <div
           class="logo"
