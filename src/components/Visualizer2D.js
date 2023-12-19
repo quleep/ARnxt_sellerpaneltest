@@ -563,6 +563,8 @@ function Visualizer2D() {
     return num;
   };
 
+  
+
   const getKey = (type, index) => {
     const key = `${type}-${index}`;
     return key;
