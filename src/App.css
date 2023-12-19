@@ -730,6 +730,58 @@ label {
 
   border-radius: 15px;
 }
+.visualiserbranddiv{
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  justify-content: center;
+  align-items: center;
+ 
+  flex-wrap: wrap;
+ 
+}
+.visualiserbranddivinside{
+  display: flex;
+   height: 120px;
+   width: 600px;
+   
+  
+}
+.visualiserbranddivimage{
+  display: flex;
+  width: 200px;
+  height: 120px;
+  cursor: pointer;
+ 
+}
+.visualiserbranddivimage img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.branddivicon{
+  display: flex;
+ 
+  justify-content: center;
+  align-items: center;
+ 
+  flex-direction: column;
+  margin: 10px;
+  height: 120px;
+  padding-top: 10px;
+  cursor: pointer;
+  
+}
+.mainiconbrand{
+  border: 2px solid rgb(159, 161, 159);
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  
+}
+
 .merch_div {
   display: flex;
   flex-direction: row;
@@ -1642,6 +1694,7 @@ label {
   height: 60px;
   width: 170px;
 }
+.scroll
 
 .div1 {
   display: none;
@@ -12001,12 +12054,13 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
 }
 
 .hero_container {
-  margin-top: 1rem;
+  
   margin-bottom: 5rem;
   display: flex;
   overflow: hidden;
   flex-direction: column;
   min-height: 100vh;
+ 
 }
 .bold_text_container {
   display: flex;
@@ -12800,6 +12854,7 @@ a {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
+
 }
 .rooms-container .header_visualizer {
   width: 100%;
@@ -12844,12 +12899,12 @@ a {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-top: 49px;
+ 
 }
 .rooms-container .main .left-panel {
   min-width: 350px;
   width: 350px;
-  padding: 32px 16px 0 16px;
+  padding: 0px 0px 0 16px;
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -13283,6 +13338,7 @@ a {
 .rooms-container .main .left-panel .styles.small .scroll {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
 }
 .rooms-container .main .left-panel .styles.small .card {
   width: 95px;
