@@ -61,7 +61,7 @@ const Navbarhome = () => {
                        
                        
                        
-                        <li><a href='/arview'>VIEW IN ROOM</a></li>
+                        <li><a href='/arview'>VISUALISER</a></li>
                         <li><a href='/price'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
 
@@ -152,7 +152,7 @@ const Navbarhome = () => {
         <div className='mainnavbardropdowncontainer'> 
                     <ul>
                     
-                    <li><a href='/arview'>VIEW IN ROOM</a></li>
+                    <li><a href='/arview'>VISUALISER</a></li>
                         <li><a href='/price'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
 

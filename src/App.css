@@ -3281,6 +3281,11 @@ a {
 
   padding: 0 20px 0 20px;
 }
+.mainnavbarcontentinsidediv ul li:first-child a{
+  color: red;
+  
+}
+
 .mainnavbarcontentinsidediv ul li a {
   font-size: 20px;
   color: black;
