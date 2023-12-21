@@ -46,11 +46,6 @@ const Loginform = () => {
         ) : (
           <RegisterForm 
            
-         
-        
-         
-         
-       
           />
         )}
         <button className="toggle-button" onClick={toggleForm}>

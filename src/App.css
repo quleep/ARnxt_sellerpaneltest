@@ -3150,6 +3150,205 @@ a {
   font-weight: bold;
   font-family: "DM Serif Display", serif;
 }
+.sidebar-accordion {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.accordion-section {
+  margin-bottom: 10px;
+}
+
+.accordion-header {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #555;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+.accordion-content {
+  padding: 10px;
+  border: 1px solid #444;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background-color: #666;
+  color: #fff;
+}
+
+.active .accordion-header {
+  background-color: #777;
+}
+.analyticsdivmain{
+ 
+  width: 100vw;
+  height: 100vh;
+  background:  url("/assets/images/analyticspic.jpg");
+ 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  overflow: hidden;
+
+}
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); 
+}
+.navbaranalytics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+.logoanalytics img {
+  height: 40px; /* Adjust the height according to your design */
+}
+
+.logoutanalytics button {
+  padding: 8px 16px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logoutanalytics button:hover {
+  background-color: #777;
+}
+.analyticsdataoptions{
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+ 
+}
+.analyticsdataoptions ul{
+  display: flex;
+ padding: 0px;
+  justify-items: left;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.analyticsdataoptions ul li{
+  list-style-type: none;
+  margin: 5px;
+  border: 1px solid rgb(201, 194, 194);
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.analyticsdivinside{
+  display: flex;
+}
+.analyticsdashboarddiv{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+
+ 
+}
+.analyticscalanderdiv{
+  padding-top: 20px;
+ flex: 2;
+ 
+  
+}
+.analyticsdatadiv{
+  flex: 4;
+ 
+  padding: 20px;
+  
+}
+.analyticsdivunder{
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+ 
+  border: 2px solid rgb(130, 133, 130);
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+  font-family: 'Lato',sans-serif;
+}
+.analyticsdivunder label{
+  color: white;
+}
+.analyticsdivunder p{
+  padding-top: 5px;
+  color: white;
+  font-size: 30px;
+}
+.analyticsdivpatterndata{
+  margin-top: 20px;
+  display: flex;
+  width: max-content;
+   height: auto;
+  
+ 
+  flex-direction: column;
+}
+.analyticsdivpatterndata button{
+  width: max-content;
+  padding: 5px;
+  height: 40px;
+  margin: 10px;
+  background-color: transparent;
+  border: 2px solid gray;
+  border-radius: 5px;
+  color: white;
+}
+.analyticsdivviews{
+  display: none;
+  width: max-content;
+  max-height: 400px;
+ overflow-y: scroll;
+  
+  flex-direction: column;
+  padding: 20px;
+}
+.analyticsdivviews p{
+  padding: 5px;
+  background-color: gainsboro;
+  color: black;
+
+}
+
+
+.analyticscalanderdivinside{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.analyticscalanderdivinside h2{
+  color: rgb(156, 154, 154);
+}
+.analyticscalanderdivinsidesingle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.analyticscalanderdivinsidesingle h2{
+  color: rgb(156, 154, 154);
+}
+
 
 .social-icons {
   display: flex;

@@ -111,6 +111,9 @@ import Homepagenew from "./components/Homepagenew.js";
 import UpholstryItem from "./components/UpholstryItem.js";
 import Loginform from "./Loginform.js";
 
+import Analyticslogin from "./components/Analyticslogin.js";
+import Analytics from "./components/Analytics.js";
+
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
 
@@ -210,6 +213,12 @@ class App extends Component {
           <Route path="/arview/category/:id" component={CategoryAR} />
           <Route path="/arview/upholstry_item/:id" component={Upholstry} />
           <Route path="/arview/upholstry/:id" component={UpholstryItem} />
+          <Route path="/loginanalytics" component={Analyticslogin} />
+          <Route path="/analytics" component={Analytics} />
+
+         
+
+
 
           <Route
             path="/arview/upholstry_mobile/:id"

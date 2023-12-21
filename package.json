@@ -20,6 +20,7 @@
     "plivo": "^4.32.0",
     "react": "^16.13.1",
     "react-bootstrap": "^2.0.2",
+    "react-calendar": "^4.7.0",
     "react-calendly": "^4.1.1",
     "react-cookie": "^4.1.1",
     "react-data-table-component": "^7.5.3",
