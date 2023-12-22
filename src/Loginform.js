@@ -12,9 +12,6 @@ import axios from 'axios';
 
 const Loginform = () => {
 
-     
-
-
         const [state, setState] = useState()
     
     
@@ -25,14 +22,8 @@ const Loginform = () => {
     setLogin(!isLogin);
   };
 
+ 
 
-
-
-
-
-
-
-    
 
   return (
     <div className="loginparent">
@@ -293,6 +284,12 @@ const RegisterForm = ({    states, cities }) => {
 
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState();
+    const [formotp, setFromOtp] = useState('')
+    const [recievedotp, setRecievedOtp] = useState()
+    
+ 
+
+
     const [registrationData, setRegistrationData] = useState({
         email: '',
         phone: '',
@@ -329,12 +326,16 @@ const RegisterForm = ({    states, cities }) => {
     
 
       }
+
+      const registerUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/production/register'
+const sendotpurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/sendotpregistration'
+const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/production/verifyotp'
     
       const handleInputChange = (e) => {
        
        
         const { name, value } = e.target;
-        console.log(name)
+       
         setRegistrationData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -344,7 +345,7 @@ const RegisterForm = ({    states, cities }) => {
 
            let phn =/^\d{10}$/;
            let email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/;
-      const handleRegistraion = (e)=>{
+      const handleRegistraion = async (e)=>{
 
         
         e.preventDefault()
@@ -404,20 +405,70 @@ const RegisterForm = ({    states, cities }) => {
         }
        
        else{
-        showAlert('Otp sent to your number', 'success')
-        document.querySelector('.otpform').style.display = 'flex'
-        document.querySelector('.registermainform').style.display = 'none'
-        document.querySelector('.toggle-button').style.display = 'none'
-        document.querySelector('.toggle-buttonotp').style.display = 'block'
 
+        const requestBody={
+          phoneno: registrationData.phone
+        }
+
+        await axios.post(sendotpurl, requestBody).then(res=>{
+          if(res.status === 200){
+            setRecievedOtp(res.data)
+            showAlert('Otp sent to your number', 'success')
+            document.querySelector('.otpform').style.display = 'flex'
+            document.querySelector('.registermainform').style.display = 'none'
+            document.querySelector('.toggle-button').style.display = 'none'
+            document.querySelector('.toggle-buttonotp').style.display = 'block'
+          }
+
+        }).catch(error=>{
+          showAlert( error.response.data, 'error')
+
+        })
+        
        }
        
+      }
+
+      const history = useHistory()
+      const handleFinalRegister = async (e)=>{
+        e.preventDefault()
+        const requestBody={
+          phoneNo: registrationData.phone,
+          otp: formotp
+        
+        }
+        await axios.post(verifyotpurl, requestBody).then(res=>{
+           if(res.status === 200){
+              
+    const requestBody={
+      phoneNo : registrationData.phone,
+     name : registrationData.name,
+     email: registrationData.email,
+     state: registrationData.state,
+     city: registrationData.city,
+     pin: registrationData.pincode,
+     assisted: registrationData.assistedby,
+     password : registrationData.password,
     
-      
+ }
+ axios.post(registerUrl, requestBody).then(res=>{
+   if(res.status === 200){
+    showAlert('Registration successfull', 'success')
+     setFromOtp('')
+   }
 
-
+ }).catch(error=>{
+    showAlert(error.response , 'error')
+ })
+   
+           }
+        }).catch(error=>{
+          showAlert(error.response.data.Message, 'error')
+        })
+        
       }
       const handlegoback = (e)=>{
+        e.preventDefault()
         document.querySelector('.otpform').style.display = 'none'
         document.querySelector('.registermainform').style.display = 'flex'
         document.querySelector('.toggle-button').style.display = 'flex'
@@ -432,6 +483,8 @@ const RegisterForm = ({    states, cities }) => {
       const closeAlert = () => {
         setAlert(null);
       }; 
+
+   
  
   
   return (
@@ -456,7 +509,7 @@ const RegisterForm = ({    states, cities }) => {
 
       <InputField label="Phone Number" type="number" id="phone" name= 'phone' onChange={handleInputChange} value={registrationData.phone}  />
      
-      <select  id="state" name="state" value={selectedState} onChange={onStateChange} >
+      <select  id="state" name="state" value={registrationData.state} onChange={onStateChange} >
       <option value="" disabled>Select a state</option>
         {statearray?.map((state, index) => (
           <option key={index} value={state}>{state}</option>
@@ -464,7 +517,7 @@ const RegisterForm = ({    states, cities }) => {
         
       </select>
      
-      <select id="city" name="city" value={selectedCity}   onChange={onCityChange} required>
+      <select id="city" name="city" value={registrationData.city}   onChange={onCityChange} required>
       <option value="" disabled>Select a city</option>
         {selectedCity?.map((city, index) => (
           <option key={index} value={city}>{city}</option>
@@ -480,9 +533,9 @@ const RegisterForm = ({    states, cities }) => {
       
     </form>
     <form className='otpform' >
-    <InputField label="otp" type="number" id="otp" name= 'otp'    />
+    <InputField label="Otp" value={formotp} type="number" id="otp" name= 'otp' onChange={(e)=>setFromOtp(e.target.value)}   />
    
-    <button type="submit"  >Submit</button>
+    <button type="submit" onClick={handleFinalRegister}  >Submit</button>
     <button type="submit"  >Resend</button>
 
     <button className="toggle-buttonotp" onClick={handlegoback} >

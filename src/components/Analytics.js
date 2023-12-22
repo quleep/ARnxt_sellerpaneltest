@@ -365,6 +365,7 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
           
             patternCount[patternno] = (patternCount[patternno] || 0) + 1;
           });
+         
         
           
           const resultArray = Object.entries(patternCount).map(([patternno, count]) => ({
@@ -375,8 +376,14 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
         
           return resultArray;
         }
-       
 
+      const testpattern = {
+       
+      }
+
+ 
+
+    
 
   const [newcount, setNewCount] = useState()
 const handleviewedpatterns = async ()=>{

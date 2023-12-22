@@ -200,18 +200,9 @@ axios.post(sendotpurl, requestBody).then(response=>{
   if(response.request.status === 200){
     setOtpShow(true)
     setResend(true)
- 
-   
-   
+  
   }
- 
 
-
-
-  
-
-  
- 
 })
 .catch(error=>{
 
