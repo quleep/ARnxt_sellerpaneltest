@@ -286,6 +286,8 @@ const RegisterForm = ({    states, cities }) => {
     const [selectedCity, setSelectedCity] = useState();
     const [formotp, setFromOtp] = useState('')
     const [recievedotp, setRecievedOtp] = useState()
+    const [disabledbutton, setDisabledButton] = useState(true)
+    const [timer, setTimer] = useState(); 
     
  
 
@@ -407,7 +409,8 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
        else{
 
         const requestBody={
-          phoneno: registrationData.phone
+          phoneno: registrationData.phone,
+          email: registrationData.email
         }
 
         await axios.post(sendotpurl, requestBody).then(res=>{
@@ -415,6 +418,7 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
             setRecievedOtp(res.data)
             showAlert('Otp sent to your number', 'success')
             document.querySelector('.otpform').style.display = 'flex'
+            setTimer(60)
             document.querySelector('.registermainform').style.display = 'none'
             document.querySelector('.toggle-button').style.display = 'none'
             document.querySelector('.toggle-buttonotp').style.display = 'block'
@@ -454,6 +458,8 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
  axios.post(registerUrl, requestBody).then(res=>{
    if(res.status === 200){
     showAlert('Registration successfull', 'success')
+    setDisabledButton(true)
+    setTimer('')
      setFromOtp('')
    }
 
@@ -483,6 +489,111 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
       const closeAlert = () => {
         setAlert(null);
       }; 
+
+      useEffect(() => {
+
+        
+        let intervalId;
+        if (timer > 0) {
+          intervalId = setInterval(() => {
+            setTimer((prevTimer) => prevTimer - 1);
+          }, 1000);
+        }
+    
+        
+        if (timer === 0) {
+          setDisabledButton(false);
+          clearInterval(intervalId); 
+        }
+    
+       
+        return () => clearInterval(intervalId);
+      }, [timer]);
+      
+
+
+      const handleresendotp = async (e)=>{
+        e.preventDefault()
+        let phn =/^\d{10}$/;
+        let email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/;
+
+        if(registrationData.name === ''){
+          window.scroll(0,0)
+          showAlert('Name is required', 'error')
+          return
+        }
+       else if(registrationData.email === '' || !registrationData.email.match(email)){
+        window.scroll(0,0)
+
+          showAlert('Enter a valid email address', 'error')
+          return
+
+        }
+       
+       else if(registrationData.password === ''){
+        window.scroll(0,0)
+
+          showAlert('password is required', 'error')
+          return
+
+        }
+       
+       else if(registrationData.phone === '' || !registrationData.phone.match(phn)){
+       
+        window.scroll(0,0)
+
+         
+          showAlert('Enter a valid 10 digit number', 'error')
+          return
+
+        }
+       
+       else if(registrationData.state === ''){
+        window.scroll(0,0)
+
+          showAlert('State is required', 'error')
+          return
+
+        }
+       else if(registrationData.city === ''){
+        window.scroll(0,0)
+
+          showAlert('City is required', 'error')
+          return
+
+        }
+       
+        else if(registrationData.pincode === ''){
+          window.scroll(0,0)
+
+          showAlert('Pincode is required', 'error')
+          return
+
+        }
+       
+       else{
+
+        const requestBody={
+          phoneno: registrationData.phone,
+          email: registrationData.email
+        }
+
+        await axios.post(sendotpurl, requestBody).then(res=>{
+          if(res.status === 200){
+            setRecievedOtp(res.data)
+            showAlert('Otp sent to your number', 'success')
+            setTimer(120)
+            setDisabledButton(false)
+      
+          }
+
+        }).catch(error=>{
+          showAlert( error.response.data, 'error')
+
+        })
+        
+       }
+      }
 
    
  
@@ -534,11 +645,12 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
     </form>
     <form className='otpform' >
     <InputField label="Otp" value={formotp} type="number" id="otp" name= 'otp' onChange={(e)=>setFromOtp(e.target.value)}   />
+    <p style={disabledbutton ? {display:'flex', color:'green'} : {display:'none'}} > Resend otp in:  {timer && timer}</p>
    
     <button type="submit" onClick={handleFinalRegister}  >Submit</button>
-    <button type="submit"  >Resend</button>
+    <button  onClick={handleresendotp}  style={disabledbutton ?  {display:'none'}: {display:'block'}}  >Resend</button>
 
-    <button className="toggle-buttonotp" onClick={handlegoback} >
+    <button style={{display:'none'}} className="toggle-buttonotp" onClick={handlegoback} >
            <FaArrowLeft/>   Go back
         </button>
 
