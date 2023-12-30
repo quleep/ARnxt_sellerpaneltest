@@ -3284,10 +3284,17 @@ a {
  
   
 }
+.analyticscalanderdivsingle{
+  padding-top: 20px;
+ flex: 2;
+ 
+  
+}
 .analyticsdatadiv{
   flex: 4;
  
   padding: 20px;
+ 
   
 }
 .analyticsdivunder{
@@ -3315,15 +3322,13 @@ a {
   display: flex;
   width: max-content;
    height: auto;
-  
- 
   flex-direction: column;
 }
 .analyticsdivpatterndata button{
   width: max-content;
   padding: 5px;
   height: 40px;
-  margin: 10px;
+ 
   background-color: transparent;
   border: 2px solid gray;
   border-radius: 5px;
@@ -3336,12 +3341,20 @@ a {
  overflow-y: scroll;
   
   flex-direction: column;
-  padding: 20px;
+  margin-top: 20px;
+ 
+}
+.countpatterndiv{
+  display: flex;
+ 
+ 
+ 
 }
 .analyticsdivviews p{
   padding: 5px;
   background-color: gainsboro;
   color: black;
+  width: 100%;
 
 }
 
@@ -3357,13 +3370,17 @@ a {
   color: rgb(156, 154, 154);
 }
 .analyticscalanderdivinsidesingle{
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .analyticscalanderdivinsidesingle h2{
   color: rgb(156, 154, 154);
+}
+.downloadcsvbutton{
+  margin-top: 10px;
+  display: none;
 }
 
 
