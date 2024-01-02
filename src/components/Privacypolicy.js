@@ -85,21 +85,21 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                  onClick={() => window.scroll(0,700)}
+                  onClick={() => window.scroll(0,900)}
                 >
                  <p> For What Purposes Does Quleep Use Your Personal Information?</p>
                 </Link>
               </li>
               <li>
                 <Link
-                onClick={() => window.scroll(0,1000)}
+                onClick={() => window.scroll(0,1600)}
                 >
                  <p>What About Cookies and Other Identifiers?</p> 
                 </Link>
               </li>
               <li>
                 <Link
-                onClick={() => window.scroll(0,1100)}
+                onClick={() => window.scroll(0,1700)}
                 >
                   <p> Does Quleep Share Your Personal Information?</p>
                  
@@ -107,7 +107,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                onClick={() => window.scroll(0,2100)}
+                onClick={() => window.scroll(0,2300)}
                 >
                   <p>  How Secure is Information About Me?</p>
                 
@@ -115,7 +115,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                  onClick={() => window.scroll(0,2100)}
+                  onClick={() => window.scroll(0,2600)}
                 >
                   <p> What About Advertising?</p>
                  
@@ -123,7 +123,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                  onClick={() => window.scroll(0,2500)}
+                  onClick={() => window.scroll(0,2700)}
                 >
                   <p>  What Information can I Access?</p>
                 
@@ -131,7 +131,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                 onClick={() => window.scroll(0,2800)}
+                 onClick={() => window.scroll(0,3000)}
                 >
                   <p>  What Choices Do I Have?</p>
                 
@@ -147,7 +147,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                 onClick={() => window.scroll(0,3400)}
+                 onClick={() => window.scroll(0,3900)}
                 >
                   <p>Conditions of Use, Notices, and Revisions</p>
                   
@@ -155,7 +155,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-                 onClick={() => window.scroll(0,3600)}
+                 onClick={() => window.scroll(0,4300)}
                 >
                   <p>  Related Practices and Information</p>
                 
@@ -163,7 +163,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-               onClick={() => window.scroll(0,4100)}
+               onClick={() => window.scroll(0,4600)}
                 >
                   <p> Examples of Information Collected</p>
                  
@@ -171,7 +171,7 @@ function Privacypolicy() {
               </li>
               <li>
                 <Link
-               onClick={() => window.scroll(0,5300)}
+               onClick={() => window.scroll(0,6500)}
                 >
                   <p> Refund Policy</p>
                  
@@ -975,7 +975,7 @@ function Privacypolicy() {
                   {" "}
                   If you are a seller, you can access your account and other
                   information, and adjust your communications preferences, by
-                  updating your account in <a href="/">Seller Central</a> .
+                  updating your account in .
                 </li>
                 <li>
                   {" "}

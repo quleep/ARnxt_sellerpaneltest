@@ -31,9 +31,9 @@ function Blog() {
      </Helmet>
         <div
         id="privacy"
-        className="section section-padding offwhite-bg mt-5 p-5"
+        className=""
       >
-        <div className="container text-start">
+        <div className="">
           {/* heading start */}
           <div className="">
             <h3 className="text-center">Blogs</h3>
@@ -43,7 +43,7 @@ function Blog() {
           </div>
           {/* heading end */}
           {/* description start */}
-          <div name="description">
+          <div name="description" className="description">
             <p className="section-subtext">
             Retailers are instead turning to AR to help customers digitally test out 
                  thousands of beauty products to assist in buying decisions. <br/>
@@ -135,8 +135,7 @@ The main ethical challenges in terms of AR implementation include facial recogni
 The control over AR software should be in the hands of customers so they can make the decisions with regard to what they want to see and what data is made accessible. Like all technology, AR is a two-edged sword and needs to be correctly wielded in order to be effective. With high power comes great responsibility and AR is such a power. While it is fantastic that you can easily navigate through the streets using your augmented reality app, public spaces become a sort of "hijacked." Remembering the Pokemon Go and the rather sensitive story about how people go to the Holocaust Museum to catch "that one pokemon" they need for the collection? 
 It is also important to remember that when people are using augmented reality apps, they are sort of "located" in two worlds - one real and another virtual. Therefore, as we mentioned above, you should beware of where you're located in the physical world, making sure you're not about to cross a busy road with your nose in the cell phone or wander into someone's private land ; and get a fine, in the best-case scenario.
             </p>
-            
-              
+             
             </div>
           </div>
     

@@ -474,10 +474,6 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
        
       }
 
- 
-
-    
-
   const [newcount, setNewCount] = useState()
 const handleviewedpatterns = async ()=>{
   if(countdata.length > 0){

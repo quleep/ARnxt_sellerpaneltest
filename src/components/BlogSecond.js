@@ -78,10 +78,10 @@ const BlogSecond = () => {
             id="privacythird"
             className="section section-padding offwhite-bg mt-5 p-5"
           >
-            <div className="container text-start">
+            <div className="blogmaindiv">
               {/* heading start */}
               <div className="">
-                <h3 className="text-center">Blogs</h3>
+             
                 <br/>
                 <br/>
                 <h3 className="text-center">Augmented reality.</h3>
@@ -126,18 +126,18 @@ Hand-stitched by Jayanth Roy
         id="privacyone"
         className="section section-padding offwhite-bg mt-5 p-5"
       >
-        <div className="container text-start">
+        <div className="blogmaindiv">
           {/* heading start */}
           <div className="">
-            <h3 className="text-center">Blogs</h3>
+            
             <br/>
             <br/>
             <h3 className="text-center">Opportunities for AR in Retail Market</h3>
           </div>
-          {/* heading end */}
-          {/* description start */}
-          <div name="description">
-            <p className="section-subtext">
+       
+          <div  className='description'>
+       
+            <p className="">
             Retailers are instead turning to AR to help customers digitally test out 
                  thousands of beauty products to assist in buying decisions. <br/>
                  Launched six years ago, Ulta’s virtual try-on beauty tool, GLAMlab, has seen a surge in usage since the pandemic. Engagement has increased seven-fold, and more than 50 million shades of foundation have been swatched digitally with the app post-Covid.
@@ -402,10 +402,10 @@ Augmented Realty App by ARnxt enables users to visualize how products will look 
             id="privacy"
             className="section section-padding offwhite-bg mt-5 p-5"
           >
-            <div className="container text-start">
+            <div className="blogmaindiv">
               {/* heading start */}
               <div className="">
-                <h3 className="text-center">Blogs</h3>
+               
                 <br/>
                 <br/>
                 <h3 className="text-center">Augmented reality stating the technology as differentiator, its use case specifically towards Retail.</h3>

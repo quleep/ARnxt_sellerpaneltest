@@ -216,10 +216,6 @@ class App extends Component {
           <Route path="/loginanalytics" component={Analyticslogin} />
           <Route path="/analytics" component={Analytics} />
 
-         
-
-
-
           <Route
             path="/arview/upholstry_mobile/:id"
             component={UpholstryMobile}

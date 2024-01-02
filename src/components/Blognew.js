@@ -56,7 +56,7 @@ const Blognew = () => {
 
   </div>
   <div className='cardbutton'>
-  <a href="" onClick={()=> handleClick('1')} className="btn btn-primary">Read more.</a>
+  <a href="" onClick={()=> handleClick('1')} className="">Read more.</a>
 
   </div>
 
@@ -78,7 +78,7 @@ const Blognew = () => {
     
   </div>
   <div className='cardbutton'  >
-  <a href=""  onClick={()=> handleClick('2')} className="btn btn-primary">Read more.</a>
+  <a href=""  onClick={()=> handleClick('2')} className="">Read more.</a>
 
   </div>
 
@@ -101,7 +101,7 @@ const Blognew = () => {
    
   </div>
   <div className='cardbutton'>
-<a href="" onClick={()=> handleClick('3')} className="btn btn-primary">Read more.</a>
+<a href="" onClick={()=> handleClick('3')} className="">Read more.</a>
 
 </div>
 </div>
@@ -122,7 +122,7 @@ const Blognew = () => {
 
   </div>
   <div className='cardbutton'>
-<a href="" onClick={()=> handleClick('4')} className="btn btn-primary">Read more.</a>
+<a href="" onClick={()=> handleClick('4')} className="">Read more.</a>
   
 </div>
 </div>
