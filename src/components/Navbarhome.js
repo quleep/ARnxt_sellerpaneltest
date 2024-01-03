@@ -29,7 +29,9 @@ const Navbarhome = () => {
            setIsLoggedIn(false)
          } else{
             setIsLoggedIn(true)
-            setUserName(uservalue.name)
+            const newvalueuser = uservalue.name.split(' ')
+
+            setUserName(newvalueuser[0])
          }
    
      }, []);
