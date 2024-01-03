@@ -86,7 +86,7 @@ const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/product
     const [res, setRes]= useState('');
    const history = useHistory()
     useEffect(()=>{
-        if(res === 200){
+        if(res === 'Client'){
 
 
 
@@ -98,12 +98,21 @@ const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/product
           
           
         }
+        
+        if(res === 'User'){
+          showAlert('Login successfull!', 'success')
+          setTimeout(() => {
+           history.push('/arview')
+           
+          }, 2000);
+        }
     },[history,res])
 
 
     const [loginarray, setLoginArray] = useState({
         email : '',
-        password: ''
+        password: '',
+        user: ''
     })
 
     const handleInputChange = (e)=>{
@@ -136,18 +145,23 @@ const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/product
         showAlert('please provide the password', 'error')
         return
        }
+       else if(loginarray.user === ''){
+        showAlert('please select login as', 'error')
+        return
+       }
        else{
        
 
           const requestBody={
             email: loginarray.email,
-            password: loginarray.password
+            password: loginarray.password,
+            user: loginarray.user
         }
 
         axios.post(loginUrl, requestBody).then(response=>{
             
           setUserSession(response.data.user, response.data.token)
-          setRes(response.status)
+          setRes(response.data.user.user)
           
 
       }).catch(error=>{
@@ -159,6 +173,8 @@ const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/product
        }
 
      }
+
+     const userarray = ["User", "Client"]
 
     
   return (
@@ -175,6 +191,13 @@ const loginUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/product
       <form className='registermainform' >
       <InputField label="Email" type="email" id="email" name = 'email' value={loginarray.email} onChange={handleInputChange} />
       <InputField label="Password" type="password" id="password" name= 'password' value={loginarray.password} onChange={handleInputChange} />
+      <select  id="state" name="user" value={loginarray.user} onChange={handleInputChange} >
+      <option value="" disabled>Login as</option>
+        {userarray?.map((user, index) => (
+          <option key={index} value={user}>{user}</option>
+        ))}
+        
+      </select>
       <button type="submit" onClick={handleloginsubmit} >Login</button>
     </form>
       </div>
@@ -290,7 +313,7 @@ const RegisterForm = ({    states, cities }) => {
     const [timer, setTimer] = useState(); 
     
  
-
+  const userarray = ["User", "Client"]
 
     const [registrationData, setRegistrationData] = useState({
         email: '',
@@ -300,6 +323,7 @@ const RegisterForm = ({    states, cities }) => {
         state: '',
         city: '',
         pincode: '',
+        user: '',
         assistedby: ''
       });
 
@@ -328,6 +352,18 @@ const RegisterForm = ({    states, cities }) => {
     
 
       }
+
+      const onUserChange = (e)=>{
+        const { name, value } = e.target;
+        
+        setRegistrationData((prevData) => ({
+            ...prevData,
+            [name]: value,
+          }));
+        
+      }
+
+  
 
       const registerUrl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/production/register'
 const sendotpurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/sendotpregistration'
@@ -405,12 +441,20 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
           return
 
         }
+        else if(registrationData.user === ''){
+          window.scroll(0,0)
+
+          showAlert('Please select user or client', 'error')
+          return
+
+        }
        
        else{
 
         const requestBody={
           phoneno: registrationData.phone,
-          email: registrationData.email
+          email: registrationData.email,
+          user: registrationData.user
         }
 
         await axios.post(sendotpurl, requestBody).then(res=>{
@@ -452,15 +496,18 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
      city: registrationData.city,
      pin: registrationData.pincode,
      assisted: registrationData.assistedby,
+     user: registrationData.user,
      password : registrationData.password,
     
  }
  axios.post(registerUrl, requestBody).then(res=>{
    if(res.status === 200){
     showAlert('Registration successfull', 'success')
-    setDisabledButton(true)
+    setDisabledButton(false)
     setTimer('')
      setFromOtp('')
+     window.location.reload()
+   
    }
 
  }).catch(error=>{
@@ -492,24 +539,30 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
 
       useEffect(() => {
 
-        
+          setTimeout(() => {
+             closeAlert()
+          }, 3000);
+          
         let intervalId;
         if (timer > 0) {
           intervalId = setInterval(() => {
             setTimer((prevTimer) => prevTimer - 1);
           }, 1000);
         }
+
+     
     
         
         if (timer === 0) {
           setDisabledButton(false);
           clearInterval(intervalId); 
         }
-    
-       
-        return () => clearInterval(intervalId);
+
+         return () => clearInterval(intervalId);
       }, [timer]);
-      
+
+
+   
 
 
       const handleresendotp = async (e)=>{
@@ -575,14 +628,17 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
 
         const requestBody={
           phoneno: registrationData.phone,
-          email: registrationData.email
+          email: registrationData.email,
+          user: registrationData.user
         }
 
         await axios.post(sendotpurl, requestBody).then(res=>{
           if(res.status === 200){
             setRecievedOtp(res.data)
             showAlert('Otp sent to your number', 'success')
+          
             setTimer(120)
+          
             setDisabledButton(false)
       
           }
@@ -635,6 +691,14 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
         ))}
         
       </select>
+
+      <select  id="state" name="user" value={registrationData.user} onChange={onUserChange} >
+      <option value="" disabled>Register as</option>
+        {userarray?.map((user, index) => (
+          <option key={index} value={user}>{user}</option>
+        ))}
+        
+      </select>
       <InputField label="Pincode" type="number" id="Pincode" name= 'pincode'  value={registrationData.pincode}  onChange={handleInputChange}/>
       <InputField label="Assisted By" type="text" id="Assisted By"  name= 'assistedby' value={registrationData.assistedby}  onChange={handleInputChange}/>
 
@@ -650,9 +714,7 @@ const verifyotpurl= 'https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/pro
     <button type="submit" onClick={handleFinalRegister}  >Submit</button>
     <button  onClick={handleresendotp}  style={disabledbutton ?  {display:'none'}: {display:'block'}}  >Resend</button>
 
-    <button style={{display:'none'}} className="toggle-buttonotp" onClick={handlegoback} >
-           <FaArrowLeft/>   Go back
-        </button>
+
 
     </form>
     </div>

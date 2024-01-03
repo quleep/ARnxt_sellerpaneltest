@@ -3282,7 +3282,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
     document.querySelector(".analyticsdiv").style.display = "none";
   };
 
-  let dat = analyticsdata && analyticsdata[0].viewtime;
+  let dat = analyticsdata && analyticsdata[0]?.viewtime;
   let finaldate = new Date(dat).toUTCString().split(",")[1];
 
   const getviewdate = (val) => {
