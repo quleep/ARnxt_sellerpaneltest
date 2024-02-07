@@ -14449,3 +14449,6 @@ small {
     max-width: 90%;
   }
 }
+.hori_scroll_container_header_child p:hover {
+  color: rgb(242, 48, 48);
+}

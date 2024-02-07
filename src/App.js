@@ -180,7 +180,7 @@ class App extends Component {
             component={TermsAndConditions}
           />
           <Route path="/login" exact component={Loginform} />
-         
+
           <Route path="/productsnew" exact component={Productsnew} />
           <Route path="/product" exact component={ProductsHome} />
           <Route path="/blog" exact component={Blognew} />
@@ -193,8 +193,6 @@ class App extends Component {
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/visualizer" component={Visualizer} />
           <Route path="/" exact component={Homepagenew} />
-          
-
 
           <Route
             path="/arview/visualizer_mobile"

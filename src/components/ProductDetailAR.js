@@ -16,6 +16,8 @@ import DropdownMenu from "./DropdownMenu";
 import Navbarhome from "./Navbarhome";
 import Footercomponent from "./Footercomponent";
 function ProductDetailAR() {
+  const [count, setCount] = useState(null);
+
   const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
   const [usdzFile, setUsdzFile] = useState("");
@@ -28,6 +30,15 @@ function ProductDetailAR() {
   const modelViewerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasAnimation, setHasAnimation] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -54,6 +65,12 @@ function ProductDetailAR() {
   }, [param]);
   useEffect(() => {
     console.log("diffrentor", isGlbKeyPresent);
+    modelViewerRef.current?.addEventListener("ar-status", (event) => {
+      setCount(event.detail.status);
+      console.log(event.detail.status);
+          window.location.href = '#open-modal';
+
+    });
   }, [isGlbKeyPresent]);
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
@@ -129,6 +146,7 @@ function ProductDetailAR() {
             <div class="product_detail_ar_container_child_child">
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
+
                   {isGlbKeyPresent ? (
                     <div className="App">
                       <model-viewer
@@ -157,6 +175,7 @@ function ProductDetailAR() {
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}
                 </div>
+            
                 <div class="product_detail_ar_container_grid_child1">
                   <h2 class="product_detail_ar_container_grid_child1_text1">
                     {productData?.productname
