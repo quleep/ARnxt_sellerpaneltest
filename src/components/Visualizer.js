@@ -71,9 +71,9 @@ function Visualizer() {
       };
     });
   };
- useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const tempRoomClick = async (val) => {
     await handleUrlToBase64(val).then((res) => {
       setTempOrgImage(res);
@@ -192,13 +192,11 @@ function Visualizer() {
       var canvas = document.createElement("canvas");
       canvas.width = img.width;
       canvas.height = img.height;
-      console.log(canvas);
 
       var ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0);
 
       let base64Data = canvas.toDataURL("image/jpeg");
-      console.log(base64Data);
     };
   }, []);
 
@@ -240,7 +238,7 @@ function Visualizer() {
   }
   return (
     <>
-      <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <div className="demo-container">
@@ -321,8 +319,8 @@ function Visualizer() {
           </div>
         </div>
       </div>
-      
-      <Footercomponent/>
+
+      <Footercomponent />
     </>
   );
 }

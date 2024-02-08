@@ -143,8 +143,6 @@ class App extends Component {
     axios
       .post(verifyUrl, requestBody)
       .then((response) => {
-        console.log(response);
-
         setUserSession(response.data.user, response.data.token);
       })
       .catch(() => {});

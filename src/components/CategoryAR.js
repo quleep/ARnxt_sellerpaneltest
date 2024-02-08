@@ -57,7 +57,6 @@ function CategoryAR() {
         `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandcategory?category=${param.id}`
       );
 
-      console.log("brandsarray", response);
       const brandFilter = response1.data;
 
       const filteredData = response.data.filter(
@@ -67,8 +66,6 @@ function CategoryAR() {
           brandFilter.includes(item["brandId"].toLowerCase())
       );
       setBrandsData(filteredData);
-
-      console.log(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -94,14 +91,11 @@ function CategoryAR() {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
       );
-      console.log("categ", response.data);
 
       setCategoriesDetails(response.data);
-      console.log(param.id);
       const matchingCategory = response.data.filter(
         (item) => item.category === param.id
       );
-      console.log(matchingCategory);
       setCategoriesDetails(matchingCategory);
     } catch (error) {
       console.error("Error in fetching data: ", error);

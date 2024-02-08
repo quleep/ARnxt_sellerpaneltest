@@ -66,7 +66,6 @@ function DropdownMenu() {
       const response = await axios.get(
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsubcatdetailstable"
       );
-      console.log("categ detail", response.data);
 
       setSubCategoryDetails(response.data);
     } catch (error) {
@@ -98,7 +97,6 @@ function DropdownMenu() {
         }),
         categoryimage: electronicsCategory.categoryimage,
       };
-      console.log(newObject.subcategory);
       setFinalData(newObject.subcategory);
     }
   }, [subCategory, categoriesDetails, subCategorydetails]);

@@ -28,7 +28,6 @@ function Rooms() {
       try {
         const response = await axios.post(apiUrl); // Use GET request for query parameters
         // Handle the response data here
-        console.log("props", response.data);
 
         const response2 = await axios.get(
           "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandtable"
@@ -55,7 +54,6 @@ function Rooms() {
             iconUrlNewVariable: iconUrlNewVariable,
           };
         });
-        console.log(transformedData);
         // Update the original data with the transformed data
         setBrandsData(transformedData);
       } catch (error) {
@@ -66,12 +64,11 @@ function Rooms() {
 
     fetchData();
   }, [props]);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const decodedParam = decodeURIComponent(param.id);
-    console.log(decodedParam);
     // Make the POST request using Axios with an empty request body
     axios
       .post(
@@ -100,7 +97,6 @@ function Rooms() {
       categories.includes(subcategory.itemname)
     );
 
-    console.log("dd", foundSubcategories);
     setFoundSubcategories(foundSubcategories);
   };
   useEffect(() => {
@@ -116,7 +112,7 @@ function Rooms() {
   };
   return (
     <>
-       <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <Tabs

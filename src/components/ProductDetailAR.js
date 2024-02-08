@@ -93,7 +93,6 @@ function ProductDetailAR() {
         setIsGlbKeyPresent("glb" in response.data);
         setColorValuePresent("texture" in response.data);
 
-        console.log(response.data);
         setProductData(data);
       } catch (error) {
         console.error(error);
@@ -110,7 +109,6 @@ function ProductDetailAR() {
     const createAndApplyTexture = async (channel, textureUrl) => {
       const randomSuffix = `?random=${Math.random()}`;
       const updatedTextureUrl = textureUrl + randomSuffix;
-      console.log("vfv", updatedTextureUrl);
       const texture = await modelViewerTexture1.createTexture(
         updatedTextureUrl
       );
@@ -122,8 +120,6 @@ function ProductDetailAR() {
         material[channel].setTexture(texture);
       }
     };
-
-    console.log(selectedTexture);
 
     if (modelViewerTexture1?.model) {
       createAndApplyTexture("baseColorTexture", selectedTexture);
@@ -140,8 +136,6 @@ function ProductDetailAR() {
         }, 3000);
       });
     }
-
-    console.log("diffrentor", isGlbKeyPresent);
 
     let listElements = document.querySelectorAll("li");
     listElements.forEach((element) => {
@@ -193,7 +187,6 @@ function ProductDetailAR() {
   };
   const handleSimpleImageClick = () => {
     // Handle the click behavior when 'glb' key is not present
-    console.log("Handle Simple Image Click");
     // Add your logic here
     history.push(`/arView/visualizer`, {
       state: { itemname: param.id },
@@ -204,7 +197,6 @@ function ProductDetailAR() {
 
     const handleLoad = () => {
       // Ensure the model is fully loaded before accessing the duration
-      console.log(modelViewer.duration);
 
       // To go to the first frame
       modelViewer.currentTime = 0;
@@ -241,13 +233,10 @@ function ProductDetailAR() {
 
         setIsPlaying(!isPlaying);
       } else {
-        console.log("No animation present or duration is less than 1 second.");
       }
     }
   };
-  useEffect(() => {
-    console.log("anikami", hasAnimation);
-  }, [hasAnimation]);
+  useEffect(() => {}, [hasAnimation]);
 
   return (
     <>
@@ -259,37 +248,6 @@ function ProductDetailAR() {
             <div class="product_detail_ar_container_child_child">
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
-                  {/* {isGlbKeyPresent ? (
-                    
-                    <div className="App">
-                      <model-viewer
-                        ref={modelViewerRef}
-                        id="change-speed-demo"
-                        camera-controls
-                        touch-action="pan-y"
-                        animation-name="Dance"
-                        ar
-                        ar-scale="fixed"
-                        ar-modes="webxr scene-viewer"
-                        shadow-intensity="1"
-                        src={glbFile}
-                        ios-src={usdzFile}
-                        alt="A 3D model of a duck">
-                        <button slot="ar-button" id="ar-button">
-                          View in your space
-                        </button>
-                        {hasAnimation && ( // Conditionally render controls if hasAnimation is true
-                          <div id="controls">
-                            <button onClick={handleToggleAnimation}>
-                              {isPlaying ? <FaPause /> : <FaPlay />}
-                            </button>
-                          </div>
-                        )}
-                      </model-viewer>
-                    </div>
-                  ) : (
-                    <img src={productData?.imageurl[0]} alt="Simple Image" />
-                  )} */}
                   {colorValuePresent && isGlbKeyPresent ? (
                     <div className="App">
                       <model-viewer

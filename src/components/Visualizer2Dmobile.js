@@ -15,8 +15,8 @@ import { useMyContext } from "../Context/store";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
-import InnerImageZoom from 'react-inner-image-zoom';
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import InnerImageZoom from "react-inner-image-zoom";
 
 function Visualizer2Dmobile() {
   const {
@@ -280,9 +280,9 @@ function Visualizer2Dmobile() {
     const item = JSON.parse(localStorage.getItem("room"));
     setRoom(item);
   }, []);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (favorite) {
       const fav = list.filter((item) => item.favorite === true);
@@ -393,7 +393,6 @@ function Visualizer2Dmobile() {
   }, []);
 
   const onChangeFavorite = (id) => {
-    console.log("item", id);
     const list2 = list.map(function (item) {
       if (item.id !== id) {
         return item;
@@ -447,7 +446,6 @@ function Visualizer2Dmobile() {
 
   const onScroll = (e) => {
     const delta = e.deltaY * -0.002;
-    console.log(delta, e.clientX);
 
     const newScale = position.scale + delta;
     const ratio = 1 - newScale / position.scale;
@@ -531,7 +529,6 @@ function Visualizer2Dmobile() {
     await resizeImage(val).then((res) => {
       newres = res;
     });
-    console.log(newres);
 
     const body = {
       wallimg: temporgimage,
@@ -549,7 +546,6 @@ function Visualizer2Dmobile() {
     await axios
       .post("https://wallserver.arnxt.com/api/v1/infer", body, config)
       .then((res) => {
-        console.log(res.data);
         setSegmentImg(true);
         setProcessImg(res.data);
       })
@@ -707,9 +703,7 @@ function Visualizer2Dmobile() {
             </div>
           </div>
           <div className="main-panel">
-            <div
-              ref={ImageRef}
-           >
+            <div ref={ImageRef}>
               {/* <img
                 // src={
                 //   segmentimg ? `data:image/png;base64, ${processimg}` : image
@@ -718,13 +712,15 @@ function Visualizer2Dmobile() {
                 alt="room"
                 className="room"
               /> */}
-              <InnerImageZoom  zoomScale={0.3}           src={
-                   segmentimg ? `data:image/png;base64, ${processimg}` : image
-                 }
- zoomSrc={
-                   segmentimg ? `data:image/png;base64, ${processimg}` : image
-                 } />
-
+              <InnerImageZoom
+                zoomScale={0.3}
+                src={
+                  segmentimg ? `data:image/png;base64, ${processimg}` : image
+                }
+                zoomSrc={
+                  segmentimg ? `data:image/png;base64, ${processimg}` : image
+                }
+              />
             </div>
 
             {isLoading ? (

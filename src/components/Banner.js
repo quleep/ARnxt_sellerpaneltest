@@ -114,13 +114,9 @@ const Banner = ({ filteredApplicants, showSnackbar }) => {
     const now = Date.now() / 1000; // get current timestamp in seconds
     const isLessThanToday = timestamp < now;
     if (isLessThanToday) {
-      console.log("This timestamp is less than today's timestamp.");
       console.log(timestamp);
       setdisabled(true);
     } else {
-      console.log(
-        "This timestamp is greater than or equal to today's timestamp."
-      );
     }
   }, [filteredApplicants]);
   const myInputRef = useRef(null);
