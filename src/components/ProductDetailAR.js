@@ -7,6 +7,7 @@ import { BsBox } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
+import Toast from "react-bootstrap/Toast";
 
 import QRCode from "react-qr-code";
 import Button from "react-bootstrap/Button";
@@ -31,15 +32,45 @@ function ProductDetailAR() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasAnimation, setHasAnimation] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+    const [city, setCity] = useState("");
+        const [state, setState] = useState("");
+  const [contact, setContact] = useState("");
+
+  const [contactError, setContactError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+    const handleCityChange = (event) => {
+       setCity(event.target.value);
 
+  };
+    const handleStateChange = (event) => {
+       setState(event.target.value);
+
+  };
+    const handleContactChange = (event) => {
+    const value = event.target.value;
+    if (value.length <= 10) {
+      setContact(value);
+      setContactError("");
+    } else {
+      setContactError("* Contact number should be 10 or less than 10");
+    }
+  };
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -64,16 +95,57 @@ function ProductDetailAR() {
     fetchProductData();
   }, [param]);
   useEffect(() => {
+      const arButton = document.querySelector("change-speed-demo");
+      arButton?.addEventListener("quick-look-button-tapped", () => {
+        setCount("dd");
+        window.location.href = "https://https://www.nasa.gov/";
+        
+      });
     console.log("diffrentor", isGlbKeyPresent);
     modelViewerRef.current?.addEventListener("ar-status", (event) => {
       setCount(event.detail.status);
       console.log(event.detail.status);
-          window.location.href = '#open-modal';
+          window.location.href = '#open-modal1';
 
     });
+       modelViewerRef?.current?.addEventListener(
+        'quick-look-button-tapped',
+        () =>   window.location.href = '#open-modal'
+      );
   }, [isGlbKeyPresent]);
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
+  };
+    const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    try {
+ 
+
+      const newApplicant = {
+      Id: new Date().getTime().toString(),
+            registration_Time: new Date().toString(),
+
+        name: name,
+        contactNumber: contact,
+        city: city,
+        state: state,
+      };
+
+      const applicantResponse = await axios.post(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/adduserarnxtdata",
+        newApplicant
+      );
+      setShowToast(true);
+    
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+                window.location.href = '#';
+
+    }
   };
   const openqrcode = () => {
     document.querySelector(".modalscan").style.display = "block";
@@ -157,7 +229,7 @@ function ProductDetailAR() {
                         animation-name="Dance"
                         ar
                         ar-scale="fixed"
-                        ar-modes="webxr scene-viewer quick-look"
+                        ar-modes="webxr scene-viewer"
                         shadow-intensity="1"
                         src={glbFile}
                         ios-src={usdzFile}
@@ -175,7 +247,6 @@ function ProductDetailAR() {
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}
                 </div>
-            
                 <div class="product_detail_ar_container_grid_child1">
                   <h2 class="product_detail_ar_container_grid_child1_text1">
                     {productData?.productname
@@ -250,6 +321,75 @@ function ProductDetailAR() {
                         product in your space.
                       </p>
                     </div>
+                  </div>
+                     <div id="open-modal1" class="modal-window">
+                      <div className="modal-padding">User Details
+                       <a href="#" title="Close" class="modal-close">
+                        <AiOutlineClose />
+                      </a>
+            <form
+              className="card-form"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}>
+              <div className="name">Name</div>
+              <input
+                type="text"
+                className="name-input"
+                required
+                onChange={handleNameChange}
+              />
+              <div className="name">Contact Number:</div>
+              <input
+                type="tel"
+                className="name-input"
+                required
+                pattern="[0-9]{10}"
+                onChange={handleContactChange}
+              />
+               <div className="name">State:</div>
+              <input
+                type="text"
+                className="name-input"
+                required
+                onChange={handleStateChange}
+              />
+              <div className="name">City:</div>
+              <input
+                type="text"
+                className="name-input"
+                required
+                onChange={handleCityChange}
+              />
+ 
+          
+              {isLoading && <div className="loader"></div>}
+              <button
+                className="action-button"
+                type="submit"
+                disabled={isLoading}>
+                {isLoading ? "Submiting..." : "Submit"}
+              </button>
+            </form>
+
+            <Toast
+              onClose={() => setShowToast(false)}
+              bg="success"
+              show={showToast}
+              delay={3000}
+              autohide>
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded me-2"
+                  alt=""
+                />
+                <strong className="me-auto">Success</strong>
+              </Toast.Header>
+              <Toast.Body className={"text-white"}>
+                Successfully Uploaded!
+              </Toast.Body>
+            </Toast>
+          </div>
                   </div>
                   <div class="modalscan">
                     <div class="modal-wrapscan">
