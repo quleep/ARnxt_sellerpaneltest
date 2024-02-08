@@ -131,18 +131,14 @@ function ProductDetailAR() {
   }, [selectedTexture, colorValuePresent]);
   useEffect(() => {
     const arButton = document?.querySelector("#ar-button");
-    arButton?.addEventListener("click", () => {
+    arButton.addEventListener("click", () => {
       // Delay the redirection by 1 second (1000 milliseconds)
       setTimeout(() => {
         window.location.href = "#open-modal1";
       }, 3000);
     });
     console.log("diffrentor", isGlbKeyPresent);
-    // modelViewerRef.current?.addEventListener("ar-status", (event) => {
-    //   setCount(event.detail.status);
-    //   console.log(event.detail.status);
-    //   window.location.href = "#open-modal1";
-    // });
+
     let listElements = document.querySelectorAll("li");
     listElements.forEach((element) => {
       element.addEventListener("click", function () {
