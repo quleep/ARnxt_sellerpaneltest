@@ -131,12 +131,16 @@ function ProductDetailAR() {
   }, [selectedTexture, colorValuePresent]);
   useEffect(() => {
     const arButton = document?.querySelector("#ar-button");
-    arButton.addEventListener("click", () => {
-      // Delay the redirection by 1 second (1000 milliseconds)
-      setTimeout(() => {
-        window.location.href = "#open-modal1";
-      }, 3000);
-    });
+
+    if (arButton) {
+      arButton.addEventListener("click", () => {
+        // Delay the redirection by 1 second (1000 milliseconds)
+        setTimeout(() => {
+          window.location.href = "#open-modal1";
+        }, 3000);
+      });
+    }
+
     console.log("diffrentor", isGlbKeyPresent);
 
     let listElements = document.querySelectorAll("li");
@@ -150,7 +154,8 @@ function ProductDetailAR() {
         this.style.border = "3px solid black";
       });
     });
-  }, [isGlbKeyPresent]);
+  }, [colorValuePresent, isGlbKeyPresent]);
+
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
   };
