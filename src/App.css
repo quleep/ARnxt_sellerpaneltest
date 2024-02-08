@@ -12180,9 +12180,10 @@ model-viewer {
   background-color: #fff;
   position: absolute;
   left: 50%;
+    bottom: 5%;
+
   transform: translateX(-50%);
   white-space: nowrap;
-  bottom: 132px;
   padding: 0px 16px 0px 40px;
   font-family: Roboto Regular, Helvetica Neue, sans-serif;
   font-size: 14px;
@@ -14451,4 +14452,20 @@ small {
 }
 .hori_scroll_container_header_child p:hover {
   color: rgb(242, 48, 48);
+}
+
+.colors{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+           gap:0.5rem;
+}
+.colors li{
+   width: 35px;
+   height: 35px;
+   border-radius:1.5rem;
+   display: inline-block;
+   cursor: pointer;
+
 }

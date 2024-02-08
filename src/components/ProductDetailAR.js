@@ -18,6 +18,7 @@ import Navbarhome from "./Navbarhome";
 import Footercomponent from "./Footercomponent";
 function ProductDetailAR() {
   const [count, setCount] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   const [productData, setProductData] = useState(null);
   const [glbFile, setGlbFile] = useState("");
@@ -34,9 +35,11 @@ function ProductDetailAR() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-    const [city, setCity] = useState("");
-        const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
   const [contact, setContact] = useState("");
+  const [colorValuePresent, setColorValuePresent] = useState(false);
+  const [selectedTexture, setSelectedTexture] = useState("");
 
   const [contactError, setContactError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +48,13 @@ function ProductDetailAR() {
   const openModal = () => {
     setIsModalOpen(true);
   };
- const handleEmailChange = (event) => {
+  const handleColorClick = (color, imageurl) => {
+    setSelectedColor(color);
+    // Call changeWallpaper or any other logic you want here
+    setSelectedTexture(imageurl);
+  };
+
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
   const closeModal = () => {
@@ -54,15 +63,13 @@ function ProductDetailAR() {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-    const handleCityChange = (event) => {
-       setCity(event.target.value);
-
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
   };
-    const handleStateChange = (event) => {
-       setState(event.target.value);
-
+  const handleStateChange = (event) => {
+    setState(event.target.value);
   };
-    const handleContactChange = (event) => {
+  const handleContactChange = (event) => {
     const value = event.target.value;
     if (value.length <= 10) {
       setContact(value);
@@ -84,8 +91,9 @@ function ProductDetailAR() {
         setGlbFile(response.data.glb);
         setUsdzFile(response.data.usdz);
         setIsGlbKeyPresent("glb" in response.data);
+        setColorValuePresent("texture" in response.data);
 
-        console.log(data);
+        console.log(response.data);
         setProductData(data);
       } catch (error) {
         console.error(error);
@@ -95,38 +103,69 @@ function ProductDetailAR() {
     fetchProductData();
   }, [param]);
   useEffect(() => {
-      const arButton = document.querySelector("change-speed-demo");
-      arButton?.addEventListener("quick-look-button-tapped", () => {
-        setCount("dd");
-        window.location.href = "https://https://www.nasa.gov/";
-        
-      });
-    console.log("diffrentor", isGlbKeyPresent);
-    modelViewerRef.current?.addEventListener("ar-status", (event) => {
-      setCount(event.detail.status);
-      console.log(event.detail.status);
-          window.location.href = '#open-modal1';
+    const modelViewerTexture1 = document.querySelector(
+      "model-viewer#change-speed-demo"
+    );
 
-    });
-       modelViewerRef?.current?.addEventListener(
-        'quick-look-button-tapped',
-        () =>   window.location.href = '#open-modal'
+    const createAndApplyTexture = async (channel, textureUrl) => {
+      const randomSuffix = `?random=${Math.random()}`;
+      const updatedTextureUrl = textureUrl + randomSuffix;
+      console.log("vfv", updatedTextureUrl);
+      const texture = await modelViewerTexture1.createTexture(
+        updatedTextureUrl
       );
+      const material = modelViewerTexture1.model.materials[0];
+
+      if (channel.includes("base") || channel.includes("metallic")) {
+        material.pbrMetallicRoughness[channel].setTexture(texture);
+      } else {
+        material[channel].setTexture(texture);
+      }
+    };
+
+    console.log(selectedTexture);
+
+    if (modelViewerTexture1?.model) {
+      createAndApplyTexture("baseColorTexture", selectedTexture);
+    }
+  }, [selectedTexture, colorValuePresent]);
+  useEffect(() => {
+    const arButton = document?.querySelector("#ar-button");
+    arButton?.addEventListener("click", () => {
+      // Delay the redirection by 1 second (1000 milliseconds)
+      setTimeout(() => {
+        window.location.href = "#open-modal1";
+      }, 3000);
+    });
+    console.log("diffrentor", isGlbKeyPresent);
+    // modelViewerRef.current?.addEventListener("ar-status", (event) => {
+    //   setCount(event.detail.status);
+    //   console.log(event.detail.status);
+    //   window.location.href = "#open-modal1";
+    // });
+    let listElements = document.querySelectorAll("li");
+    listElements.forEach((element) => {
+      element.addEventListener("click", function () {
+        let clr = this.getAttribute("data-color");
+        document.documentElement.style.setProperty("--color", clr);
+        listElements.forEach((element) => {
+          element.style.border = "none";
+        });
+        this.style.border = "3px solid black";
+      });
+    });
   }, [isGlbKeyPresent]);
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
   };
-    const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
     try {
- 
-
       const newApplicant = {
-      Id: new Date().getTime().toString(),
-            registration_Time: new Date().toString(),
-
+        Id: new Date().getTime().toString(),
+        registration_Time: new Date().toString(),
         name: name,
         contactNumber: contact,
         city: city,
@@ -138,17 +177,18 @@ function ProductDetailAR() {
         newApplicant
       );
       setShowToast(true);
-    
     } catch (err) {
       console.log(err);
     } finally {
       setIsLoading(false);
-                window.location.href = '#';
-
+      window.location.href = "#";
     }
   };
   const openqrcode = () => {
     document.querySelector(".modalscan").style.display = "block";
+  };
+  const changeWallpaper = (imageUrl) => {
+    setSelectedTexture(imageUrl);
   };
   const handleSimpleImageClick = () => {
     // Handle the click behavior when 'glb' key is not present
@@ -218,8 +258,8 @@ function ProductDetailAR() {
             <div class="product_detail_ar_container_child_child">
               <div class="product_detail_ar_container_child_child_grid">
                 <div class="product_detail_ar_container_grid_child">
-
-                  {isGlbKeyPresent ? (
+                  {/* {isGlbKeyPresent ? (
+                    
                     <div className="App">
                       <model-viewer
                         ref={modelViewerRef}
@@ -234,7 +274,66 @@ function ProductDetailAR() {
                         src={glbFile}
                         ios-src={usdzFile}
                         alt="A 3D model of a duck">
+                        <button slot="ar-button" id="ar-button">
+                          View in your space
+                        </button>
                         {hasAnimation && ( // Conditionally render controls if hasAnimation is true
+                          <div id="controls">
+                            <button onClick={handleToggleAnimation}>
+                              {isPlaying ? <FaPause /> : <FaPlay />}
+                            </button>
+                          </div>
+                        )}
+                      </model-viewer>
+                    </div>
+                  ) : (
+                    <img src={productData?.imageurl[0]} alt="Simple Image" />
+                  )} */}
+                  {colorValuePresent && isGlbKeyPresent ? (
+                    <div className="App">
+                      <model-viewer
+                        id="change-speed-demo"
+                        camera-controls
+                        touch-action="pan-y"
+                        src={glbFile}
+                        ar
+                        ar-scale="fixed"
+                        alt="A 3D model of a helmet"
+                        ref={modelViewerRef}
+                        animation-name="Dance"
+                        ar-modes="webxr scene-viewer quick-look"
+                        shadow-intensity="1">
+                        <button slot="ar-button" id="ar-button">
+                          View in your space
+                        </button>
+                        {hasAnimation && (
+                          <div id="controls">
+                            <button onClick={handleToggleAnimation}>
+                              {isPlaying ? <FaPause /> : <FaPlay />}
+                            </button>
+                          </div>
+                        )}
+                      </model-viewer>
+                    </div>
+                  ) : isGlbKeyPresent || colorValuePresent ? (
+                    <div className="App">
+                      <model-viewer
+                        ref={modelViewerRef}
+                        id="change-speed-demo"
+                        camera-controls
+                        touch-action="pan-y"
+                        animation-name="Dance"
+                        ar
+                        ar-scale="fixed"
+                        ar-modes="webxr scene-viewer"
+                        shadow-intensity="1"
+                        src={glbFile}
+                        ios-src={usdzFile}
+                        alt="A 3D model of a duck">
+                        <button slot="ar-button" id="ar-button">
+                          View in your space
+                        </button>
+                        {hasAnimation && (
                           <div id="controls">
                             <button onClick={handleToggleAnimation}>
                               {isPlaying ? <FaPause /> : <FaPlay />}
@@ -275,6 +374,52 @@ function ProductDetailAR() {
                         .join(" ")}
                     </div>
                   </div>
+
+                  {colorValuePresent && isGlbKeyPresent ? (
+                    <div className="product_detail_ar_container_grid_child1_text2">
+                      <div className="product_detail_ar_container_grid_child1_text2_child">
+                        Color Variant:
+                      </div>
+                      <div
+                        className="product_detail_ar_container_grid_child1_text2_child1"
+                        style={{ textTransform: "uppercase" }}>
+                        <div className="colors">
+                          <li
+                            data-color="#d2c8aa"
+                            style={{
+                              backgroundColor: "#d2c8aa",
+                              border:
+                                selectedColor === "#d2c8aa"
+                                  ? "2px solid black"
+                                  : "none",
+                            }}
+                            onClick={() =>
+                              handleColorClick(
+                                "#d2c8aa",
+                                "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/Godrej+ac_aiStandardSurface1_BaseColor.png"
+                              )
+                            }></li>
+                          <li
+                            data-color="#9ab9c7"
+                            style={{
+                              backgroundColor: "#9ab9c7",
+                              border:
+                                selectedColor === "#9ab9c7"
+                                  ? "2px solid black"
+                                  : "none",
+                            }}
+                            onClick={() =>
+                              handleColorClick(
+                                "#9ab9c7",
+                                "https://arnxtsellerproductimages.s3.ap-south-1.amazonaws.com/Godrej+ac_aiStandardSurface1_BaseColor-1.png"
+                              )
+                            }></li>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="product_detail_ar_container_grid_child1_text2">
                     <div className="product_detail_ar_container_grid_child1_text2_child">
                       Dimensions:
@@ -322,74 +467,73 @@ function ProductDetailAR() {
                       </p>
                     </div>
                   </div>
-                     <div id="open-modal1" class="modal-window">
-                      <div className="modal-padding">User Details
-                       <a href="#" title="Close" class="modal-close">
+                  <div id="open-modal1" class="modal-window">
+                    <div className="modal-padding">
+                      User Details
+                      <a href="#" title="Close" class="modal-close">
                         <AiOutlineClose />
                       </a>
-            <form
-              className="card-form"
-              encType="multipart/form-data"
-              onSubmit={handleSubmit}>
-              <div className="name">Name</div>
-              <input
-                type="text"
-                className="name-input"
-                required
-                onChange={handleNameChange}
-              />
-              <div className="name">Contact Number:</div>
-              <input
-                type="tel"
-                className="name-input"
-                required
-                pattern="[0-9]{10}"
-                onChange={handleContactChange}
-              />
-               <div className="name">State:</div>
-              <input
-                type="text"
-                className="name-input"
-                required
-                onChange={handleStateChange}
-              />
-              <div className="name">City:</div>
-              <input
-                type="text"
-                className="name-input"
-                required
-                onChange={handleCityChange}
-              />
- 
-          
-              {isLoading && <div className="loader"></div>}
-              <button
-                className="action-button"
-                type="submit"
-                disabled={isLoading}>
-                {isLoading ? "Submiting..." : "Submit"}
-              </button>
-            </form>
+                      <form
+                        className="card-form"
+                        encType="multipart/form-data"
+                        onSubmit={handleSubmit}>
+                        <div className="name">Name</div>
+                        <input
+                          type="text"
+                          className="name-input"
+                          required
+                          onChange={handleNameChange}
+                        />
+                        <div className="name">Contact Number:</div>
+                        <input
+                          type="tel"
+                          className="name-input"
+                          required
+                          pattern="[0-9]{10}"
+                          onChange={handleContactChange}
+                        />
+                        <div className="name">State:</div>
+                        <input
+                          type="text"
+                          className="name-input"
+                          required
+                          onChange={handleStateChange}
+                        />
+                        <div className="name">City:</div>
+                        <input
+                          type="text"
+                          className="name-input"
+                          required
+                          onChange={handleCityChange}
+                        />
 
-            <Toast
-              onClose={() => setShowToast(false)}
-              bg="success"
-              show={showToast}
-              delay={3000}
-              autohide>
-              <Toast.Header>
-                <img
-                  src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
-                  alt=""
-                />
-                <strong className="me-auto">Success</strong>
-              </Toast.Header>
-              <Toast.Body className={"text-white"}>
-                Successfully Uploaded!
-              </Toast.Body>
-            </Toast>
-          </div>
+                        {isLoading && <div className="loader"></div>}
+                        <button
+                          className="action-button"
+                          type="submit"
+                          disabled={isLoading}>
+                          {isLoading ? "Submiting..." : "Submit"}
+                        </button>
+                      </form>
+                      <Toast
+                        onClose={() => setShowToast(false)}
+                        bg="success"
+                        show={showToast}
+                        delay={3000}
+                        autohide>
+                        <Toast.Header>
+                          <img
+                            src="holder.js/20x20?text=%20"
+                            className="rounded me-2"
+                            alt=""
+                          />
+                          <strong className="me-auto">Success</strong>
+                        </Toast.Header>
+                        <Toast.Body className={"text-white"}>
+                          Successfully Uploaded!
+                        </Toast.Body>
+                      </Toast>
+                    </div>
                   </div>
                   <div class="modalscan">
                     <div class="modal-wrapscan">
