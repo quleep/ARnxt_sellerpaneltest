@@ -114,7 +114,6 @@ const Banner = ({ filteredApplicants, showSnackbar }) => {
     const now = Date.now() / 1000; // get current timestamp in seconds
     const isLessThanToday = timestamp < now;
     if (isLessThanToday) {
-      console.log(timestamp);
       setdisabled(true);
     } else {
     }

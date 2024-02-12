@@ -305,7 +305,12 @@ function Merchant_Register() {
       <div className="register__container">
         <div className="regFormDiv">
           <h2 className="regFormHeading">Merchant Register</h2>
-          <h2 style={{"color": "red", "fontSize": "17px"}} className="regFormHeading">  * indicates required field</h2>
+          <h2
+            style={{ color: "red", fontSize: "17px" }}
+            className="regFormHeading">
+            {" "}
+            * indicates required field
+          </h2>
           <form className="regForm" onSubmit={(e) => firstStepSubmit(e)}>
             <div className="d-flex">
               <div className="asterisk">*</div>
@@ -419,8 +424,7 @@ function Merchant_Register() {
             className="regForm"
             onSubmit={(e) => {
               submitGstin(e);
-            }}
-          >
+            }}>
             <div className="d-flex">
               <div className="regInputDiv">
                 <input
@@ -539,12 +543,10 @@ function Merchant_Register() {
                     onChange={(e) => {
                       setErrorAccountType("");
                       setAccountType(e.target.value);
-                    }}
-                  >
+                    }}>
                     <option
                       selected
-                      disabled={accountType === "" ? false : true}
-                    >
+                      disabled={accountType === "" ? false : true}>
                       Account Type...
                     </option>
                     <option value="Savings">Savings</option>
@@ -575,7 +577,12 @@ function Merchant_Register() {
       <div className="container register__container">
         <div className="regFormDiv">
           <h2 className="regFormHeading">MERCHANT DETAILS</h2>
-          <h2 style={{"color": "red", "fontSize": "17px"}} className="regFormHeading">  * indicates required field</h2>
+          <h2
+            style={{ color: "red", fontSize: "17px" }}
+            className="regFormHeading">
+            {" "}
+            * indicates required field
+          </h2>
           <form className="regForm" onSubmit={(e) => createAccount(e)}>
             <div className="d-flex">
               <div className="asterisk">*</div>
@@ -650,12 +657,10 @@ function Merchant_Register() {
                     onChange={(e) => {
                       setErrorCompanyType("");
                       setCompanyType(e.target.value);
-                    }}
-                  >
+                    }}>
                     <option
                       selected
-                      disabled={companyType === "" ? false : true}
-                    >
+                      disabled={companyType === "" ? false : true}>
                       Company Type...
                     </option>
                     <option value="Limited">Limited</option>

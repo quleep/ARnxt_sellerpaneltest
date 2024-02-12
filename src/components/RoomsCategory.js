@@ -55,7 +55,6 @@ function RoomsCategory() {
         const response = await axios.post(
           `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsinglesubcatdetails?subcat=${param.id}`
         );
-        console.log("subcategory detaol", response.data[0].subcategorydetails);
         setSubcatDetails(response.data[0].subcategorydetails);
       } catch (error) {
         console.error("Error fetching data:", error);

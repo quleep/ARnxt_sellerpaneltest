@@ -190,7 +190,7 @@ class HiddenPlan extends Component {
                             user: false,
                             sub_id: resp.data.sub_id,
                             plansList:
-                              response.data.plansList.items.slice(0,1) || [],
+                              response.data.plansList.items.slice(0, 1) || [],
                             planId: newResp.data.planId,
                           });
                         });
@@ -198,7 +198,7 @@ class HiddenPlan extends Component {
                       this.setState({
                         user: false,
                         plansList:
-                          response.data.plansList.items.slice(0,1) || [],
+                          response.data.plansList.items.slice(0, 1) || [],
                       });
                     }
                   } else {
@@ -311,8 +311,7 @@ class HiddenPlan extends Component {
                                 planId === plan.id ? (
                                   <button
                                     className="plan__btn plan__cbtn"
-                                    onClick={this.cancelSub}
-                                  >
+                                    onClick={this.cancelSub}>
                                     Cancel
                                   </button>
                                 ) : (
@@ -324,8 +323,7 @@ class HiddenPlan extends Component {
                                         plan.id,
                                         plan.notes.modelLimit
                                       )
-                                    }
-                                  >
+                                    }>
                                     Upgrade Plan
                                   </button>
                                 )
@@ -338,8 +336,7 @@ class HiddenPlan extends Component {
                                       plan.id,
                                       plan.notes.modelLimit
                                     )
-                                  }
-                                >
+                                  }>
                                   Take Plan
                                 </button>
                               )
@@ -360,8 +357,7 @@ class HiddenPlan extends Component {
                                 fontWeight: "500",
                                 fontFamily: "Alata",
                                 letterSpacing: "2px",
-                              }}
-                            >
+                              }}>
                               Subscription updating
                             </h3>
                           </div>

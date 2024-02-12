@@ -1,11 +1,11 @@
-import React, {useState, useEffect, Component, Fragment } from 'react';
+import React, { useState, useEffect, Component, Fragment } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import download from 'downloadjs';
+import download from "downloadjs";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from 'react-loader-spinner';
-import axios from 'axios';
-import url from '../serverURL';
-import '../css/miscClasses.css';
+import Loader from "react-loader-spinner";
+import axios from "axios";
+import url from "../serverURL";
+import "../css/miscClasses.css";
 
 function TagInput({ addTags }) {
   const [tag, setTag] = useState("");
@@ -56,8 +56,7 @@ function TagInput({ addTags }) {
           <li
             className="li-none pointer grey-bg pl-4 py-1 custom"
             onClick={() => onClickTags(keyword)}
-            key={index}
-          >
+            key={index}>
             {keyword}
           </li>
         ))}
@@ -472,8 +471,8 @@ class Download extends Component {
       errorName: "",
       error: "",
       success: "",
-        errorType: "",
-      errorTags:""
+      errorType: "",
+      errorTags: "",
     });
   };
 
@@ -628,8 +627,7 @@ class Download extends Component {
                     {tag}
                     <span
                       className="pl-3 pointer"
-                      onClick={() => this.removeTag(tag)}
-                    >
+                      onClick={() => this.removeTag(tag)}>
                       &#10006;
                     </span>
                   </div>
@@ -788,8 +786,7 @@ class Download extends Component {
                   className="model__input"
                   value={isHidden ? "true" : "false"}
                   name="category"
-                  placeholder="Category"
-                >
+                  placeholder="Category">
                   <option value="false" style={{ fontWeight: "400" }}>
                     Don't Hide model
                   </option>
@@ -883,8 +880,7 @@ class Download extends Component {
                         <div>
                           <label
                             for="Model"
-                            style={{ fontSize: ".9rem", fontWeight: "600" }}
-                          >
+                            style={{ fontSize: ".9rem", fontWeight: "600" }}>
                             {oldType === "furnitures" ||
                             oldType === "appliances" ||
                             oldType === "Electrical"
@@ -914,8 +910,7 @@ class Download extends Component {
                         <div>
                           <label
                             for="Textures"
-                            style={{ fontSize: ".9rem", fontWeight: "600" }}
-                          >
+                            style={{ fontSize: ".9rem", fontWeight: "600" }}>
                             {!(
                               oldType === "furnitures" ||
                               oldType === "appliances" ||
@@ -968,8 +963,7 @@ class Download extends Component {
                       <div>
                         <label
                           for="Preview"
-                          style={{ fontSize: ".9rem", fontWeight: "600" }}
-                        >
+                          style={{ fontSize: ".9rem", fontWeight: "600" }}>
                           Replace Preview Image (.jpg, .jpeg, .png)
                         </label>
                         <br />

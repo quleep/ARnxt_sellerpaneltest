@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 
 function Features() {
   // scrolled to top when redirected from a page
@@ -22,8 +22,6 @@ function Features() {
           <div className="row">
             <div className="col-xl-5">
               <div className="accordion" id="accordionExample">
-
-
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon">
                     <span className="fas fa-object-group"></span>
@@ -35,26 +33,21 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseOne"
                       aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
+                      aria-controls="collapseOne">
                       Place Objects
                     </button>
                   </div>
-                  
+
                   <div
                     id="collapseOne"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       Place furniture, Appliances etc. from an large collection
                     </div>
                   </div>
                 </div>
-
-
-
 
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon yellow">
@@ -67,8 +60,7 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo"
                       aria-expanded="true"
-                      aria-controls="collapseTwo"
-                    >
+                      aria-controls="collapseTwo">
                       Customize
                     </button>
                   </div>
@@ -76,16 +68,13 @@ function Features() {
                     id="collapseTwo"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingTwo"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       Change position, rotation or scale of your product in
                       realtime
                     </div>
                   </div>
-                  
                 </div>
-
 
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon orange">
@@ -98,8 +87,7 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseThree"
                       aria-expanded="true"
-                      aria-controls="collapseThreee"
-                    >
+                      aria-controls="collapseThreee">
                       Change your walls
                     </button>
                   </div>
@@ -107,16 +95,12 @@ function Features() {
                     id="collapseThree"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingThree"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       Tryout vast collection of wallpapers or tiles
                     </div>
                   </div>
                 </div>
-
-
-
 
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon orange">
@@ -129,8 +113,7 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseFour"
                       aria-expanded="true"
-                      aria-controls="collapseFour"
-                    >
+                      aria-controls="collapseFour">
                       Save and Share
                     </button>
                   </div>
@@ -138,15 +121,12 @@ function Features() {
                     id="collapseFour"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingFour"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       Save your designs and share with others
                     </div>
                   </div>
                 </div>
-
-
 
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon yellow">
@@ -159,8 +139,7 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseFive"
                       aria-expanded="true"
-                      aria-controls="collapseFive"
-                    >
+                      aria-controls="collapseFive">
                       Buy Directly
                     </button>
                   </div>
@@ -168,15 +147,12 @@ function Features() {
                     id="collapseFive"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingFive"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       Purchase products directly from the app
                     </div>
                   </div>
                 </div>
-
-
 
                 <div className="accordion-item mb-0">
                   <div className="accordion-icon ">
@@ -189,8 +165,7 @@ function Features() {
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseSix"
                       aria-expanded="true"
-                      aria-controls="collapseSix"
-                    >
+                      aria-controls="collapseSix">
                       Change Floors
                     </button>
                   </div>
@@ -198,16 +173,13 @@ function Features() {
                     id="collapseSix"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingSix"
-                    data-bs-parent="#accordionExample"
-                  >
+                    data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       {" "}
                       Change tiles on your floors
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
             <div className="col-xl-7">

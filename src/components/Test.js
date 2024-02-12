@@ -1,12 +1,10 @@
-import React from 'react'
-import { FaTicketAlt, FaTimesCircle } from 'react-icons/fa'
+import React from "react";
+import { FaTicketAlt, FaTimesCircle } from "react-icons/fa";
 
 const Test = () => {
   return (
     <div>
-
-   {
-    /*
+      {/*
 
   <div className="footer bg-gray"  style={{backgroundColor:'#001E6C'}}>
           <div className="container"   style={{}}>
@@ -451,16 +449,9 @@ const Test = () => {
   
   }
 
-    */
+    */}
+    </div>
+  );
+};
 
-   }
-
-</div>
-
-
-      
-   
-  )
-}
-
-export default Test
+export default Test;

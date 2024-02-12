@@ -27,7 +27,7 @@ function ProductDetailAR() {
   const [modal, setModal] = useState(false);
   const [isGlbKeyPresent, setIsGlbKeyPresent] = useState(false);
   const [isGlb, setIsGlb] = useState(false);
-  const [viewInARitem, setViewInARitem] = useState([]);
+  const [placement, setPlacement] = useState("");
   const history = useHistory();
   const modelViewerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -92,7 +92,7 @@ function ProductDetailAR() {
         setUsdzFile(response.data.usdz);
         setIsGlbKeyPresent("glb" in response.data);
         setColorValuePresent("texture" in response.data);
-
+        setPlacement(response.data.productdetails[0].placement);
         setProductData(data);
       } catch (error) {
         console.error(error);
@@ -125,30 +125,23 @@ function ProductDetailAR() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, colorValuePresent]);
-  useEffect(() => {
-    const arButton = document?.querySelector("#ar-button");
+useEffect(() => {
+  const arButton = document?.querySelector("#ar-button");
 
-    if (arButton) {
-      arButton.addEventListener("click", () => {
+  if (arButton) {
+    arButton.addEventListener("click", () => {
+      // Assuming brand is a variable representing the brand value
+      if (productData.brand === "godrej") {
         // Delay the redirection by 1 second (1000 milliseconds)
         setTimeout(() => {
           window.location.href = "#open-modal1";
         }, 3000);
-      });
-    }
-
-    let listElements = document.querySelectorAll("li");
-    listElements.forEach((element) => {
-      element.addEventListener("click", function () {
-        let clr = this.getAttribute("data-color");
-        document.documentElement.style.setProperty("--color", clr);
-        listElements.forEach((element) => {
-          element.style.border = "none";
-        });
-        this.style.border = "3px solid black";
-      });
+      }
+      // If brand is not "godrej," do nothing
     });
-  }, [colorValuePresent, isGlbKeyPresent]);
+  }
+}, [ productData]);
+
 
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
@@ -257,6 +250,7 @@ function ProductDetailAR() {
                         src={glbFile}
                         ar
                         ar-scale="fixed"
+                        ar-placement="wall"
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
                         animation-name="Dance"
@@ -284,6 +278,7 @@ function ProductDetailAR() {
                         animation-name="Dance"
                         ar
                         ar-scale="fixed"
+                        ar-placement={placement}
                         ar-modes="webxr scene-viewer"
                         shadow-intensity="1"
                         src={glbFile}
@@ -436,7 +431,7 @@ function ProductDetailAR() {
                         className="card-form"
                         encType="multipart/form-data"
                         onSubmit={handleSubmit}>
-                        <div className="name">Name</div>
+                        <div className="name">Name:</div>
                         <input
                           type="text"
                           className="name-input"

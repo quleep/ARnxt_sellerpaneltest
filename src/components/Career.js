@@ -7,9 +7,9 @@ import Navbar from "./Navbar";
 const Career = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <Opening />
-      <Footertest/>
+      <Footertest />
     </div>
   );
 };

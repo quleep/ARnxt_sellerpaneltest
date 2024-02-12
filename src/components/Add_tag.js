@@ -4,39 +4,38 @@ import url from "../serverURL";
 import "../css/approvemodels.css";
 
 function Add_tag() {
-    const [tag, setTag] = useState("")
-    const [errorTag, setErrorTag] = useState("")
-    const [tags, setTags] = useState([])
+  const [tag, setTag] = useState("");
+  const [errorTag, setErrorTag] = useState("");
+  const [tags, setTags] = useState([]);
 
-    const tagHandle = (e) => {
-        setTag(e.target.value);
-        setErrorTag('')
-    }
+  const tagHandle = (e) => {
+    setTag(e.target.value);
+    setErrorTag("");
+  };
 
-    const addTag = (e) => {
-        e.preventDefault()
-        if (tags.indexOf(tag) !== -1)
-            setErrorTag("Tag already exist!")
-        else {
-            const token = sessionStorage.getItem("token");
-            axios
-              .post(`${url}/admin/addtag`, { token, tag })
-                .then((res) => {
-                    if (res.data.success){
-                        setTags([...tags, tag])
-                        setTag('')
-                    }
-              })
-              .catch((err) => console.log(err));
-        }
-    }
-
-    useEffect(() => {
+  const addTag = (e) => {
+    e.preventDefault();
+    if (tags.indexOf(tag) !== -1) setErrorTag("Tag already exist!");
+    else {
+      const token = sessionStorage.getItem("token");
       axios
-        .get(`${url}/model/tags`)
-        .then((res) => setTags(res.data.tags))
+        .post(`${url}/admin/addtag`, { token, tag })
+        .then((res) => {
+          if (res.data.success) {
+            setTags([...tags, tag]);
+            setTag("");
+          }
+        })
         .catch((err) => console.log(err));
-    }, []);
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${url}/model/tags`)
+      .then((res) => setTags(res.data.tags))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="App">
@@ -44,7 +43,7 @@ function Add_tag() {
         <div className="model__formDiv">
           <h3 className="model__fromHeading">ADD TAG</h3>
 
-          <form className="model__form" onSubmit={(e)=>addTag(e)}>
+          <form className="model__form" onSubmit={(e) => addTag(e)}>
             <div className="model__inputDiv">
               <input
                 type="text"

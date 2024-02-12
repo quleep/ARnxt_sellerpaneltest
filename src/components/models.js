@@ -53,8 +53,7 @@ function TagInput({ addTags }) {
             <li
               className="li-none pointer grey-bg pl-4 py-1"
               onClick={() => onClickTags(keyword)}
-              key={index}
-            >
+              key={index}>
               {keyword}
             </li>
           ))}
@@ -210,7 +209,6 @@ class Model extends Component {
 
     if (type === "electrical") this.setState({ category: "" });
 
-    
     if (type === "wallpapers" || type === "tiles")
       this.setState({
         subCategory: "",
@@ -574,26 +572,20 @@ class Model extends Component {
       var fbxName = "";
       var iconName = "";
       var texName = "";
-        if(fbxFile)
-        {
-          console.log(fbxFile.name);
-          fbxName = fbxFile.name;
-        }
-          
-        if(imgFile)
-        {
-          console.log(imgFile.name);
-          iconName = imgFile.name;
-        }
-         
-        if(texFile)
-        {
-          console.log(texFile.name);
-          texName = texFile.name;
-        }
-          
-    
-        
+      if (fbxFile) {
+        console.log(fbxFile.name);
+        fbxName = fbxFile.name;
+      }
+
+      if (imgFile) {
+        console.log(imgFile.name);
+        iconName = imgFile.name;
+      }
+
+      if (texFile) {
+        console.log(texFile.name);
+        texName = texFile.name;
+      }
 
       const modelHex = this.genHexString(10);
       const token = sessionStorage.getItem("token");
@@ -849,7 +841,6 @@ class Model extends Component {
         });
   };
 
-
   render() {
     const {
       errorTex,
@@ -898,8 +889,7 @@ class Model extends Component {
                 {tag}
                 <span
                   className="pl-3 pointer"
-                  onClick={() => this.removeFilterTag(tag)}
-                >
+                  onClick={() => this.removeFilterTag(tag)}>
                   &#10006;
                 </span>
               </div>
@@ -951,8 +941,7 @@ class Model extends Component {
                       {tag}
                       <span
                         className="pl-3 pointer"
-                        onClick={() => this.removeTag(tag)}
-                      >
+                        onClick={() => this.removeTag(tag)}>
                         &#10006;
                       </span>
                     </div>
@@ -969,8 +958,7 @@ class Model extends Component {
                     className="model__input"
                     name="type"
                     // value={type}
-                    placeholder="Type"
-                  >
+                    placeholder="Type">
                     <option value="select" style={{ fontWeight: "400" }}>
                       Select
                     </option>
@@ -1124,8 +1112,7 @@ class Model extends Component {
                     <div
                       key={model.modelId}
                       className="model"
-                      id={model.modelId}
-                    >
+                      id={model.modelId}>
                       <span
                         className="model__delete"
                         onClick={(e) =>
@@ -1134,14 +1121,12 @@ class Model extends Component {
                             console.error(err);
                             alert("Failed to delete the model. Try later.");
                           })
-                        }
-                      >
+                        }>
                         &times;
                       </span>
                       <Link
                         className="model__link"
-                        to={`/download/${model.modelId}`}
-                      >
+                        to={`/download/${model.modelId}`}>
                         <img
                           className="model__img"
                           src={`${model.previewLocation}`}
@@ -1167,8 +1152,7 @@ class Model extends Component {
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                          }}
-                        >
+                          }}>
                           <input
                             className="model__asids__input"
                             type="text"
@@ -1183,8 +1167,7 @@ class Model extends Component {
                           />
                           <button
                             className="model__asids__btn"
-                            onClick={(e) => this.saveAltIDs(e, model)}
-                          >
+                            onClick={(e) => this.saveAltIDs(e, model)}>
                             SAVE
                           </button>
                         </div>
@@ -1196,8 +1179,7 @@ class Model extends Component {
               {!this.state.nomodels ? (
                 <button
                   className="model__uploadBtn text-center"
-                  onClick={this.loadMore}
-                >
+                  onClick={this.loadMore}>
                   Load More
                 </button>
               ) : null}

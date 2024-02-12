@@ -4573,7 +4573,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
 
   return (
     <div className="">
-      <Navbarhome/>
+      <Navbarhome />
       <div className="nav-container">
         <div
           class="logo"
