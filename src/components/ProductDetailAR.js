@@ -125,23 +125,22 @@ function ProductDetailAR() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, colorValuePresent]);
-useEffect(() => {
-  const arButton = document?.querySelector("#ar-button");
+  useEffect(() => {
+    const arButton = document?.querySelector("#ar-button");
 
-  if (arButton) {
-    arButton.addEventListener("click", () => {
-      // Assuming brand is a variable representing the brand value
-      if (productData.brand === "godrej") {
-        // Delay the redirection by 1 second (1000 milliseconds)
-        setTimeout(() => {
-          window.location.href = "#open-modal1";
-        }, 3000);
-      }
-      // If brand is not "godrej," do nothing
-    });
-  }
-}, [ productData]);
-
+    if (arButton) {
+      arButton.addEventListener("click", () => {
+        // Assuming brand is a variable representing the brand value
+        if (productData.brand === "godrej") {
+          // Delay the redirection by 1 second (1000 milliseconds)
+          setTimeout(() => {
+            window.location.href = "#open-modal1";
+          }, 3000);
+        }
+        // If brand is not "godrej," do nothing
+      });
+    }
+  }, [productData]);
 
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
@@ -196,7 +195,7 @@ useEffect(() => {
 
       // Check if the duration is greater than 1 second
       setHasAnimation(modelViewer.duration > 1);
-
+console.log(modelViewer.duration)
       // To go to the last frame
       modelViewer.currentTime = modelViewer.duration;
     };
@@ -211,7 +210,7 @@ useEffect(() => {
         modelViewer.removeEventListener("load", handleLoad);
       }
     };
-  }, [modelViewerRef.current]);
+  }, [modelViewerRef.current,isGlbKeyPresent,colorValuePresent]);
 
   const handleToggleAnimation = async () => {
     const modelViewer = modelViewerRef.current;
