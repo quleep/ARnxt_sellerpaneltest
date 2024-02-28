@@ -44,7 +44,11 @@ function ProductDetailAR() {
   const [contactError, setContactError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
 
+  const handlePlaceObject = () => {
+    setShowOverlay(false); // Hide the overlay once the object is placed
+  };
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -81,6 +85,7 @@ function ProductDetailAR() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -195,7 +200,7 @@ function ProductDetailAR() {
 
       // Check if the duration is greater than 1 second
       setHasAnimation(modelViewer.duration > 1);
-console.log(modelViewer.duration)
+      console.log(modelViewer.duration);
       // To go to the last frame
       modelViewer.currentTime = modelViewer.duration;
     };
@@ -210,7 +215,7 @@ console.log(modelViewer.duration)
         modelViewer.removeEventListener("load", handleLoad);
       }
     };
-  }, [modelViewerRef.current,isGlbKeyPresent,colorValuePresent]);
+  }, [modelViewerRef.current, isGlbKeyPresent, colorValuePresent]);
 
   const handleToggleAnimation = async () => {
     const modelViewer = modelViewerRef.current;
@@ -268,33 +273,45 @@ console.log(modelViewer.duration)
                       </model-viewer>
                     </div>
                   ) : isGlbKeyPresent || colorValuePresent ? (
-                    <div className="App">
-                      <model-viewer
-                        ref={modelViewerRef}
-                        id="change-speed-demo"
-                        camera-controls
-                        touch-action="pan-y"
-                        animation-name="Dance"
-                        ar
-                        ar-scale="fixed"
-                        ar-placement={placement}
-                        ar-modes="webxr scene-viewer"
-                        shadow-intensity="1"
-                        src={glbFile}
-                        ios-src={usdzFile}
-                        alt="A 3D model of a duck">
-                        <button slot="ar-button" id="ar-button">
-                          View in your space
-                        </button>
-                        {hasAnimation && (
-                          <div id="controls">
-                            <button onClick={handleToggleAnimation}>
-                              {isPlaying ? <FaPause /> : <FaPlay />}
-                            </button>
-                          </div>
-                        )}
-                      </model-viewer>
-                    </div>
+                    <model-viewer
+                      ref={modelViewerRef}
+                      id="change-speed-demo"
+                      camera-controls
+                      touch-action="pan-y"
+                      animation-name="Dance"
+                      ar
+                      ar-scale="fixed"
+                      ar-placement={placement}
+                      ar-modes="webxr scene-viewer"
+                      shadow-intensity="1"
+                      src={glbFile}
+                      ios-src={usdzFile}
+                      alt="A 3D model of a duck">
+                      <button slot="ar-button" id="ar-button">
+                        View in your space
+                      </button>
+                      {showOverlay && (
+                        <div className="overlay">
+                          <p>Move your device to place the object in AR</p>
+                          <button onClick={handlePlaceObject}>Start AR</button>
+                        </div>
+                      )}
+                      <div id="ar-prompt">
+                        <img src="https://modelviewer.dev/shared-assets/icons/hand.png" />
+                        <div id="wall_floor">
+                          Move Camera on the <span>{placement}</span>
+                        </div>
+                      </div>
+
+                      <div id="ar-failure">AR is not tracking!</div>
+                      {hasAnimation && (
+                        <div id="controls">
+                          <button onClick={handleToggleAnimation}>
+                            {isPlaying ? <FaPause /> : <FaPlay />}
+                          </button>
+                        </div>
+                      )}
+                    </model-viewer>
                   ) : (
                     <img src={productData?.imageurl[0]} alt="Simple Image" />
                   )}

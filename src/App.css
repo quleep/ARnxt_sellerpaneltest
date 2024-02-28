@@ -3570,8 +3570,7 @@ a {
   align-items: center;
   justify-content: center;
   animation: fadeInnavbar 0.3s ease-in-out;
-    z-index:9999;
-
+  z-index: 9999;
 }
 
 .modal-contentmainnavbarmobile {
@@ -10287,34 +10286,6 @@ body.active-modal {
   background: #011c4b;
 }
 
-model-viewer > #ar-prompt {
-  position: absolute;
-  left: 50%;
-  bottom: 175px;
-  animation: elongate 2s infinite ease-in-out alternate;
-  display: none;
-}
-
-model-viewer[ar-status="session-started"] > #ar-prompt {
-  display: block;
-}
-
-model-viewer > #ar-prompt > img {
-  animation: circle 4s linear infinite;
-}
-
-model-viewer > #ar-failure {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 175px;
-  display: none;
-}
-
-model-viewer[ar-tracking="not-tracking"] > #ar-failure {
-  display: block;
-}
-
 /* .modalContainer {
   border: 1px solid black;
   width: 500px;
@@ -11226,8 +11197,14 @@ model-viewer > #ar-prompt {
 model-viewer[ar-status="session-started"] > #ar-prompt {
   display: block;
 }
-
+model-viewer[ar-status="object-placed"] > #ar-prompt {
+  display: none;
+}
 model-viewer > #ar-prompt > img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+
   animation: circle 4s linear infinite;
 }
 
@@ -11236,13 +11213,30 @@ model-viewer > #ar-failure {
   left: 50%;
   transform: translateX(-50%);
   bottom: 175px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  font-family: "DM Sans", sans-serif;
   display: none;
 }
 
 model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   display: block;
 }
-
+#wall_floor {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  font-family: "DM Sans", sans-serif;
+}
+#wall_floor span {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: yellow;
+  font-family: "DM Sans", sans-serif;
+}
 .btn {
   width: 140px;
   height: 40px;
@@ -12182,34 +12176,6 @@ model-viewer {
   to {
     transform: translateX(-100px);
   }
-}
-
-model-viewer > #ar-prompt {
-  position: absolute;
-  left: 50%;
-  bottom: 175px;
-  animation: elongate 2s infinite ease-in-out alternate;
-  display: none;
-}
-
-model-viewer[ar-status="session-started"] > #ar-prompt {
-  display: block;
-}
-
-model-viewer > #ar-prompt > img {
-  animation: circle 4s linear infinite;
-}
-
-model-viewer > #ar-failure {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 175px;
-  display: none;
-}
-
-model-viewer[ar-tracking="not-tracking"] > #ar-failure {
-  display: block;
 }
 
 /* Updated styles for improved UI aesthetics */
