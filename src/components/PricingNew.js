@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import Navbartest from "./Navbartest";
 import Navbarhome from "./Navbarhome";
+import { PopupButton } from "react-calendly";
+import Footercomponent from "./Footercomponent";
 
 function PricingNew() {
   useEffect(() => {
@@ -45,7 +47,7 @@ function PricingNew() {
           <div
             role="tablist"
             aria-label="tabs"
-            class="relative w-1/5	 mx-auto h-12 grid grid-cols-2 items-center px-[3px] rounded-full bg-gray-200 overflow-hidden shadow-xl shadow-900/20 transition">
+            class="relative w-full sm:w-1/5	 mx-auto h-12 grid grid-cols-2 items-center px-[3px] rounded-full bg-gray-200 overflow-hidden shadow-xl shadow-900/20 transition">
             <div class="absolute indicator h-11 my-auto top-0 bottom-0 left-0 rounded-full bg-lime-300 shadow-md"></div>
             <button
               role="tab"
@@ -86,11 +88,11 @@ function PricingNew() {
                   <div className="-mx-4 flex flex-wrap justify-center">
                     <div className="-mx-4 flex flex-wrap">
                       <PricingCard
-                        type="Personal"
-                        price="$59"
-                        subscription="year"
+                        type="Starter"
+                        price="₹8999"
+                        subscription="month"
                         description="Perfect for using in a personal website or a client project."
-                        buttonText="Choose Personal">
+                        buttonText="Choose Starter">
                         <List>1 User</List>
                         <List>All UI components</List>
                         <List>Lifetime access</List>
@@ -99,11 +101,11 @@ function PricingNew() {
                         <List>3 Months support</List>
                       </PricingCard>
                       <PricingCard
-                        type="Business"
-                        price="$199"
-                        subscription="year"
+                        type="Basic"
+                        price="₹35999"
+                        subscription="month"
                         description="Perfect for using in a personal website or a client project."
-                        buttonText="Choose Business"
+                        buttonText="Choose Basic"
                         active>
                         <List>5 User</List>
                         <List>All UI components</List>
@@ -113,11 +115,11 @@ function PricingNew() {
                         <List>4 Months support</List>
                       </PricingCard>
                       <PricingCard
-                        type="Professional"
-                        price="$256"
-                        subscription="year"
+                        type="Premium"
+                        price="₹99999"
+                        subscription="month"
                         description="Perfect for using in a personal website or a client project."
-                        buttonText="Choose Professional">
+                        buttonText="Choose Premium">
                         <List>Unlimited User</List>
                         <List>All UI components</List>
                         <List>Lifetime access</List>
@@ -147,6 +149,46 @@ function PricingNew() {
           </div>
         </div>
       </div>
+
+      <div class="min-h-auto bg-gray-50 flex flex-col justify-center relative overflow-hidden sm:py-12">
+        <div class="max-w-7xl mx-auto">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+                />
+              </svg>
+
+              <div class="space-y-2 flex flex-col justify-center items-center">
+                <p class="text-slate-800 text-lg font-bold dmsans">
+                  Add-ons available
+                </p>
+                <p class="text-slate-800">
+                  We have add-ons available for additional views of products.
+                  Get in touch with us to upgrade.
+                </p>
+                <PopupButton
+                  className="bg-indigo-600 hover:bg-indigo-800 dmsans block w-1/4 rounded-md border border-primary p-1 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200"
+                  url="https://calendly.com/arnxt-meet/30min"
+                  rootElement={document.getElementById("root")}
+                  text="Contact us"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footercomponent />
     </>
   );
 }
@@ -182,14 +224,10 @@ const PricingCard = ({
           <div className="mb-9 flex flex-col gap-[14px] dmsans text-left">
             {children}
           </div>
-          <button
-            className={` ${
-              active
-                ? " dmsans block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90"
-                : " dmsans block w-full rounded-md border border-stroke bg-transparent p-3 text-center text-base font-medium text-primary transition hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3"
-            } `}>
+          <button class=" bg-indigo-600 hover:bg-indigo-800 dmsans block w-full rounded-md border border-primary p-3 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200">
             {buttonText}
           </button>
+
           <div>
             <span className="absolute right-0 top-7 z-[-1]">
               <svg
@@ -455,8 +493,21 @@ const PricingCard = ({
 
 const List = ({ children }) => {
   return (
-    <p className="text-base text-body-color dark:text-dark-6 dmsans">
-      {children}
-    </p>
+    <div className="flex flex-row gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="green"
+        class="w-5 h-5">
+        <path
+          fill-rule="evenodd"
+          d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <p className="text-base text-body-color dark:text-dark-6 dmsans">
+        {children}
+      </p>
+    </div>
   );
 };
