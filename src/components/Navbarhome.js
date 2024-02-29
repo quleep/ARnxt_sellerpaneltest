@@ -57,6 +57,7 @@ const Navbarhome = () => {
               <li>
                 <a href="/arview">VISUALISER</a>
               </li>
+
               <li>
                 <a href="/price"> PRICING</a>
               </li>

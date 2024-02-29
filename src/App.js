@@ -113,6 +113,7 @@ import Loginform from "./Loginform.js";
 
 import Analyticslogin from "./components/Analyticslogin.js";
 import Analytics from "./components/Analytics.js";
+import PricingNew from "./components/PricingNew.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -168,6 +169,7 @@ class App extends Component {
           </Helmet>
 
           <Route path="/price" exact component={Pricing} />
+          <Route path="/pricing" exact component={PricingNew} />
 
           <Route path="/about" exact component={About} />
 

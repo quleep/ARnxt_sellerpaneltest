@@ -8908,7 +8908,7 @@ body.active-modal {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Manrope, sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 .home-section {
   position: relative;
@@ -14385,4 +14385,11 @@ small {
   border-radius: 1.5rem;
   display: inline-block;
   cursor: pointer;
+}
+
+.dmsans {
+  font-family: "DM Sans", sans-serif;
+}
+.indicator {
+  transition: left 0.4s;
 }
