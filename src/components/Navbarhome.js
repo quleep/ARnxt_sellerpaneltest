@@ -59,7 +59,7 @@ const Navbarhome = () => {
               </li>
 
               <li>
-                <a href="/price"> PRICING</a>
+                <a href="/pricing"> PRICING</a>
               </li>
               <li>
                 <a href="/blog">BLOGS</a>
@@ -162,7 +162,7 @@ const Navbarhome = () => {
                   <a href="/arview">VISUALISER</a>
                 </li>
                 <li>
-                  <a href="/price"> PRICING</a>
+                  <a href="/pricing"> PRICING</a>
                 </li>
                 <li>
                   <a href="/blog">BLOGS</a>

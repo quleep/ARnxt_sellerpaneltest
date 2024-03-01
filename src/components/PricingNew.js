@@ -56,7 +56,7 @@ function PricingNew() {
               id="tab-1"
               tabindex="0"
               class="relative block h-10 px-6 tab1 rounded-full">
-              <span class="text-gray-800">Monthly</span>
+              <span class="text-gray-800">Quarterly</span>
             </button>
             <button
               role="tab"
@@ -65,7 +65,7 @@ function PricingNew() {
               id="tab-2"
               tabindex="-1"
               class="relative block h-10 px-6 tab1 rounded-full w-full">
-              <span class="text-gray-800">Yearly</span>
+              <span class="text-gray-800">Annually</span>
             </button>
           </div>
           <div class="mt-6 relative rounded-3xl">
@@ -73,8 +73,8 @@ function PricingNew() {
               role="tabpanel"
               id="panel-1"
               class="tab-panel p-6 transition duration-300">
-              <section className="relative z-10 overflow-hidden bg-white pb-12 pt-1 dark:bg-dark lg:pb-[90px] lg:pt-1">
-                <div className="container flex flex-col mx-auto">
+              <section className="relative z-10 overflow-hidden bg-white pb-12 pt-1 dark:bg-dark lg:pb-[20px] lg:pt-1">
+                <div className=" flex flex-col mx-auto">
                   <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4">
                       <div className="mx-auto mb-[60px] max-w-[510px] text-center">
@@ -85,47 +85,50 @@ function PricingNew() {
                     </div>
                   </div>
 
-                  <div className="-mx-4 flex flex-wrap justify-center">
-                    <div className="-mx-4 flex flex-wrap">
+                  <div className="flex flex-wrap justify-center items-center ">
+                    <div className="-mx-4 flex flex-wrap w-[95%] ">
                       <PricingCard
                         type="Starter"
-                        price="₹8999"
-                        subscription="month"
-                        description="Perfect for using in a personal website or a client project."
+                        price="₹9999"
+                        subscription="quarterly"
+                        description=""
                         buttonText="Choose Starter">
-                        <List>1 User</List>
-                        <List>All UI components</List>
-                        <List>Lifetime access</List>
-                        <List>Free updates</List>
-                        <List>Use on 1 (one) project</List>
-                        <List>3 Months support</List>
+                        <List>25 (No. of Products)</List>
+                        <List>10k (No. of Views)</List>
+                        <List>QR Code Access</List>
                       </PricingCard>
                       <PricingCard
                         type="Basic"
-                        price="₹35999"
-                        subscription="month"
-                        description="Perfect for using in a personal website or a client project."
+                        price="₹49999"
+                        subscription="quarterly"
+                        description=""
                         buttonText="Choose Basic"
                         active>
-                        <List>5 User</List>
-                        <List>All UI components</List>
-                        <List>Lifetime access</List>
-                        <List>Free updates</List>
-                        <List>Use on31 (Three) project</List>
-                        <List>4 Months support</List>
+                        <List>100 (No. of Products)</List>
+                        <List>60k (No. of Views)</List>
+                        <List>QR Code Access</List>
                       </PricingCard>
                       <PricingCard
                         type="Premium"
                         price="₹99999"
-                        subscription="month"
-                        description="Perfect for using in a personal website or a client project."
+                        subscription="quarterly"
+                        description=""
                         buttonText="Choose Premium">
-                        <List>Unlimited User</List>
-                        <List>All UI components</List>
-                        <List>Lifetime access</List>
-                        <List>Free updates</List>
-                        <List>Unlimited project</List>
-                        <List>12 Months support</List>
+                        <List>500 (No. of Products)</List>
+                        <List>200k (No. of Views)</List>
+                        <List>QR Code Access</List>
+                        <List>Dedicated Account Manager</List>
+                      </PricingCard>
+                      <PricingCard
+                        type="Business Pro"
+                        price="Custom "
+                        subscription="quarterly"
+                        description=""
+                        buttonText="Choose Premium">
+                        <List>Unlimited (No. of Products)</List>
+                        <List>Unlimited (No. of Views)</List>
+                        <List>QR Code Access</List>
+                        <List>Dedicated Account Manager</List>
                       </PricingCard>
                     </div>
                   </div>
@@ -135,16 +138,68 @@ function PricingNew() {
             <div
               role="tabpanel"
               id="panel-2"
-              class="absolute top-0 invisible opacity-0 tab-panel p-6 transition duration-300">
-              <h2 class="text-xl font-semibold text-gray-800">
-                Second tab panel
-              </h2>
-              <p class="mt-4 text-gray-600">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas
-                dolores voluptate temporibus, atque ab eos, delectus at ad hic
-                voluptatem veritatis iure, nulla voluptates quod nobis
-                doloremque eaque! Perferendis, soluta.
-              </p>
+              class="absolute top-0 invisible opacity-0 tab-panel p-6 transition duration-300 w-full">
+              <section className="relative z-10 overflow-hidden w-full pb-12 pt-1 dark:bg-dark lg:pb-[20px] lg:pt-1">
+                <div className=" flex flex-col mx-auto">
+                  <div className="-mx-4 flex flex-wrap">
+                    <div className="w-full px-4">
+                      <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+                        <h2 className="dmsans mb-3 text-3xl font-bold leading-[1.208] text-dark dark:text-white sm:text-4xl md:text-[40px]">
+                          Our Pricing Plan
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap justify-center items-center ">
+                    <div className="-mx-4 flex flex-wrap w-[95%] ">
+                      <PricingCard
+                        type="Starter"
+                        price="₹29999"
+                        subscription="Yearly"
+                        description=""
+                        buttonText="Choose Starter">
+                        <List>25 (No. of Products)</List>
+                        <List>50k (No. of Views)</List>
+                        <List>QR Code Access</List>
+                      </PricingCard>
+                      <PricingCard
+                        type="Basic"
+                        price="₹129999"
+                        subscription="Yearly"
+                        description=""
+                        buttonText="Choose Basic"
+                        active>
+                        <List>100 (No. of Products)</List>
+                        <List>240k (No. of Views)</List>
+                        <List>QR Code Access</List>
+                      </PricingCard>
+                      <PricingCard
+                        type="Premium"
+                        price="₹369999"
+                        subscription="Yearly"
+                        description=""
+                        buttonText="Choose Premium">
+                        <List>500 (No. of Products)</List>
+                        <List>Unlimited (No. of Views)</List>
+                        <List>QR Code Access</List>
+                        <List>Dedicated Account Manager</List>
+                      </PricingCard>
+                      <PricingCard
+                        type="Business Pro"
+                        price="Custom "
+                        subscription="Yearly"
+                        description=""
+                        buttonText="Choose Premium">
+                        <List>Unlimited (No. of Products)</List>
+                        <List>Unlimited (No. of Views)</List>
+                        <List>QR Code Access</List>
+                        <List>Dedicated Account Manager</List>
+                      </PricingCard>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </div>
@@ -206,27 +261,28 @@ const PricingCard = ({
 }) => {
   return (
     <>
-      <div className="w-full px-4 md:w-1/2 lg:w-1/3">
-        <div className="relative z-10 mb-10 overflow-hidden rounded-[10px] border-2 border-stroke bg-white px-8 py-10 shadow-pricing dark:border-dark-3 dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-[50px]">
+      <div className="w-full px-2 md:w-1/2 lg:w-1/4 ">
+        <div className="relative z-10 mb-10 overflow-hidden rounded-[10px] border-2 border-stroke bg-white px-8 py-10 shadow-pricing dark:border-dark-3 dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-[50px] h-[95%]">
           <span className="mb-3 block text-lg font-semibold text-primary dmsans text-left">
             {type}
           </span>
 
-          <h2 className="mb-5 text-[42px] font-bold text-dark dark:text-white dmsans text-left">
+          <h2 className="mb-5 text-[32px] font-bold text-dark dark:text-white dmsans text-left">
             {price}
             <span className="text-base font-medium text-body-color dark:text-dark-6 dmsans">
               / {subscription}
             </span>
           </h2>
+          <button class=" bg-indigo-600 hover:bg-indigo-800 dmsans block w-full rounded-lg border border-primary p-3 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200">
+            {buttonText}
+          </button>
           <p className="dmsans mb-8 border-b border-stroke pb-8 text-base text-body-color dark:border-dark-3 dark:text-dark-6 text-left">
             {description}
           </p>
+
           <div className="mb-9 flex flex-col gap-[14px] dmsans text-left">
             {children}
           </div>
-          <button class=" bg-indigo-600 hover:bg-indigo-800 dmsans block w-full rounded-md border border-primary p-3 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200">
-            {buttonText}
-          </button>
 
           <div>
             <span className="absolute right-0 top-7 z-[-1]">

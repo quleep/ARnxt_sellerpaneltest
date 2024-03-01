@@ -303,7 +303,7 @@ function Navbartest() {
                     <li className="nav-item">
                       <Link
                         className="nav-link"
-                        to="/price"
+                        to="/pricing"
                         style={{
                           color: "white",
                           fontFamily: "Manrope, san-serif",

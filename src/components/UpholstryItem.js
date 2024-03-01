@@ -421,7 +421,7 @@ function UpholstryItem() {
           <div className="main">
             <div className="left-panel">
               <div className="subtitle">
-                <div className="text">{fabric}</div>
+                <div className="text dmsans">{fabric}</div>
                 <div className="types">
                   <div
                     className={

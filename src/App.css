@@ -12526,7 +12526,7 @@ model-viewer {
   width: 100%;
   margin-top: 1.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .product_detail_ar_container_grid_child1_text2_child {
   font-size: 1rem;
