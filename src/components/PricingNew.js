@@ -3,8 +3,10 @@ import Navbartest from "./Navbartest";
 import Navbarhome from "./Navbarhome";
 import { PopupButton } from "react-calendly";
 import Footercomponent from "./Footercomponent";
+import { useHistory } from "react-router-dom";
 
 function PricingNew() {
+
   useEffect(() => {
     let tabs = document.querySelectorAll(".tab1");
     let indicator = document.querySelector(".indicator");
@@ -92,7 +94,7 @@ function PricingNew() {
                         price="₹9999"
                         subscription="quarterly"
                         description=""
-                        buttonText="Choose Starter">
+                        buttonText="Buy Now">
                         <List>25 (No. of Products)</List>
                         <List>10k (No. of Views)</List>
                         <List>QR Code Access</List>
@@ -102,7 +104,7 @@ function PricingNew() {
                         price="₹49999"
                         subscription="quarterly"
                         description=""
-                        buttonText="Choose Basic"
+                        buttonText="Buy Now"
                         active>
                         <List>100 (No. of Products)</List>
                         <List>60k (No. of Views)</List>
@@ -113,7 +115,7 @@ function PricingNew() {
                         price="₹99999"
                         subscription="quarterly"
                         description=""
-                        buttonText="Choose Premium">
+                        buttonText="Buy Now">
                         <List>500 (No. of Products)</List>
                         <List>200k (No. of Views)</List>
                         <List>QR Code Access</List>
@@ -124,7 +126,7 @@ function PricingNew() {
                         price="Custom "
                         subscription="quarterly"
                         description=""
-                        buttonText="Choose Premium">
+                        buttonText="Buy Now">
                         <List>Unlimited (No. of Products)</List>
                         <List>Unlimited (No. of Views)</List>
                         <List>QR Code Access</List>
@@ -259,6 +261,13 @@ const PricingCard = ({
   buttonText,
   active,
 }) => {
+      const history = useHistory();
+
+    const handleClick = () => {
+    history.push({
+      pathname: `/login`
+    });
+  };
   return (
     <>
       <div className="w-full px-2 md:w-1/2 lg:w-1/4 ">
@@ -273,7 +282,8 @@ const PricingCard = ({
               / {subscription}
             </span>
           </h2>
-          <button class=" bg-indigo-600 hover:bg-indigo-800 dmsans block w-full rounded-lg border border-primary p-3 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200">
+          <button class=" bg-indigo-600 hover:bg-indigo-800 dmsans block w-full rounded-lg border border-primary p-3 text-center text-base font-medium text-white transition hover:scale-105 ease-in-out duration-200"
+           onClick={() => handleClick()}>
             {buttonText}
           </button>
           <p className="dmsans mb-8 border-b border-stroke pb-8 text-base text-body-color dark:border-dark-3 dark:text-dark-6 text-left">

@@ -93,6 +93,7 @@ function ProductDetailAR() {
           `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleproduct?productid=${param.id}`
         );
         const data = response.data.productdetails[0];
+        console.log(response.data);
         setGlbFile(response.data.glb);
         setUsdzFile(response.data.usdz);
         setIsGlbKeyPresent("glb" in response.data);
