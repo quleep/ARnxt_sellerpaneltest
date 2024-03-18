@@ -28,8 +28,17 @@ const Analytics = () => {
 
       const handleDateChangeSingle = (date) => {
         setSelectedDate(date);
+         console.log(date)
+        
       };
+      let today = new Date();
 
+      today.setHours(0, 0, 0, 0);
+      let previousDay = new Date();
+      previousDay.setDate(today.getDate() - 1);
+      
+          
+     
       const fetchanalyticsdata = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getanalyticsdatavisualiser'
 
    const handlelastsevendays = async (val)=>{
@@ -45,49 +54,50 @@ const Analytics = () => {
     document.querySelector('.analyticscalanderdivinsidesingle').style.display = 'none'
     document.querySelector('.downloadcsvbutton').style.display = 'none'
 
+       handleDateChangeSingle(previousDay)
+       console.log(previousDay)
 
-
-          const formattedDate = currentDate.toLocaleString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZoneName: 'short',
-        timeZone: 'UTC',
-      });
+//           const formattedDate = currentDate.toLocaleString('en-US', {
+//         weekday: 'short',
+//         month: 'short',
+//         day: '2-digit',
+//         year: 'numeric',
+//         hour: '2-digit',
+//         minute: '2-digit',
+//         second: '2-digit',
+//         timeZoneName: 'short',
+//         timeZone: 'UTC',
+//       });
 
  
-let sevenDaysAgo = new Date(currentDate);
-sevenDaysAgo.setDate(currentDate.getDate() - 1);
+// let sevenDaysAgo = new Date(currentDate);
+// sevenDaysAgo.setDate(currentDate.getDate() - 1);
 
-const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'short',
-    timeZone: 'UTC',
-  });
+// const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
+//     weekday: 'short',
+//     month: 'short',
+//     day: '2-digit',
+//     year: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//     second: '2-digit',
+//     timeZoneName: 'short',
+//     timeZone: 'UTC',
+//   });
 
-     const body= {
-        brand: 'excel',
-        startDate: newlastdate ,
-        lastDate: formattedDate
-     }
+//      const body= {
+//         brand: 'excel',
+//         startDate: newlastdate ,
+//         lastDate: formattedDate
+//      }
 
     
 
-     await Axios.post(fetchanalyticsdata, body).then(res=>{
-       setCountData(res.data)
-     }).catch(error=>{
-        console.log(error)
-     })
+//      await Axios.post(fetchanalyticsdata, body).then(res=>{
+//        setCountData(res.data)
+//      }).catch(error=>{
+//         console.log(error)
+//      })
 
     }
         if(val === 'lastsevenday'){
@@ -410,7 +420,7 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
             content: (
               <div className='analyticsdataoptions'>
                 <ul>
-                    <li><a onClick={()=>handlelastsevendays('lastday')}  >Last day</a></li>
+                    <li><a onClick={()=>handlelastsevendays('lastday')}  >Last day at this time</a></li>
                     <li><a onClick={()=>handlelastsevendays('lastsevenday')}>Last seven days</a></li>
                     <li><a onClick={()=>handlelastsevendays('lastmonth')}>Last month</a></li>
                     <li><a onClick={handleSingleDateClick}>Single day</a></li>
@@ -459,8 +469,6 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
             patternCount[patternno] = (patternCount[patternno] || 0) + 1;
           });
          
-        
-          
           const resultArray = Object.entries(patternCount).map(([patternno, views]) => ({
             patternno: patternno,
             views
