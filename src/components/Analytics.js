@@ -57,47 +57,47 @@ const Analytics = () => {
        handleDateChangeSingle(previousDay)
        console.log(previousDay)
 
-//           const formattedDate = currentDate.toLocaleString('en-US', {
-//         weekday: 'short',
-//         month: 'short',
-//         day: '2-digit',
-//         year: 'numeric',
-//         hour: '2-digit',
-//         minute: '2-digit',
-//         second: '2-digit',
-//         timeZoneName: 'short',
-//         timeZone: 'UTC',
-//       });
+          const formattedDate = currentDate.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short',
+        timeZone: 'UTC',
+      });
 
  
-// let sevenDaysAgo = new Date(currentDate);
-// sevenDaysAgo.setDate(currentDate.getDate() - 1);
+let sevenDaysAgo = new Date(currentDate);
+sevenDaysAgo.setDate(currentDate.getDate() - 1);
 
-// const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-//     weekday: 'short',
-//     month: 'short',
-//     day: '2-digit',
-//     year: 'numeric',
-//     hour: '2-digit',
-//     minute: '2-digit',
-//     second: '2-digit',
-//     timeZoneName: 'short',
-//     timeZone: 'UTC',
-//   });
+const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short',
+    timeZone: 'UTC',
+  });
 
-//      const body= {
-//         brand: 'excel',
-//         startDate: newlastdate ,
-//         lastDate: formattedDate
-//      }
+     const body= {
+        brand: 'excel',
+        startDate: newlastdate ,
+        lastDate: formattedDate
+     }
 
     
 
-//      await Axios.post(fetchanalyticsdata, body).then(res=>{
-//        setCountData(res.data)
-//      }).catch(error=>{
-//         console.log(error)
-//      })
+     await Axios.post(fetchanalyticsdata, body).then(res=>{
+       setCountData(res.data)
+     }).catch(error=>{
+        console.log(error)
+     })
 
     }
         if(val === 'lastsevenday'){
