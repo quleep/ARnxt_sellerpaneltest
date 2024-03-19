@@ -69,9 +69,9 @@ function VisualizerMobile() {
       };
     });
   };
- useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const tempRoomClick = async (val) => {
     await handleUrlToBase64(val).then((res) => {
       setTempOrgImage(res);
@@ -190,13 +190,11 @@ function VisualizerMobile() {
       var canvas = document.createElement("canvas");
       canvas.width = img.width;
       canvas.height = img.height;
-      console.log(canvas);
 
       var ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0);
 
       let base64Data = canvas.toDataURL("image/jpeg");
-      console.log(base64Data);
     };
   }, []);
 

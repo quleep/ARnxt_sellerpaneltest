@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import Navbaranalytics from './Navbaranalytics';
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css';
-import Axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Navbaranalytics from "./Navbaranalytics";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import Axios from "axios";
 
 const Analytics = () => {
-    const [activeSection, setActiveSection] = useState(null);
-    const [selectedSubOption, setSelectedSubOption] = useState(null);
-    const [countdata, setCountData] = useState()
+  const [activeSection, setActiveSection] = useState(null);
+  const [selectedSubOption, setSelectedSubOption] = useState(null);
+  const [countdata, setCountData] = useState();
 
-    const toggleSection = (index) => {
-      setActiveSection(activeSection === index ? null : index);
-    };
-   
-    const handleSubOptionChange = (subOption) => {
-        setSelectedSubOption(subOption);
-      };
+  const toggleSection = (index) => {
+    setActiveSection(activeSection === index ? null : index);
+  };
 
-      const [dateRange, setDateRange] = useState([new Date(), new Date()]);
-    
+  const handleSubOptionChange = (subOption) => {
+    setSelectedSubOption(subOption);
+  };
 
-      const handleDateChange = (newDate) => {
-        setDateRange(newDate);
-      };
+  const [dateRange, setDateRange] = useState([new Date(), new Date()]);
 
-      const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateChange = (newDate) => {
+    setDateRange(newDate);
+  };
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
       const handleDateChangeSingle = (date) => {
         setSelectedDate(date);
@@ -41,8 +40,7 @@ const Analytics = () => {
      
       const fetchanalyticsdata = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getanalyticsdatavisualiser'
 
-   const handlelastsevendays = async (val)=>{
-
+  const handlelastsevendays = async (val) => {
     let currentDate = new Date();
 
     let timevalue;
@@ -69,187 +67,179 @@ const Analytics = () => {
         timeZone: 'UTC',
       });
 
- 
-let sevenDaysAgo = new Date(currentDate);
-sevenDaysAgo.setDate(currentDate.getDate() - 1);
+      let sevenDaysAgo = new Date(currentDate);
+      sevenDaysAgo.setDate(currentDate.getDate() - 1);
 
-const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'short',
-    timeZone: 'UTC',
-  });
-
-     const body= {
-        brand: 'excel',
-        startDate: newlastdate ,
-        lastDate: formattedDate
-     }
-
-    
-
-     await Axios.post(fetchanalyticsdata, body).then(res=>{
-       setCountData(res.data)
-     }).catch(error=>{
-        console.log(error)
-     })
-
-    }
-        if(val === 'lastsevenday'){
-    document.querySelector('.analyticsdivviews').style.display = 'none'
-
-     document.querySelector('.analyticscalanderdivinside').style.display = 'none'
-    document.querySelector('.analyticscalanderdivinsidesingle').style.display = 'none'
-    document.querySelector('.downloadcsvbutton').style.display = 'none'
-
-
-
-          const formattedDate = currentDate.toLocaleString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZoneName: 'short',
-        timeZone: 'UTC',
+      const newlastdate = sevenDaysAgo.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
       });
 
- 
-let sevenDaysAgo = new Date(currentDate);
-sevenDaysAgo.setDate(currentDate.getDate() - 7);
+      const body = {
+        brand: "excel",
+        startDate: newlastdate,
+        lastDate: formattedDate,
+      };
 
-const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'short',
-    timeZone: 'UTC',
-  });
-
-     const body= {
-        brand: 'excel',
-        startDate: newlastdate ,
-        lastDate: formattedDate
-     }
-
-   
-
-     await Axios.post(fetchanalyticsdata, body).then(res=>{
-      setCountData(res.data)
-
-     }).catch(error=>{
-        console.log(error)
-     })
-
+      await Axios.post(fetchanalyticsdata, body)
+        .then((res) => {
+          setCountData(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-        if(val === 'lastmonth'){
-    document.querySelector('.analyticsdivviews').style.display = 'none'
+    if (val === "lastsevenday") {
+      document.querySelector(".analyticsdivviews").style.display = "none";
 
-     document.querySelector('.analyticscalanderdivinside').style.display = 'none'
-    document.querySelector('.analyticscalanderdivinsidesingle').style.display = 'none'
-    document.querySelector('.downloadcsvbutton').style.display = 'none'
+      document.querySelector(".analyticscalanderdivinside").style.display =
+        "none";
+      document.querySelector(
+        ".analyticscalanderdivinsidesingle"
+      ).style.display = "none";
+      document.querySelector(".downloadcsvbutton").style.display = "none";
 
-
-
-          const formattedDate = currentDate.toLocaleString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZoneName: 'short',
-        timeZone: 'UTC',
+      const formattedDate = currentDate.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
       });
 
- 
-let sevenDaysAgo = new Date(currentDate);
-sevenDaysAgo.setDate(currentDate.getDate() - 30);
+      let sevenDaysAgo = new Date(currentDate);
+      sevenDaysAgo.setDate(currentDate.getDate() - 7);
 
-const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'short',
-    timeZone: 'UTC',
-  });
-
-     const body= {
-        brand: 'excel',
-        startDate: newlastdate ,
-        lastDate: formattedDate
-     }
-
-   
-
-     await Axios.post(fetchanalyticsdata, body).then(res=>{
-      setCountData(res.data)
-
-     }).catch(error=>{
-        console.log(error)
-     })
-
-    }
-        if(val === 'alldata'){
-    document.querySelector('.analyticsdivviews').style.display = 'none'
-
-     document.querySelector('.analyticscalanderdivinside').style.display = 'none'
-    document.querySelector('.analyticscalanderdivinsidesingle').style.display = 'none'
-    document.querySelector('.downloadcsvbutton').style.display = 'none'
-
-
-
-          const formattedDate = currentDate.toLocaleString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZoneName: 'short',
-        timeZone: 'UTC',
+      const newlastdate = sevenDaysAgo.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
       });
 
- 
-let sevenDaysAgo = new Date(currentDate);
-sevenDaysAgo.setDate(currentDate.getDate() - 1);
+      const body = {
+        brand: "excel",
+        startDate: newlastdate,
+        lastDate: formattedDate,
+      };
 
-const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'short',
-    timeZone: 'UTC',
-  });
+      await Axios.post(fetchanalyticsdata, body)
+        .then((res) => {
+          setCountData(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    if (val === "lastmonth") {
+      document.querySelector(".analyticsdivviews").style.display = "none";
 
+      document.querySelector(".analyticscalanderdivinside").style.display =
+        "none";
+      document.querySelector(
+        ".analyticscalanderdivinsidesingle"
+      ).style.display = "none";
+      document.querySelector(".downloadcsvbutton").style.display = "none";
 
+      const formattedDate = currentDate.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
+      });
 
-     const body= {
-        brand: 'excel',
-        startDate: 'Wed, Dec 20, 2023, 09:15:35 AM UTC' ,
-        lastDate: formattedDate
-     }
+      let sevenDaysAgo = new Date(currentDate);
+      sevenDaysAgo.setDate(currentDate.getDate() - 30);
+
+      const newlastdate = sevenDaysAgo.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
+      });
+
+      const body = {
+        brand: "excel",
+        startDate: newlastdate,
+        lastDate: formattedDate,
+      };
+
+      await Axios.post(fetchanalyticsdata, body)
+        .then((res) => {
+          setCountData(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    if (val === "alldata") {
+      document.querySelector(".analyticsdivviews").style.display = "none";
+
+      document.querySelector(".analyticscalanderdivinside").style.display =
+        "none";
+      document.querySelector(
+        ".analyticscalanderdivinsidesingle"
+      ).style.display = "none";
+      document.querySelector(".downloadcsvbutton").style.display = "none";
+
+      const formattedDate = currentDate.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
+      });
+
+      let sevenDaysAgo = new Date(currentDate);
+      sevenDaysAgo.setDate(currentDate.getDate() - 1);
+
+      const newlastdate = sevenDaysAgo.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+        timeZone: "UTC",
+      });
+
+      const body = {
+        brand: "excel",
+        startDate: "Wed, Dec 20, 2023, 09:15:35 AM UTC",
+        lastDate: formattedDate,
+      };
 
    
 
@@ -425,37 +415,36 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
                     <li><a onClick={()=>handlelastsevendays('lastmonth')}>Last month</a></li>
                     <li><a onClick={handleSingleDateClick}>Single day</a></li>
 
-                    <li><a onClick={handledaterangeclick} >Select date range</a></li>
+            <li>
+              <a onClick={handledaterangeclick}>Select date range</a>
+            </li>
 
-                    <li><a onClick={()=>handlelastsevendays('alldata')}>All data</a></li>
-
-                  
-
-                
-
-                </ul>
-               
-              </div>
-            ),
-          },
-          { 
-            title: 'Settings', 
-            content: (
-              <div className='analyticsdataoptions'>
-                <ul>
-                    <li><a>My profile</a></li>
-                    <li><a>Change Email</a></li>
-                    <li><a>Change Password</a></li>
-                
-
-                </ul>
-               
-              </div>
-            ),
-          },
-    
-          
-        ];
+            <li>
+              <a onClick={() => handlelastsevendays("alldata")}>All data</a>
+            </li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "Settings",
+      content: (
+        <div className="analyticsdataoptions">
+          <ul>
+            <li>
+              <a>My profile</a>
+            </li>
+            <li>
+              <a>Change Email</a>
+            </li>
+            <li>
+              <a>Change Password</a>
+            </li>
+          </ul>
+        </div>
+      ),
+    },
+  ];
 
       function countPatternNos(array) {
           // Create an object to store counts
@@ -478,184 +467,152 @@ const newlastdate = sevenDaysAgo.toLocaleString('en-US', {
           return resultArray;
         }
 
-      const testpattern = {
-       
-      }
+  const testpattern = {};
 
-  const [newcount, setNewCount] = useState()
-const handleviewedpatterns = async ()=>{
-  if(countdata.length > 0){
-    document.querySelector('.downloadcsvbutton').style.display = 'flex'
-    document.querySelector('.analyticsdivviews').style.display = 'flex'
+  const [newcount, setNewCount] = useState();
+  const handleviewedpatterns = async () => {
+    if (countdata.length > 0) {
+      document.querySelector(".downloadcsvbutton").style.display = "flex";
+      document.querySelector(".analyticsdivviews").style.display = "flex";
 
-    const result = await countPatternNos(countdata && countdata);
-     setNewCount(result)
-    
+      const result = await countPatternNos(countdata && countdata);
+      setNewCount(result);
+    }
+  };
+  const handlemostviewedpatterns = () => {
+    if (countdata.length > 0) {
+      document.querySelector(".analyticsdivviews").style.display = "flex";
+    }
+  };
 
-  }
-}
-const handlemostviewedpatterns = ()=>{
-  if(countdata.length > 0){
+  const handledisplaycount = () => {
+    document.querySelector(".analyticsdivviews").style.display = "none";
+  };
 
-   
-    document.querySelector('.analyticsdivviews').style.display = 'flex'
+  function convertArrayOfObjectsToCSV(array) {
+    let result;
 
-  }
-  
-}
+    const columnDelimiter = ",";
+    const lineDelimiter = "\n";
+    const keys = Object.keys(array[0]);
 
-const handledisplaycount = ()=>{
-  document.querySelector('.analyticsdivviews').style.display = 'none'
- 
-
-
-}
-
-function convertArrayOfObjectsToCSV(array) {
-  let result;
-
-  const columnDelimiter = ",";
-  const lineDelimiter = "\n";
-  const keys = Object.keys(array[0]);
-
-  result = "";
-  result += keys.join(columnDelimiter);
-  result += lineDelimiter;
-
-  array.forEach((item) => {
-    let ctr = 0;
-    keys.forEach((key) => {
-      if (ctr > 0) result += columnDelimiter;
-
-      result += item[key];
-
-      ctr++;
-    });
+    result = "";
+    result += keys.join(columnDelimiter);
     result += lineDelimiter;
-  });
 
-  return result;
-}
+    array.forEach((item) => {
+      let ctr = 0;
+      keys.forEach((key) => {
+        if (ctr > 0) result += columnDelimiter;
 
+        result += item[key];
 
-function downloadCSV(array) {
-  const link = document.createElement("a");
-  let csv = convertArrayOfObjectsToCSV(array);
-  if (csv == null) return;
+        ctr++;
+      });
+      result += lineDelimiter;
+    });
 
-  const filename = "export.csv";
-
-  if (!csv.match(/^data:text\/csv/i)) {
-    csv = `data:text/csv;charset=utf-8,${csv}`;
+    return result;
   }
 
-  link.setAttribute("href", encodeURI(csv));
-  link.setAttribute("download", filename);
-  link.click();
-}
+  function downloadCSV(array) {
+    const link = document.createElement("a");
+    let csv = convertArrayOfObjectsToCSV(array);
+    if (csv == null) return;
 
+    const filename = "export.csv";
 
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = `data:text/csv;charset=utf-8,${csv}`;
+    }
 
-        
+    link.setAttribute("href", encodeURI(csv));
+    link.setAttribute("download", filename);
+    link.click();
+  }
+
   return (
-    <div className='analyticsdivmain' >
-       
-        <div className="blur-overlay">
-        <Navbaranalytics/>
-         <div className='analyticsdivinside'>
-         <div className="sidebar-accordion">
-      {sidebarData.map((section, index) => (
-        <div key={index} className={`accordion-section ${activeSection === index ? 'active' : ''}`}>
-          <div className="accordion-header" onClick={() => toggleSection(index)}>
-            {section.title}
+    <div className="analyticsdivmain">
+      <div className="blur-overlay">
+        <Navbaranalytics />
+        <div className="analyticsdivinside">
+          <div className="sidebar-accordion">
+            {sidebarData.map((section, index) => (
+              <div
+                key={index}
+                className={`accordion-section ${
+                  activeSection === index ? "active" : ""
+                }`}>
+                <div
+                  className="accordion-header"
+                  onClick={() => toggleSection(index)}>
+                  {section.title}
+                </div>
+                {activeSection === index && (
+                  <div className="accordion-content">{section.content}</div>
+                )}
+              </div>
+            ))}
           </div>
-          {activeSection === index && (
-            <div className="accordion-content">
-              {section.content}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-    <div className='analyticsdashboarddiv'>
-        <div className='analyticscalanderdiv'>
-            <div className='analyticscalanderdivinside'>
-            <h2>Select the date range</h2>
-            <Calendar 
-            className= 'calandermain'
-                selectRange={true}
-                onChange={handleDateChange}
-                value={dateRange}
-            />
-           
-            <p>Start Date: {dateRange[0].toLocaleDateString()}</p>
-        <p>End Date: {dateRange[1].toLocaleDateString()}</p>
+          <div className="analyticsdashboarddiv">
+            <div className="analyticscalanderdiv">
+              <div className="analyticscalanderdivinside">
+                <h2>Select the date range</h2>
+                <Calendar
+                  className="calandermain"
+                  selectRange={true}
+                  onChange={handleDateChange}
+                  value={dateRange}
+                />
+
+                <p>Start Date: {dateRange[0].toLocaleDateString()}</p>
+                <p>End Date: {dateRange[1].toLocaleDateString()}</p>
+              </div>
+
+              <div className="analyticscalanderdivinsidesingle">
+                <h2>Select the date</h2>
+                <Calendar
+                  className="calandermain"
+                  onChange={handleDateChangeSingle}
+                  value={selectedDate}
+                />
+              </div>
             </div>
 
-            <div className='analyticscalanderdivinsidesingle'>
-            <h2>Select the date</h2>
-            <Calendar 
-            className= 'calandermain'
-             
-                onChange={handleDateChangeSingle}
-                value={selectedDate}
-                
-            />
-           
-    
+            <div className="analyticsdatadiv">
+              <div className="analyticsdivunder">
+                <label>
+                  Total views :<p>{countdata?.length}</p>
+                </label>
+              </div>
+              <div className="analyticsdivpatterndata">
+                <button
+                  onClick={handleviewedpatterns}
+                  onBlur={handledisplaycount}>
+                  See viewed patterns
+                </button>
+                <button
+                  className="downloadcsvbutton"
+                  onClick={() => downloadCSV(newcount)}>
+                  download csv
+                </button>
+
+                <div className="analyticsdivviews">
+                  {newcount &&
+                    newcount.map((item) => (
+                      <div className="countpatterndiv">
+                        <p>Pattern-no: {item.patternno}</p>
+                        <p>Views: {item.views}</p>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </div>
-        
-          
-        </div>
-
-        <div className='analyticsdatadiv'>
-          <div className='analyticsdivunder'>
-            <label>
-              Total views :<p>
-              {countdata?.length}
-            </p>
-            </label>
-        
-        
-         
-         
-
           </div>
-          <div className='analyticsdivpatterndata'>
-            <button onClick={handleviewedpatterns} onBlur={handledisplaycount}>
-              See viewed patterns
-            </button>
-            <button className='downloadcsvbutton' onClick={()=>downloadCSV(newcount)} >
-             download csv
-            </button>
-        
-            <div className='analyticsdivviews'>
-            {
-              newcount && newcount.map(item=>(
-                <div  className='countpatterndiv'>
-                    <p>Pattern-no: {item.patternno}</p>
-                <p>Views: {item.views}</p>
-                  </div>
-              
-
-              ))
-            }
-
-            </div>
-
-          </div>
-    
-            </div>
-
-    </div>
-         </div>
- 
-
         </div>
-
-      
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Analytics
+export default Analytics;

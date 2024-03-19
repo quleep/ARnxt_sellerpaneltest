@@ -30,14 +30,13 @@ const Footercomponent = () => {
         <div class="footer-column">
           <div class="footer-title">ArNXT</div>
 
-          <a href="/price">Pricing</a>
+          <a href="/pricing">Pricing</a>
           <a href="/loginanalytics">Client login</a>
-
         </div>
 
         <div class="footer-column">
           <div class="footer-title">Company</div>
-          
+
           <a href="/about">About Us</a>
           <a href="/contact">Contact Us</a>
           <a href="/privacypolicy">Privacy policy</a>

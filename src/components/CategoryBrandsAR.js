@@ -19,7 +19,6 @@ function CategoryBrandsAR() {
           brand: param.id.toLowerCase(),
         }
       );
-      console.log("brand:", response.data);
       setProducts(response.data);
     } catch (error) {
       console.error("Error:", error);
@@ -38,7 +37,7 @@ function CategoryBrandsAR() {
   }, []);
   return (
     <>
-      <Navbarhome/>
+      <Navbarhome />
       <DropdownMenu />
       <div className="hero_container">
         <div class="rooms_category_container">

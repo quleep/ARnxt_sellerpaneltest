@@ -90,7 +90,7 @@ function Navbar() {
             </a>
           </li>
           <li onMouseOver={removedropdown}>
-            <a href="/price" className="links">
+            <a href="/pricing" className="links">
               Pricing
             </a>
           </li>

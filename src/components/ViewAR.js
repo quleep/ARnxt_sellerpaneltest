@@ -114,34 +114,37 @@ const ViewAR = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-const fetchCategoriesData = async () => {
-  try {
-    const response = await axios.get(
-      "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
-    );
+  const fetchCategoriesData = async () => {
+    try {
+      const response = await axios.get(
+        "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorydetails"
+      );
 
-    const orderedCategories = [
-      "Furniture",
-      "Walls",
-      "Floors",
-      "Furnishing",
-      "Decorative",
-      "Upholstery",
-      "Sanitary",
-      "Electronics",
-      "Electrical",
-      "Bathroom",
-    ];
+      const orderedCategories = [
+        "Furniture",
+        "Walls",
+        "Floors",
+        "Furnishing",
+        "Decorative",
+        "Upholstery",
+        "Sanitary",
+        "Electronics",
+        "Electrical",
+        "Bathroom",
+      ];
 
-    const sortedData = response.data.sort((a, b) => {
-      return orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category);
-    });
+      const sortedData = response.data.sort((a, b) => {
+        return (
+          orderedCategories.indexOf(a.category) -
+          orderedCategories.indexOf(b.category)
+        );
+      });
 
-    setCategoriesDetails(sortedData);
-  } catch (error) {
-    console.error("Error in fetching data: ", error);
-  }
-};
+      setCategoriesDetails(sortedData);
+    } catch (error) {
+      console.error("Error in fetching data: ", error);
+    }
+  };
 
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
@@ -163,7 +166,7 @@ const fetchCategoriesData = async () => {
         "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getallbrands"
       );
 
-      const brandFilter = response1.data; 
+      const brandFilter = response1.data;
 
       const filteredData = response.data.filter((item) =>
         brandFilter.includes(item["brandId"].toLowerCase())
@@ -178,7 +181,7 @@ const fetchCategoriesData = async () => {
     brands();
 
     fetchCategoriesData();
-  }, []); 
+  }, []);
   useEffect(() => {
     const transformedData = brandsData?.map((item) => {
       const brandIdLowerCase = item["brand-id"].toLowerCase();
@@ -227,8 +230,8 @@ const fetchCategoriesData = async () => {
   };
   return (
     <div>
-      <Navbarhome/>
-     
+      <Navbarhome />
+
       <DropdownMenu />
       <div className="templateContainer">
         <div className="searchInput_Container">
@@ -240,10 +243,7 @@ const fetchCategoriesData = async () => {
               setSearchTerm(event.target.value);
             }}
           />
-           <BsSearch
-            className="searchInput_button"
-            size={23}
-          />
+          <BsSearch className="searchInput_button" size={23} />
         </div>
         <div className="template_Container">
           {searchTerm === "" ? null : searchProduct?.length === 0 ? (
@@ -369,7 +369,7 @@ const fetchCategoriesData = async () => {
             size={40}
           />
           <div id="slider2" className="hori_scroll_container_child">
-            {brandsData?.map((item,key) => (
+            {brandsData?.map((item, key) => (
               <div
                 key={item.iconUrl}
                 className="hori_scroll_container_child1"
@@ -390,7 +390,7 @@ const fetchCategoriesData = async () => {
           />
         </div>
       </div>
-      <Footercomponent/>
+      <Footercomponent />
     </div>
   );
 };

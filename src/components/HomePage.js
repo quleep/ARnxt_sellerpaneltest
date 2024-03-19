@@ -1075,7 +1075,7 @@ const HomePage = () => {
                     <div
                       className="getstartedcontentfooter2"
                       style={{ marginTop: "-120px", marginLeft: "10px" }}>
-                      <a className="checkoutplan" href="/price">
+                      <a className="checkoutplan" href="/pricing">
                         Checkout plans <FaArrowRight />
                       </a>
                     </div>

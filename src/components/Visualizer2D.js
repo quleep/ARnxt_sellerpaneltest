@@ -18,25 +18,24 @@ import Header from "./Header";
 import DropdownMenu from "./DropdownMenu";
 import Footercomponent from "./Footercomponent";
 function Visualizer2D() {
-
-  const getbrandapi = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdesignbybrand'
+  const getbrandapi =
+    "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getdesignbybrand";
 
   const [brandsData, setBrandsData] = useState(null);
   const [brandsData1, setBrandsData1] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchProduct, setSearchProduct] = useState(null);
-  const [branddesignapi, setBrandDesignApi] = useState()
-  const [brandtoken, setBrandToken] = useState()
+  const [branddesignapi, setBrandDesignApi] = useState();
+  const [brandtoken, setBrandToken] = useState();
 
   const [categoriesDetails, setCategoriesDetails] = useState([]);
-  const [apidata, setApiData] = useState(false)
-  
+  const [apidata, setApiData] = useState(false);
 
-  const [apipageno, setApiPageNo] = useState(0)
+  const [apipageno, setApiPageNo] = useState(0);
 
-  const [apiurldata, setApiUrlData] = useState()
+  const [apiurldata, setApiUrlData] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     const brands = async () => {
       try {
         const response = await axios.get(
@@ -45,10 +44,9 @@ function Visualizer2D() {
         const response1 = await axios.post(
           `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbrandcategory?category=Walls`
         );
-  
-        console.log("brandsarray", response);
+
         const brandFilter = response1.data;
-  
+
         const filteredData = response.data.filter(
           (item) =>
             item &&
@@ -56,55 +54,45 @@ function Visualizer2D() {
             brandFilter.includes(item["brandId"].toLowerCase())
         );
         setBrandsData(filteredData);
-  
-        console.log(filteredData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    brands()
-  
-  },[])
+    brands();
+  }, []);
 
-  const getBrandApiData = async (val)=>{
+  const getBrandApiData = async (val) => {
     let newvalue;
     const body = {
-      brand: val.toLowerCase()
+      brand: val.toLowerCase(),
+    };
+
+    try {
+      await axios.post(getbrandapi, body).then((res) => {
+        newvalue = {
+          designapi: res.data[0].designapi,
+          token: res.data[0].token,
+        };
+      });
+    } catch (error) {
+      console.log(error);
     }
+    return newvalue;
+  };
 
-    try{
-        await axios.post(getbrandapi, body).then(res=>{
-         
-          newvalue = {
-            designapi : res.data[0].designapi,
-            token : res.data[0].token,
-         
-          }
-        })
-    }
-    catch(error){
-      console.log(error)
-    }
-    return newvalue
-  }
+  const handleAllVisualiseData = () => {
+    document.querySelector(".styles").scrollTop = 0;
+    setApiData(false);
+  };
 
-  const handleAllVisualiseData = ()=>{
+  const handleBrandClick = async (val) => {
+    const newdata = await getBrandApiData(val);
+    setBrandDesignApi(newdata?.designapi);
+    setBrandToken(newdata?.token);
 
-    document.querySelector('.styles').scrollTop =  0
-    setApiData(false)
-  }
-
-
-  const handleBrandClick = async (val)=>{
-     const newdata = await getBrandApiData(val)
-     setBrandDesignApi(newdata?.designapi)
-     setBrandToken(newdata?.token)
-      
-    setApiPageNo(apipageno + 1)
-    setApiData(true)
-
-    
-  }
+    setApiPageNo(apipageno + 1);
+    setApiData(true);
+  };
 
   const {
     image,
@@ -363,9 +351,9 @@ function Visualizer2D() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const [scrollTop, setScrollTop] = useState(0);
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("room"));
     setRoom(item);
@@ -469,32 +457,25 @@ function Visualizer2D() {
     const element = StyleRef.current;
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       setLoading(true);
-      if(apidata){
-        setApiPageNo(apipageno + 1)
-      }else{
+      if (apidata) {
+        setApiPageNo(apipageno + 1);
+      } else {
         setPageNo(pageno + 1);
       }
-      
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
-
-      
       try {
-        const url = `${branddesignapi && branddesignapi}?token=${brandtoken}&page=${apipageno}`;
+        const url = `${
+          branddesignapi && branddesignapi
+        }?token=${brandtoken}&page=${apipageno}`;
         const response = await axios.get(url);
-        console.log(response)
 
         const data = response.data.data;
-      
-          setApiUrlData((prevData) =>
-          prevData ? [...prevData, ...data] : data
-        );
+
+        setApiUrlData((prevData) => (prevData ? [...prevData, ...data] : data));
         setLoading(false);
-        
-        
-   
       } catch (error) {
         console.error("Error fetching data:", error);
         setLoading(false);
@@ -502,11 +483,7 @@ function Visualizer2D() {
     };
 
     fetchData();
- 
-
-
-  },[apipageno])
- 
+  }, [apipageno]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll1);
@@ -516,7 +493,6 @@ function Visualizer2D() {
   }, []);
 
   const onChangeFavorite = (id) => {
-    console.log("item", id);
     const list2 = list.map(function (item) {
       if (item.id !== id) {
         return item;
@@ -563,8 +539,6 @@ function Visualizer2D() {
     return num;
   };
 
-  
-
   const getKey = (type, index) => {
     const key = `${type}-${index}`;
     return key;
@@ -572,7 +546,6 @@ function Visualizer2D() {
 
   const onScroll = (e) => {
     const delta = e.deltaY * -0.002;
-    console.log(delta, e.clientX);
 
     const newScale = position.scale + delta;
     const ratio = 1 - newScale / position.scale;
@@ -656,7 +629,6 @@ function Visualizer2D() {
     await resizeImage(val).then((res) => {
       newres = res;
     });
-  
 
     const body = {
       wallimg: temporgimage,
@@ -674,7 +646,6 @@ function Visualizer2D() {
     await axios
       .post("https://wallserver.arnxt.com/api/v1/infer", body, config)
       .then((res) => {
-        console.log(res.data);
         setSegmentImg(true);
         setProcessImg(res.data);
       })
@@ -692,24 +663,21 @@ function Visualizer2D() {
     <>
       <Header />
 
-
       <DropdownMenu />
       <div className="visualiserbranddiv">
-    <div className="visualiserbranddivinside">
-        <div className="branddivicon" onClick={handleAllVisualiseData} >
-           <FaGripVertical className="mainiconbrand"/>
-        </div>
-        {
-          brandsData?.map(item=>(
-            <div className="visualiserbranddivimage" onClick={()=>handleBrandClick(item.brandId)} >
-            <img src={item.iconUrl} />
-  
+        <div className="visualiserbranddivinside">
+          <div className="branddivicon" onClick={handleAllVisualiseData}>
+            <FaGripVertical className="mainiconbrand" />
           </div>
-          ))
-        }
-       
+          {brandsData?.map((item) => (
+            <div
+              className="visualiserbranddivimage"
+              onClick={() => handleBrandClick(item.brandId)}>
+              <img src={item.iconUrl} />
+            </div>
+          ))}
+        </div>
       </div>
-</div>
       <div className="hero_container">
         <div className="rooms-container">
           <div className="main">
@@ -752,111 +720,115 @@ function Visualizer2D() {
                 className={type === 0 ? "styles" : "styles small"}
                 onScroll={handleScroll1}
                 ref={StyleRef}>
-                
-                {
-                  apidata ? 
+                {apidata ? (
                   <div className="scroll" id="slider4">
-                  {apiurldata?.map((item) => (
-                    <>
-                      <div
-                        key={getKey("item", item.Patternnumber)}
-                        className={
-                          item.Patternnumber === select.Patternnumber
-                          ? "card active"
-                          : "card"
-                        }
-                        onClick={() => onChange(item)}>
+                    {apiurldata?.map((item) => (
+                      <>
                         <div
-                          className="details"
-                          onClick={(e) =>
-                            handlewallpaperclick(e, item.Imageurl)
-                          }>
-                          <div className="image">
-                            <img src={item.Imageurl2} alt="Rug" />
-                            <div
-                              className={
-                                item.favorite
-                                ? "btn_visualizer active"
-                                : "btn_visualizer"
-                              }
-                              onClick={() => onChangeFavorite(item.Patternnumber)}>
-                              <FavoriteIcon2 />
-                            </div>
-                          </div>
-                          <div className="detail">
-                            <div className="top">
+                          key={getKey("item", item.Patternnumber)}
+                          className={
+                            item.Patternnumber === select.Patternnumber
+                              ? "card active"
+                              : "card"
+                          }
+                          onClick={() => onChange(item)}>
+                          <div
+                            className="details"
+                            onClick={(e) =>
+                              handlewallpaperclick(e, item.Imageurl)
+                            }>
+                            <div className="image">
+                              <img src={item.Imageurl2} alt="Rug" />
                               <div
-                                className="normal_text"
-                                style={{ textTransform: "uppercase" }}>
-                                {item.Collection}
+                                className={
+                                  item.favorite
+                                    ? "btn_visualizer active"
+                                    : "btn_visualizer"
+                                }
+                                onClick={() =>
+                                  onChangeFavorite(item.Patternnumber)
+                                }>
+                                <FavoriteIcon2 />
                               </div>
-                              <div className="semibold_text">
-                                {item.Productname}
+                            </div>
+                            <div className="detail">
+                              <div className="top">
+                                <div
+                                  className="normal_text"
+                                  style={{ textTransform: "uppercase" }}>
+                                  {item.Collection}
+                                </div>
+                                <div className="semibold_text">
+                                  {item.Productname}
+                                </div>
                               </div>
                             </div>
                           </div>
+                          {item.length > 1 && (
+                            <div className="size">
+                              <div className="detail" key="size">
+                                Size: Size: <strong>{item.wide}</strong>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        {item.length > 1 && (
-                          <div className="size">
-                            <div className="detail" key="size">
-                              Size: Size: <strong>{item.wide}</strong>
+                        {calc() === item.product_Id && (
+                          <div className="card detail">
+                            <div className="details">
+                              <div className="detail">
+                                <div className="top">
+                                  <div className="text">{select.brand}</div>
+                                  <div className="name">
+                                    {select.productname}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="size">
+                              <div className="detail">
+                                Size: <strong>{select.wide}</strong>
+                              </div>
+                              {select.lengthprod > 1 && (
+                                <div className="size-type">
+                                  {select.lengthprod.map((size, index) => (
+                                    <div
+                                      key={getKey("small", index)}
+                                      className={
+                                        index === select.selection
+                                          ? "btn_visualizer active"
+                                          : "btn_visualizer"
+                                      }
+                                      onClick={() =>
+                                        onChangeSelection(
+                                          select.product_Id,
+                                          index
+                                        )
+                                      }>
+                                      {size}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
-                      </div>
-                      {calc() === item.product_Id && (
-                        <div className="card detail">
-                          <div className="details">
-                            <div className="detail">
-                              <div className="top">
-                                <div className="text">{select.brand}</div>
-                                <div className="name">{select.productname}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="size">
-                            <div className="detail">
-                              Size: <strong>{select.wide}</strong>
-                            </div>
-                            {select.lengthprod > 1 && (
-                              <div className="size-type">
-                                {select.lengthprod.map((size, index) => (
-                                  <div
-                                    key={getKey("small", index)}
-                                    className={
-                                      index === select.selection
-                                        ? "btn_visualizer active"
-                                        : "btn_visualizer"
-                                    }
-                                    onClick={() =>
-                                      onChangeSelection(
-                                        select.product_Id,
-                                        index
-                                        )
-                                    }>
-                                    {size}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  ))}
-                  {loading && <div>Loading...</div>}
-                  {!loading && apiurldata?.length === 0 && (
-                    <p>No more data to load.</p>
+                      </>
+                    ))}
+                    {loading && <div>Loading...</div>}
+                    {!loading && apiurldata?.length === 0 && (
+                      <p>No more data to load.</p>
                     )}
-                  {scrollTop !== 0 && (
-                    <div className="btn_visualizer back" onClick={ScrollToTop}>
-                      <ArrowUp />
-                      Back To Top
-                    </div>
-                  )}
-
-                  </div>  :
-                    <div className="scroll" id="slider1">
+                    {scrollTop !== 0 && (
+                      <div
+                        className="btn_visualizer back"
+                        onClick={ScrollToTop}>
+                        <ArrowUp />
+                        Back To Top
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="scroll" id="slider1">
                     {providedData?.map((item) => (
                       <>
                         <div
@@ -865,7 +837,7 @@ function Visualizer2D() {
                             item.product_Id === select.product_Id
                               ? "card active"
                               : "card"
-                            }
+                          }
                           onClick={() => onChange(item)}>
                           <div
                             className="details"
@@ -880,7 +852,9 @@ function Visualizer2D() {
                                     ? "btn_visualizer active"
                                     : "btn_visualizer"
                                 }
-                                onClick={() => onChangeFavorite(item.product_Id)}>
+                                onClick={() =>
+                                  onChangeFavorite(item.product_Id)
+                                }>
                                 <FavoriteIcon2 />
                               </div>
                             </div>
@@ -912,7 +886,9 @@ function Visualizer2D() {
                               <div className="detail">
                                 <div className="top">
                                   <div className="text">{select.brand}</div>
-                                  <div className="name">{select.productname}</div>
+                                  <div className="name">
+                                    {select.productname}
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -924,13 +900,13 @@ function Visualizer2D() {
                                 <div className="size-type">
                                   {select.lengthprod.map((size, index) => (
                                     <div
-                                    key={getKey("small", index)}
-                                    className={
+                                      key={getKey("small", index)}
+                                      className={
                                         index === select.selection
                                           ? "btn_visualizer active"
                                           : "btn_visualizer"
-                                        }
-                                        onClick={() =>
+                                      }
+                                      onClick={() =>
                                         onChangeSelection(
                                           select.product_Id,
                                           index
@@ -942,7 +918,6 @@ function Visualizer2D() {
                                 </div>
                               )}
                             </div>
-                          
                           </div>
                         )}
                       </>
@@ -950,19 +925,17 @@ function Visualizer2D() {
                     {loading && <div>Loading...</div>}
                     {!loading && providedData?.length === 0 && (
                       <p>No more data to load.</p>
-                      )}
+                    )}
                     {scrollTop !== 0 && (
-                      <div className="btn_visualizer back" onClick={ScrollToTop}>
+                      <div
+                        className="btn_visualizer back"
+                        onClick={ScrollToTop}>
                         <ArrowUp />
                         Back To Top
                       </div>
                     )}
                   </div>
-
-                }
-                  
-                
-              
+                )}
               </div>
             </div>
             <div className="main-panel">

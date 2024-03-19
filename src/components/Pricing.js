@@ -29,18 +29,18 @@ function loadScript(src) {
 
 function Pricing() {
   // scrolled to top when redirected from a page
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  function displayError(){
+  function displayError() {
     this.setState({
       error: "Error occured while adding subscription",
     });
-  };
+  }
 
-  function displaySuccess(id){
+  function displaySuccess(id) {
     const { planId } = this.state;
     if (!planId) {
       this.setState({
@@ -61,14 +61,16 @@ function Pricing() {
         },
       });
     }
-  };
+  }
 
-  const [check, setCheck]= useState(true)
+  const [check, setCheck] = useState(true);
 
   async function displayRazorpay(id, limit) {
     const token = sessionStorage.getItem("token");
     // const res = await loadScript("https://api.razorpay.com/v1/subscriptions");
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
 
     if (!res) {
       this.setState({
@@ -122,489 +124,719 @@ function Pricing() {
         });
       }
     }
+  }
+
+  const checkboxfun = () => {
+    if (check === true) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
   };
 
-  const checkboxfun =()=>{
-    if(check === true){
-          
-    setCheck(false);
-        }
-        else{
-          setCheck(true)
-        }
-
-  }
-
-  const handleRegisterClick = ()=>{
-      if(typeof sessionStorage.getItem('user') === 'string'){
-         history.push('/plan')
-      }else{
-        history.push('/login')
-      }
-  }
+  const handleRegisterClick = () => {
+    if (typeof sessionStorage.getItem("user") === "string") {
+      history.push("/plan");
+    } else {
+      history.push("/login");
+    }
+  };
 
   return (
-    <div className="pricetable_div"  >
-    <Navbarhome/>
+    <div className="pricetable_div">
+      <Navbarhome />
 
-       
-     <Helmet>
-       <title> Arnxt - Pricing | Augmented Reality Products for Business </title>
-       <meta 
-          name='description'
-          content='Know about the pricing of our augmented reality products which will enable you to take your business to a new level of success. '
-          />
-          <meta name='keywords' content='
+      <Helmet>
+        <title>
+          {" "}
+          Arnxt - Pricing | Augmented Reality Products for Business{" "}
+        </title>
+        <meta
+          name="description"
+          content="Know about the pricing of our augmented reality products which will enable you to take your business to a new level of success. "
+        />
+        <meta
+          name="keywords"
+          content="
           
           Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
-           ' />
-       
-     </Helmet>
-     
-      <section id="pricing" className="py-5" style={{backgroundColor:'white'}}>
-        <div className=""  >
-          <div className="" style={{}} >
-            <div className="py-4" >
-              <div className="" >
-                <div className="headingprice"  >
-                  <h1  className="h2-heading" style={{color: 'black', textDecoration: 'underline', fontFamily:'Manrope, san-serif'}}>Plans</h1>
+           "
+        />
+      </Helmet>
+
+      <section
+        id="pricing"
+        className="py-5"
+        style={{ backgroundColor: "white" }}>
+        <div className="">
+          <div className="" style={{}}>
+            <div className="py-4">
+              <div className="">
+                <div className="headingprice">
+                  <h1
+                    className="h2-heading"
+                    style={{
+                      color: "black",
+                      textDecoration: "underline",
+                      fontFamily: "Manrope, san-serif",
+                    }}>
+                    Plans
+                  </h1>
                   <br />
-                 
-           
-                    <div className="pricecontainer" >
 
-                    <div className="pricechange" >
-                      <div  className="pricequarter">
-
-                        <h4 style={{color:'rgb(32, 184, 163)', fontFamily:'Manrope, san-serif', fontWeight:'bold'}} >Quarterly</h4>
+                  <div className="pricecontainer">
+                    <div className="pricechange">
+                      <div className="pricequarter">
+                        <h4
+                          style={{
+                            color: "rgb(32, 184, 163)",
+                            fontFamily: "Manrope, san-serif",
+                            fontWeight: "bold",
+                          }}>
+                          Quarterly
+                        </h4>
                       </div>
                       <div className="priceswitch">
+                        <label className="switch">
+                          <input
+                            type="checkbox"
+                            className=""
+                            style={{}}
+                            onClick={checkboxfun}
+                          />
 
-                      <label className="switch" >
-                  
-                  <input type="checkbox" className=""   style={{}} onClick={checkboxfun} />
-                  
-
-                  <span className="slider round"  style={{}}></span>
-             
-                </label>
+                          <span className="slider round" style={{}}></span>
+                        </label>
                       </div>
 
                       <div className="priceannual">
-                        <h4 style={{color:'blue', fontFamily: 'Manrope, san-serif', marginRight:'10px', fontWeight:'bold'}} >Annually</h4>
+                        <h4
+                          style={{
+                            color: "blue",
+                            fontFamily: "Manrope, san-serif",
+                            marginRight: "10px",
+                            fontWeight: "bold",
+                          }}>
+                          Annually
+                        </h4>
                       </div>
-
-
-                       </div>
-
                     </div>
-                   
-                 
+                  </div>
 
                   <br />
                 </div>
               </div>
             </div>
-            <div className="pricetable"  style={{border:''}} >
-          
-            <table className="table table-bordered table-light"  style={{}}>
-             
-              <thead  >
-                <tr>
-                  <th style={{ width: "900px" }} scope="col">
-                    <h2 className=""  style={{fontFamily:'Manrope, san-serif'}}>Features</h2>{" "}
-                  </th>
+            <div className="pricetable" style={{ border: "" }}>
+              <table className="table table-bordered table-light" style={{}}>
+                <thead>
+                  <tr>
+                    <th style={{ width: "900px" }} scope="col">
+                      <h2
+                        className=""
+                        style={{ fontFamily: "Manrope, san-serif" }}>
+                        Features
+                      </h2>{" "}
+                    </th>
 
-                  <th scope="col" style={{width:'600px'}}>
-                  <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
-                    </button>
-                    <h4 className="plan-text">Starter</h4>
-                    <div style={{display:'flex', border:'', marginLeft:'10px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
-                   
-                      <div  style={ check ? {flex:'3', border:'', width:'70px', marginLeft:'40px', marginRight:''} :{flex:'3', border:'', width:'70px', marginLeft:'20px', marginRight:''}}> 
-                      <div  style={{display:'flex'}}>
-                      <h5 style={{marginRight:'5px'}}  className="plan-text" >INR</h5>
-                      <h5  className="price-text" style={ check ?  {fontSize:'20px', textDecoration:'',marginLeft:'',marginRight:'5px', marginTop:''}:
-                       {fontSize:'15px', textDecoration:'line-through',marginLeft:'',marginRight:'5px', marginTop:'3px'}} >
-                        {check? '8999': '35988'}</h5>
-                        <h5  className="price-text" style={{fontSize:'20px' }} > {check ? '': '29999'} </h5>
-                        <h5 className="year-text" style={{fontSize:'20px'}}>/-</h5>
-
+                    <th scope="col" style={{ width: "600px" }}>
+                      <button
+                        className="btnall"
+                        style={{ width: "180px", marginBottom: "10px" }}>
+                        <a onClick={handleRegisterClick}>Start 14 day trial</a>
+                      </button>
+                      <h4 className="plan-text">Starter</h4>
+                      <div
+                        style={{
+                          display: "flex",
+                          border: "",
+                          marginLeft: "10px",
+                          width: "100%",
+                          height: "60px",
+                          flexDirection: "row",
+                          paddingBottom: "0px",
+                        }}>
+                        <div
+                          style={
+                            check
+                              ? {
+                                  flex: "3",
+                                  border: "",
+                                  width: "70px",
+                                  marginLeft: "40px",
+                                  marginRight: "",
+                                }
+                              : {
+                                  flex: "3",
+                                  border: "",
+                                  width: "70px",
+                                  marginLeft: "20px",
+                                  marginRight: "",
+                                }
+                          }>
+                          <div style={{ display: "flex" }}>
+                            <h5
+                              style={{ marginRight: "5px" }}
+                              className="plan-text">
+                              INR
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={
+                                check
+                                  ? {
+                                      fontSize: "20px",
+                                      textDecoration: "",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "",
+                                    }
+                                  : {
+                                      fontSize: "15px",
+                                      textDecoration: "line-through",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "3px",
+                                    }
+                              }>
+                              {check ? "8999" : "35988"}
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={{ fontSize: "20px" }}>
+                              {" "}
+                              {check ? "" : "29999"}{" "}
+                            </h5>
+                            <h5
+                              className="year-text"
+                              style={{ fontSize: "20px" }}>
+                              /-
+                            </h5>
+                          </div>
+                        </div>
                       </div>
-                  
-                     
 
+                      {/* <a className="btn-solid-reg" href="#contact">Start 14 day trail</a> */}
+                    </th>
+                    <th scope="col" style={{ width: "800px" }}>
+                      <button
+                        className="btnall"
+                        style={{ width: "180px", marginBottom: "10px" }}>
+                        <a onClick={handleRegisterClick}>Start 14 day trial</a>
+                      </button>
+                      <h4 className="plan-text">Basic</h4>
+                      <div
+                        style={{
+                          display: "flex",
+                          border: "",
+                          marginLeft: "-5px",
+                          width: "100%",
+                          height: "60px",
+                          flexDirection: "row",
+                          paddingBottom: "0px",
+                        }}>
+                        <div
+                          style={
+                            check
+                              ? {
+                                  flex: "3",
+                                  border: "",
+                                  width: "70px",
+                                  marginLeft: "50px",
+                                  marginRight: "",
+                                }
+                              : {
+                                  flex: "3",
+                                  border: "",
+                                  width: "70px",
+                                  marginLeft: "20px",
+                                  marginRight: "",
+                                }
+                          }>
+                          <div style={{ display: "flex" }}>
+                            <h5
+                              style={{ marginRight: "5px" }}
+                              className="plan-text">
+                              INR
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={
+                                check
+                                  ? {
+                                      fontSize: "20px",
+                                      textDecoration: "",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "",
+                                    }
+                                  : {
+                                      fontSize: "15px",
+                                      textDecoration: "line-through",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "3px",
+                                    }
+                              }>
+                              {check ? "35999" : "143996"}
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={{ fontSize: "20px" }}>
+                              {" "}
+                              {check ? "" : "129999"}{" "}
+                            </h5>
+                            <h5
+                              className="year-text"
+                              style={{ fontSize: "20px" }}>
+                              /-
+                            </h5>
+                          </div>
+                        </div>
                       </div>
-                    
 
-                         
+                      {/* <a className="btn-solid-reg" href="#contact">Start 14 day trail</a> */}
+                    </th>
 
-                    </div>
-                 
-                  
-                  
-                    {/* <a className="btn-solid-reg" href="#contact">Start 14 day trail</a> */}
-                   
-                  </th>
-                  <th scope="col" style={{width:'800px'}}>
-                  <button className="btnall"  style={{width:'180px', marginBottom:'10px'}}>
-                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
-                    </button>
-                    <h4 className="plan-text">Basic</h4>
-                    <div style={{display:'flex', border:'', marginLeft:'-5px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
-                   
-                   <div  style={ check ? {flex:'3', border:'', width:'70px', marginLeft:'50px', marginRight:''} : {flex:'3', border:'', width:'70px', marginLeft:'20px', marginRight:''}}> 
-                   <div  style={{display:'flex'}}>
-                   <h5 style={{marginRight:'5px'}}  className="plan-text" >INR</h5>
-                   <h5  className="price-text" style={ check ?  {fontSize:'20px', textDecoration:'',marginLeft:'',marginRight:'5px', marginTop:''}:
-                    {fontSize:'15px', textDecoration:'line-through',marginLeft:'',marginRight:'5px', marginTop:'3px'}} >
-                     {check? '35999': '143996'}</h5>
-                     <h5  className="price-text" style={{fontSize:'20px' }} > {check ? '': '129999'} </h5>
-                     <h5 className="year-text" style={{fontSize:'20px'}}>/-</h5>
+                    <th scope="col" style={{ width: "1000px" }}>
+                      <button
+                        className="btnall"
+                        style={{ width: "180px", marginBottom: "10px" }}>
+                        <a onClick={handleRegisterClick}>Start 14 day trial</a>
+                      </button>
+                      <h4 className="plan-text">Premium</h4>
+                      <div
+                        style={
+                          check
+                            ? {
+                                display: "flex",
+                                border: "",
+                                marginLeft: "40px",
+                                width: "100%",
+                                height: "60px",
+                                flexDirection: "row",
+                                paddingBottom: "0px",
+                              }
+                            : {
+                                display: "flex",
+                                border: "",
+                                marginLeft: "10px",
+                                width: "100%",
+                                height: "60px",
+                                flexDirection: "row",
+                                paddingBottom: "0px",
+                              }
+                        }>
+                        <div
+                          style={{
+                            flex: "3",
+                            border: "",
+                            width: "70px",
+                            marginLeft: "5px",
+                            marginRight: "",
+                          }}>
+                          <div style={{ display: "flex" }}>
+                            <h5
+                              style={{ marginRight: "5px" }}
+                              className="plan-text">
+                              INR
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={
+                                check
+                                  ? {
+                                      fontSize: "20px",
+                                      textDecoration: "",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "",
+                                    }
+                                  : {
+                                      fontSize: "15px",
+                                      textDecoration: "line-through",
+                                      marginLeft: "",
+                                      marginRight: "5px",
+                                      marginTop: "3px",
+                                    }
+                              }>
+                              {check ? "99999" : "399996"}
+                            </h5>
+                            <h5
+                              className="price-text"
+                              style={{ fontSize: "20px" }}>
+                              {" "}
+                              {check ? "" : "369999"}{" "}
+                            </h5>
+                            <h5
+                              className="year-text"
+                              style={{ fontSize: "20px" }}>
+                              /-
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
 
-                   </div>
-               
-                  
+                    <th scope="col" style={{ width: "600px" }}>
+                      <button
+                        className="btnall"
+                        style={{ width: "180px", marginBottom: "10px" }}>
+                        <a onClick={handleRegisterClick}>Start 14 day trial</a>
+                      </button>
+                      <h4 className="plan-text">Business Pro</h4>
+                      <div
+                        style={
+                          check
+                            ? {
+                                display: "flex",
+                                border: "",
+                                marginLeft: "50px",
+                                width: "100%",
+                                height: "60px",
+                                flexDirection: "row",
+                                paddingBottom: "0px",
+                              }
+                            : {
+                                display: "flex",
+                                border: "",
+                                marginLeft: "50px",
+                                width: "100%",
+                                height: "60px",
+                                flexDirection: "row",
+                                paddingBottom: "0px",
+                              }
+                        }>
+                        <div
+                          style={{
+                            flex: "3",
+                            border: "",
+                            width: "70px",
+                            marginLeft: "5px",
+                            marginRight: "",
+                          }}>
+                          <div style={{ display: "flex" }}>
+                            <h5
+                              style={{ marginRight: "5px" }}
+                              className="plan-text"></h5>
+                            <h5
+                              className="price-text"
+                              style={{
+                                fontSize: "20px",
+                                textDecoration: "",
+                                marginLeft: "",
+                                marginRight: "5px",
+                                marginTop: "",
+                              }}>
+                              Custom
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
 
-                   </div>
-                 
+                <tbody style={{}}>
+                  <tr style={{}}>
+                    <th
+                      scope="row"
+                      style={{
+                        fontFamily: "Manrope, san-serif",
+                        fontSize: "15px",
+                      }}>
+                      Number of Products
+                    </th>
+                    <td style={{ fontWeight: "bold" }}>10 </td>
+                    <td style={{ fontWeight: "bold" }}>100</td>
+                    <td style={{ fontWeight: "bold" }}>500</td>
+                    <td style={{ fontWeight: "bold" }}>Enterprise</td>
+                  </tr>
 
-                      
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{
+                        fontFamily: "Manrope, san-serif",
+                        fontSize: "15px",
+                      }}>
+                      Number of 3D views/month
+                    </th>
+                    <td style={{ fontWeight: "bold" }}>
+                      {check ? "10,000" : "50,000"}
+                    </td>
+                    <td style={{ fontWeight: "bold" }}>
+                      {check ? "50,000" : "2,50,000"}
+                    </td>
+                    <td style={{ fontWeight: "bold" }}>Unlimited</td>
+                    <td style={{ fontWeight: "bold" }}>Unlimited</td>
+                  </tr>
 
-                 </div>
-                
-                  
-                    {/* <a className="btn-solid-reg" href="#contact">Start 14 day trail</a> */}
-                    
-                  </th>
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      3D asset management
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                  <th scope="col" style={{width:'1000px'}}>
-                  <button className="btnall"  style={{width:'180px', marginBottom:'10px'}} >
-                  <a onClick={handleRegisterClick}>Start 14 day trial</a> 
-                    </button>
-                    <h4 className="plan-text">Premium</h4>
-                    <div style={ check ? {display:'flex', border:'', marginLeft:'40px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}:
-                    {display:'flex', border:'', marginLeft:'10px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
-                   
-                   <div  style={{flex:'3', border:'', width:'70px', marginLeft:'5px', marginRight:''}}> 
-                   <div  style={{display:'flex'}}>
-                   <h5 style={{marginRight:'5px'}}  className="plan-text" >INR</h5>
-                   <h5  className="price-text" style={ check ?  {fontSize:'20px', textDecoration:'',marginLeft:'',marginRight:'5px', marginTop:''}:
-                    {fontSize:'15px', textDecoration:'line-through',marginLeft:'',marginRight:'5px', marginTop:'3px'}} >
-                     {check? '99999': '399996'}</h5>
-                     <h5  className="price-text" style={{fontSize:'20px' }} > {check ? '': '369999'} </h5>
-                     <h5 className="year-text" style={{fontSize:'20px'}}>/-</h5>
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      Product variant support
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                   </div>
-               
-                  
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      Dimension visualisation
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      QR Code Access to AR
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                   </div>
-                 
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      White label 3D Viewer
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                      
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      Manage Multiple Accounts
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                 </div>
-                    
-                  
-                  </th>
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      Dedicated account manager
+                    </th>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-close">
+                        <FaTimes />
+                      </i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                    <td>
+                      {" "}
+                      <i className="fas fa-check"></i>
+                    </td>
+                  </tr>
 
-                  <th scope="col"  style={{width:'600px'}}>
-                  <button className="btnall" style={{width:'180px', marginBottom:'10px'}}>
-                     <a onClick={handleRegisterClick}>Start 14 day trial</a> 
-                    </button>
-                    <h4 className="plan-text">Business Pro</h4>
-                    <div style={ check ? {display:'flex', border:'', marginLeft:'50px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}: 
-                    {display:'flex', border:'', marginLeft:'50px', width:'100%', height:'60px', flexDirection:'row',paddingBottom:'0px'}} >
-                   
-                   <div  style={{flex:'3', border:'', width:'70px', marginLeft:'5px', marginRight:''}}> 
-                   <div  style={{display:'flex'}}>
-                   <h5 style={{marginRight:'5px'}}  className="plan-text" ></h5>
-                   <h5  className="price-text" style={ {fontSize:'20px', textDecoration:'',marginLeft:'',marginRight:'5px', marginTop:''}}
-                   >
-                       Custom</h5>
-                    
-                    
-
-                   </div>
-               
-                  
-
-                   </div>
-                 
-
-                      
-
-                 </div>
-                  
-                   
-                   
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody style={{}} >
-                <tr  style={{}}>
-                  <th scope="row" style={{fontFamily:'Manrope, san-serif', fontSize:'15px'}}>Number of Products</th>
-                  <td   style={{fontWeight:'bold'}}>10 </td>
-                  <td  style={{fontWeight:'bold'}}>100</td>
-                  <td style={{fontWeight:'bold'}}>500</td>
-                  <td style={{fontWeight:'bold'}}>Enterprise</td>
-                </tr>
-
-                <tr>
-                  <th scope="row" style={{fontFamily:'Manrope, san-serif', fontSize:'15px'}}>Number of 3D views/month</th>
-                  <td style={{fontWeight:'bold'}}>{check ? '10,000':'50,000'}</td>
-                  <td style={{fontWeight:'bold'}}>{check ? '50,000':'2,50,000'}</td>
-                  <td style={{fontWeight:'bold'}}>Unlimited</td>
-                  <td style={{fontWeight:'bold'}}>Unlimited</td>
-                </tr>
-
-     
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>3D asset management</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>Product variant support</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>Dimension visualisation</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>QR Code Access to AR</th>
-                  <td> <i className="fas fa-check"></i></td>
-                  <td> <i className="fas fa-check"></i></td>
-                  <td> <i className="fas fa-check"></i></td>
-                  <td> <i className="fas fa-check"></i></td>
-                </tr>
-
-           
-
-          
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>White label 3D Viewer</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>Manage Multiple Accounts</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>Dedicated account manager</th>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-close"><FaTimes/></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                  <td>
-                    {" "}
-                    <i className="fas fa-check"></i>
-                  </td>
-                </tr>
-
-             
-
-              
-                <tr>
-                  <th scope="row"style={{fontFamily:'Manrope, san-serif'}}>3D Viewer API</th>
-                  <td>
-                    Coming Soon
-                  </td>
-                  <td>
-                  Coming Soon
-                  </td>
-                  <td> Coming Soon</td>
-                  <td> Coming Soon</td>
-                </tr>
-                <tr>
-                  <th scope="row" style={{fontFamily:'Manrope, san-serif'}}>
-                     Browser based AR application
-                  </th>
-                  <td>
-                    {" "}
-                   Coming Soon
-                  </td>
-                  <td>
-                    {" "}
-                    Coming Soon
-                  </td>
-                  <td>
-                    {" "}
-                    Coming Soon
-                  </td>
-                  <td>
-                    {" "}
-                    Coming Soon
-                  </td>
-                </tr>
-              </tbody>
-           
-             
-            </table>
-            <div  className="astric_div" style={{marginTop:'60px'}}>
-             
-             <div className="addonsdiv">
-              <div className="addoninsidediv">
-              <p  className="" style={{fontSize:'20px', fontWeight:'bold', color:'black'}}>Add-ons available</p>
-
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      3D Viewer API
+                    </th>
+                    <td>Coming Soon</td>
+                    <td>Coming Soon</td>
+                    <td> Coming Soon</td>
+                    <td> Coming Soon</td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      style={{ fontFamily: "Manrope, san-serif" }}>
+                      Browser based AR application
+                    </th>
+                    <td> Coming Soon</td>
+                    <td> Coming Soon</td>
+                    <td> Coming Soon</td>
+                    <td> Coming Soon</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="astric_div" style={{ marginTop: "60px" }}>
+                <div className="addonsdiv">
+                  <div className="addoninsidediv">
+                    <p
+                      className=""
+                      style={{
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}>
+                      Add-ons available
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "1000px",
+                      height: "100%",
+                      marginTop: "-40px",
+                    }}>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, san-serif",
+                        marginTop: "30px",
+                        marginLeft: "5px",
+                        fontWeight: "bold",
+                      }}>
+                      We have add-ons available for additional views of
+                      products. Get in touch with us to upgrade.{" "}
+                    </p>
+                    <PopupButton
+                      className="contactusaddon"
+                      url="https://calendly.com/arnxt-meet/30min"
+                      rootElement={document.getElementById("root")}
+                      text="Contact us"
+                    />
+                  </div>
+                </div>
               </div>
-              <div style={{display:'flex', width:'1000px',height:'100%', marginTop:'-40px'}}>
-                
-
-                <p  style={{fontFamily:'Manrope, san-serif', marginTop:'30px', marginLeft:'5px', fontWeight:'bold'}}>
-                   We have add-ons available for additional views of products. Get in touch with us to upgrade.  </p>
-                   <PopupButton
-                
-                  className="contactusaddon"
-              
-              url="https://calendly.com/arnxt-meet/30min"
-            
-              rootElement={document.getElementById("root")}
-              text="Contact us"  
-            /> 
-
-              </div>
-
-             </div>
-
-
-
-             </div>
             </div>
             <div className="contactus_div">
-              <div  className="pricingcontact_div">
-                <p className="pricingp" >Couldn't decide which plan to choose ? Contact us to get our expertise.</p>
-
-
-             
-
+              <div className="pricingcontact_div">
+                <p className="pricingp">
+                  Couldn't decide which plan to choose ? Contact us to get our
+                  expertise.
+                </p>
               </div>
-              <div style={{marginBottom:'100px'}} >
-              <PopupButton
-                  styles={{ height:'60px'}}
+              <div style={{ marginBottom: "100px" }}>
+                <PopupButton
+                  styles={{ height: "60px" }}
                   className="btnall"
-              
-              url="https://calendly.com/arnxt-meet/30min"
-            
-              rootElement={document.getElementById("root")}
-              text="Contact us"  
-            /> 
-
+                  url="https://calendly.com/arnxt-meet/30min"
+                  rootElement={document.getElementById("root")}
+                  text="Contact us"
+                />
               </div>
-
-         
-
-             
-              
-
-
-     
-           
-
-             </div>
-           
-            
+            </div>
           </div>
         </div>
       </section>
-      <Footercomponent/>
-   
+      <Footercomponent />
     </div>
-    
-
-  
   );
 }
 

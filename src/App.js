@@ -113,6 +113,7 @@ import Loginform from "./Loginform.js";
 
 import Analyticslogin from "./components/Analyticslogin.js";
 import Analytics from "./components/Analytics.js";
+import PricingNew from "./components/PricingNew.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
@@ -143,8 +144,6 @@ class App extends Component {
     axios
       .post(verifyUrl, requestBody)
       .then((response) => {
-        console.log(response);
-
         setUserSession(response.data.user, response.data.token);
       })
       .catch(() => {});
@@ -170,6 +169,7 @@ class App extends Component {
           </Helmet>
 
           <Route path="/price" exact component={Pricing} />
+          <Route path="/pricing" exact component={PricingNew} />
 
           <Route path="/about" exact component={About} />
 
@@ -180,7 +180,7 @@ class App extends Component {
             component={TermsAndConditions}
           />
           <Route path="/login" exact component={Loginform} />
-         
+
           <Route path="/productsnew" exact component={Productsnew} />
           <Route path="/product" exact component={ProductsHome} />
           <Route path="/blog" exact component={Blognew} />
@@ -193,8 +193,6 @@ class App extends Component {
           <Route path="/arview/rooms/:id" component={Rooms} />
           <Route path="/arview/visualizer" component={Visualizer} />
           <Route path="/" exact component={Homepagenew} />
-          
-
 
           <Route
             path="/arview/visualizer_mobile"

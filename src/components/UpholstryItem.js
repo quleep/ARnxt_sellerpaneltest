@@ -271,7 +271,6 @@ function UpholstryItem() {
     const createAndApplyTexture = async (channel, textureUrl) => {
       const randomSuffix = `?random=${Math.random()}`;
       const updatedTextureUrl = textureUrl + randomSuffix;
-      console.log("vfv", updatedTextureUrl);
       const texture = await modelViewerTexture1.createTexture(
         updatedTextureUrl
       );
@@ -283,8 +282,6 @@ function UpholstryItem() {
         material[channel].setTexture(texture);
       }
     };
-
-    console.log(selectedTexture);
 
     if (modelViewerTexture1?.model) {
       createAndApplyTexture("baseColorTexture", selectedTexture);
@@ -322,10 +319,8 @@ function UpholstryItem() {
 
     setFabric(fabricData);
     setSofa2(sofa2Data);
-    console.log(fabricData);
   }, [param]);
   const onChangeFavorite = (id) => {
-    console.log("item", id);
     const list2 = list.map(function (item) {
       if (item.id !== id) {
         return item;
@@ -352,7 +347,6 @@ function UpholstryItem() {
         setData(response.data);
         const sofa2Item = response.data.find((item) => item.itemname === sofa2);
         setSelectedItem(sofa2Item);
-        console.log(sofa2Item);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -427,7 +421,7 @@ function UpholstryItem() {
           <div className="main">
             <div className="left-panel">
               <div className="subtitle">
-                <div className="text">{fabric}</div>
+                <div className="text dmsans">{fabric}</div>
                 <div className="types">
                   <div
                     className={
@@ -647,7 +641,7 @@ function UpholstryItem() {
               id="slider"
               className="hori_scroll_container_child_visualizer"
               ref={scrollContainerRef}>
-              {products?.map((item,index) => (
+              {products?.map((item, index) => (
                 <div
                   key={item.id}
                   className={`hori_scroll_container_child1_visualizer`}
@@ -655,9 +649,9 @@ function UpholstryItem() {
                   <img
                     src={item.imageurl[0]}
                     alt="/"
-                      className={`hori_scroll_container_child1_image_visualizer ${
-                    selectedImageIndex === index ? "selected" : ""
-                  }`}
+                    className={`hori_scroll_container_child1_image_visualizer ${
+                      selectedImageIndex === index ? "selected" : ""
+                    }`}
                   />
                 </div>
               ))}

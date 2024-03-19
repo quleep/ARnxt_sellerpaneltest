@@ -74,7 +74,9 @@ class Plans extends Component {
   displayRazorpay = async (id, limit) => {
     const token = sessionStorage.getItem("token");
     // const res = await loadScript("https://api.razorpay.com/v1/subscriptions");
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
 
     if (!res) {
       this.setState({
@@ -131,8 +133,8 @@ class Plans extends Component {
   };
 
   componentDidUpdate() {
-    window.scrollTo(0, 1)
-    
+    window.scrollTo(0, 1);
+
     const { success, error, transition, transitionUpdated, funcId } =
       this.state;
     if (success.length > 0) {
@@ -179,7 +181,7 @@ class Plans extends Component {
               axios
                 .get(`${url}/razorpay/plans`)
                 .then((response) => {
-                  console.log(response.data.plansList.items.slice(1,4));
+                  console.log(response.data.plansList.items.slice(1, 4));
                   if (response.data.plansList) {
                     if (typeof resp.data.sub_id === "string") {
                       axios
@@ -196,7 +198,8 @@ class Plans extends Component {
                     } else {
                       this.setState({
                         user: false,
-                        plansList: response.data.plansList.items.slice(1,4) || [],
+                        plansList:
+                          response.data.plansList.items.slice(1, 4) || [],
                       });
                     }
                   } else {
@@ -288,7 +291,7 @@ class Plans extends Component {
 
               <div className="plansDiv">
                 {plansList.length > 0 ? (
-                    <div className="plans">
+                  <div className="plans">
                     {plansList.map((plan, index) => {
                       return (
                         <ul class="plan" key={index}>
@@ -309,8 +312,7 @@ class Plans extends Component {
                                 planId === plan.id ? (
                                   <button
                                     className="plan__btn plan__cbtn"
-                                    onClick={this.cancelSub}
-                                  >
+                                    onClick={this.cancelSub}>
                                     Cancel
                                   </button>
                                 ) : (
@@ -322,8 +324,7 @@ class Plans extends Component {
                                         plan.id,
                                         plan.notes.modelLimit
                                       )
-                                    }
-                                  >
+                                    }>
                                     Upgrade Plan
                                   </button>
                                 )
@@ -336,8 +337,7 @@ class Plans extends Component {
                                       plan.id,
                                       plan.notes.modelLimit
                                     )
-                                  }
-                                >
+                                  }>
                                   Take Plan
                                 </button>
                               )
@@ -358,8 +358,7 @@ class Plans extends Component {
                                 fontWeight: "500",
                                 fontFamily: "Alata",
                                 letterSpacing: "2px",
-                              }}
-                            >
+                              }}>
                               Subscription updating
                             </h3>
                           </div>
