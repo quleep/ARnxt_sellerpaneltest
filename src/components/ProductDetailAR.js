@@ -3,7 +3,7 @@ import Footertest from "./Footertest";
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation, useParams, useHistory } from "react-router-dom";
-import { BsBox } from "react-icons/bs";
+import { BsBox, BsQuestionSquare } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
@@ -28,6 +28,9 @@ function ProductDetailAR() {
   const modelViewerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasAnimation, setHasAnimation] = useState(false);
+  const [querydata, setQueryData] = useState('')
+
+
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -118,6 +121,53 @@ function ProductDetailAR() {
   useEffect(() => {
     console.log("anikami", hasAnimation);
   }, [hasAnimation]);
+  const userEmail = sessionStorage.getItem("user");
+
+  const emailID = JSON.parse(userEmail);
+  let p_id = emailID?.userid;
+  const u_id = emailID?.name;
+
+  const handlesubmitquery = async ()=>{
+        const query = {
+          queryid: new Date().getTime().toString(),
+          query : querydata,
+          brand : productData.brand,
+          productId : productData.product_Id,
+          merchantid : productData.merchant_Id ,
+          userid : p_id
+
+        }
+        try {
+          const response = await axios.post(
+            `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addquerydata`, query
+          );
+          
+          if(response.status === 200){
+            window.alert('Query submitted successfully!')
+            if (window.location.href.includes('#open-modalquery')) {
+            
+              const newUrl = window.location.href.replace('#open-modalquery', '#');
+            
+              window.history.replaceState({}, document.title, newUrl);
+          }
+          document.getElementById('open-modalquery').style.display= 'none'
+            setQueryData('')
+          }
+       
+        } catch (error) {
+          console.error(error);
+        }
+
+  }
+
+  if (window.location.href.includes('#open-modalquery')) {
+            
+    document.getElementById('open-modalquery').style.display= 'flex '
+    
+  
+}
+
+  
 
   return (
     <>
@@ -205,6 +255,11 @@ function ProductDetailAR() {
                       {productData?.specification}
                     </div>
                   </div>
+                  <div className="product_detail_ar_container_grid_child1_text2">
+                  <a href= { emailID === null ? '/login' : "#open-modalquery"}  className="btn-link">
+                  <BsQuestionSquare className="icon"/>   Query
+                      </a>
+                  </div>
 
                   <div className="product_detail_ar_container_grid_child1_viewinroom">
                     {isGlbKeyPresent ? (
@@ -230,6 +285,21 @@ function ProductDetailAR() {
                         Scan the QR code with your mobile device to view the
                         product in your space.
                       </p>
+                    </div>
+                  </div>
+                  <div id="open-modalquery" class="modal-window">
+                    <div>
+                      <a href="#" title="Close" class="modal-close">
+                        <AiOutlineClose />
+                      </a>
+                  
+                      <p className="semibold_text">
+                           Your query
+                      </p>
+                       <textarea className="querytextarea" value={querydata} onChange={(e)=>setQueryData(e.target.value)}>
+
+                       </textarea>
+                       <button className="querysubmitbutton" onClick={handlesubmitquery}>Submit</button>
                     </div>
                   </div>
                   <div class="modalscan">

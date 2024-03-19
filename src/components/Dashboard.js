@@ -10,6 +10,7 @@ import {
   FaFileDownload,
   FaDownload,
   FaTicketAlt,
+  FaLessThan,
 } from "react-icons/fa";
 import validator from "validator";
 import swal from "sweetalert";
@@ -20,6 +21,8 @@ import fs from "fs";
 import DataTable, { createTheme } from "react-data-table-component";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiCheck } from "react-icons/bi";
+import { BsBox, BsQuestionSquare } from "react-icons/bs";
+
 
 import { tableCustomStyles } from "./tableStyle";
 
@@ -29,6 +32,7 @@ import { MdClose } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 import QRCode from "react-qr-code";
 import Navbarhome from "./Navbarhome";
+import { AiOutlineClose } from "react-icons/ai";
 
 const imagesendurl =
   "https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl";
@@ -101,6 +105,7 @@ const getsubcatdetailsurl =
   "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/subcategoryitems";
 const changeproductstatusurl =
   "https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/changeproductstatusmerchant";
+  const replyqueryurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/replyquery'
 
 const Dashboard = () => {
   const modelRef = useRef();
@@ -295,6 +300,10 @@ const Dashboard = () => {
   const [tagsdropmerchant, showTagsDropMerchant] = useState(false);
   const [dropmerchanttags, showDropMerchantTags] = useState(false);
   const [dropdownsubcatdetails, setDropDownSubcatDetails] = useState(false);
+  const [querydata, setQueryData] = useState()
+  const [query, setQuery] = useState(false)
+  const [querydetails, setQueryDetails] = useState([])
+  const [queryreply, setQueryReply] = useState('')
 
   const [select, setSelect] = useState("Category");
 
@@ -813,6 +822,23 @@ const Dashboard = () => {
         console.log(error);
       });
   };
+
+  useEffect(()=>{
+    const body = {
+      merchantid: p_id,
+    };
+
+    axios
+      .post(merchantprofileurl, body)
+      .then((res) => {
+        setQueryData(res.data[0].querydata)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },[])
+
+
 
   const merchantHandler = (e) => {
     e.preventDefault();
@@ -4571,6 +4597,67 @@ axios.post(registerUrl, productdetails).then((res)=>{
     history.push("/");
   };
 
+  const handlegetquerydetails = async (productid, brand, query, queryid, merchantid, userid, reply)=>{
+    try {
+      const response = await axios.get(
+        `https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleproduct?productid=${productid}`
+      );
+      const data = response.data.productdetails[0];
+
+      setQueryDetails([{
+        productimage: data.imageurl[0],
+        brand : brand,
+        query: query,
+        queryid: queryid,
+        merchantid : merchantid,
+        userid: userid,
+        reply: reply
+      }])
+
+      
+
+      document.getElementById('allquerycontainermerchant').style.display = 'none'
+      document.getElementById('singlequerycontainermerchant').style.display = 'flex'
+       
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handlegobackmodal = ()=>{
+    document.getElementById('allquerycontainermerchant').style.display = 'block'
+    document.getElementById('singlequerycontainermerchant').style.display = 'none'
+  }
+
+  
+
+
+  const handleSendReply= async (queryid, merchantid, userid)=>{
+
+    const body = {
+      queryid : queryid,
+      merchantid : merchantid,
+      userid : userid,
+      reply : queryreply
+    }
+    try {
+      const response = await axios.post(
+        replyqueryurl, body
+      );
+      if(response.status === 200){
+        window.alert('Reply sent successfully!')
+        setQueryReply('')
+      }
+       
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
+
+
   return (
     <div className="">
       <Navbarhome/>
@@ -4708,6 +4795,17 @@ axios.post(registerUrl, productdetails).then((res)=>{
               <span class="title">Merchant Guide</span>
             </a>
           </li>
+          <li>
+            <a href="#open-modalquery">
+              <span class="icon">
+                {" "}
+                <i class="bx bx-chat"></i>
+              </span>
+              <span class="title">
+                 Queries
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -4720,6 +4818,66 @@ axios.post(registerUrl, productdetails).then((res)=>{
         </div>
 
         <div className="mainbodycontainer">
+        <div id="open-modalquery" class="modal-window">
+                    <div>
+                      <a href="#" title="Close"  class="modal-close">
+                        <AiOutlineClose  />
+                      </a>
+
+
+                      <div id="allquerycontainermerchant">
+                      <p className="semibold_text">
+                          All queries
+                      </p>
+
+                        {
+                          querydata?.map(item=>(
+                            <div className="singlequerycard">
+                   
+
+                               <p>
+                               * {item.query}
+                               </p>
+                               <button  className="querysubmitbutton" onClick={()=>
+                                handlegetquerydetails(item.productId, item.brand, item.query, item.queryid,item.merchantid, item.userid, item.reply )} >See details</button>
+                              </div>
+                          ))
+                        }
+
+                      </div>
+                      <div id="singlequerycontainermerchant">
+                   
+
+                        {
+                        
+                            <div className="singlequerycard">
+                                 <h3 className="semibold_text">
+                          Query details
+                      </h3>
+                                <img src= {querydetails[0]?.productimage}/>
+                                  
+                               <p>
+                                 Query :   {querydetails[0]?.query}
+                               </p>
+                               <p>Brand : {querydetails[0]?.brand}</p>
+                               {querydetails[0]?.reply === undefined ?  <textarea value={queryreply} onChange={(e)=>setQueryReply(e.target.value)} ></textarea> :
+                                  <p> Reply : {querydetails[0]?.reply}</p> } 
+                             {querydetails[0]?.reply === undefined ?  
+                             <button className="querysubmitbutton"  onClick={()=>handleSendReply(querydetails[0].queryid, querydetails[0].merchantid, querydetails[0].userid, )} >Send reply</button>
+                             : '' 
+                            }  
+                                <button className="querysubmitbutton" onClick={handlegobackmodal}> <FaLessThan/> Go back</button>
+                              </div>
+                         
+                        }
+
+                      </div>
+                  
+                 
+{/*                      
+                       <button className="querysubmitbutton" >Submit</button> */}
+                    </div>
+                  </div>
           <div className="mainhomecontainer">
             <div className="tabsContainer">
               <div className="btnContainer">
