@@ -963,6 +963,41 @@ label {
   background-color: #3e8e41;
 }
 
+.table-container {
+  max-height: 300px; /* Set maximum height */
+  overflow-x: auto;
+  max-width: 700px; /* Enable vertical scrollbar when content exceeds container height */
+  margin-top: 10px;
+  scrollbar-width: thin;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+
+}
+.rowanalyticsdata {
+  background-color: #ddd ;
+}
+
+th, td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  border: 2px solid rgb(112, 112, 112);
+ 
+}
+
+th {
+  background-color: #df5959;
+  
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
 .li_color {
   color: "white";
 }
@@ -1033,6 +1068,10 @@ label {
   font-family: Manrope, san-serif;
   font-size: 20px;
   font-weight: bold;
+}
+.contact{
+  background-image: url("/assets/images/backgroundlogin.png");
+  
 }
 .contactus_div {
   width: 100%;
@@ -1118,6 +1157,7 @@ label {
   margin-left: 90px;
   margin-top: 20px;
 }
+
 
 .number_div {
   background: linear-gradient(to right, #56f02f 0%, #5707b9 100%);
@@ -2275,9 +2315,19 @@ a {
   height: 40px;
   border-radius: 5px;
   width: 100%;
-  border: 1px solid rgb(201, 197, 197);
+  border: 1px solid rgb(109, 107, 107);
+  background-color: transparent;
   font-family: Manrope, sans-serif;
+  color: #000;
+  font-weight: bold;
+  padding-left: 20px;
 }
+.dropdowncontact option{
+  background-color: transparent;
+  color: #000;
+  font-weight: bold;
+}
+ 
 
 .dropdown-content a {
   font-family: Manrope, sans-serif;
@@ -3592,6 +3642,44 @@ a {
 .mainnavbarcontentinsidediv ul li:first-child a {
   color: red;
 }
+.mobileviewnavicontainer{
+  display: flex ;
+  width: 100px;
+ 
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobileviewnavicontainer>* {
+  flex:  1 1 40px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+.mobileviewnavicontainer p{
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  margin-right: 20px;
+
+  font-family: "Kanit", sans-serif;
+
+}
+.container{
+ 
+  padding-top: 10px;
+  background: linear-gradient(135deg, rgba(233, 208, 208, 0.1) 0%, rgba(233, 229, 229, 0) 100%);
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+
+}
+
+
 
 .mainnavbarcontentinsidediv ul li a {
   font-size: 20px;
@@ -3605,6 +3693,7 @@ a {
   margin-top: 20px;
 
   padding: 5px;
+ 
 }
 .mainnavbarlogincontainerinside a {
   font-size: 20px;
@@ -5623,6 +5712,16 @@ form .page .btns button.next {
 }
 .form-control-input {
   font-family: Manrope, sans-serif;
+ background-color: transparent;
+  border: 1px solid rgb(129, 129, 129);
+  color: black;
+}
+.form-control-input:focus {
+  outline: black;
+}
+.form-control-input::placeholder{
+  color: rgb(14, 14, 14);
+  font-weight: bold;
 }
 .plussymdiv {
   margin-left: 5px;
@@ -6547,12 +6646,15 @@ input::-webkit-inner-spin-button {
 
 .textcontact h1 {
   font-family: Manrope, sans-serif;
+  font-weight: bold;
 }
 .textcontact p {
   font-family: Manrope, sans-serif;
+  color: white;
 }
 .textcontact h2 {
   font-family: Manrope, sans-serif;
+  font-weight: bold;
 }
 
 .addoninsidediv {
@@ -8809,17 +8911,23 @@ body.active-modal {
   margin: 0.5rem;
   font-family: "DM Sans", sans-serif;
 }
+.form-control-submit-button{
+  color: black;
+  border: 1px solid grey;
+}
 
 .action-button:hover {
   background-color: #c7c034;
 }
 .loader {
+ 
   border: 6px solid #f3f3f3;
   border-top: 6px solid #3498db;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   animation: spin 1s linear infinite;
+  align-self: center;
 }
 
 @keyframes spin {
@@ -13969,6 +14077,12 @@ a {
     transform: scale(0);
   }
 }
+.qrcodescandiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .modal-window {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.25);
@@ -13982,6 +14096,7 @@ a {
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s;
+
 
   &:target {
     visibility: visible;
@@ -14113,7 +14228,7 @@ small {
 }
 
 .btn-link {
-  display: inline-block;
+  display: flex;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -14122,6 +14237,9 @@ small {
   transition: background-color 0.3s;
   font-family: "DM Sans", sans-serif;
   text-align: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center ;
 }
 
 .btn-link:hover {
@@ -14295,7 +14413,7 @@ small {
   padding: 10px;
   border-radius: 5px;
   color: black;
-
+  border: 1px solid grey;
   font-weight: 500;
   font-family: "DM Sans", sans-serif;
 }

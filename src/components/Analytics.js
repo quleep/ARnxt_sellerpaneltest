@@ -8,7 +8,11 @@ const Analytics = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [selectedSubOption, setSelectedSubOption] = useState(null);
   const [countdata, setCountData] = useState();
+  const [showAll, setShowAll] = useState(false);
 
+  const handleClick = () => {
+    setShowAll(!showAll);
+  };
   const toggleSection = (index) => {
     setActiveSection(activeSection === index ? null : index);
   };
@@ -46,6 +50,8 @@ const Analytics = () => {
     let timevalue;
 
     if(val === 'lastday'){
+
+      setNewCount(null)
     document.querySelector('.analyticsdivviews').style.display = 'none'
 
      document.querySelector('.analyticscalanderdivinside').style.display = 'none'
@@ -54,6 +60,13 @@ const Analytics = () => {
 
        handleDateChangeSingle(previousDay)
        console.log(previousDay)
+      //  const rowsToRemove = document.querySelectorAll('tbody tr');
+  
+      
+      //  rowsToRemove.forEach(row => {
+      //    row.remove();
+      //  });
+   
 
           const formattedDate = currentDate.toLocaleString('en-US', {
         weekday: 'short',
@@ -90,6 +103,7 @@ const Analytics = () => {
 
       await Axios.post(fetchanalyticsdata, body)
         .then((res) => {
+       
           setCountData(res.data);
         })
         .catch((error) => {
@@ -97,6 +111,7 @@ const Analytics = () => {
         });
     }
     if (val === "lastsevenday") {
+    
       document.querySelector(".analyticsdivviews").style.display = "none";
 
       document.querySelector(".analyticscalanderdivinside").style.display =
@@ -105,6 +120,9 @@ const Analytics = () => {
         ".analyticscalanderdivinsidesingle"
       ).style.display = "none";
       document.querySelector(".downloadcsvbutton").style.display = "none";
+  
+  
+  
 
       const formattedDate = currentDate.toLocaleString("en-US", {
         weekday: "short",
@@ -141,6 +159,9 @@ const Analytics = () => {
 
       await Axios.post(fetchanalyticsdata, body)
         .then((res) => {
+       
+
+          console.log(res.data)
           setCountData(res.data);
         })
         .catch((error) => {
@@ -447,24 +468,46 @@ const Analytics = () => {
   ];
 
       function countPatternNos(array) {
-          // Create an object to store counts
-          const patternCount = {};
+        const groupedData = {};
+array.forEach(entry => {
+  if (!groupedData[entry.date]) {
+    groupedData[entry.date] = {};
+  }
+  if (!groupedData[entry.date][entry.patternno]) {
+    groupedData[entry.date][entry.patternno] = 0;
+  }
+  groupedData[entry.date][entry.patternno]++;
+});
+
+
+const formattedData = [];
+for (const date in groupedData) {
+  const views = Object.entries(groupedData[date]).map(([patternno, count]) => ({
+    patternno,
+    views: count
+  }));
+  formattedData.push({ date, views });
+}
+
+  return formattedData
+         
+          // const patternCount = {};
         
-          // Iterate through the array
-          array && array.forEach(obj => {
-            const patternno = obj.patterno;
+        
+          // array && array.forEach(obj => {
+          //   const patternno = obj.patternno;
         
           
-            patternCount[patternno] = (patternCount[patternno] || 0) + 1;
-          });
+          //   patternCount[patternno] = (patternCount[patternno] || 0) + 1;
+          // });
          
-          const resultArray = Object.entries(patternCount).map(([patternno, views]) => ({
-            patternno: patternno,
-            views
-          }));
-          resultArray.sort((a, b) => b.views - a.views);
+          // const resultArray = Object.entries(patternCount).map(([patternno, views]) => ({
+          //   patternno: patternno,
+          //   views
+          // }));
+          // resultArray.sort((a, b) => b.views - a.views);
         
-          return resultArray;
+          // return resultArray;
         }
 
   const testpattern = {};
@@ -531,6 +574,32 @@ const Analytics = () => {
     link.click();
   }
 
+
+  const rowsToRemove = document.querySelectorAll('tbody tr');
+  
+      
+  rowsToRemove.forEach(row => {
+    row.remove();
+    setNewCount(null)
+  });
+
+  
+const tbody = document.querySelector('tbody');
+
+newcount && newcount.forEach(item => {
+  const row = document.createElement('tr');
+    row.style.backgroundColor = 'white'
+   
+  row.innerHTML = `
+    <td className = 'rowanalyticsdata'>${item.date}</td>
+    <td  className = 'rowanalyticsdata'>${item.views.map(view => view.patternno + ' -> ' + `<span style="color: red" >  ${view.views}</span> &nbsp;` ).join(',') }</td>
+    <td  className = 'rowanalyticsdata'>${item.views.reduce((acc, obj) => acc + obj.views, 0)}</td>
+  `;
+  tbody.appendChild(row);
+});
+   
+
+  
   return (
     <div className="analyticsdivmain">
       <div className="blur-overlay">
@@ -597,14 +666,42 @@ const Analytics = () => {
                   download csv
                 </button>
 
+                <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Pattern no</th>
+        <th>views</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+</div>
+
                 <div className="analyticsdivviews">
-                  {newcount &&
+                  {/* {newcount &&
                     newcount.map((item) => (
+                        
+
                       <div className="countpatterndiv">
-                        <p>Pattern-no: {item.patternno}</p>
-                        <p>Views: {item.views}</p>
+                        <p>{item.date} </p>
+                          {
+                            item.views.map(itemnew=>(
+                              <div>
+                                 <p>{itemnew}</p>
+                              <p>{itemnew}</p>
+                                </div>
+                             
+
+                              
+                            ))
+                          }
+                      
                       </div>
-                    ))}
+                    ))} */}
                 </div>
               </div>
             </div>

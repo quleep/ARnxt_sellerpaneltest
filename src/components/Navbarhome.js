@@ -188,7 +188,7 @@ const Navbarhome = () => {
                        
                        
                         <li><a href='/arview'>VISUALISER</a></li>
-                        <li><a href='/price'> PRICING</a></li>
+                        <li><a href='/pricing'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
 
                         <li><a href='/contact'>CONTACT US</a></li>
@@ -245,7 +245,12 @@ const Navbarhome = () => {
                 <div className='mainnavbarlogincontainerinside'>
                 {
                         isLoggedIn ? (
-                            <a ><FaUser/> {username}</a>
+                          <div className='mobileviewnavicontainer'>
+                            <div> <FaUser style={{marginRight:'10px'}}/> {username} </div>
+                            
+                          
+                            </div>
+                           
                         ):(<a href='/login'>LOG IN</a>)
                       }
 
@@ -274,7 +279,11 @@ const Navbarhome = () => {
                 <div className='mainnavbarlogincontainerinside'>
                 {
                         isLoggedIn ? (
-                            <a ><FaUser/> {username}</a>
+                          <div className='mobileviewnavicontainer'>
+                          <div> <FaUser style={{marginRight:'10px'}}/> {username} </div>
+                          
+                        
+                          </div>
                         ):(<a href='/login'>LOG IN</a>)
                       }
 
@@ -293,7 +302,7 @@ const Navbarhome = () => {
                     <ul>
                     
                     <li><a href='/arview'>VISUALISER</a></li>
-                        <li><a href='/price'> PRICING</a></li>
+                        <li><a href='/pricing'> PRICING</a></li>
                         <li><a href='/blog'>BLOGS</a></li>
 
                         <li><a href='/contact'>CONTACT US</a></li>

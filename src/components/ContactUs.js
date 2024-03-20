@@ -100,13 +100,14 @@ function ContactUs() {
                   />
                 </div>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    value={reference}
-                    className="form-control-input"
-                    placeholder="Got to know about us from"
-                    required
-                  />
+                   <select>
+                     <option>Social media</option>
+                     <option>Friends</option>
+                     <option>Ads</option>
+                     <option>Startup community</option>
+                    
+
+                   </select>
                 </div>
 
                 <div className="form-group">

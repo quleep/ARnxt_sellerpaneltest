@@ -480,7 +480,7 @@ function ProductDetailAR() {
                   </div>
 
                   <div id="open-modal" class="modal-window">
-                    <div>
+                    <div className="qrcodescandiv" >
                       <a href="#" title="Close" class="modal-close">
                         <AiOutlineClose />
                       </a>

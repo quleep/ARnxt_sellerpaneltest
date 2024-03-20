@@ -57,7 +57,7 @@ const Footercomponent = () => {
           </a>
 
           <div className="footercopyrightdiv">
-            <p>Copyright @ 2023, QULEEP PRIVATE LIMITED</p>
+            <p>Copyright @ 2024, QULEEP PRIVATE LIMITED</p>
           </div>
         </div>
         <div className="socialiconsdiv">
