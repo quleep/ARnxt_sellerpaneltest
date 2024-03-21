@@ -12606,6 +12606,7 @@ model-viewer {
   display: grid;
   column-gap: 1.5rem;
   row-gap: 2.5rem;
+  
 }
 .rooms_category_container_grid p {
   font-size: 1rem;
@@ -12616,6 +12617,7 @@ model-viewer {
   position: relative;
   cursor: pointer;
   padding: 1rem;
+ 
 }
 .rooms_brands_container_grid_child1 {
   display: flex;
@@ -12623,6 +12625,8 @@ model-viewer {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+
 }
 .rooms_brands_container_grid_child2 {
   overflow: hidden;
@@ -12634,6 +12638,11 @@ model-viewer {
   overflow: hidden;
   border-radius: 0.375rem;
   width: 100%;
+ 
+  max-height:  250px;
+
+ 
+ 
 }
 .rooms_category_container_grid_child2_image {
   object-fit: contain;
@@ -12642,6 +12651,7 @@ model-viewer {
   height: 100%;
   cursor: pointer;
   transition-duration: 300ms;
+ 
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .rooms_category_container_grid_child2_image:hover {
@@ -12652,8 +12662,9 @@ model-viewer {
 }
 .rooms_category_container_grid_child3 {
   display: flex;
-  margin-top: 1rem;
+ 
   justify-content: center;
+
 }
 .rooms_categories_container_grid_child3 {
   display: flex;
