@@ -192,6 +192,11 @@ const Navbarhome = () => {
                         <li><a href='/blog'>BLOGS</a></li>
 
                         <li><a href='/contact'>CONTACT US</a></li>
+                        { isLoggedIn && emailID?.user === 'Client' ? (
+                        <li><a href='/dashboard'>DASHBOARD</a></li>
+
+
+                        ) : ''}
 
                       </ul>
 
@@ -218,7 +223,11 @@ const Navbarhome = () => {
 
                       {
                         isLoggedIn ? (
-                            <a >  <FaUser/> {username}</a>
+                          <div className='mobileviewnavicontainer'>
+                          <div> <FaUser style={{marginRight:'10px'}}/> {username} </div>
+                          
+                        
+                          </div>
                         ):(<a href='/login'>LOG IN</a>)
                       }
 

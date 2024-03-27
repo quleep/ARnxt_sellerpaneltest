@@ -121,6 +121,11 @@ const Dashboard = () => {
 
   const [newimagearray, setNewImageArray] = useState([]);
 
+  const[roomshowimage, setRoomShowImage] = useState(false)
+  const [tagshowimage, setTagShowImage] = useState(false)
+  const [roomshowmodel, setRoomShowModel] = useState(false)
+  const [tagshowmodel, setTagShowModel] = useState(false)
+
   const [searchmodeldata, setSearchModelData] = useState();
 
   const [modelsearch, setModelSearch] = useState();
@@ -4733,24 +4738,6 @@ axios.post(registerUrl, productdetails).then((res)=>{
             </a>
           </li>
 
-          <li>
-            <a href="">
-              <span class="icon">
-                {" "}
-                <i className="bx bxs-credit-card"></i>
-              </span>
-              <span class="title">Pricing</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <span class="icon">
-                {" "}
-                <i className="bx bxs-offer"></i>
-              </span>
-              <span class="title">Trial</span>
-            </a>
-          </li>
           <li onClick={modelManagementHandler}>
             <a href="">
               <span class="icon">
@@ -4760,15 +4747,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
               <span class="title">Model Management</span>
             </a>
           </li>
-          <li>
-            <a href="">
-              <span class="icon">
-                {" "}
-                <i className="bx bx-cog"></i>
-              </span>
-              <span class="title">Campaign Management</span>
-            </a>
-          </li>
+     
           <li>
             <a href="/plan">
               <span class="icon">
@@ -4786,15 +4765,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
               <span class="title">Analytics</span>
             </a>
           </li>
-          <li>
-            <a href="">
-              <span class="icon">
-                {" "}
-                <i class="bx bx-chat"></i>
-              </span>
-              <span class="title">Merchant Guide</span>
-            </a>
-          </li>
+       
           <li>
             <a href="#open-modalquery">
               <span class="icon">
@@ -5763,7 +5734,10 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                               <div className="listBoxContainer">
                                                 <button
                                                   className="listButtonMaterial"
-                                                  onClick={handleClickRoom}>
+                                                  onClick={handleClickRoom}
+                                                   onFocus={()=> setRoomShowImage(!roomshowimage)}
+                                                   onBlur={()=> setRoomShowImage(false)}
+                                                  >
                                                   {roomsdrop}
                                                   <span
                                                     className={
@@ -5773,7 +5747,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                     }></span>
                                                   <IoIosArrowDown
                                                     style={{
-                                                      transform: designroom
+                                                      transform: roomshowimage
                                                         ? "rotate(180deg)"
                                                         : "rotate(0deg)",
                                                       transition:
@@ -5784,11 +5758,11 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                 <ul
                                                   className="listItemsMaterial"
                                                   style={{
-                                                    opacity: !designroom
+                                                    opacity: !roomshowimage
                                                       ? "0"
                                                       : "1",
                                                     transition: "0.3s ease",
-                                                    visibility: !designroom
+                                                    visibility: !roomshowimage
                                                       ? "hidden"
                                                       : "visible",
                                                     transformOrigin:
@@ -5798,6 +5772,15 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                     (name, index) => {
                                                       return (
                                                         <li
+
+                                                        style={{
+                                                          opacity: !roomshowimage ? "0" : "1",
+                                                          transition: "0.3s ease",
+                                                          visibility: !roomshowimage
+                                                            ? "hidden"
+                                                            : "visible",
+                                                          transformOrigin: "top center",
+                                                        }}
                                                           key={index}
                                                           className="listrooms"
                                                           id={`listselect_${index}`}>
@@ -5871,7 +5854,10 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                   className="listButtonMaterial"
                                                   onClick={
                                                     handleClickTagsMerchant
-                                                  }>
+                                                  }
+                                                  onFocus={()=>setTagShowImage(!tagshowimage)}
+                                                  onBlur={()=> setTagShowImage(false)}
+                                                  >
                                                   {droptags}
                                                   <span
                                                     className={
@@ -5883,7 +5869,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                   <IoIosArrowDown
                                                     style={{
                                                       transform:
-                                                        dropmerchanttags
+                                                        tagshowimage
                                                           ? "rotate(180deg)"
                                                           : "rotate(0deg)",
                                                       transition:
@@ -5894,12 +5880,12 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                 <ul
                                                   className="listItemsMaterial"
                                                   style={{
-                                                    opacity: !dropmerchanttags
+                                                    opacity: !tagshowimage
                                                       ? "0"
                                                       : "1",
                                                     transition: "0.3s ease",
                                                     visibility:
-                                                      !dropmerchanttags
+                                                      !tagshowimage
                                                         ? "hidden"
                                                         : "visible",
                                                     transformOrigin:
@@ -6093,7 +6079,28 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                 )}
                                 {acc.accordionContent === "imagedetails" ? (
                                   <div>
-                                    <div className="toolTipimages">
+                                        <div class="tooltip-containerimage">
+                                        <div class="upload-btn-wrapper">
+                                          <button class="btnimage">
+                                            Upload Image
+                                          </button>
+                                          <input
+                                            type="file"
+                                            id="b1"
+                                            name="myfile"
+                                            onChange={imagefilechange}
+                                            accept="image/*"
+                                            multiple
+                                          />
+                                          <p className="filemessage"></p>
+                                        </div>
+                               <div class="tooltipimage">  If you are uploading images for model
+                                        creation, ensure that you have uploaded
+                                        atleast 6 images including(top view,
+                                        front view, bottom view and side view).</div>
+                                    </div>
+
+                                    {/* <div className="toolTipimages">
                                       <p>
                                         If you are uploading images for model
                                         creation, ensure that you have uploaded
@@ -6124,7 +6131,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                           {message && message}
                                         </p>
                                       </div>
-                                    </div>
+                                    </div> */}
                                     <div></div>
 
                                     <div>
@@ -6962,7 +6969,10 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                   className="listButtonMaterial"
                                                   onClick={
                                                     handleClickRoomMerchant
-                                                  }>
+                                                  }
+                                                   onFocus={()=> setRoomShowModel(!roomshowmodel)}
+                                                   onBlur={()=> setRoomShowModel(false)}
+                                                  >
                                                   {dropdownroommerchant}
                                                   <span
                                                     className={
@@ -6974,7 +6984,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                   <IoIosArrowDown
                                                     style={{
                                                       transform:
-                                                        designroommerchant
+                                                        roomshowmodel
                                                           ? "rotate(180deg)"
                                                           : "rotate(0deg)",
                                                       transition:
@@ -6985,12 +6995,12 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                 <ul
                                                   className="listItemsMaterial"
                                                   style={{
-                                                    opacity: !designroommerchant
+                                                    opacity: !roomshowmodel
                                                       ? "0"
                                                       : "1",
                                                     transition: "0.3s ease",
                                                     visibility:
-                                                      !designroommerchant
+                                                      !roomshowmodel
                                                         ? "hidden"
                                                         : "visible",
                                                     transformOrigin:
@@ -7059,7 +7069,9 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                                 tag,
                                                                 index
                                                               )
-                                                            }>
+                                                            }
+                                                           
+                                                            >
                                                             <RxCross2 />
                                                           </div>
                                                         </div>
@@ -7071,7 +7083,11 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                               <div className="listBoxContainer">
                                                 <button
                                                   className="listButtonMaterial"
-                                                  onClick={handleClickTagsDrop}>
+                                                  onClick={handleClickTagsDrop}
+                                                  
+                                                  onFocus={()=> setTagShowModel(!tagshowmodel)}
+                                                  onBlur={()=> setTagShowModel(false)}
+                                                  >
                                                   {dropdownTags}
                                                   <span
                                                     className={
@@ -7083,7 +7099,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                   <IoIosArrowDown
                                                     style={{
                                                       transform:
-                                                        tagsdropmerchant
+                                                        tagshowmodel
                                                           ? "rotate(180deg)"
                                                           : "rotate(0deg)",
                                                       transition:
@@ -7094,12 +7110,12 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                                 <ul
                                                   className="listItemsMaterial"
                                                   style={{
-                                                    opacity: !tagsdropmerchant
+                                                    opacity: !tagshowmodel
                                                       ? "0"
                                                       : "1",
                                                     transition: "0.3s ease",
                                                     visibility:
-                                                      !tagsdropmerchant
+                                                      !tagshowmodel
                                                         ? "hidden"
                                                         : "visible",
                                                     transformOrigin:
@@ -7443,8 +7459,8 @@ axios.post(registerUrl, productdetails).then((res)=>{
               </div>
 
               <button onClick={handleAnalyticsClose}>Close</button>
-              <button onClick={() => downloadCSV(csv)}>
-                Download <FaDownload />
+              <button  style={{display:'flex', justifyContent:'center', alignItems:'center'}}   onClick={() => downloadCSV(csv)}>
+                Download <FaDownload style={{marginLeft:'5px'}}/>
               </button>
             </div>
 
