@@ -580,8 +580,8 @@ function UpholstryItem() {
                         <BsBox className="icon" /> View In Your Room
                       </a>
                     </div>
-                    <div id="open-modal" class="modal-window">
-                      <div>
+                    <div id="open-modal" class="modal-window ">
+                      <div className="qrcodescandiv">
                         <a href="#" title="Close" class="modal-close">
                           <AiOutlineClose />
                         </a>
