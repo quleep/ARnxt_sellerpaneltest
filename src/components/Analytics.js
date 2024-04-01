@@ -9,6 +9,7 @@ const Analytics = () => {
   const [selectedSubOption, setSelectedSubOption] = useState(null);
   const [countdata, setCountData] = useState();
   const [showAll, setShowAll] = useState(false);
+  const [csvcount, setCsvCount] = useState()
 
   const handleClick = () => {
     setShowAll(!showAll);
@@ -278,6 +279,28 @@ const Analytics = () => {
 
    }
 
+
+   function calculatePatternCounts(data) {
+    const patternCounts = {};
+    
+    
+    data.forEach(item => {
+        const patternNo = item.patternno;
+        patternCounts[patternNo] = (patternCounts[patternNo] || 0) + 1;
+    });
+
+    const resultArray = Object.entries(patternCounts).map(([patternno, views]) => ({
+      patternno: patternno,
+      views
+    }));
+    resultArray.sort((a, b) => b.views - a.views);
+  
+    return resultArray;
+    
+  
+}
+
+
    useEffect(()=>{
 
   
@@ -520,6 +543,7 @@ for (const date in groupedData) {
 
       const result = await countPatternNos(countdata && countdata);
       setNewCount(result);
+      
     }
   };
   const handlemostviewedpatterns = () => {
@@ -559,8 +583,15 @@ for (const date in groupedData) {
   }
 
   function downloadCSV(array) {
+
+      const newcsvdata = calculatePatternCounts(countdata)
+      
+
+
+   
+     
     const link = document.createElement("a");
-    let csv = convertArrayOfObjectsToCSV(array);
+    let csv = convertArrayOfObjectsToCSV(newcsvdata);
     if (csv == null) return;
 
     const filename = "export.csv";
@@ -585,6 +616,8 @@ for (const date in groupedData) {
 
   
 const tbody = document.querySelector('tbody');
+
+
 
 newcount && newcount.forEach(item => {
   const row = document.createElement('tr');
@@ -662,7 +695,7 @@ newcount && newcount.forEach(item => {
                 </button>
                 <button
                   className="downloadcsvbutton"
-                  onClick={() => downloadCSV(newcount)}>
+                  onClick={() => downloadCSV(csvcount)}>
                   download csv
                 </button>
 
