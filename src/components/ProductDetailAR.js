@@ -134,22 +134,22 @@ function ProductDetailAR() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, colorValuePresent]);
-  useEffect(() => {
-    const arButton = document?.querySelector("#ar-button");
+  // useEffect(() => {
+  //   const arButton = document?.querySelector("#ar-button");
 
-    if (arButton) {
-      arButton.addEventListener("click", () => {
-        // Assuming brand is a variable representing the brand value
-        if (productData.brand === "godrej") {
-          // Delay the redirection by 1 second (1000 milliseconds)
-          setTimeout(() => {
-            window.location.href = "#open-modal1";
-          }, 3000);
-        }
-        // If brand is not "godrej," do nothing
-      });
-    }
-  }, [productData]);
+  //   if (arButton) {
+  //     arButton.addEventListener("click", () => {
+  //       // Assuming brand is a variable representing the brand value
+  //       if (productData.brand === "godrej") {
+  //         // Delay the redirection by 1 second (1000 milliseconds)
+  //         setTimeout(() => {
+  //           window.location.href = "#open-modal1";
+  //         }, 3000);
+  //       }
+  //       // If brand is not "godrej," do nothing
+  //     });
+  //   }
+  // }, [productData]);
 
   const handlemodalclose = () => {
     document.querySelector(".modalscan").style.display = "none";
@@ -283,7 +283,28 @@ function ProductDetailAR() {
     
   
 }
+  const handlearclick = ()=>{
+      try{
 
+
+        const count = 1
+
+        const body = {
+          brand : productData?.brand,
+          productid : productData?.product_Id,
+          user : null,
+          viewscount : count
+        }
+
+      const response =   axios.post('https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewcountarnxt', body)
+
+     
+
+
+      }catch(err){
+        console.log(err)
+      }
+  }
   
 
   return (
@@ -311,7 +332,7 @@ function ProductDetailAR() {
                         animation-name="Dance"
                         ar-modes="webxr scene-viewer quick-look"
                         shadow-intensity="1">
-                        <button slot="ar-button" id="ar-button">
+                        <button slot="ar-button" id="ar-button"  onClick={handlearclick}>
                           View in your space
                         </button>
                         {hasAnimation && (
@@ -338,7 +359,7 @@ function ProductDetailAR() {
                       src={glbFile}
                       ios-src={usdzFile}
                       alt="A 3D model of a duck">
-                      <button slot="ar-button" id="ar-button">
+                      <button slot="ar-button" id="ar-button"  onClick={handlearclick}>
                         View in your space
                       </button>
                       {showOverlay && (
@@ -485,7 +506,7 @@ function ProductDetailAR() {
                         <AiOutlineClose />
                       </a>
                       <QRCode
-                        value={`arnxt.com/arview/productdetail/${param.id}`}
+                        value={`http:192.168.0.150:8121/arview/productdetail/${param.id}`}
                       />
                       <p className="semibold_text">
                         Scan the QR code with your mobile device to view the
