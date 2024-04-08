@@ -245,7 +245,7 @@ function UpholstryItem() {
   const [data, setData] = useState(null);
 
   const [filterList, setFilter] = useState(list);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [productsDupli, setProductsDupli] = useState([]);
@@ -590,7 +590,7 @@ function UpholstryItem() {
                       
                     </div>
                     <div
-                      className={`md:hidden absolute glass top-[125px] left-[500px] z-40 flex flex-col overflow-auto p-2 transition-transform ${
+                      className={`md:hidden absolute glass top-[125px] -right-[155px] z-40 flex flex-col overflow-auto p-2 transition-transform ${
                         isDrawerOpen ? "" : "-translate-x-[220%]" // Adjust the margin value as needed
                       } bg-transparent w-fit`}>
                       <div class="flex flex-col justify-between gap-1">
@@ -613,7 +613,7 @@ function UpholstryItem() {
                       </div>
                     </div>
                     <div
-                      className={`md:hidden absolute w-full -top-[180px] left-0 z-40 h-fit flex flex-col overflow-auto p-2 transition-transform ${
+                      className={`md:hidden absolute w-full -top-[190px] left-0 z-40 h-fit flex flex-col overflow-auto p-2 transition-transform ${
                         isDrawerOpen ? "" : "translate-y-[200%]" // Adjust the margin value as needed
                       } bg-transparent w-full dark:bg-gray-100`}>
                       <div class="flex flex-col m-auto p-auto glass">
