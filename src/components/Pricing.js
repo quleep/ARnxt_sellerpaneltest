@@ -299,7 +299,7 @@ function Pricing() {
                                       marginTop: "3px",
                                     }
                               }>
-                              {check ? "8999" : "35988"}
+                              {check ? "9999" : "29999"}
                             </h5>
                             <h5
                               className="price-text"

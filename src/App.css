@@ -237,12 +237,12 @@ label {
 }
 
 .section-prices {
-  padding: 1.5rem 1rem;
-  margin-top: 90px;
+
+  margin-top: 0px;
 }
 .section-prices .section-header {
   background-color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 8rem;
   padding: 1.5rem 1rem;
   text-align: center;
   color: #555;
@@ -265,10 +265,16 @@ label {
   border: 2px solid rgb(180, 180, 180);
 }
 
+
 .list-boxs .card .head,
 .list-boxs .card .body {
   background-color: #fff;
   padding: 1.5rem 1rem;
+}
+.list-boxs .card .body p{
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+ 
 }
 
 .list-boxs .card .head {
@@ -493,6 +499,8 @@ label {
     transform: none !important;
   }
 }
+
+
 
 .list-boxs .card .body {
   transform: translateY(-40px);

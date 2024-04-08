@@ -19,6 +19,8 @@ const Plan = () => {
   const [pricecheckbasic, setPriceCheckBasic] = useState(false);
   const [pricecheckpremium, setPriceCheckPremium] = useState(false);
   const [pricecheckpro, setPriceCheckPro] = useState(false);
+  const [pricecheckcustom, setPriceCheckCustom] = useState(false);
+
 
   const handleToggleClickBasic = () => {
     setPriceCheckBasic(!pricecheckbasic);
@@ -29,6 +31,9 @@ const Plan = () => {
   const handleToggleClickPro = () => {
     setPriceCheckPro(!pricecheckpro);
   };
+  const handleToggleClickCustom = ()=>{
+    setPriceCheckCustom(!pricecheckcustom)
+  }
   const handleBuyBasic = (value) => {
     let subsid = value === "8999" ? "Sub8999" : "Sub29999";
     let planid = value === "8999" ? "Plan8999" : "Plan29999";
@@ -218,9 +223,11 @@ const Plan = () => {
             </div>
             <div class="body">
               <p>
-                No of Products : 10 <br />
+                No of Products : 25 <br />
                 Number of 3D views/month :{" "}
-                {pricecheckbasic ? "50,000" : "10,000"}
+                {pricecheckbasic ? "50,000" : "10,000"} <br />
+                QR code access
+               
               </p>
               <button
                 class="btn"
@@ -258,19 +265,20 @@ const Plan = () => {
                   ? { backgroundColor: "#275e3e" }
                   : { backgroundColor: "rgb(44, 62, 224)" }
               }>
-              {pricecheckpremium ? "₹ 1,29,999" : "₹ 35,999"}
+              {pricecheckpremium ? "₹ 1,29,999" : "₹ 49,999"}
             </div>
             <div class="body">
               <p>
                 No of Products : 100
                 <br />
                 Number of 3D views/month :{" "}
-                {pricecheckpremium ? "2,50,000" : "50,000"}
+                {pricecheckpremium ? "2,40,000" : "60,000"}   <br />
+                QR code access
               </p>
               <button
                 class="btn"
                 onClick={() =>
-                  handleBuyPremium(pricecheckpremium ? "129999" : "35999")
+                  handleBuyPremium(pricecheckpremium ? "129999" : "49999")
                 }>
                 Buy Now
               </button>
@@ -306,9 +314,13 @@ const Plan = () => {
               {pricecheckpro ? "₹ 3,69,999" : "₹ 99,999"}
             </div>
             <div class="body">
-              <p>
-                No of Products : 500 <br />
-                Number of 3D views/month : Unlimited
+            <p>
+                No of Products : 500
+                <br />
+                Number of 3D views/month :{" "}
+                {pricecheckpro ? "Unlimited" : "2,00,000"}   <br />
+                QR code access  <br />
+                Dedicated account manager
               </p>
               <button
                 class="btn"
@@ -317,6 +329,55 @@ const Plan = () => {
                 }>
                 Buy Now
               </button>
+            </div>
+          </div>
+
+
+          <div class="card premium">
+            <div className="head">
+              <div className="pricechangedashboard">
+                <div className="">
+                  <p>Quarterly</p>
+                </div>
+                <div className="toggleswitch">
+                  <input
+                    type="checkbox"
+                    className=""
+                    onClick={handleToggleClickCustom}
+                  />
+                </div>
+
+                <div className="">
+                  <p>Annually</p>
+                </div>
+              </div>
+            </div>
+            <div class="head">Business pro</div>
+            <div
+              class="ticket"
+              style={
+                pricecheckcustom
+                  ? { backgroundColor: "#275e3e" }
+                  : { backgroundColor: "rgb(44, 62, 224)" }
+              }>
+              {pricecheckcustom ? "custom" : "custom"}
+            </div>
+            <div class="body">
+            <p>
+                No of Products : Unlimited
+                <br />
+                Number of 3D views/month :{" "}
+                {pricecheckcustom ? "Unlimited" : "Unlimited"}   <br />
+                QR code access  <br />
+                Dedicated account manager
+              </p>
+              {/* <button
+                class="btn"
+                onClick={() =>
+                  handleBuyPro(pricecheckcustom ? "369999" : "99999")
+                }>
+                Buy Now
+              </button> */}
             </div>
           </div>
         </div>
