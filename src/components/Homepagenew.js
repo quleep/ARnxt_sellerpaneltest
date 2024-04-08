@@ -172,6 +172,7 @@ const Homepagenew = () => {
             </div>
           </div>
         </div>
+
         <div className="sectiontwohome">
           <div className="sectiontwohomeinside">
             <div className="sectiontwohomegifcontainer">

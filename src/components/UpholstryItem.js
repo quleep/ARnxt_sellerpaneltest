@@ -245,6 +245,7 @@ function UpholstryItem() {
   const [data, setData] = useState(null);
 
   const [filterList, setFilter] = useState(list);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   const [products, setProducts] = useState([]);
   const [productsDupli, setProductsDupli] = useState([]);
@@ -416,6 +417,7 @@ function UpholstryItem() {
     <>
       <Navbarhome />
       <DropdownMenu />
+
       <div className="hero_container">
         <div className="rooms-container">
           <div className="main">
@@ -560,8 +562,9 @@ function UpholstryItem() {
                 </div>
               </div>
             </div>
+
             <div className="main-panel_upholstry">
-              <div className="App">
+              <div className="App relative">
                 {selectedItem ? (
                   <model-viewer
                     id="helmet"
@@ -575,6 +578,69 @@ function UpholstryItem() {
                     animation-name="Dance"
                     ar-modes="webxr scene-viewer quick-look"
                     shadow-intensity="1">
+                    <div className="md:hidden absolute bottom-5 left-2 h-12 px-4 cursor-pointer h-10 w-fit flex justify-center rounded-md padding-button items-center bg-yellow-300 z-50 gap-1 shadow-md"                         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+>
+                      <div className="text-sm font-semibold"> Change Texture</div>
+                      <img
+                        src="/assets/images/trending_flat_FILL0_wght400_GRAD0_opsz24.png"
+                        className={` h-6 w-6 object-contain  ${
+             !isDrawerOpen && "rotate-180"
+           } transition hover:scale-105 ease-in-out duration-300`}
+                      />
+                      
+                    </div>
+                    <div
+                      className={`md:hidden absolute glass top-[125px] left-[500px] z-40 flex flex-col overflow-auto p-2 transition-transform ${
+                        isDrawerOpen ? "" : "-translate-x-[220%]" // Adjust the margin value as needed
+                      } bg-transparent w-fit`}>
+                      <div class="flex flex-col justify-between gap-1">
+                        <div
+                          onClick={handleBase}
+                          
+                          className={`${activeTab === 0 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
+                          <button className="text-sm"> Base</button>
+                        </div>
+                        <div
+                          onClick={handleSeat}
+                          className={`${activeTab === 1 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
+                        <button className="text-sm">Seat</button>
+                        </div>
+                        <div
+                          onClick={handleArmRest}
+                          className={`${activeTab === 2 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
+                          <button className="text-sm">Arm Rest</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className={`md:hidden absolute w-full -top-[180px] left-0 z-40 h-fit flex flex-col overflow-auto p-2 transition-transform ${
+                        isDrawerOpen ? "" : "translate-y-[200%]" // Adjust the margin value as needed
+                      } bg-transparent w-full dark:bg-gray-100`}>
+                      <div class="flex flex-col m-auto p-auto glass">
+                        <div class="flex  overflow-x-auto hide-scroll-bar">
+                          <div class="flex flex-nowrap py-2 ">
+                            {products?.map((item, index) => (
+                              <div
+                                key={item.id}
+                                className={`hori_scroll_container_child1_visualizer`}
+                                onClick={() =>
+                                  changeWallpaper(item.imageurl[0], index)
+                                }>
+                                <img
+                                  src={item.imageurl[0]}
+                                  alt="/"
+                                  className={`hori_scroll_container_child1_image_visualizer ${
+                                    selectedImageIndex === index
+                                      ? "selected"
+                                      : ""
+                                  }`}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div className="view_in_ar_container">
                       <a href="#open-modal" className="btn-link">
                         <BsBox className="icon" /> View In Your Room
@@ -617,44 +683,6 @@ function UpholstryItem() {
                   </model-viewer>
                 ) : null}
               </div>
-            </div>
-          </div>
-          <div className="hori_scroll_container_visualizer">
-            <div className="view_in_ar_mesh_hori">
-              <div
-                onClick={handleBase}
-                className={activeTab === 0 ? "active" : ""}>
-                <button>Base</button>
-              </div>
-              <div
-                onClick={handleSeat}
-                className={activeTab === 1 ? "active" : ""}>
-                <button>Seat</button>
-              </div>
-              <div
-                onClick={handleArmRest}
-                className={activeTab === 2 ? "active" : ""}>
-                <button>Arm Rest</button>
-              </div>
-            </div>
-            <div
-              id="slider"
-              className="hori_scroll_container_child_visualizer"
-              ref={scrollContainerRef}>
-              {products?.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={`hori_scroll_container_child1_visualizer`}
-                  onClick={() => changeWallpaper(item.imageurl[0], index)}>
-                  <img
-                    src={item.imageurl[0]}
-                    alt="/"
-                    className={`hori_scroll_container_child1_image_visualizer ${
-                      selectedImageIndex === index ? "selected" : ""
-                    }`}
-                  />
-                </div>
-              ))}
             </div>
           </div>
         </div>
