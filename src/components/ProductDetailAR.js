@@ -506,7 +506,7 @@ function ProductDetailAR() {
                         <AiOutlineClose />
                       </a>
                       <QRCode
-                        value={`http:192.168.0.150:8121/arview/productdetail/${param.id}`}
+                        value={`arnxt.com/arview/productdetail/${param.id}`}
                       />
                       <p className="semibold_text">
                         Scan the QR code with your mobile device to view the
