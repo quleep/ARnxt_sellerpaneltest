@@ -7,14 +7,13 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useMyContext } from "../Context/store";
 import { TbAugmentedReality } from "react-icons/tb";
-import texture1 from "../../src/assets/textureImages/download (4).jpg";
 import texture2 from "../../src/assets/textureImages/download (5).jpg";
 import texture3 from "../../src/assets/textureImages/download (6).jpg";
 import { BsBox } from "react-icons/bs";
 import QRCode from "react-qr-code";
 import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import { ReactComponent as CompareIcon } from "../assets/icon/compare.svg";
+import { ReactComponent as CompareIcon } from "../assets/image/150383_chromatic_f-ziggy-140_f13471_2_picariobig.jpg";
 import { ReactComponent as ChangeIcon } from "../assets/icon/change.svg";
 import { ReactComponent as ListIcon } from "../assets/icon/list.svg";
 import { ReactComponent as SmallIcon } from "../assets/icon/smail_icons.svg";
@@ -245,7 +244,8 @@ function UpholstryItem() {
   const [data, setData] = useState(null);
 
   const [filterList, setFilter] = useState(list);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen1, setIsDrawerOpen1] = useState(true);
 
   const [products, setProducts] = useState([]);
   const [productsDupli, setProductsDupli] = useState([]);
@@ -263,6 +263,7 @@ function UpholstryItem() {
   const [activeTab, setActiveTab] = useState(0);
   const [type, setType] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [scale, setScale] = useState(1);
 
   const modelViewerRef = useRef(null);
   const [selectedTexture, setSelectedTexture] = useState("");
@@ -276,7 +277,6 @@ function UpholstryItem() {
         updatedTextureUrl
       );
       const material = modelViewerTexture1.model.materials[index];
-
       if (channel.includes("base") || channel.includes("metallic")) {
         material.pbrMetallicRoughness[channel].setTexture(texture);
       } else {
@@ -288,8 +288,53 @@ function UpholstryItem() {
       createAndApplyTexture("baseColorTexture", selectedTexture);
     }
   }, [selectedTexture, index]);
+
+  useEffect(() => {
+    const modelViewerTexture = document.querySelector("model-viewer#helmet");
+
+    if (!modelViewerTexture) return;
+
+    const updateTextureProperties = () => {
+      const sampler =
+        modelViewerTexture.model.materials[index].pbrMetallicRoughness[
+          "baseColorTexture"
+        ].texture.sampler;
+
+      sampler.setScale({ x: scale, y: scale });
+    };
+
+    updateTextureProperties();
+
+    modelViewerTexture.addEventListener("load", updateTextureProperties);
+
+    return () => {
+      modelViewerTexture.removeEventListener("load", updateTextureProperties);
+    };
+  }, [scale, index]);
+  const handleScaleChange = (event) => {
+    setScale(parseFloat(event.target.value));
+  };
+
   const ScrollToTop = () => {
     StyleRef.current.scrollTop = 0;
+  };
+  const textureChangeMobile = () => {
+    if (isDrawerOpen) {
+      setIsDrawerOpen(false);
+      setIsDrawerOpen1(true);
+    } else {
+      setIsDrawerOpen(true);
+      setIsDrawerOpen1(true);
+    }
+  };
+  const scaleChangeMobile = () => {
+    if (isDrawerOpen1) {
+      setIsDrawerOpen(true);
+      setIsDrawerOpen1(false);
+    } else {
+      setIsDrawerOpen(true);
+      setIsDrawerOpen1(true);
+    }
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -441,7 +486,20 @@ function UpholstryItem() {
                   </div>
                 </div>
               </div>
-
+              <div className="flex flex-col border-2 border-2 border-sky-500 rounded-md p-3 gap-1 mr-2">
+                <div className="dmsans text-gray-700 font-semibold">
+                  {" "}
+                  Change Pattern(Scale):
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="4.0"
+                  value={scale}
+                  step="0.01"
+                  onChange={handleScaleChange}
+                />
+              </div>
               <div className="view_in_ar_mesh">
                 <div
                   onClick={handleBase}
@@ -578,16 +636,31 @@ function UpholstryItem() {
                     animation-name="Dance"
                     ar-modes="webxr scene-viewer quick-look"
                     shadow-intensity="1">
-                    <div className="md:hidden absolute bottom-5 left-2 h-12 px-4 cursor-pointer h-10 w-fit flex justify-center rounded-md padding-button items-center bg-yellow-300 z-50 gap-1 shadow-md"                         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
->
-                      <div className="text-sm font-semibold"> Change Texture</div>
+                    <div
+                      className="md:hidden absolute bottom-5 left-2 h-10 px-4 cursor-pointer w-44 flex justify-center rounded-md padding-button items-center bg-yellow-300 z-50 gap-2 shadow-md"
+                      onClick={() => scaleChangeMobile()}>
+                      <div className="text-[12px] font-semibold">
+                        Change Scale
+                      </div>
                       <img
-                        src="/assets/images/trending_flat_FILL0_wght400_GRAD0_opsz24.png"
-                        className={` h-6 w-6 object-contain  ${
-             !isDrawerOpen && "rotate-180"
-           } transition hover:scale-105 ease-in-out duration-300`}
+                        src="/assets/images/scale.png"
+                        className={` h-4 w-4 object-contain  ${
+                          !isDrawerOpen1 && "rotate-180"
+                        } transition hover:scale-105 ease-in-out duration-300`}
                       />
-                      
+                    </div>
+                    <div
+                      className="md:hidden absolute bottom-16 left-2 h-10 px-4 cursor-pointer w-44 flex justify-center rounded-md padding-button items-center bg-yellow-300 z-50 gap-2 shadow-md"
+                      onClick={() => textureChangeMobile()}>
+                      <div className="text-[12px] font-semibold">
+                        Change Texture
+                      </div>
+                      <img
+                        src="/assets/images/color-adjustment.png"
+                        className={` h-4 w-4 object-contain  ${
+                          !isDrawerOpen && "rotate-180"
+                        } transition hover:scale-105 ease-in-out duration-300`}
+                      />
                     </div>
                     <div
                       className={`md:hidden absolute glass top-[125px] -right-[175px] z-40 flex flex-col overflow-auto p-2 transition-transform ${
@@ -596,21 +669,43 @@ function UpholstryItem() {
                       <div class="flex flex-col justify-between gap-1">
                         <div
                           onClick={handleBase}
-                          
-                          className={`${activeTab === 0 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
+                          className={`${
+                            activeTab === 0 ? "border-2 border-sky-500" : ""
+                          } bg-gray-100 p-2 rounded-md`}>
                           <button className="text-sm"> Base</button>
                         </div>
                         <div
                           onClick={handleSeat}
-                          className={`${activeTab === 1 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
-                        <button className="text-sm">Seat</button>
+                          className={`${
+                            activeTab === 1 ? "border-2 border-sky-500" : ""
+                          } bg-gray-100 p-2 rounded-md`}>
+                          <button className="text-sm">Seat</button>
                         </div>
                         <div
                           onClick={handleArmRest}
-                          className={`${activeTab === 2 ? "border-2 border-sky-500" : ""} bg-gray-100 p-2 rounded-md`}>
+                          className={`${
+                            activeTab === 2 ? "border-2 border-sky-500" : ""
+                          } bg-gray-100 p-2 rounded-md`}>
                           <button className="text-sm">Arm Rest</button>
                         </div>
                       </div>
+                    </div>
+                    <div
+                      className={`md:hidden absolute glass -top-[80px] right-[10px] z-40 flex flex-col overflow-auto p-3 transition-transform gap-1 ${
+                        isDrawerOpen1 ? "" : "translate-y-[160%]" // Adjust the margin value as needed
+                      } bg-transparent w-fit`}>
+                      <div className="dmsans text-gray-700 text-sm font-semibold">
+                        {" "}
+                        Change Pattern(Scale):
+                      </div>
+                      <input
+                        type="range"
+                        min="0"
+                        max="4.0"
+                        value={scale}
+                        step="0.01"
+                        onChange={handleScaleChange}
+                      />
                     </div>
                     <div
                       className={`md:hidden absolute w-full -top-[200px] left-0 z-40 h-fit flex flex-col overflow-auto p-2 transition-transform ${

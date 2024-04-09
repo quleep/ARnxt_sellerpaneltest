@@ -75,7 +75,6 @@ import ProductsHome from "./components/ProductsHome";
 import Blognew from "./components/Blognew";
 import ProductTest from "./ProductTest";
 import ContactUsnew from "./ContactUsnew";
-import Testpage from "./Testpage";
 import BlogSecond from "./components/BlogSecond";
 import BlogThird from "./components/BlogThird";
 import Career from "./components/Career";
@@ -114,6 +113,7 @@ import Loginform from "./Loginform.js";
 import Analyticslogin from "./components/Analyticslogin.js";
 import Analytics from "./components/Analytics.js";
 import PricingNew from "./components/PricingNew.js";
+import Testpage from "./components/Testpage.js";
 
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
