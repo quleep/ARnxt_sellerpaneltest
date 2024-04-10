@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footertest from "./Footertest";
+import Navbar from "../components/Navbar";
+import Footertest from "../components/Footertest";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import { useHistory, useLocation } from "react-router-dom";
@@ -9,12 +9,12 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 
 import { useMyContext } from "../Context/store";
-import Header from "./Header";
-import DropdownMenu from "./DropdownMenu";
+import Header from "../components/Header";
+import DropdownMenu from "../components/DropdownMenu";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import Footercomponent from "./Footercomponent";
-import Navbarhome from "./Navbarhome";
+import Footercomponent from "../components/Footercomponent";
+import Navbarhome from "../components/Navbarhome";
 
 const ViewAR = () => {
   const {

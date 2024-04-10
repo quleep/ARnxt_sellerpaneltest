@@ -1,19 +1,24 @@
-module.exports = {
-  getUser: function () {
-    const user = sessionStorage.getItem("user");
-    if (user === undefined || !user) {
-      return null;
-    } else {
-      return JSON.parse(user);
-    }
-  },
+function getUser() {
+  const user = sessionStorage.getItem("user");
+  if (user === undefined || !user) {
+    return null;
+  } else {
+    return JSON.parse(user);
+  }
+}
 
-  getToken: function () {
-    return sessionStorage.getItem("token");
-  },
-  setUserSession: function (user, token) {
-    sessionStorage.setItem("user", JSON.stringify(user));
-    sessionStorage.setItem("token", token);
-  },
-  resetUserSession: function () {},
-};
+function getToken() {
+  return sessionStorage.getItem("token");
+}
+
+function setUserSession(user, token) {
+  sessionStorage.setItem("user", JSON.stringify(user));
+  sessionStorage.setItem("token", token);
+}
+
+function resetUserSession() {
+  sessionStorage.removeItem("user");
+  sessionStorage.removeItem("token");
+}
+
+export { getUser, getToken, setUserSession, resetUserSession };
