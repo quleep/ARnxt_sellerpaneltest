@@ -45,7 +45,7 @@ import {
   getToken,
   setUserSession,
   resetUserSession,
-} from "./service/AuthService";
+} from "./service/AuthService.js";
 import { useEffect } from "react";
 import axios from "axios";
 import PrivateRoute from "./routes/PrivateRoute";

@@ -61,7 +61,7 @@ const LoginForm = () => {
 
   const [res, setRes] = useState("");
   const history = useHistory();
-  const [loginloader, setLoginLoader] = useState(false)
+  const [loginloader, setLoginLoader] = useState(false);
   useEffect(() => {
     if (res === "Client") {
       showAlert("Login successfull!", "success");
@@ -104,10 +104,8 @@ const LoginForm = () => {
   };
 
   const handleloginsubmit = (e) => {
-
-
     e.preventDefault();
- 
+
     if (loginarray.email === "") {
       showAlert("Please provide an email", "error");
       return;
@@ -118,7 +116,7 @@ const LoginForm = () => {
       showAlert("please select login as", "error");
       return;
     } else {
-      setLoginLoader(true)
+      setLoginLoader(true);
       const requestBody = {
         email: loginarray.email,
         password: loginarray.password,
@@ -130,10 +128,10 @@ const LoginForm = () => {
         .then((response) => {
           setUserSession(response.data.user, response.data.token);
           setRes(response.data.user.user);
-          setLoginLoader(false)
+          setLoginLoader(false);
         })
         .catch((error) => {
-          setLoginLoader(false)
+          setLoginLoader(false);
 
           showAlert(error.response.data.message, "error");
         });
@@ -179,10 +177,9 @@ const LoginForm = () => {
           ))}
         </select>
         <button type="submit" onClick={handleloginsubmit}>
-          Login  
+          Login
         </button>
-      {loginloader ? <div id="loader" class="loader"></div> : ''}   
-       
+        {loginloader ? <div id="loader" class="loader"></div> : ""}
       </form>
     </div>
   );
@@ -3751,7 +3748,7 @@ const RegisterForm = ({ states, cities }) => {
   const [recievedotp, setRecievedOtp] = useState();
   const [disabledbutton, setDisabledButton] = useState(true);
   const [timer, setTimer] = useState();
-  const [registerloader, setRegisterLoader] = useState(false)
+  const [registerloader, setRegisterLoader] = useState(false);
 
   const userarray = ["User", "Client"];
 
@@ -3865,8 +3862,7 @@ const RegisterForm = ({ states, cities }) => {
       showAlert("Please select user or client", "error");
       return;
     } else {
-
-      setRegisterLoader(true)
+      setRegisterLoader(true);
       const requestBody = {
         phoneno: registrationData.phone,
         email: registrationData.email,
@@ -3877,7 +3873,7 @@ const RegisterForm = ({ states, cities }) => {
         .post(sendotpurl, requestBody)
         .then((res) => {
           if (res.status === 200) {
-      setRegisterLoader(false)
+            setRegisterLoader(false);
 
             setRecievedOtp(res.data);
             showAlert("Otp sent to your number", "success");
@@ -3889,7 +3885,7 @@ const RegisterForm = ({ states, cities }) => {
           }
         })
         .catch((error) => {
-      setRegisterLoader(false)
+          setRegisterLoader(false);
 
           showAlert(error.response.data, "error");
         });
@@ -4152,7 +4148,7 @@ const RegisterForm = ({ states, cities }) => {
         <button type="submit" onClick={handleRegistraion}>
           Register
         </button>
-       {registerloader ?  <div id="loader" class="loader"></div> : ''}   
+        {registerloader ? <div id="loader" class="loader"></div> : ""}
       </form>
       <form className="otpform">
         <InputField
