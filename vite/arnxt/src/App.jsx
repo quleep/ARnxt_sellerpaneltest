@@ -37,6 +37,26 @@ import {
   setUserSession,
   resetUserSession,
 } from "../service/AuthService";
+import Plan from "../pages/Plan";
+import Qrcode from "../pages/Qrcode";
+import Dashboard from "../pages/Dashboard";
+import Test from "../pages/Test";
+import TestNew from "../pages/TestNew";
+import PricingNew from "../pages/PricingNew";
+import About from "../pages/About";
+import Privacypolicy from "../pages/Privacypolicy";
+import TermsAndConditions from "../pages/TermsAndConditions";
+import Loginform from "../pages/Loginform";
+import Analyticslogin from "../pages/Analyticslogin";
+import Analytics from "../pages/Analytics";
+import Productsnew from "../pages/Productsnew";
+import ProductsHome from "../pages/ProductsHome";
+import Blognew from "../pages/Blognew";
+import ProductTest from "../pages/ProductTest";
+import ContactUsnew from "../pages/ContactUsnew";
+import Testpage from "../pages/Testpage";
+import BlogSecond from "../pages/BlogSecond";
+import BlogThird from "../pages/BlogThird";
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
 
@@ -88,6 +108,25 @@ class App extends Component {
             />
           </Helmet>
           <Route path="/" exact component={Homepagenew} />
+          <Route path="/pricing" exact component={PricingNew} />
+          <Route path="/about" exact component={About} />
+          <Route path="/privacypolicy" exact component={Privacypolicy} />
+          <Route
+            path="/terms&conditions"
+            exact
+            component={TermsAndConditions}
+          />
+          <Route path="/login" exact component={Loginform} />
+          <Route path="/loginanalytics" component={Analyticslogin} />
+          <Route path="/analytics" component={Analytics} />
+          <Route path="/productsnew" exact component={Productsnew} />
+          <Route path="/product" exact component={ProductsHome} />
+          <Route path="/blog" exact component={Blognew} />
+          <Route path="/producttest" exact component={ProductTest} />
+          <Route path="/contact" exact component={ContactUsnew} />
+          <Route path="/test" exact component={Testpage} />
+          <Route path="/blogsecond" exact component={BlogSecond} />
+          <Route path="/blogthird" exact component={BlogThird} />
 
           <Route path="/arview" exact component={ViewAR} />
           <Route path="/arview/rooms/:id" component={Rooms} />
@@ -116,6 +155,11 @@ class App extends Component {
             path="/arview/categoryBrands/:id"
             component={CategoryBrandsAR}
           />
+          <Route exact path="/plan" component={Plan} />
+          <Route exact path="/qrcode" component={Qrcode} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/test" exact component={Test} />
+          <Route path="/testnew" exact component={TestNew} />
         </Router>
       </div>
     );
