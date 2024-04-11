@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { BsBellFill, BsMessenger, BsQuestion } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
+import { getUser } from "../service/AuthService";
 
 const Navbarhome = () => {
   const merchantprofileurl =
@@ -41,7 +42,23 @@ const Navbarhome = () => {
   const userEmail = sessionStorage.getItem("user");
 
   const emailID = JSON.parse(userEmail);
+
+
   let p_id = emailID?.userid;
+
+  useEffect(() => {
+       
+    const uservalue = getUser()
+      if(uservalue === null){
+        setIsLoggedIn(false)
+      } else{
+         setIsLoggedIn(true)
+         const newvalueuser = uservalue.name.split(' ')
+
+         setUserName(newvalueuser[0])
+      }
+
+  }, []);
 
   useEffect(() => {
     if (p_id !== undefined) {

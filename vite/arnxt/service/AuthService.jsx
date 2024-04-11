@@ -1,4 +1,4 @@
-function getUser() {
+ export  function getUser() {
   const user = sessionStorage.getItem("user");
   if (user === undefined || !user) {
     return null;
@@ -7,18 +7,18 @@ function getUser() {
   }
 }
 
-function getToken() {
+export function getToken() {
   return sessionStorage.getItem("token");
 }
 
-function setUserSession(user, token) {
+export function setUserSession(user, token) {
   sessionStorage.setItem("user", JSON.stringify(user));
   sessionStorage.setItem("token", token);
 }
 
-function resetUserSession() {
+export function resetUserSession() {
   sessionStorage.removeItem("user");
   sessionStorage.removeItem("token");
 }
 
-export { getUser, getToken, setUserSession, resetUserSession };
+

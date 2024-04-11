@@ -3983,7 +3983,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
     const fi = document.getElementById("fileglb");
 
     if (fi.files.length > 0) {
-      for (const i = 0; i <= fi.files.length - 1; i++) {
+      for (let i = 0; i <= fi.files.length - 1; i++) {
         const fsize = fi.files.item(i).size;
         const file = Math.round(fsize / 1024);
 
