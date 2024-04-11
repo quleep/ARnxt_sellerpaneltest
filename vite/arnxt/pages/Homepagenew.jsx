@@ -162,7 +162,7 @@ const Homepagenew = () => {
 
               <PopupButton
                 className="sectiononehomecalendlybutton"
-                url="https://calendly.com/arnxt-meet/30min"
+                url="https://calendly.com/arnxt-meet"
                 rootElement={document.getElementById("root")}
                 text="Schedule Demo"
               />
@@ -189,7 +189,7 @@ const Homepagenew = () => {
 
               <PopupButton
                 className="sectiononehomecalendlybutton"
-                url="https://calendly.com/arnxt-meet/30min"
+                url="https://calendly.com/arnxt-meet"
                 rootElement={document.getElementById("root")}
                 text="Schedule Demo"
               />
@@ -262,7 +262,7 @@ const Homepagenew = () => {
 
               <PopupButton
                 className="sectiononehomecalendlybutton"
-                url="https://calendly.com/arnxt-meet/30min"
+                url="https://calendly.com/arnxt-meet"
                 rootElement={document.getElementById("root")}
                 text="Schedule Demo"
               />
@@ -293,7 +293,7 @@ const Homepagenew = () => {
 
               <PopupButton
                 className="sectiononehomecalendlybutton"
-                url="https://calendly.com/arnxt-meet/30min"
+                url="https://calendly.com/arnxt-meet"
                 rootElement={document.getElementById("root")}
                 text="Schedule Demo"
               />
