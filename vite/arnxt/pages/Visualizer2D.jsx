@@ -421,27 +421,6 @@ function Visualizer2D() {
     fetchHorizontalScrollData();
   }, [horizontalScrollPageNo]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        scrollContainerRef.current &&
-        scrollContainerRef.current.scrollTop +
-          scrollContainerRef.current.clientHeight >=
-          scrollContainerRef.current.scrollHeight
-      ) {
-        if (!horizontalScrollLoading) {
-          setHorizontalScrollPageNo(horizontalScrollPageNo + 1);
-          setHorizontalScrollLoading(true);
-        }
-      }
-    };
-
-    scrollContainerRef.current.addEventListener("scroll", handleScroll);
-    return () => {
-      scrollContainerRef.current.removeEventListener("scroll", handleScroll);
-    };
-  }, [horizontalScrollPageNo, horizontalScrollLoading]);
-
   const handleScroll1 = () => {
     const element = StyleRef.current;
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
@@ -1099,31 +1078,31 @@ function Visualizer2D() {
               )}
             </div>
           </div>
-          <div className="hori_scroll_container_visualizer">
-            <div
-              id="slider"
-              className="hori_scroll_container_child_visualizer"
-              ref={scrollContainerRef}>
-              {horizontalScrollData?.map((item) => (
-                <div
-                  key={item.id}
-                  className="hori_scroll_container_child1_visualizer"
-                  onClick={(e) => handlewallpaperclick(e, item.imageurl[0])}>
-                  <img
-                    src={item.imageurl[0]}
-                    alt="/"
-                    className="hori_scroll_container_child1_image_visualizer"
-                  />
-                  <p className="hori_scroll_container_child1_text_visualizer">
-                    {item.productname.charAt(0).toUpperCase() +
-                      item.productname.slice(1)}
-                  </p>
+          <div
+            className={`md:hidden fixed bottom-0 z-40 h-fit flex flex-col overflow-auto p-2 transition-transform bg-transparent w-full dark:bg-gray-100`}>
+            <div class="flex flex-col m-auto p-auto glass">
+              <div class="flex  overflow-x-auto hide-scroll-bar">
+                <div class="flex flex-nowrap py-2 ">
+                  {horizontalScrollData?.map((item) => (
+                    <div
+                      key={item.id}
+                      className={`hori_scroll_container_child1_visualizer`}
+                      onClick={(e) =>
+                        handlewallpaperclick(e, item.imageurl[0])
+                      }>
+                      <img
+                        src={item.imageurl[0]}
+                        alt="/"
+                        className={`hori_scroll_container_child1_image_visualizer`}
+                      />
+                      <p className="hori_scroll_container_child1_text_visualizer">
+                        {item.productname.charAt(0).toUpperCase() +
+                          item.productname.slice(1)}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-              {!horizontalScrollLoading &&
-                horizontalScrollData.length === 0 && (
-                  <p>No more data to load.</p>
-                )}
+              </div>
             </div>
           </div>
         </div>

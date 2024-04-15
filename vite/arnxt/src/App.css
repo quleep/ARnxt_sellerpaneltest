@@ -13480,6 +13480,7 @@ a {
     left: 0;
     bottom: 0; /* Change the 'bottom' value to 0 */
     width: 100%;
+    height:20%;
     margin-bottom: 0.5rem;
     align-items: center;
     background-color: #bab7af;
@@ -13534,6 +13535,7 @@ a {
     height: 100%;
     white-space: nowrap;
     scroll-behavior: smooth;
+
   }
   .hori_scroll_container_child_visualizer {
     -ms-overflow-style: none;

@@ -43,21 +43,18 @@ const Navbarhome = () => {
 
   const emailID = JSON.parse(userEmail);
 
-
   let p_id = emailID?.userid;
 
   useEffect(() => {
-       
-    const uservalue = getUser()
-      if(uservalue === null){
-        setIsLoggedIn(false)
-      } else{
-         setIsLoggedIn(true)
-         const newvalueuser = uservalue.name.split(' ')
+    const uservalue = getUser();
+    if (uservalue === null) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+      const newvalueuser = uservalue.name.split(" ");
 
-         setUserName(newvalueuser[0])
-      }
-
+      setUserName(newvalueuser[0]);
+    }
   }, []);
 
   useEffect(() => {
