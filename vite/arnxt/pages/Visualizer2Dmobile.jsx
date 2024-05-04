@@ -525,14 +525,13 @@ function Visualizer2Dmobile() {
     };
     const config = {
       headers: {
-        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         "auth-token":
           "c0110aa4490cd8a4e5c024c4779d976f6927b6b0e4b12c2675e9558a453e933c",
       },
     };
     await axios
-      .post("https://wallserver.arnxt.com/api/v1/infer", body, config)
+      .post("https://theaiserver.com/api/v1/infer", body, config)
       .then((res) => {
         setSegmentImg(true);
         setProcessImg(res.data);
