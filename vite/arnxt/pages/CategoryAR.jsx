@@ -175,13 +175,11 @@ function CategoryAR() {
                     <div
                       class="rooms_category_container_grid_child1"
                       onClick={() => nextPage(item.itemname)}>
-                      <div class="rooms_category_container_grid_child2">
                         <img
                           src={item.itemvalue}
                           alt="Front of men&#039;s Basic Tee in black."
-                          class="rooms_category_container_grid_child2_image"
+                          className="object-contain w-full h-full cursor-pointer duration-300 ease-in-out"
                         />
-                      </div>
                       <div class="rooms_category_container_grid_child3">
                         <div>
                           <h3 class="hori_scroll_container_child1_text">
