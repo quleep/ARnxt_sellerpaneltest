@@ -6,7 +6,6 @@ import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
 import Toast from "react-bootstrap/Toast";
-import '@google/model-viewer';
 
 import QRCode from "react-qr-code";
 import DropdownMenu from "../components/DropdownMenu";
@@ -310,7 +309,6 @@ function ProductDetailAR() {
                         touch-action="pan-y"
                         src={glbFile}
                         ar
-                        ar-scale="fixed"
                       ar-placement={placement}
                       
                         alt="A 3D model of a helmet"
