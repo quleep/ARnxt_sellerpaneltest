@@ -12849,7 +12849,9 @@ model-viewer {
   .rooms_category_container_grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
- 
+ .rooms_category_container_grid_child2 {
+    height: 20rem;
+  }
   .rooms_category_container_grid_child2_image {
     width: 100%;
     height: 100px;

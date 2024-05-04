@@ -6,6 +6,7 @@ import { FaTimes } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
 import Toast from "react-bootstrap/Toast";
+import '@google/model-viewer';
 
 import QRCode from "react-qr-code";
 import DropdownMenu from "../components/DropdownMenu";
@@ -310,7 +311,8 @@ function ProductDetailAR() {
                         src={glbFile}
                         ar
                         ar-scale="fixed"
-                        ar-placement="wall"
+                      ar-placement={placement}
+                      
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
                         animation-name="Dance"
@@ -322,6 +324,20 @@ function ProductDetailAR() {
                           onClick={handlearclick}>
                           View in your space
                         </button>
+                          {showOverlay && (
+                        <div className="overlay">
+                          <p>Move your device to place the object in AR</p>
+                          <button onClick={handlePlaceObject}>Start AR</button>
+                        </div>
+                      )}
+                      <div id="ar-prompt">
+                        <img src="https://modelviewer.dev/shared-assets/icons/hand.png" />
+                        <div id="wall_floor">
+                          Move Camera on the <span>{placement}</span>
+                        </div>
+                      </div>
+
+                      <div id="ar-failure">AR is not tracking!</div>
                         {hasAnimation && (
                           <div id="controls">
                             <button onClick={handleToggleAnimation}>
@@ -341,10 +357,9 @@ function ProductDetailAR() {
                       ar
                       ar-scale="fixed"
                       ar-placement={placement}
-                      ar-modes="webxr scene-viewer"
+                        ar-modes="webxr scene-viewer quick-look"
                       shadow-intensity="1"
                       src={glbFile}
-                      ios-src={usdzFile}
                       alt="A 3D model of a duck">
                       <button
                         slot="ar-button"
