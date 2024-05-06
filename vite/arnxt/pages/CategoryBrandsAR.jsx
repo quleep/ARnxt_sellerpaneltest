@@ -44,13 +44,11 @@ function CategoryBrandsAR() {
                 <div
                   class="rooms_category_container_grid_child1"
                   onClick={(e) => nextPage(item.product_Id, item, e)}>
-                  <div class="rooms_category_container_grid_child2">
-                    <img
-                      src={item.imageurl[0]}
-                      alt="Front of men&#039;s Basic Tee in black."
-                      class="rooms_category_container_grid_child2_image"
-                    />
-                  </div>
+                  <img
+                    src={item.imageurl[0]}
+                    alt="Front of men&#039;s Basic Tee in black."
+                    className="object-contain w-full h-full cursor-pointer duration-300 ease-in-out"
+                  />
                   <div class="rooms_categories_container_grid_child3">
                     <div>
                       <h3 class="hori_scroll_container_child1_text">
