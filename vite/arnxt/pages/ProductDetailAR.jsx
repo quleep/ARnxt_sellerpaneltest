@@ -310,7 +310,7 @@ function ProductDetailAR() {
                         src={glbFile}
                         ar
                       ar-placement={placement}
-                      
+                  
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
                         animation-name="Dance"
