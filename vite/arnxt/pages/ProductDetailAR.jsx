@@ -309,7 +309,7 @@ function ProductDetailAR() {
                         touch-action="pan-y"
                         src={glbFile}
                         ar
-                      ar-placement
+                      ar-placement={placement}
                       
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
@@ -354,7 +354,7 @@ function ProductDetailAR() {
                       animation-name="Dance"
                       ar
                       ar-scale="fixed"
-                      ar-placement
+                      ar-placement={placement}
                         ar-modes="webxr scene-viewer quick-look"
                       shadow-intensity="1"
                       src={glbFile}
