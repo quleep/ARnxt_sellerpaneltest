@@ -314,7 +314,7 @@ function ProductDetailAR() {
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
                         animation-name="Dance"
-                        ar-modes=" scene-viewer quick-look"
+                        ar-modes="webxr scene-viewer quick-look"
                         shadow-intensity="1">
                         <button
                           slot="ar-button"
@@ -355,7 +355,7 @@ function ProductDetailAR() {
                       ar
                       ar-scale="fixed"
                       ar-placement={placement}
-                        ar-modes=" scene-viewer quick-look"
+                        ar-modes="webxr scene-viewer quick-look"
                       shadow-intensity="1"
                       src={glbFile}
                       alt="A 3D model of a duck">
