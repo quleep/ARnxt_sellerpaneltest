@@ -90,9 +90,9 @@ const ContactUsnew = () => {
       </Helmet>
 
       <div id="contact" className="contact">
-        <div className="container">
+        <div className="containercontact">
           <div className="contactdiv">
-            <div className="col-lg-6">
+            
               <div className="text-container">
                 <div className="section-title"></div>
                 <div className="textcontact">
@@ -108,10 +108,10 @@ const ContactUsnew = () => {
                     Thanks!!
                   </p>
                   <h2>+91 9883019518 | care@arnxt.com</h2>
-                </div>
+             
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6" style={{paddingLeft:'100px', paddingRight:'100px', paddingTop:'40px'}}>
               <form onSubmit={submithandler}>
                 <div className="form-group">
                   <input

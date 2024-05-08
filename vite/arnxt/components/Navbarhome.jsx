@@ -191,9 +191,7 @@ const Navbarhome = () => {
               <li>
                 <a href="/pricing"> PRICING</a>
               </li>
-              <li>
-                <a href="/blog">BLOGS</a>
-              </li>
+           
 
               <li>
                 <a href="/contact">CONTACT US</a>
@@ -321,9 +319,7 @@ const Navbarhome = () => {
                 <li>
                   <a href="/pricing"> PRICING</a>
                 </li>
-                <li>
-                  <a href="/blog">BLOGS</a>
-                </li>
+           
 
                 <li>
                   <a href="/contact">CONTACT US</a>
