@@ -5203,9 +5203,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Length{" "}
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                      
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>
@@ -5223,9 +5221,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Breadth
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                     
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>
@@ -5243,9 +5239,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Height
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                     
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>
@@ -6437,9 +6431,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Length{" "}
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                      
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>
@@ -6457,9 +6449,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Breadth
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                        
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>
@@ -6477,9 +6467,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                         />
                                         <label className="placeholder">
                                           Height
-                                          <span className="infoblock">
-                                            <FaInfoCircle />
-                                          </span>
+                                   
                                           <div className="toolTip">
                                             <p>Enter 0 if not available</p>
                                           </div>

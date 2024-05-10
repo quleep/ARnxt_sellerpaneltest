@@ -9410,6 +9410,7 @@ body.active-modal {
 
   border-radius: 10px;
   overflow: scroll;
+  scrollbar-width: none;
 }
 .dropdownsearch ul {
   width: 100%;
@@ -9448,6 +9449,7 @@ body.active-modal {
   width: auto;
   height: auto;
 }
+
 .searchmodelcontainer input {
   width: 100%;
 
@@ -9505,7 +9507,7 @@ body.active-modal {
   height: 100%;
 }
 .productalldetails label {
-  font-family: Manrope, sans-serif;
+  font-family: 'Lato',sans-serif;
   font-size: 18px;
   font-weight: bold;
 }
@@ -10117,6 +10119,7 @@ body.active-modal {
   color: white;
   font-size: 0.9rem;
   top: -30px;
+ 
 }
 .toolTip::before {
   content: "";
@@ -10135,7 +10138,7 @@ body.active-modal {
 }
 .tooltip-containerimage {
   position: relative;
-  display: inline-block; /* Ensures container size fits its contents */
+  display: inline-block; 
 }
 
 .tooltipimage {
@@ -10473,6 +10476,7 @@ body.active-modal {
   flex-direction: row;
   flex-wrap: wrap;
   overflow-x: scroll;
+   scrollbar-width: none;
 }
 .crossIcon {
   background-color: white;
@@ -11102,6 +11106,10 @@ body.active-modal {
 }
 .footer__list-link:hover {
   color: #fff;
+}
+.infoblock{
+  position: absolute;
+
 }
 
 .company__info {
