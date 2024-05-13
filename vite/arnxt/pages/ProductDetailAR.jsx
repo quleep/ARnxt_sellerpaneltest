@@ -310,7 +310,7 @@ function ProductDetailAR() {
                         src={glbFile}
                         ar
                       ar-placement={placement}
-                  
+                        ar-scale = 'auto'
                         alt="A 3D model of a helmet"
                         ref={modelViewerRef}
                         animation-name="Dance"
@@ -353,7 +353,7 @@ function ProductDetailAR() {
                       touch-action="pan-y"
                       animation-name="Dance"
                       ar
-                      ar-scale="fixed"
+                      ar-scale="auto"
                       ar-placement={placement}
                         ar-modes="webxr scene-viewer quick-look"
                       shadow-intensity="1"
