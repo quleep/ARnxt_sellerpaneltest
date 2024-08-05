@@ -12088,9 +12088,19 @@ model-viewer[ar-tracking="not-tracking"] > #ar-failure {
   color: white;
   font-size: 20px;
 }
+.tickrepoupload{
+  display: none;
+  color: white;
+  font-size: 20px;
 
+}
 .tickimage {
   display: none;
+  color: white;
+  font-size: 20px;
+}
+.tickrepouploaddisplay{
+  display: inline-flex;
   color: white;
   font-size: 20px;
 }

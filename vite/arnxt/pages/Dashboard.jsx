@@ -32,6 +32,8 @@ import { useHistory } from "react-router-dom";
 import QRCode from "react-qr-code";
 import Navbarhome from "../components/Navbarhome";
 import { AiOutlineClose } from "react-icons/ai";
+import { useMyContext } from "../Context/store";
+import Reposelectmodal from "../components/Reposelectmodal";
 
 const imagesendurl =
   "https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/imageurl";
@@ -389,6 +391,8 @@ const Dashboard = () => {
   const [selectedproductarray, setSelectedProductArray] = useState();
   const [statuschangevalue, setStatusChangeValue] = useState(false);
   const [clearselected, setClearSelected] = useState(false);
+
+  const {repomodal, setRepoModal, uploadfromrepo, setUploadFromRepo, selectedfilerepo, setSelectedFileRepo} = useMyContext()
 
   useEffect(() => {
     axios
@@ -3909,6 +3913,13 @@ axios.post(registerUrl, productdetails).then((res)=>{
             setGlbFileTick(true);
 
             setFileGlb(file);
+
+            setSelectedFileRepo()
+
+            setUploadFromRepo(false)
+          
+            
+            
             setUploadFilesArray((oldArray) => [...oldArray, file]);
           } else {
             setFileGlb("");
@@ -3952,6 +3963,8 @@ axios.post(registerUrl, productdetails).then((res)=>{
           if (filetype === "usdz" || filetype === "usdc") {
             setUsdzFileTick(true);
             setFileUsdz(file);
+             setUploadFromRepo(false)
+             setSelectedFileRepo()
             setUploadFilesArray((oldArray) => [...oldArray, file]);
           } else {
             setFileUsdz("");
@@ -4037,6 +4050,8 @@ axios.post(registerUrl, productdetails).then((res)=>{
               if (imgWidth === 600 && imgHeight === 600) {
                 setImageFileTick(true);
                 setFileImage(file);
+                setUploadFromRepo(false)
+                setSelectedFileRepo()
 
                 setUploadFilesArray((oldArray) => [...oldArray, file]);
               } else {
@@ -4096,6 +4111,249 @@ axios.post(registerUrl, productdetails).then((res)=>{
         .catch((err) => console.log(err));
     }
   };
+
+  const handlesubmitfilefromrepo = async ()=>{
+  
+    document.querySelector("#spinner").style.display = "inline-flex";
+
+    if (productmerchant === "") {
+      window.scroll(0, 0);
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML =
+        "Product name is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (merchantbrandname === "") {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML = "Brand name is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (modelidmerchant === "") {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML = "ModelId is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (merchantproductcategory === "Category") {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML = "Category is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (placementtype === "Placement") {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML = "Placement is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (tagsarraymerchant.length === 0) {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML =
+        "Please select atleast one tag";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+    if (merchantsubcateogry === "Sub-category") {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(0);
+      document.querySelector(".alertpopup").style.display = "flex ";
+      document.querySelector(".alerttext").innerHTML =
+        "Subcategory is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+
+    if (roomsselectmerchant.length === 0) {
+      window.scroll(0, 0);
+
+      document.querySelector("#spinner").style.display = "none";
+
+      setAccActiveMerchant(1);
+      document.querySelector(".alertpopup").style.display = "block";
+      document.querySelector(".alerttext").innerHTML = "Room type is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+
+    if (specificationmerchant === "") {
+      window.scroll(0, 0);
+
+      setAccActiveMerchant(1);
+      document.querySelector("#spinner").style.display = "none";
+
+      document.querySelector(".alertpopup").style.display = "block";
+      document.querySelector(".alerttext").innerHTML =
+        "Specification is required";
+
+      setTimeout(() => {
+        document.querySelector(".alertpopup").style.display = "none";
+      }, [3000]);
+
+      return;
+    }
+
+
+
+
+
+    getId();
+    setProid(lastId);
+
+    const productdetails = {
+      product_Id: lastId,
+      merchant_Id: p_id,
+
+      model_Id: "",
+      modelno: modelidmerchant,
+      modelrequired: "true",
+      unit: unitmerchant,
+      weightunit: weightunitmerchant,
+      brand: merchantbrandname.toLowerCase(),
+      lengthprod: lengthmerchant,
+      breadthprod: breadthmerchant,
+      height: heightmerchant,
+      placement: placementtype,
+      productname: productmerchant.toLowerCase(),
+
+      mrp: Number(mrpmerchant),
+      offerprice: Number(offerpricemerchant),
+      collection: collectionmerchant.toLowerCase(),
+      primarymaterial: primarymaterialmerchant,
+      roomtype: roomsselectmerchant,
+      weight: weightmerchant,
+      warranty: warrantymerchant,
+      sku: skumerchant,
+      discount: Number(discount),
+      colorvalue: colortagsmerchant,
+      tags: tagsarraymerchant,
+      category: merchantproductcategory,
+      subcategory: merchantsubcateogry,
+      specification: specificationmerchant,
+      brandoverview: brandoverviewmerchant,
+      sellerinfo: sellerinfomerchant,
+      care: caremerchant,
+
+      statusvalue: "Model uploaded",
+      imagerejection: "",
+
+      imageurl: [selectedfilerepo.renderedimage],
+      currency: currencymerchant,
+      registration_Time: new Date().toString(),
+      additional: additionalmerchant,
+      subcatdetail: subcatselectmerchant,
+      designstyle: designselectmerchant.toLowerCase(),
+    };
+
+    const modelbody = {
+      merchant_Id: Number(p_id),
+      product_Id: lastId,
+    
+      glb: selectedfilerepo.glburl,
+      usdz:selectedfilerepo.usdzurl,
+      imgfile: selectedfilerepo.renderedimage,
+
+      modelstatus: "Model uploaded",
+    };
+
+    setButtonClick(true);
+
+    axios
+      .post(registerUrl, productdetails)
+      .then((res) => {})
+      .then(() => {
+        axios.post(uplodmodelsurl, modelbody).then((res) => {
+          if (res) {
+            document.querySelector("#spinner").style.display = "none";
+
+            document.querySelector(".modaldiv").style.display = "block";
+            setTimeout(() => {
+              document.querySelector(".modaldiv").style.display = "none";
+            }, [5000]);
+          }
+          setButtonClick(false);
+        });
+      });
+
+
+  }
+
+  useEffect(()=>{
+
+    if(uploadfromrepo){
+      setFileImage("");
+      setImageFileTick(false);
+      setFileUsdz("");
+      setUsdzFileTick(false);
+      setFileGlb("");
+      setGlbFileTick(false);
+    }
+
+  },[uploadfromrepo])
 
   const handleSubmitFileMerchant = async () => {
     document.querySelector("#spinner").style.display = "inline-flex";
@@ -4661,9 +4919,18 @@ axios.post(registerUrl, productdetails).then((res)=>{
     }
   };
 
+
+  const handlerepomodal = ()=>{
+    setRepoModal(true)
+
+
+  }
+
   return (
     <div className="">
       <Navbarhome />
+
+         <Reposelectmodal/> 
       <div className="nav-container">
         <div
           class="logo"
@@ -7399,7 +7666,28 @@ axios.post(registerUrl, productdetails).then((res)=>{
                                             />
                                             <p className="filemessage"></p>
                                           </div>
+
+                                       
                                         </div>
+
+                                        <div>
+                                        <div class="modeluploadwrapper">
+                                            <button class="btnmodel" onClick={()=>handlerepomodal()}>
+                                              Select from repo{" "}
+                                              <FaCheck
+                                                className={
+                                                  uploadfromrepo
+                                                    ? "tickrepouploaddisplay"
+                                                    : "tickrepoupload"
+                                                }
+                                              />
+                                         
+                                            </button>
+                                      
+                                       
+                                       
+                                          </div>
+                                          </div>
                                       </div>
                                     </div>
 
@@ -7439,7 +7727,7 @@ axios.post(registerUrl, productdetails).then((res)=>{
                       <button
                         type="submit"
                         disabled={buttonclick ? true : false}
-                        onClick={handleSubmitFileMerchant}>
+                        onClick={ uploadfromrepo ? handlesubmitfilefromrepo :   handleSubmitFileMerchant}>
                         Submit
                         <div class="spinner-border" id="spinner" role="status">
                           <span class="visually-hidden"></span>

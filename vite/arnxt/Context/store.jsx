@@ -18,6 +18,12 @@ export const MyProvider = ({ children }) => {
   const [finalData, setFinalData] = useState([]);
   const [wallimagewidth, setWallImageWidth] = useState();
   const [wallimageheight, setWallImageHeight] = useState();
+  const [repoitems, setRepoItems] = useState()
+
+  const [uploadfromrepo, setUploadFromRepo] = useState(false)
+  const [selectedfilerepo, setSelectedFileRepo] = useState()
+
+  const [repomodal, setRepoModal] = useState(false)
   const incrementCounter = () => {
     setCounter(counter + 1);
   };
@@ -25,6 +31,14 @@ export const MyProvider = ({ children }) => {
   return (
     <MyContext.Provider
       value={{
+        selectedfilerepo,
+        setSelectedFileRepo,
+        uploadfromrepo,
+        setUploadFromRepo,
+        repoitems,
+        setRepoItems,
+        repomodal,
+        setRepoModal,
         userId,
         setUserId,
         data,
