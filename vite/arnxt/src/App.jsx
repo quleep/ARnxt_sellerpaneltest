@@ -57,6 +57,7 @@ import ContactUsnew from "../pages/ContactUsnew";
 import Testpage from "../pages/Testpage";
 import BlogSecond from "../pages/BlogSecond";
 import BlogThird from "../pages/BlogThird";
+import Refundpolicy from "../pages/Refundpolicy";
 const verifyUrl =
   "https://4xuh6eqvr6.execute-api.ap-south-1.amazonaws.com/prod/verify";
 
@@ -108,7 +109,7 @@ class App extends Component {
             />
           </Helmet>
           <Route path="/" exact component={Homepagenew} />
-          <Route path="/pricing" exact component={PricingNew} />
+          <Route path="/pricing" exact component={Plan} />
           <Route path="/about" exact component={About} />
           <Route path="/privacypolicy" exact component={Privacypolicy} />
           <Route
@@ -117,6 +118,8 @@ class App extends Component {
             component={TermsAndConditions}
           />
           <Route path="/login" exact component={Loginform} />
+          <Route path="/refundpolicy" exact component={Refundpolicy} />
+
           <Route path="/loginanalytics" component={Analyticslogin} />
           <Route path="/analytics" component={Analytics} />
           <Route path="/productsnew" exact component={Productsnew} />

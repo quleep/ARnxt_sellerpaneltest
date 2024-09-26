@@ -5,8 +5,8 @@ import Navbarhome from "../components/Navbarhome";
 const Plan = () => {
   const userEmail = sessionStorage.getItem("user");
 
-  const emailID = JSON.parse(userEmail);
-  let p_id = emailID.userid;
+  const emailID = JSON.parse(userEmail && userEmail);
+  let p_id = emailID?.userid;
 
   const paymenturl =
     "https://1t4lfd0rz7.execute-api.ap-south-1.amazonaws.com/razorpay/order";

@@ -41,6 +41,8 @@ const Footercomponent = () => {
           <a href="/about">About Us</a>
           <a href="/contact">Contact Us</a>
           <a href="/privacypolicy">Privacy policy</a>
+          <a href="/refundpolicy">Refund policy</a>
+          <a href="/terms&conditions">Terms & conditions</a>
         </div>
       </div>
 

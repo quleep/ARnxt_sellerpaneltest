@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Footertest from "../components/Footertest";
+import Navbarhome from "../components/Navbarhome";
+import Footercomponent from "../components/Footercomponent";
 
 function TermsAndConditions() {
-  // scrolled to top when redirected from a page
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="" style={{ marginTop: "60px" }}>
-      <Navbar />
+      <Navbarhome />
       <Helmet>
         <title>
           Arnxt - Terms and Conditions | Augmented Reality | Metaverse{" "}
@@ -31,18 +33,18 @@ function TermsAndConditions() {
         />
       </Helmet>
 
-      <div className="container text-start">
+      <div className="container text-start"  style={{display:'flex', flexDirection:'column', marginBottom:'50px'}}>
         {/* heading start */}
-        <div className="">
+        <div className="" style={{marginBottom:'30px'}}>
           <h3 className="text-center">Terms and Conditions</h3>
         </div>
         {/* heading end */}
         {/* description start */}
-        <div name="description" className="my-5 container-fluid">
-          <b>
+        <div name="description" className=" container-fluid"  >
+          <b style={{marginLeft:'30px', marginTop:'10px'}}>
             Use of this site is subject to the following Terms and Conditions:
           </b>
-          <ol className="textterms">
+          <ul className="textterms"  style={{marginTop:'20px', listStyleType:'disc', textAlign:'justify'}}>
             <li>
               General Quleep, a company registered at Noida, owns and operates
               the Arnxt Platform, which allows customers (“you”) to: Publish 3D
@@ -150,10 +152,10 @@ function TermsAndConditions() {
               changes but encourage you to review these ToS regularly. The
               latest version of these ToS is available at https://arnxt.com/
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
-      <Footertest />
+      <Footercomponent />
     </div>
   );
 }
