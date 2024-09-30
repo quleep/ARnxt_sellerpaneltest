@@ -220,7 +220,7 @@ const Plan = () => {
             <div class="body">
               <p>
                 No of Products : 25 <br />
-                Number of 3D views/month :{" "}
+                Number of 3D views/Quarterly  :{" "}
                 {pricecheckbasic ? "50,000" : "10,000"} <br />
                 QR code access
               </p>
@@ -266,7 +266,7 @@ const Plan = () => {
               <p>
                 No of Products : 100
                 <br />
-                Number of 3D views/month :{" "}
+                Number of 3D views/Quarterly :{" "}
                 {pricecheckpremium ? "2,40,000" : "60,000"} <br />
                 QR code access
               </p>
@@ -312,7 +312,7 @@ const Plan = () => {
               <p>
                 No of Products : 500
                 <br />
-                Number of 3D views/month :{" "}
+                Number of 3D views/Quarterly : {" "}
                 {pricecheckpro ? "Unlimited" : "2,00,000"} <br />
                 QR code access <br />
                 Dedicated account manager
@@ -360,7 +360,7 @@ const Plan = () => {
               <p>
                 No of Products : Unlimited
                 <br />
-                Number of 3D views/month :{" "}
+                Number of 3D views/Quarterly :{" "}
                 {pricecheckcustom ? "Unlimited" : "Unlimited"} <br />
                 QR code access <br />
                 Dedicated account manager
